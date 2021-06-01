@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Elecciones Chile 2021</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="#">
+</head>
+
+<body>
+	<div id='menu'>
+		<a id="a-distritos" onClick="mostrarDistritos()" style="color:black">Distritos</a>
+		<a id="a-participacion" onClick="mostrarParticipacion()">Participación</a>
+		<a id="a-gobernadores" onClick="mostrarGobernadores()">Gobernadores</a>
+		<a id="a-convencionales" onClick="mostrarConvencionales()">Convencionales</a>
+		<a id="a-convencionalesMH" onClick="mostrarConvencionalesMH()" style="margin-left:2px">(Votos M/H)</a>
+		<a id="a-alcaldes" onClick="mostrarAlcaldes()">Alcaldes</a>
+		<a id="a-concejales" onClick="mostrarConcejales()">Concejales</a>
+		<a id="a-concejalesMH" onClick="mostrarConcejalesMH()" style="margin-left:2px">(Votos M/H)</a>
+		<span>Elecciones Chile 2021 | 15 y 16 de mayo<span>
+	</div>
+    <div id='map'></div>
+    <div class='map-overlay' id='legend' style='display:none'></div>
+    <div class='map-overlay2' id='legend2' style='display:none'></div>
+    <script type='text/javascript' src="js/map.js"></script>
+</body>
+
+</html>
