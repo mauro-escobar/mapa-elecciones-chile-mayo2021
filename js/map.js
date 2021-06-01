@@ -578,7 +578,7 @@ map.on('load', function(){
 		            	50, 1,
 		            ]
     			}
-    		});
+    		}, 'zona-indeterminada');
     		map.setLayoutProperty('gobernadores-azul-violeta', 'visibility', 'none');	
     	}
     );	
@@ -612,7 +612,7 @@ map.on('load', function(){
 		            	50, 1,
 		            ]
     			}
-    		});
+    		}, 'zona-indeterminada');
     		map.setLayoutProperty('gobernadores-azul-gris', 'visibility', 'none');	
     	}
     );
@@ -646,7 +646,7 @@ map.on('load', function(){
 		            	50, 1,
 		            ]
     			}
-    		});
+    		}, 'zona-indeterminada');
     		map.setLayoutProperty('gobernadores-azul-verde', 'visibility', 'none');	
     	}
     );
@@ -680,7 +680,7 @@ map.on('load', function(){
 		            	50, 1,
 		            ]
     			}
-    		});
+    		}, 'zona-indeterminada');
     		map.setLayoutProperty('gobernadores-violeta-verde-agua', 'visibility', 'none');	
     	}
     );
@@ -714,7 +714,7 @@ map.on('load', function(){
 		            	50, 1,
 		            ]
     			}
-    		});
+    		}, 'zona-indeterminada');
     		map.setLayoutProperty('gobernadores-violeta-gris', 'visibility', 'none');	
     	}
     );
