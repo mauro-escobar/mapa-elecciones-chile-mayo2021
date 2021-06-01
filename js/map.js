@@ -1377,7 +1377,7 @@ function mostrarParticipacion() {
 	legend.style.display = 'block';
     if (screen.width>=992) {
         legend.style.maxWidth = '300px';
-        legend.style.height = '65px';
+        legend.style.height = '70px';
         legend2.style.display = 'block';
         legend2.style.maxWidth = '850px';
         legend2.style.width = '850px';
@@ -1427,7 +1427,7 @@ function mostrarGobernadores() {
 
     if (screen.width>=992) {
     	legend.style.maxWidth = '270px';
-    	legend.style.height = '110px';
+    	legend.style.height = '115px';
     	legend2.style.display = 'block';
     	legend2.style.maxWidth = '850px';
     	legend2.style.width = '650px';
@@ -1483,7 +1483,7 @@ function mostrarConvencionales() {
 	legend.style.display = 'block';
     if (screen.width>=992) {
     	legend.style.maxWidth = '350px';
-    	legend.style.height = '175px';
+    	legend.style.height = '180px';
     	legend2.style.display = 'block';
     	legend2.style.maxWidth = '850px';
     	legend2.style.width = '650px';
@@ -1636,7 +1636,7 @@ function mostrarAlcaldes() {
     legend.innerHTML = '';
     if (screen.width>=992) {
     	legend.style.maxWidth = '520px';
-    	legend.style.height = '150px';
+    	legend.style.height = '160px';
     	legend2.style.display = 'block';
     	legend2.style.maxWidth = '850px';
     	legend2.style.width = '650px';
@@ -1839,7 +1839,9 @@ function mostrarConcejales() {
             'P. DE TRABAJADORES REVOL.': 'PTR (1)', 
             'CANDIDATURA IND.': ''
         };
-    } else {
+    }  else {
+        legend.style.display = 'none';
+        /*
         legend.style.maxWidth = '210px';
         legend.style.height = '290px';
         var layers2 = {
@@ -1854,9 +1856,9 @@ function mostrarConcejales() {
             'DIGNIDAD AHORA': '',
             'P. DE TRABAJADORES REVOL.': '', 
             'CANDIDATURA IND.': ''
-        };
+        }; */
 
-    }
+    } 
 	legend.innerHTML = '';
 
 
@@ -1866,6 +1868,7 @@ function mostrarConcejales() {
 	for (var layer in coloresConcL) {
 		if (layer == 'CHILE VAMOS' & screen.width>=992) {
 			var tr = document.createElement('tr');
+            tr.style.height = '27px';
 			var td1= document.createElement('td');
 			var td2= document.createElement('td');
 			td2.colSpan = '2';
@@ -1885,6 +1888,7 @@ function mostrarConcejales() {
 			table.appendChild(tr);
 		} else if (layer == 'UNIDAD POR EL APRUEBO' & screen.width>=992) {
 			var tr = document.createElement('tr');
+            tr.style.height = '27px';
 			tr.style.borderTop = 'solid';
 			tr.style.borderWidth = '1px';
 			var td1= document.createElement('td');
@@ -1906,6 +1910,7 @@ function mostrarConcejales() {
 			table.appendChild(tr);
 		} else if (layer == 'CHILE DIGNO VERDE Y SOB.' & screen.width>=992) {
 			var tr = document.createElement('tr');
+            tr.style.height = '27px';
 			tr.style.borderTop = 'solid';
 			tr.style.borderWidth = '1px';
 			var td1= document.createElement('td');
@@ -1930,6 +1935,7 @@ function mostrarConcejales() {
 		var layer2 = layers2[layer];
 		var color = coloresConcL[layer];
 		var tr = document.createElement('tr');
+            tr.style.height = '27px';
 		var td1 = document.createElement('td');
 		var td2 = document.createElement('td');
 		var td3 = document.createElement('td');
