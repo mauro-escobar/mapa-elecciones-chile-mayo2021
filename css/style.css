@@ -7,35 +7,63 @@ a:hover {
 	cursor:pointer;
 }
 
-#menu a {
-	font-family: Arial, Helvetica, sans-serif;
-	margin-left: 25px;
-	color: gray;
+@media screen and (min-width: 992px) {
+  #menu a {
+  	font-family: Arial, Helvetica, sans-serif;
+  	margin-left: 25px;
+  	color: gray;
+  }
+
+  #menu #menu-title {
+  	font-family: Arial, Helvetica, sans-serif;
+  	margin-left: 200px;
+  	color: black;
+  	font-size: 1.2em;
+  }
+
+  #menu #menu-author {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 10px;
+    color: gray;
+    font-size: 0.6em;
+  }
+
+  #map {
+    	position: absolute;
+    	top: 40px;
+    	bottom: 0;
+    	width: 100%;
+  }
 }
 
-#menu #menu-title {
-	font-family: Arial, Helvetica, sans-serif;
-	margin-left: 200px;
-	color: black;
-	font-size: 1.2em;
-}
+@media screen and (max-width: 992px) {
+  #menu a {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 5px;
+    color: gray;
+    font-size: 0.8em;
+  }
 
-#menu #menu-author {
-  font-family: Arial, Helvetica, sans-serif;
-  margin-left: 10px;
-  color: gray;
-  font-size: 0.6em;
-}
+  #menu #menu-title {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 50px;
+    color: black;
+    font-size: 1em;
+  }
 
-#map {
-  	position: absolute;
-  	top: 40px;
-  	bottom: 0;
-  	width: 100%;
-    /*
-    width: 90%;
-    height: 600px;
-    margin: 5em auto; */
+  #menu #menu-author {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 10px;
+    color: gray;
+    font-size: 0.5em;
+  }
+
+  #map {
+      position: absolute;
+      top: 40px;
+      bottom: 0;
+      width: 100%;
+  }
 }
 
 .map-overlay {
