@@ -13,11 +13,18 @@ a:hover {
 	color: gray;
 }
 
-#menu span {
+#menu #menu-title {
 	font-family: Arial, Helvetica, sans-serif;
-	margin-left: 300px;
+	margin-left: 200px;
 	color: black;
 	font-size: 1.2em;
+}
+
+#menu #menu-author {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 10px;
+  color: gray;
+  font-size: 0.6em;
 }
 
 #map {
