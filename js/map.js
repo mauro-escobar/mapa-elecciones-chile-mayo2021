@@ -223,14 +223,20 @@ function paintConcejales() {
 	//console.log(ret);
 }
 
+bearing = 90;
+center = [-71.5,-27];
+if (screen.width<=992) {
+    bearing = 0;
+    center = [-70.66,-33.45];
+}
 
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mauro-escobar/ckp5cjbcc1xgf18pvbfshxrze',
     zoom: 6,
     minZoom: 6,
-    center: [-71.5,-27],
-    bearing: 90,
+    center: center,
+    bearing: bearing,
 });
 map.addControl(new mapboxgl.NavigationControl());
 
