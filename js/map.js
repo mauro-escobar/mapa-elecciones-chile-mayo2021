@@ -228,6 +228,7 @@ var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mauro-escobar/ckp5cjbcc1xgf18pvbfshxrze',
     zoom: 6,
+    minZoom: 6,
     center: [-71.5,-27],
     bearing: 90,
 });
