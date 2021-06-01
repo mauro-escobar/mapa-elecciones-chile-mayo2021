@@ -1370,7 +1370,9 @@ function mostrarParticipacion() {
 	legend.style.display = 'block';
 	legend.style.maxWidth = '300px';
 	legend.style.height = '65px';
-	legend2.style.display = 'block';
+    if (screen.width>=992) {
+        legend2.style.display = 'block';
+    }
 	legend2.style.maxWidth = '850px';
 	legend2.style.width = '850px';
 	legend2.style.height = '40px';
