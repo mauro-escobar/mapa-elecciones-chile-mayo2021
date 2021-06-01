@@ -1373,37 +1373,42 @@ function mostrarParticipacion() {
 					   '<tr><td></td><td>Total Electores</td><td style="padding-left:20px;text-align:right">14.900.190</td></tr>'+
 					   '<tr><td></td><td>Votantes</td><td style="padding-left:20px;text-align:right">6.468.750</td></tr>'+
 					   '</table>';
+
 	legend.style.display = 'block';
-	legend.style.maxWidth = '300px';
-	legend.style.height = '65px';
     if (screen.width>=992) {
+        legend.style.maxWidth = '300px';
+        legend.style.height = '65px';
         legend2.style.display = 'block';
+        legend2.style.maxWidth = '850px';
+        legend2.style.width = '850px';
+        legend2.style.height = '40px';
+    	legend2.innerHTML = 'Zonas con mayor participación tienen un color más solido. '+
+    					   'Al acercarse/alejarse se nota el cambio entre distritos y comunas.';
+
+    	var pctLegend2 = ['<25%', '30%', '35%', '40%', '45%', '50%', '55%', '>60%'];
+
+    	var table2 = document.createElement('table');
+    	table2.style.borderCollapse = 'collapse';	
+    	var tr = document.createElement('tr');
+    	for (i = 0; i < pctLegend2.length; i++) {
+    		var td = document.createElement('td');
+    		td.style.textAlign = 'center';
+    		td.style.backgroundColor = 'rgba(160,82,45,'+i/7+')';
+    		if (i==pctLegend2.length-1) {
+    			td.style.color = colores['blanco'];
+    		}
+    		td.innerHTML = pctLegend2[i];
+    		td.width = '105px';
+    		td.height = '20px';
+    		tr.appendChild(td);
+    	}
+    	table2.appendChild(tr);
+    	legend2.appendChild(table2);
+    } else {
+        legend.style.maxWidth = '240px';
+        legend.style.height = '60px';
     }
-	legend2.style.maxWidth = '850px';
-	legend2.style.width = '850px';
-	legend2.style.height = '40px';
-	legend2.innerHTML = 'Zonas con mayor participación tienen un color más solido. '+
-					   'Al acercarse/alejarse se nota el cambio entre distritos y comunas.';
 
-	var pctLegend2 = ['<25%', '30%', '35%', '40%', '45%', '50%', '55%', '>60%'];
-
-	var table2 = document.createElement('table');
-	table2.style.borderCollapse = 'collapse';	
-	var tr = document.createElement('tr');
-	for (i = 0; i < pctLegend2.length; i++) {
-		var td = document.createElement('td');
-		td.style.textAlign = 'center';
-		td.style.backgroundColor = 'rgba(160,82,45,'+i/7+')';
-		if (i==pctLegend2.length-1) {
-			td.style.color = colores['blanco'];
-		}
-		td.innerHTML = pctLegend2[i];
-		td.width = '105px';
-		td.height = '20px';
-		tr.appendChild(td);
-	}
-	table2.appendChild(tr);
-	legend2.appendChild(table2);
 };
 
 
@@ -1418,14 +1423,21 @@ function mostrarGobernadores() {
 	document.getElementById('a-gobernadores').style.color = 'black';
 
 	legend.style.display = 'block';
-	legend.style.maxWidth = '270px';
-	legend.style.height = '110px';
-	legend.innerHTML = '';
-	legend2.style.display = 'block';
-	legend2.style.maxWidth = '850px';
-	legend2.style.width = '650px';
-	legend2.style.height = '18px';
-	legend2.innerHTML = 'Transparencia depende del porcentaje del candidato más votado.';
+    legend.innerHTML = '';
+
+    if (screen.width>=992) {
+    	legend.style.maxWidth = '270px';
+    	legend.style.height = '110px';
+    	legend2.style.display = 'block';
+    	legend2.style.maxWidth = '850px';
+    	legend2.style.width = '650px';
+    	legend2.style.height = '18px';
+    	legend2.innerHTML = 'Transparencia depende del porcentaje del candidato más votado.';
+    } else {
+        legend.style.maxWidth = '200px';
+        legend.style.height = '95px';
+    }
+
 
 	var layers = ['UNIDAD CONSTITUYENTE', 'CHILE VAMOS', 'FRENTE AMPLIO', 
 	              'ECOLOGISTAS E INDEPENDIENTES',  'CANDIDATURA INDEPENDIENTE'];
@@ -1469,13 +1481,18 @@ function mostrarConvencionales() {
 
 	legend.innerHTML = '';
 	legend.style.display = 'block';
-	legend.style.maxWidth = '350px';
-	legend.style.height = '175px';
-	legend2.style.display = 'block';
-	legend2.style.maxWidth = '850px';
-	legend2.style.width = '650px';
-	legend2.style.height = '18px';
-	legend2.innerHTML = 'Color y transparencia depende del porcentaje de la lista más votada en el distrito.';
+    if (screen.width>=992) {
+    	legend.style.maxWidth = '350px';
+    	legend.style.height = '175px';
+    	legend2.style.display = 'block';
+    	legend2.style.maxWidth = '850px';
+    	legend2.style.width = '650px';
+    	legend2.style.height = '18px';
+    	legend2.innerHTML = 'Color y transparencia depende del porcentaje de la lista más votada en el distrito.';
+    } else {  
+        legend.style.maxWidth = '250px';
+        legend.style.height = '150px';  
+    }
 
 	var layers = ['CHILE VAMOS', 'APRUEBO DIGNIDAD', 'LA LISTA DEL PUEBLO', 
 	              'LISTA DEL APRUEBO', 'INDEPENDIENTES NO NEUTRALES', 
@@ -1519,13 +1536,18 @@ function mostrarConvencionalesMH() {
 
 	legend.innerHTML = '';
 	legend.style.display = 'block';
-	legend.style.maxWidth = '250px';
-	legend.style.height = '250px';
-	legend2.style.display = 'block';
-	legend2.style.maxWidth = '850px';
-	legend2.style.width = '650px';
-	legend2.style.height = '18px';
-	legend2.innerHTML = 'Acercarse para distinguir participación a nivel comunal.';
+    if (screen.width>=992) {
+    	legend.style.maxWidth = '250px';
+    	legend.style.height = '250px';
+    	legend2.style.display = 'block';
+    	legend2.style.maxWidth = '850px';
+    	legend2.style.width = '650px';
+    	legend2.style.height = '18px';
+    	legend2.innerHTML = 'Acercarse para distinguir participación a nivel comunal.';
+    } else {
+        legend.style.maxWidth = '200px';
+        legend.style.height = '190px';        
+    }
 
 	var layers = ['65% votación hacia mujeres', '60% votación hacia mujeres', '55% votación hacia mujeres', '50%',
 	              '55% votación hacia hombres', '60% votación hacia hombres', '65% votación hacia hombres'];
@@ -1556,7 +1578,9 @@ function mostrarConvencionalesMH() {
 	legend.appendChild(table);
 
 	var table = document.createElement('table');
-	table.style.marginTop = '20px';
+    if (screen.width>=992) {
+	   table.style.marginTop = '20px';   
+    }
 	var tr = document.createElement('tr');
 	var td = document.createElement('td');
 	td.colSpan = 3;
@@ -1609,21 +1633,33 @@ function mostrarAlcaldes() {
 	document.getElementById('a-alcaldes').style.color = 'black';
 
 	legend.style.display = 'block';
-	legend.style.maxWidth = '520px';
-	legend.style.height = '150px';
-	legend.innerHTML = '';
-	legend2.style.display = 'block';
-	legend2.style.maxWidth = '850px';
-	legend2.style.width = '650px';
-	legend2.style.height = '18px';
-	legend2.innerHTML = 'Transparencia depende del porcentaje del candidato electo.';
+    legend.innerHTML = '';
+    if (screen.width>=992) {
+    	legend.style.maxWidth = '520px';
+    	legend.style.height = '150px';
+    	legend2.style.display = 'block';
+    	legend2.style.maxWidth = '850px';
+    	legend2.style.width = '650px';
+    	legend2.style.height = '18px';
+    	legend2.innerHTML = 'Transparencia depende del porcentaje del candidato electo.';
 
-	var layers = ['CHILE VAMOS (87)', 'UNIDAD POR EL APRUEBO (69)', 'UNIDOS POR LA DIGNIDAD (60)', 
-	              'FRENTE AMPLIO (12)', 'CHILE DIGNO VERDE Y SOBERANO (9)   ', 
-	              'DIGNIDAD AHORA (3)', 'CANDIDATURA INDEPENDIENTE (105)'];
-	var layers2 = ['UDI (32), RN (31), EVO (1), IND (23)', 'PS (23), PPD (17), PR (11), IND (18)',
-					'DC (46), PRO (2), IND (12)', 'RD (6), CS (2), PL (1), IND (3)', 
-					'PCCh (6), FREVS (1), IND (2)', 'PH (2), IGUAL (1)']
+        var layers = ['CHILE VAMOS (87)', 'UNIDAD POR EL APRUEBO (69)', 'UNIDOS POR LA DIGNIDAD (60)', 
+                      'FRENTE AMPLIO (12)', 'CHILE DIGNO VERDE Y SOBERANO (9)   ', 
+                      'DIGNIDAD AHORA (3)', 'CANDIDATURA INDEPENDIENTE (105)'];
+        var layers2 = ['UDI (32), RN (31), EVO (1), IND (23)', 'PS (23), PPD (17), PR (11), IND (18)',
+                        'DC (46), PRO (2), IND (12)', 'RD (6), CS (2), PL (1), IND (3)', 
+                        'PCCh (6), FREVS (1), IND (2)', 'PH (2), IGUAL (1)'];
+    } else {
+        legend.style.maxWidth = '285px';
+        legend.style.height = '150px';
+        var layers = ['CHILE VAMOS', 'UNIDAD POR EL APRUEBO', 'UNIDOS POR LA DIGNIDAD', 
+                      'FRENTE AMPLIO', 'CHILE DIGNO VERDE Y SOBERANO', 
+                      'DIGNIDAD AHORA', 'CANDIDATURA INDEPENDIENTE'];
+        var layers2 = ['UDI, RN, EVO, IND', 'PS, PPD, PR, IND',
+                        'DC, PRO, IND', 'RD, CS, PL, IND', 
+                        'PCCh, FREVS, IND', 'PH, IGUAL'];
+    }
+
 	var colors = [colores['azul'], colores['violeta'], colores['marron'], colores['verde-agua'], 
 	              colores['rojo'], colores['amarillo'], colores['gris']];
 
@@ -1651,7 +1687,9 @@ function mostrarAlcaldes() {
 		var value2 = document.createElement('span');
 		value2.innerHTML = layer2;
 		td3.appendChild(value2);
-		td3.style.paddingLeft = '15px';
+        if (screen.width>=992) {
+		  td3.style.paddingLeft = '15px';
+        }
 
 		tr.appendChild(td1);
 		tr.appendChild(td2);
@@ -1689,10 +1727,15 @@ function mostrarConcejalesMH() {
 
 	legend.innerHTML = '';
 	legend.style.display = 'block';
-	legend.style.maxWidth = '250px';
-	legend.style.height = '250px';
-	legend2.innerHTML = '';
-	legend2.style.display = 'none';
+    legend2.innerHTML = '';
+    legend2.style.display = 'none';
+    if (screen.width>=992) {
+    	legend.style.maxWidth = '250px';
+    	legend.style.height = '250px';
+    } else {
+        legend.style.maxWidth = '200px';
+        legend.style.height = '190px';
+    }
 
 	var layers = ['>65% votación hacia mujeres', '60% votación hacia mujeres', '55% votación hacia mujeres', '50%',
 	              '55% votación hacia hombres', '60% votación hacia hombres', '>65% votación hacia hombres'];
@@ -1723,7 +1766,9 @@ function mostrarConcejalesMH() {
 	legend.appendChild(table);
 
 	var table = document.createElement('table');
-	table.style.marginTop = '20px';
+    if (screen.width>=992) {
+	   table.style.marginTop = '20px';
+    }
 	var tr = document.createElement('tr');
 	var td = document.createElement('td');
 	td.colSpan = 3;
@@ -1777,28 +1822,49 @@ function mostrarConcejales() {
 	document.getElementById('a-concejales').style.color = 'black';
 
 	legend.style.display = 'block';
-	legend.style.maxWidth = '750px';
-	legend.style.height = '380px';
+    if (screen.width>=992) {
+    	legend.style.maxWidth = '750px';
+    	legend.style.height = '380px';
+
+        var layers2 = {
+            'CHILE VAMOS': 'UDI (298), RN (377), EVO (61), PRI (36)', 
+            'REPUBLICANOS Y CIUD.': 'REP (12), CIU (1)', 
+            'UNIDAD POR EL APRUEBO': 'PS (272), PPD (202), PR (174)', 
+            'UNIDOS POR LA DIGNIDAD': 'DC+PRO (362)', 
+            'FRENTE AMPLIO': 'RD (43), CS (51), PL (4), COM (34)', 
+            'ECOLOGISTAS E IND': 'ECO (47)',
+            'CHILE DIGNO VERDE Y SOB.': 'PCCh (157), FREVS (48)', 
+            'UNION PATRIOTICA': 'UPA (1)', 
+            'DIGNIDAD AHORA': 'PH (28), IGUAL (27)',
+            'P. DE TRABAJADORES REVOL.': 'PTR (1)', 
+            'CANDIDATURA IND.': ''
+        };
+    } else {
+        legend.style.maxWidth = '210px';
+        legend.style.height = '290px';
+        var layers2 = {
+            'CHILE VAMOS': '', 
+            'REPUBLICANOS Y CIUD.': '', 
+            'UNIDAD POR EL APRUEBO': '', 
+            'UNIDOS POR LA DIGNIDAD': '', 
+            'FRENTE AMPLIO': '', 
+            'ECOLOGISTAS E IND': '',
+            'CHILE DIGNO VERDE Y SOB.': '', 
+            'UNION PATRIOTICA': '', 
+            'DIGNIDAD AHORA': '',
+            'P. DE TRABAJADORES REVOL.': '', 
+            'CANDIDATURA IND.': ''
+        };
+
+    }
 	legend.innerHTML = '';
 
-
-	var layers2 = {'CHILE VAMOS': 'UDI (298), RN (377), EVO (61), PRI (36)', 
-			       'REPUBLICANOS Y CIUD.': 'REP (12), CIU (1)', 
-	               'UNIDAD POR EL APRUEBO': 'PS (272), PPD (202), PR (174)', 
-	               'UNIDOS POR LA DIGNIDAD': 'DC+PRO (362)', 
-	               'FRENTE AMPLIO': 'RD (43), CS (51), PL (4), COM (34)', 
-	               'ECOLOGISTAS E IND': 'ECO (47)',
-				   'CHILE DIGNO VERDE Y SOB.': 'PCCh (157), FREVS (48)', 
-				   'UNION PATRIOTICA': 'UPA (1)', 
-				   'DIGNIDAD AHORA': 'PH (28), IGUAL (27)',
-				   'P. DE TRABAJADORES REVOL.': 'PTR (1)', 
-				   'CANDIDATURA IND.': ''};
 
 
 	var table = document.createElement('table');
 	table.style.borderCollapse = 'collapse';
 	for (var layer in coloresConcL) {
-		if (layer == 'CHILE VAMOS') {
+		if (layer == 'CHILE VAMOS' & screen.width>=992) {
 			var tr = document.createElement('tr');
 			var td1= document.createElement('td');
 			var td2= document.createElement('td');
@@ -1817,7 +1883,7 @@ function mostrarConcejales() {
 			tr.appendChild(td1);
 			tr.appendChild(td2);
 			table.appendChild(tr);
-		} else if (layer == 'UNIDAD POR EL APRUEBO') {
+		} else if (layer == 'UNIDAD POR EL APRUEBO' & screen.width>=992) {
 			var tr = document.createElement('tr');
 			tr.style.borderTop = 'solid';
 			tr.style.borderWidth = '1px';
@@ -1838,7 +1904,7 @@ function mostrarConcejales() {
 			tr.appendChild(td1);
 			tr.appendChild(td2);
 			table.appendChild(tr);
-		} else if (layer == 'CHILE DIGNO VERDE Y SOB.') {
+		} else if (layer == 'CHILE DIGNO VERDE Y SOB.' & screen.width>=992) {
 			var tr = document.createElement('tr');
 			tr.style.borderTop = 'solid';
 			tr.style.borderWidth = '1px';
@@ -1867,7 +1933,7 @@ function mostrarConcejales() {
 		var td1 = document.createElement('td');
 		var td2 = document.createElement('td');
 		var td3 = document.createElement('td');
-		if (layer == 'ECOLOGISTAS E IND') {
+		if (layer == 'ECOLOGISTAS E IND' & screen.width>=992) {
 			tr.style.borderTop = 'solid';
 			tr.style.borderWidth = '1px';			
 		}
@@ -1898,36 +1964,37 @@ function mostrarConcejales() {
 	};
 	legend.appendChild(table);
 
+    if (screen.width>=992) {
+    	legend2.style.display = 'block';
+    	legend2.style.height = '50px';
+    	legend2.style.maxWidth = '835px';
+    	legend2.style.width = '835px';
+    	legend2.innerHTML = 'Fracción del concejo municipal (alcaldes y concejales) pertenecientes a las listas seleccionadas<br>';
+    	var coloresLegend2 = ['rgb(255,0,0)', 'rgb(255,46,46)', 'rgb(255,57,57)', 'rgb(255,73,73)',
+    	                      'rgb(255,93,93)', 'rgb(255,113,113)', 'rgb(255,139,139)', 'rgb(255,146,146)',
+    	                      'rgb(255,170,170)', 'rgb(255,185,185)', 'rgb(255,219,219)', 'rgb(255,227,227)',
+    	                      'rgb(255,232,232)', 'rgb(232,243,232)', 'rgb(227,241,227)', 'rgb(219,237,219)',
+    	                      'rgb(185,221,185)', 'rgb(170,213,170)', 'rgb(146,201,146)', 'rgb(139,197,139)',
+    	                      'rgb(113,184,113)', 'rgb(93,174,93)', 'rgb(73,164,73)', 'rgb(57,153,57)',
+    	                      'rgb(46,151,46)', 'rgb(0,128,0)'];
+    	var pctLegend2 = ['0', '1/11', '1/9', '1/7', '2/11', '2/9', '3/11', '2/7', '3/9', '4/11', '3/7', '4/9', '5/11', 
+    		 			  '6/11', '5/9', '4/7', '7/11', '6/9', '5/7', '8/11', '7/9', '9/11', '6/7', '8/9', '10/11', '1'];
 
-	legend2.style.display = 'block';
-	legend2.style.height = '50px';
-	legend2.style.maxWidth = '835px';
-	legend2.style.width = '835px';
-	legend2.innerHTML = 'Fracción del concejo municipal (alcaldes y concejales) pertenecientes a las listas seleccionadas<br>';
-	var coloresLegend2 = ['rgb(255,0,0)', 'rgb(255,46,46)', 'rgb(255,57,57)', 'rgb(255,73,73)',
-	                      'rgb(255,93,93)', 'rgb(255,113,113)', 'rgb(255,139,139)', 'rgb(255,146,146)',
-	                      'rgb(255,170,170)', 'rgb(255,185,185)', 'rgb(255,219,219)', 'rgb(255,227,227)',
-	                      'rgb(255,232,232)', 'rgb(232,243,232)', 'rgb(227,241,227)', 'rgb(219,237,219)',
-	                      'rgb(185,221,185)', 'rgb(170,213,170)', 'rgb(146,201,146)', 'rgb(139,197,139)',
-	                      'rgb(113,184,113)', 'rgb(93,174,93)', 'rgb(73,164,73)', 'rgb(57,153,57)',
-	                      'rgb(46,151,46)', 'rgb(0,128,0)'];
-	var pctLegend2 = ['0', '1/11', '1/9', '1/7', '2/11', '2/9', '3/11', '2/7', '3/9', '4/11', '3/7', '4/9', '5/11', 
-		 			  '6/11', '5/9', '4/7', '7/11', '6/9', '5/7', '8/11', '7/9', '9/11', '6/7', '8/9', '10/11', '1'];
-
-	var table2 = document.createElement('table');
-	table2.style.borderCollapse = 'collapse';	
-	var tr = document.createElement('tr');
-	for (i = 0; i < coloresLegend2.length; i++) {
-		var td = document.createElement('td');
-		td.style.textAlign = 'center';
-		td.style.backgroundColor = coloresLegend2[i];
-		td.innerHTML = pctLegend2[i];
-		td.width = '30px';
-		td.height = '20px';
-		tr.appendChild(td);
-	}
-	table2.appendChild(tr);
-	legend2.appendChild(table2);
+    	var table2 = document.createElement('table');
+    	table2.style.borderCollapse = 'collapse';	
+    	var tr = document.createElement('tr');
+    	for (i = 0; i < coloresLegend2.length; i++) {
+    		var td = document.createElement('td');
+    		td.style.textAlign = 'center';
+    		td.style.backgroundColor = coloresLegend2[i];
+    		td.innerHTML = pctLegend2[i];
+    		td.width = '30px';
+    		td.height = '20px';
+    		tr.appendChild(td);
+    	}
+    	table2.appendChild(tr);
+    	legend2.appendChild(table2);
+    }
 
 
 	function checkCV() { 
