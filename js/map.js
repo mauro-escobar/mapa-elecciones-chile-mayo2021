@@ -1821,8 +1821,8 @@ function mostrarConcejales() {
 	map.setLayoutProperty('concejales-outline', 'visibility', 'visible');
 	document.getElementById('a-concejales').style.color = 'black';
 
-	legend.style.display = 'block';
     if (screen.width>=992) {
+        legend.style.display = 'block';
     	legend.style.maxWidth = '750px';
     	legend.style.height = '380px';
 
