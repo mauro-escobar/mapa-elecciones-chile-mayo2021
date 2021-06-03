@@ -17,7 +17,7 @@ function capitalize(words) {
 
 var coloresConv = [
 	'match',
-	['get', 'ConvLMV'],
+	['get', '2021-05_ConvLMV'],
 	'APRUEBO DIGNIDAD', colores['verde-agua'],
 	'ASAMBLEA CONSTITUYENTE ATACAMA', colores['rosado'],
 	'INDEPENDIENTES POR UNA NUEVA CONSTITUCION (D12)', colores['azul-marino'],
@@ -255,6 +255,12 @@ map.on('load', function(){
             'url': 'mapbox://mauro-escobar.63q1jegu',
         }
     );
+    map.addSource('distritos-data',
+    	{
+            'type': 'vector',
+            'url': 'mapbox://mauro-escobar.63a30umw',
+        }
+    );
     map.addSource('regiones-data',
     	{
             'type': 'vector',
@@ -319,11 +325,29 @@ map.on('load', function(){
         },
     }, 'nombre-regiones');
     map.addLayer({
+        'id': 'distritos-outline',
+        'type': 'line',
+        'source': 'distritos-data',
+        'source-layer': 'distritos2021-05-4u089z',
+        'filter': ['has', 'DISTRITO'],
+        'paint':{
+            'line-color': '#ffffff',
+            'line-width': 0.5,
+            /*'line-opacity': [
+            	'interpolate',
+            	['linear'],
+            	['zoom'],
+            	6, 0,
+            	10, 1,
+            ]*/
+        }
+    }, 'zona-indeterminada');
+    map.addLayer({
         'id': 'distritos',
         'type': 'fill',
-        'source': 'comunas-data',
-        'source-layer': 'comunas-2t6cqo',
-        'filter': ['has', 'Part_TD'],
+        'source': 'distritos-data',
+        'source-layer': 'distritos2021-05-4u089z',
+        'filter': ['has', 'DISTRITO'],
         'paint': {
             'fill-color': [
                 'match', ['get', 'DISTRITO'],
@@ -358,44 +382,26 @@ map.on('load', function(){
                 '#ffffff'
             ],
         },
-    }, 'zona-indeterminada');
-    map.addLayer({
-        'id': 'distritos-outline',
-        'type': 'line',
-        'source': 'comunas-data',
-        'source-layer': 'comunas-2t6cqo',
-        'filter': ['has', 'Part_TD'],
-        'paint':{
-            'line-color': '#ffffff',
-            'line-width': 0.7,
-            'line-opacity': [
-            	'interpolate',
-            	['linear'],
-            	['zoom'],
-            	6, 0,
-            	10, 1,
-            ]
-        }
-    }, 'zona-indeterminada');
+    }, 'distritos-outline');
 
     map.addLayer({
         'id': 'participacion-distritos',
         'type': 'fill',
-        'source': 'comunas-data',
-        'source-layer': 'comunas-2t6cqo',
-        'filter': ['has', 'Part_TD'],
+        'source': 'distritos-data',
+        'source-layer': 'distritos2021-05-4u089z',
+        'filter': ['has', 'DISTRITO'],
         'paint': {
             'fill-color': '#964B00',
             'fill-opacity': [
             	'interpolate',
             	['linear'],
-            	['get', 'Part_TD'],
+            	['get', '2021-05_Part_TD'],
             	25, 0,
             	60, 1,
             ]
         },
         'maxzoom': 6.2
-    }, 'zona-indeterminada');
+    }, 'distritos-outline');
     map.setLayoutProperty('participacion-distritos', 'visibility', 'none');	
 
     map.addLayer({
@@ -421,34 +427,34 @@ map.on('load', function(){
     map.addLayer({
         'id': 'convencionales',
         'type': 'fill',
-        'source': 'comunas-data',
-        'source-layer': 'comunas-2t6cqo',
-        'filter': ['has', 'Part_TD'],
+        'source': 'distritos-data',
+        'source-layer': 'distritos2021-05-4u089z',
+        'filter': ['has', 'DISTRITO'],
         'paint': {
             'fill-color': coloresConv,
             'fill-opacity': [
             	'interpolate',
             	['linear'],
-            	['get', 'ConvPLMV'],
+            	['get', '2021-05_ConvPLMV'],
             	10, 0.5,
             	45, 1,
             ]
         },
-    }, 'zona-indeterminada');
+    }, 'distritos-outline');
     map.setLayoutProperty('convencionales', 'visibility', 'none');	
 
     map.addLayer({
         'id': 'convencionalesMH-distritos',
         'type': 'fill',
-        'source': 'comunas-data',
-        'source-layer': 'comunas-2t6cqo',
-        'filter': ['has', 'Part_TD'],
+        'source': 'distritos-data',
+        'source-layer': 'distritos2021-05-4u089z',
+        'filter': ['has', '2021-05_Part_TD'],
         'paint': { 
             'fill-color': [
             	'interpolate',
             	['linear'],
-            	['/', ['get', 'Conv_votM_D'],
-            		  ['+', ['get', 'Conv_votM_D'], ['get', 'Conv_votH_D']]],
+            	['/', ['get', '2021-05_Conv_votM_D'],
+            		  ['+', ['get', '2021-05_Conv_votM_D'], ['get', '2021-05_Conv_votH_D']]],
             	0.35, colores['naranja'],
             	0.50, colores['blanco'],
             	0.65, colores['violeta']
@@ -456,7 +462,7 @@ map.on('load', function(){
             'fill-opacity': 0.7
         },
         'maxzoom': 6.2
-    }, 'zona-indeterminada');
+    }, 'distritos-outline');
     map.setLayoutProperty('convencionalesMH-distritos', 'visibility', 'none');	
 
     map.addLayer({
@@ -566,7 +572,7 @@ map.on('load', function(){
         'paint': {
             'line-color': colores['blanco'],
             'line-opacity': 1,
-            'line-width': 1,
+            'line-width': 0.8,
             //'fill-opacity': 0.5
         },
     }, 'zona-indeterminada');
@@ -780,14 +786,12 @@ var popup = new mapboxgl.Popup({
 // Create the popup
 map.on('mousemove', 'distritos', function (e) {
     map.getCanvas().style.cursor = 'pointer';
-	var comuna = e.features[0].properties.NOM_COM;
 	var distrito = e.features[0].properties.DISTRITO;
 	var region = e.features[0].properties.REGION;
 	popup.setLngLat(e.lngLat)
 		.setHTML(
-			'<h4>'+comuna+'</h4>'+
-			'<p> Distrito: '+distrito+'<br>'+
-			'Región: '+region+'</p>'
+			'<h4><span style="font-weight:bold">Distrito: '+distrito+'</span></h4>'+
+			'<p>Región: '+region+'</p>'
 			)
 		.addTo(map);
 });
@@ -802,9 +806,9 @@ map.on('mousemove', 'participacion-distritos', function (e) {
 	var distrito = e.features[0].properties.DISTRITO;
 	var region = e.features[0].properties.REGION;
 	if (map.getZoom()<=6.2) {
-		var part = e.features[0].properties.Part_TD;
-		var totel = e.features[0].properties.TotEl_TD;
-		var vot = e.features[0].properties.Vot_TD;
+		var part = e.features[0].properties['2021-05_Part_TD'];
+		var totel = e.features[0].properties['2021-05_TotEl_TD'];
+		var vot = e.features[0].properties['2021-05_Vot_TD'];
 		popup.setLngLat(e.lngLat)
 			.setHTML(
 				'<h4><span style="font-weight:bold">Distrito '+distrito+'</span><br>'+region+'</h4>'+
@@ -1137,12 +1141,12 @@ coloresConvP = {
 
 map.on('mousemove', 'convencionales', function (e) {
     map.getCanvas().style.cursor = 'pointer';
-	var nconv = e.features[0].properties.NConv;
+	var nconv = e.features[0].properties['2021-05_NConv'];
 	var convencionales = '<table style="border-collapse:collapse">';
 	var lista_ant = '';
 	var hayParidad = false;
 	for (i = 1; i <= nconv; i++) {
-		var beg = 'Conv'+i;
+		var beg = '2021-05_Conv'+i;
 		var lista = e.features[0].properties[beg+'_Lis'];
 		var partido = e.features[0].properties[beg+'_Ptd'];
 		var perct = e.features[0].properties[beg+'_Pct'];
