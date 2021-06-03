@@ -325,6 +325,35 @@ map.on('load', function(){
         },
     }, 'nombre-regiones');
     map.addLayer({
+        'id': 'comunas-outline',
+        'type': 'line',
+        'source': 'comunas-data',
+        'source-layer': 'comunas-2t6cqo',
+        'filter': ['has', 'Part_TD'],
+        'paint': {
+            'line-color': colores['blanco'],
+            'line-opacity': 1,
+            'line-width': 0.3,
+            //'fill-opacity': 0.5
+        },
+    }, 'zona-indeterminada');
+    map.setLayoutProperty('comunas-outline', 'visibility', 'none');	
+    map.addLayer({
+        'id': 'comunas-outline-zoom',
+        'type': 'line',
+        'source': 'comunas-data',
+        'source-layer': 'comunas-2t6cqo',
+        'filter': ['has', 'Part_TD'],
+        'paint': {
+            'line-color': colores['blanco'],
+            'line-opacity': 1,
+            'line-width': 0.3,
+            //'fill-opacity': 0.5
+        },
+        'minzoom': 6.2
+    }, 'zona-indeterminada');
+    map.setLayoutProperty('comunas-outline-zoom', 'visibility', 'none');	
+    map.addLayer({
         'id': 'distritos-outline',
         'type': 'line',
         'source': 'distritos-data',
@@ -421,7 +450,7 @@ map.on('load', function(){
             ]
         },
         'minzoom': 6.2
-    }, 'zona-indeterminada');
+    }, 'comunas-outline-zoom');
     map.setLayoutProperty('participacion-comunas', 'visibility', 'none');	
 
     map.addLayer({
@@ -484,23 +513,9 @@ map.on('load', function(){
             'fill-opacity': 0.7
         },
         'minzoom': 6.2
-    }, 'zona-indeterminada');
+    }, 'comunas-outline-zoom');
     map.setLayoutProperty('convencionalesMH-comunas', 'visibility', 'none');	
 
-    map.addLayer({
-        'id': 'concejales-outline',
-        'type': 'line',
-        'source': 'comunas-data',
-        'source-layer': 'comunas-2t6cqo',
-        'filter': ['has', 'Part_TD'],
-        'paint': {
-            'line-color': colores['blanco'],
-            'line-opacity': 0.3,
-            'line-width': 0.5,
-            //'fill-opacity': 0.5
-        },
-    }, 'zona-indeterminada');
-    map.setLayoutProperty('concejales-outline', 'visibility', 'none');	
 
     map.addLayer({
         'id': 'concejales',
@@ -511,7 +526,7 @@ map.on('load', function(){
         'paint': {
             'fill-color': colores['suave'],
         },
-    }, 'concejales-outline');
+    }, 'comunas-outline');
     map.setLayoutProperty('concejales', 'visibility', 'none');	
 
     map.addLayer({
@@ -532,7 +547,7 @@ map.on('load', function(){
             ],
             'fill-opacity': 0.7
         },
-    }, 'concejales-outline');
+    }, 'comunas-outline');
     map.setLayoutProperty('concejalesMH', 'visibility', 'none');	
 
     map.addLayer({
@@ -561,7 +576,7 @@ map.on('load', function(){
             	50, 1,
             ]
         },
-    }, 'zona-indeterminada');
+    }, 'comunas-outline');
     map.setLayoutProperty('alcaldes', 'visibility', 'none');		
 
     map.addLayer({
@@ -1378,7 +1393,8 @@ function clean() {
 	map.setLayoutProperty('convencionalesMH-comunas', 'visibility', 'none');
 	map.setLayoutProperty('alcaldes', 'visibility', 'none');
 	map.setLayoutProperty('concejales', 'visibility', 'none');
-	map.setLayoutProperty('concejales-outline', 'visibility', 'none');
+	map.setLayoutProperty('comunas-outline', 'visibility', 'none');
+	map.setLayoutProperty('comunas-outline-zoom', 'visibility', 'none');
 	map.setLayoutProperty('concejalesMH', 'visibility', 'none');
 	map.setLayoutProperty('regiones-outline', 'visibility', 'none');
     map.setLayoutProperty('gobernadores-electos', 'visibility', 'none');
@@ -1411,6 +1427,7 @@ function mostrarDistritos() {
 
 function mostrarParticipacion() {
 	clean();
+	map.setLayoutProperty('comunas-outline-zoom', 'visibility', 'visible');
 	map.setLayoutProperty('participacion-comunas', 'visibility', 'visible');
 	map.setLayoutProperty('participacion-distritos', 'visibility', 'visible');
 	document.getElementById('a-participacion').style.color = 'black';
@@ -1587,6 +1604,7 @@ function mostrarConvencionales() {
 
 function mostrarConvencionalesMH() {
 	clean();
+	map.setLayoutProperty('comunas-outline-zoom', 'visibility', 'visible');
 	map.setLayoutProperty('convencionalesMH-distritos', 'visibility', 'visible');
 	map.setLayoutProperty('convencionalesMH-comunas', 'visibility', 'visible');
 	document.getElementById('a-convencionalesMH').style.color = 'black';
@@ -1686,6 +1704,7 @@ function mostrarConvencionalesMH() {
 
 function mostrarAlcaldes() {
 	clean();
+	map.setLayoutProperty('comunas-outline', 'visibility', 'visible');
 	map.setLayoutProperty('alcaldes', 'visibility', 'visible');
 	document.getElementById('a-alcaldes').style.color = 'black';
 
@@ -1779,6 +1798,7 @@ function mostrarAlcaldes() {
 
 function mostrarConcejalesMH() {
 	clean();
+	map.setLayoutProperty('comunas-outline', 'visibility', 'visible');
 	map.setLayoutProperty('concejalesMH', 'visibility', 'visible');
 	document.getElementById('a-concejalesMH').style.color = 'black';
 
@@ -1875,7 +1895,7 @@ function mostrarConcejalesMH() {
 function mostrarConcejales() {
 	clean();
 	map.setLayoutProperty('concejales', 'visibility', 'visible');
-	map.setLayoutProperty('concejales-outline', 'visibility', 'visible');
+	map.setLayoutProperty('comunas-outline', 'visibility', 'visible');
 	document.getElementById('a-concejales').style.color = 'black';
 
     if (screen.width>=992) {
