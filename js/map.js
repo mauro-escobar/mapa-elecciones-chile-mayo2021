@@ -1553,7 +1553,7 @@ function mostrarConvencionales() {
     	legend2.style.display = 'block';
     	legend2.style.maxWidth = '850px';
     	legend2.style.width = '360px';
-    	legend2.style.height = '220px';
+    	legend2.style.height = '230px';
     	//legend2.innerHTML = 'Color y transparencia depende del porcentaje de la lista más votada en el distrito.';
     	var div = document.createElement('div');
     	var img = document.createElement('img');
@@ -1898,10 +1898,14 @@ function mostrarConcejales() {
 	map.setLayoutProperty('comunas-outline', 'visibility', 'visible');
 	document.getElementById('a-concejales').style.color = 'black';
 
+	listasSeleccionadasConc = [];
+	listasSeleccionadasAlc = [];
+	map.setPaintProperty('concejales', 'fill-color', colores['suave']);
+
     if (screen.width>=992) {
         legend.style.display = 'block';
     	legend.style.maxWidth = '750px';
-    	legend.style.height = '380px';
+    	legend.style.height = '400px';
 
         var layers2 = {
             'CHILE VAMOS': 'UDI (298), RN (377), EVO (61), PRI (36)', 
@@ -1936,7 +1940,7 @@ function mostrarConcejales() {
         }; */
 
     } 
-	legend.innerHTML = '';
+	legend.innerHTML = 'Selecciona lista/partidos y verás si tienen mayoría en el concejo.<br>';
 
 
 
