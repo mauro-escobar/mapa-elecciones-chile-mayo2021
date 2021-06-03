@@ -566,7 +566,7 @@ map.on('load', function(){
         'paint': {
             'line-color': colores['blanco'],
             'line-opacity': 1,
-            'line-width': 0.5,
+            'line-width': 1,
             //'fill-opacity': 0.5
         },
     }, 'zona-indeterminada');
