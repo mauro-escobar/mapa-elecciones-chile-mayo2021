@@ -565,7 +565,7 @@ map.on('load', function(){
         'source-layer': 'regiones2021-05-5k4g66',
         'paint': {
             'line-color': colores['blanco'],
-            'line-opacity': 0.3,
+            'line-opacity': 1,
             'line-width': 0.5,
             //'fill-opacity': 0.5
         },
@@ -595,7 +595,7 @@ map.on('load', function(){
             	50, 1,
             ]
         },
-    }, 'zona-indeterminada');
+    }, 'regiones-outline');
     map.setLayoutProperty('gobernadores-electos', 'visibility', 'none');	
 
     map.loadImage(
@@ -1547,10 +1547,10 @@ function mostrarConvencionales() {
         legend.style.height = '165px';  
     }
 
-	var layers = ['CHILE VAMOS', 'APRUEBO DIGNIDAD', 'LA LISTA DEL PUEBLO', 
-	              'LISTA DEL APRUEBO', 'INDEPENDIENTES NO NEUTRALES', 
-	              'MOVIMIENTO INDEPENDIENTES DEL NORTE', 'REGIONALISMO CIUDADANO INDEPENDIENTE',
-	              'OTRAS CANDIDATURAS INDEPENDIENTES', 'PUEBLOS INDIGENAS'];
+	var layers = ['CHILE VAMOS (37)', 'APRUEBO DIGNIDAD (28)', 'LA LISTA DEL PUEBLO (26)', 
+	              'LISTA DEL APRUEBO (25)', 'INDEPENDIENTES NO NEUTRALES (11)', 
+	              'MOVIMIENTO INDEPENDIENTES DEL NORTE (1)', 'REGIONALISMO CIUDADANO INDEPENDIENTE (1)',
+	              'OTRAS CANDIDATURAS INDEPENDIENTES (9)', 'PUEBLOS INDIGENAS (17)'];
 	var colors = [colores['azul'], colores['verde-agua'], colores['rosado'], colores['violeta'], 
 	              colores['azul-marino'], colores['marron'], colores['naranja'], colores['gris'],
 	              colores['gris-claro']];
@@ -1578,7 +1578,6 @@ function mostrarConvencionales() {
 	};
 	legend.appendChild(table);
 };
-
 
 
 
