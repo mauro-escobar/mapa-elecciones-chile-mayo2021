@@ -33,6 +33,56 @@ var coloresConv = [
 	colores['gris']
 ];
 
+var coloresMarkersConv = [
+	'match',
+	['get', 'lista'],
+	'APRUEBO DIGNIDAD', colores['verde-agua'],
+	'ASAMBLEA CONSTITUYENTE ATACAMA', colores['rosado'],
+	'INDEPENDIENTES POR LA NUEVA CONSTITUCION (D4)', colores['azul-marino'],
+	'INDEPENDIENTES POR LA NUEVA CONSTITUCION (D6)', colores['azul-marino'],
+	'INDEPENDIENTES POR UNA NUEVA CONSTITUCION (D12)', colores['azul-marino'],
+	'INDEPENDIENTES POR LA NUEVA CONSTITUCION (D14)', colores['azul-marino'],
+	'INDEPENDIENTES DE ÑUBLE POR LA NUEVA CONSTITUCION (D19)', colores['azul-marino'],
+	'INDEPENDIENTES DEL BIOBIO POR UNA NUEVA CONSTITUCION (D20)', colores['azul-marino'],
+	'INDEPENDIENTES POR UNA NUEVA CONSTITUCION (D21)', colores['azul-marino'],
+	'INDEPENDIENTES POR LA NUEVA CONSTITUCION (D23)', colores['azul-marino'],
+	'INDEPENDIENTES NUEVA CONSTITUCION (D26)', colores['azul-marino'],
+	'LA LISTA DEL PUEBLO (D3)', colores['rosado'],
+	'LISTA DEL PUEBLO - MOVIMIENTO TERRITORIAL CONSTITUYENTE (D5)', colores['rosado'],
+	'INDEPENDIENTES DISTRITO 6 + LISTA DEL PUEBLO (D6)', colores['rosado'],
+	'LA LISTA DEL PUEBLO (D7)', colores['rosado'],
+	'LA LISTA DEL PUEBLO (D8)', colores['rosado'],
+	'LA LISTA DEL PUEBLO DISTRITO 9 (D9)', colores['rosado'],
+	'LA LISTA DEL PUEBLO (D10)', colores['rosado'],
+	'LA LISTA DEL PUEBLO DISTRITO 12 (D12)', colores['rosado'],
+	'LA LISTA DEL PUEBLO (D13)', colores['rosado'],
+	'LA LISTA DEL PUEBLO DISTRITO 14 (D14)', colores['rosado'],
+	'LA LISTA DEL PUEBLO 100% INDEPENDIENTES (D15)', colores['rosado'],
+	'LA LISTA DEL PUEBLO (D17)', colores['rosado'],
+	'LA LISTA DEL PUEBLO MAULE SUR (D18)', colores['rosado'],
+	'FUERZA SOCIAL DE ÑUBLE, LA LISTA DEL PUEBLO (D19)', colores['rosado'],
+	'ELIGE LA LISTA DEL PUEBLO (D23)', colores['rosado'],
+	'INSULARES E INDEPENDIENTES (D26)', colores['rosado'],
+	'LA LISTA DEL PUEBLO(D20)', colores['rosado'],
+	'COORDINADORA SOCIAL DE MAGALLANES (D28)', colores['rosado'],
+	'LISTA DEL APRUEBO', colores['violeta'],
+	'MOVIMIENTO INDEPENDIENTES DEL NORTE (D3)', colores['marron'],
+	'REGIONALISMO CIUDADANO INDEPENDIENTE (D28)', colores['naranja'],
+	'VAMOS POR CHILE', colores['azul'],
+	'PUEBLO MAPUCHE', colores['gris-claro'],
+	'PUEBLO RAPANUI', colores['gris-claro'],
+	'PUEBLO ATACAMEÑO', colores['gris-claro'],
+	'PUEBLO AIMARA', colores['gris-claro'],
+	'PUEBLO QUECHUA', colores['gris-claro'],
+	'PUEBLO COLLA', colores['gris-claro'],
+	'PUEBLO KAWASHKAR', colores['gris-claro'],
+	'PUEBLO DIAGUITA', colores['gris-claro'],
+	'PUEBLO YAGAN', colores['gris-claro'],
+	'PUEBLO CHANGO', colores['gris-claro'],
+	colores['gris']
+];
+
+
 
 var coloresAlc = {
 	'CHILE VAMOS': colores['azul'], 
@@ -243,9 +293,57 @@ map.addControl(new mapboxgl.NavigationControl());
 map.on('load', function(){
 	var layers = map.getStyle().layers;
     var firstSymbolId;
+    map.addSource('markers-constituyentes',
+    	{
+            'type': 'vector',
+            'url': 'mapbox://mauro-escobar.7pcm6it8',
+        }
+    );
+    map.addLayer({
+    	'id': 'markers',
+		'source': 'markers-constituyentes',
+		'source-layer': 'markers-constituyentes-7op8qa',
+		'type': 'circle',
+		'filter': ['has', 'lista'],
+		'paint' : {
+			'circle-color': coloresMarkersConv,
+			'circle-radius': [
+				'interpolate',
+				['linear'], ['zoom'],
+				6, 6,
+				10, 15
+			]
+		}
+    });
+    map.setLayoutProperty('markers', 'visibility', 'none');	
+    map.addLayer({
+    	'id':'markers-lines',
+		'source': 'markers-constituyentes',
+		'source-layer': 'markers-constituyentes-7op8qa',
+		'type': 'line',
+		'filter': ['all', ['!', ['has', 'lista']], ['!', ['has', 'title']]],
+		'paint' : {
+			'line-color': colores['negro'],
+			'line-width': 1
+		}
+    }, 'markers');
+    map.setLayoutProperty('markers-lines', 'visibility', 'none');	
+    map.addLayer({
+    	'id':'markers-title',
+		'source': 'markers-constituyentes',
+		'source-layer': 'markers-constituyentes-7op8qa',
+		'type': 'symbol',
+		'filter': ['has', 'title'],
+		'layout' : {
+			'text-field': ['get', 'title'],
+			'text-size': 12
+		}
+    }, 'markers-lines');
+    map.setLayoutProperty('markers-title', 'visibility', 'none');	
     for (var i = 0; i < layers.length; i++) {
         if (layers[i].type === 'symbol') {
             firstSymbolId = layers[i].id;
+            layers[i].beforeId = 'markers-title';
             break;
         }
     }
@@ -1201,6 +1299,22 @@ map.on('mouseleave', 'convencionales', function () {
     popup.remove();
 });
 
+map.on('mousemove', 'markers', function (e) {
+    map.getCanvas().style.cursor = 'pointer';
+	var lista = e.features[0].properties.lista;
+	var nombre = e.features[0].properties.nombre;
+	popup.setLngLat(e.lngLat)
+		.setHTML(
+			'<h4><span style="font-weight:bold">'+nombre+'</span></h4>'+
+			'<p>'+lista+'</p>'
+			)
+		.addTo(map);
+});
+map.on('mouseleave', 'markers', function () {
+    map.getCanvas().style.cursor = '';
+    popup.remove();
+});
+
 map.on('mousemove', 'convencionalesMH-distritos', function (e) {
     map.getCanvas().style.cursor = 'pointer';
 
@@ -1389,6 +1503,9 @@ function clean() {
 	map.setLayoutProperty('participacion-comunas', 'visibility', 'none');
 	map.setLayoutProperty('participacion-distritos', 'visibility', 'none');
 	map.setLayoutProperty('convencionales', 'visibility', 'none');
+    map.setLayoutProperty('markers', 'visibility', 'none');	
+    map.setLayoutProperty('markers-lines', 'visibility', 'none');	
+    map.setLayoutProperty('markers-title', 'visibility', 'none');	
 	map.setLayoutProperty('convencionalesMH-distritos', 'visibility', 'none');
 	map.setLayoutProperty('convencionalesMH-comunas', 'visibility', 'none');
 	map.setLayoutProperty('alcaldes', 'visibility', 'none');
@@ -1542,6 +1659,9 @@ function mostrarGobernadores() {
 function mostrarConvencionales() {
 	clean();
 	map.setLayoutProperty('convencionales', 'visibility', 'visible');
+    map.setLayoutProperty('markers', 'visibility', 'visible');	
+    map.setLayoutProperty('markers-lines', 'visibility', 'visible');	
+    map.setLayoutProperty('markers-title', 'visibility', 'visible');	
 	document.getElementById('a-convencionales').style.color = 'black';
 
 	legend.innerHTML = '';
@@ -1568,7 +1688,7 @@ function mostrarConvencionales() {
         legend.style.height = '165px';  
     }
 
-	var layers = ['CHILE VAMOS (37)', 'APRUEBO DIGNIDAD (28)', 'LA LISTA DEL PUEBLO (26)', 
+	var layers = ['VAMOS POR CHILE (37)', 'APRUEBO DIGNIDAD (28)', 'LA LISTA DEL PUEBLO (26)', 
 	              'LISTA DEL APRUEBO (25)', 'INDEPENDIENTES NO NEUTRALES (11)', 
 	              'MOVIMIENTO INDEPENDIENTES DEL NORTE (1)', 'REGIONALISMO CIUDADANO INDEPENDIENTE (1)',
 	              'OTRAS CANDIDATURAS INDEPENDIENTES (9)', 'PUEBLOS INDIGENAS (17)'];
