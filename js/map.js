@@ -336,7 +336,8 @@ map.on('load', function(){
 		'filter': ['has', 'title'],
 		'layout' : {
 			'text-field': ['get', 'title'],
-			'text-size': 12
+			'text-size': 12,
+			'text-rotate': 90-bearing
 		}
     }, 'markers-lines');
     map.setLayoutProperty('markers-title', 'visibility', 'none');	
@@ -888,7 +889,13 @@ map.on('load', function(){
     );
 });
 
-
+map.on('rotate', function () {
+	map.setLayoutProperty(
+		'markers-title',
+		'text-rotate',
+		90-map.getBearing()
+	)
+});
 
 var popup = new mapboxgl.Popup({
 	closeButton: false,
@@ -1684,8 +1691,8 @@ function mostrarConvencionales() {
     	span.innerHTML = 'Color y transparencia depende del porcentaje de la lista más votada en el distrito.';
     	legend2.appendChild(span);
     } else {  
-        legend.style.maxWidth = '250px';
-        legend.style.height = '165px';  
+        legend.style.maxWidth = '270px';
+        legend.style.height = '170px';  
     }
 
 	var layers = ['VAMOS POR CHILE (37)', 'APRUEBO DIGNIDAD (28)', 'LA LISTA DEL PUEBLO (26)', 
