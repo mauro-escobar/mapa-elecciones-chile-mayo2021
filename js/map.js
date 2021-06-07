@@ -1021,7 +1021,7 @@ map.on('mousemove', 'gobernadores-electos', function (e) {
 		popup.setLngLat(e.lngLat)
 			.setHTML(
 				'<h4><span style="font-weight:bold">'+region+'</span></h4>'+
-				'<p>Segunda vuelta:<br>'+
+				'<p>Primera vuelta:<br>'+
 				'<table>'+
 				'<tr><td colspan="2">'+lista1+' ('+partido1+')</td></tr>'+
 				'<tr><td><span class="legend-key" style="background-color:'+coloresAlc[lista]+'"></span>'+
