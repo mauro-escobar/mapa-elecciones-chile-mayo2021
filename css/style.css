@@ -7,17 +7,25 @@ a:hover {
 	cursor:pointer;
 }
 
-@media screen and (min-width: 992px) {
+
+
+.a-dropdown {
+  font-family: Arial, Helvetica, sans-serif;
+  color: gray;
+  margin: 8px;
+}
+
+@media screen and (min-width: 1025px) {
   .mobile { 
     display: none;
   }
 
   #menu {
-    margin-left: 60px;
+    margin-left: 10px;
     margin-top: 10px;
   }
 
-  #menu a {
+  #menu .a-menu {
   	font-family: Arial, Helvetica, sans-serif;
   	margin-left: 25px;
   	color: gray;
@@ -25,7 +33,7 @@ a:hover {
 
   #menu #menu-title {
   	font-family: Arial, Helvetica, sans-serif;
-  	margin-left: 200px;
+  	margin-left: 20px;
   	color: black;
   	font-size: 1.2em;
   }
@@ -48,9 +56,7 @@ a:hover {
     padding: 10px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     line-height: 18px;
-    height: 150px;
     margin-bottom: 40px;
-    width: 520px;
     font-size: 0.8em;
   }
 
@@ -63,17 +69,14 @@ a:hover {
   }
 }
 
-@media screen and (max-width: 992px) {
-  .desktop { 
-    display: none;
-  }
+@media screen and (max-width: 1024px) {
 
   #menu {
     margin-left: 5px;
     margin-top: 5px;
   }
 
-  #menu a {
+  #menu .a-menu {
     font-family: Arial, Helvetica, sans-serif;
     margin-left: 3px;
     color: gray;
@@ -87,9 +90,13 @@ a:hover {
 
   #menu #menu-title {
     font-family: Arial, Helvetica, sans-serif;
-    /*margin-left: 50px;*/
+    margin-left: 20px;
     color: black;
     font-size: 1em;
+  }
+
+  .desktop { 
+    display: none;
   }
 
   #menu #menu-author {
@@ -180,3 +187,47 @@ a:hover {
     margin-bottom: 0em;
 }
 
+.container{
+  display: inline-block;
+  cursor: pointer;
+}
+
+.bar1, .bar2, .bar3 {
+  width: 25px;
+  height: 2px;
+  background-color: #333;
+  margin: 4px 0;
+  transition: 0.4s;
+}
+
+.change .bar1 {
+  -webkit-transform: rotate(-45deg) translate(-6px, 4px);
+  transform: rotate(-45deg) translate(-6px, 4px);
+}
+
+.change .bar2 {opacity: 0;}
+
+.change .bar3 {
+  -webkit-transform: rotate(45deg) translate(-4px, -4px);
+  transform: rotate(45deg) translate(-4px, -4px);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.change .dropdown-content {
+  display: block;
+}
+
+#menu .dropdown-content a {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1em;
+  padding-top: 5px;
+}

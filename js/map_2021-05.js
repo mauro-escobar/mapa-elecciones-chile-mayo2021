@@ -15,73 +15,51 @@ function capitalize(words) {
    return separateWord.join(' ');
 }
 
-var coloresConv = [
-	'match',
-	['get', '2021-05_ConvLMV'],
-	'APRUEBO DIGNIDAD', colores['verde-agua'],
-	'ASAMBLEA CONSTITUYENTE ATACAMA', colores['rosado'],
-	'INDEPENDIENTES POR UNA NUEVA CONSTITUCION (D12)', colores['azul-marino'],
-	'LA LISTA DEL PUEBLO (D13)', colores['rosado'],
-	'LA LISTA DEL PUEBLO 100% INDEPENDIENTES (D15)', colores['rosado'],
-	'LA LISTA DEL PUEBLO DISTRITO 9 (D9)', colores['rosado'],
-	'LA LISTA DEL PUEBLO MAULE SUR (D18)', colores['rosado'],
-	'LISTA DEL APRUEBO', colores['violeta'],
-	'LISTA DEL PUEBLO - MOVIMIENTO TERRITORIAL CONSTITUYENTE (D5)', colores['rosado'],
-	'MOVIMIENTO INDEPENDIENTES DEL NORTE (D3)', colores['marron'],
-	'REGIONALISMO CIUDADANO INDEPENDIENTE (D28)', colores['naranja'],
-	'VAMOS POR CHILE', colores['azul'],
-	colores['gris']
-];
-
-var coloresMarkersConv = [
-	'match',
-	['get', 'lista'],
-	'APRUEBO DIGNIDAD', colores['verde-agua'],
-	'ASAMBLEA CONSTITUYENTE ATACAMA', colores['rosado'],
-	'INDEPENDIENTES POR LA NUEVA CONSTITUCION (D4)', colores['azul-marino'],
-	'INDEPENDIENTES POR LA NUEVA CONSTITUCION (D6)', colores['azul-marino'],
-	'INDEPENDIENTES POR UNA NUEVA CONSTITUCION (D12)', colores['azul-marino'],
-	'INDEPENDIENTES POR LA NUEVA CONSTITUCION (D14)', colores['azul-marino'],
-	'INDEPENDIENTES DE ÑUBLE POR LA NUEVA CONSTITUCION (D19)', colores['azul-marino'],
-	'INDEPENDIENTES DEL BIOBIO POR UNA NUEVA CONSTITUCION (D20)', colores['azul-marino'],
-	'INDEPENDIENTES POR UNA NUEVA CONSTITUCION (D21)', colores['azul-marino'],
-	'INDEPENDIENTES POR LA NUEVA CONSTITUCION (D23)', colores['azul-marino'],
-	'INDEPENDIENTES NUEVA CONSTITUCION (D26)', colores['azul-marino'],
-	'LA LISTA DEL PUEBLO (D3)', colores['rosado'],
-	'LISTA DEL PUEBLO - MOVIMIENTO TERRITORIAL CONSTITUYENTE (D5)', colores['rosado'],
-	'INDEPENDIENTES DISTRITO 6 + LISTA DEL PUEBLO (D6)', colores['rosado'],
-	'LA LISTA DEL PUEBLO (D7)', colores['rosado'],
-	'LA LISTA DEL PUEBLO (D8)', colores['rosado'],
-	'LA LISTA DEL PUEBLO DISTRITO 9 (D9)', colores['rosado'],
-	'LA LISTA DEL PUEBLO (D10)', colores['rosado'],
-	'LA LISTA DEL PUEBLO DISTRITO 12 (D12)', colores['rosado'],
-	'LA LISTA DEL PUEBLO (D13)', colores['rosado'],
-	'LA LISTA DEL PUEBLO DISTRITO 14 (D14)', colores['rosado'],
-	'LA LISTA DEL PUEBLO 100% INDEPENDIENTES (D15)', colores['rosado'],
-	'LA LISTA DEL PUEBLO (D17)', colores['rosado'],
-	'LA LISTA DEL PUEBLO MAULE SUR (D18)', colores['rosado'],
-	'FUERZA SOCIAL DE ÑUBLE, LA LISTA DEL PUEBLO (D19)', colores['rosado'],
-	'ELIGE LA LISTA DEL PUEBLO (D23)', colores['rosado'],
-	'INSULARES E INDEPENDIENTES (D26)', colores['rosado'],
-	'LA LISTA DEL PUEBLO(D20)', colores['rosado'],
-	'COORDINADORA SOCIAL DE MAGALLANES (D28)', colores['rosado'],
-	'LISTA DEL APRUEBO', colores['violeta'],
-	'MOVIMIENTO INDEPENDIENTES DEL NORTE (D3)', colores['marron'],
-	'REGIONALISMO CIUDADANO INDEPENDIENTE (D28)', colores['naranja'],
-	'VAMOS POR CHILE', colores['azul'],
-	'PUEBLO MAPUCHE', colores['gris-claro'],
-	'PUEBLO RAPANUI', colores['gris-claro'],
-	'PUEBLO ATACAMEÑO', colores['gris-claro'],
-	'PUEBLO AIMARA', colores['gris-claro'],
-	'PUEBLO QUECHUA', colores['gris-claro'],
-	'PUEBLO COLLA', colores['gris-claro'],
-	'PUEBLO KAWASHKAR', colores['gris-claro'],
-	'PUEBLO DIAGUITA', colores['gris-claro'],
-	'PUEBLO YAGAN', colores['gris-claro'],
-	'PUEBLO CHANGO', colores['gris-claro'],
-	colores['gris']
-];
-
+coloresConv = {
+	'APRUEBO DIGNIDAD': colores['verde-agua'],
+	'ASAMBLEA CONSTITUYENTE ATACAMA': colores['rosado'],
+	'ASAMBLEA POPULAR CONSTITUYENTE (D20)': colores['gris'],
+	'ASAMBLEA POPULAR POR LA DIGNIDAD (D17)': colores['gris'],
+	'CANDIDATURA INDEPENDIENTE': colores['gris'],
+	'COORDINADORA SOCIAL DE MAGALLANES (D28)': colores['rosado'],
+	'CORRIENTES INDEPENDIENTES (D16)': colores['gris'],
+	'ELIGE LA LISTA DEL PUEBLO (D23)': colores['rosado'],
+	'FUERZA SOCIAL DE ÑUBLE, LA LISTA DEL PUEBLO (D19)': colores['rosado'],
+	'INDEPENDIENTES DE TARAPACA (D2)': colores['gris'],
+	'INDEPENDIENTES DE ÑUBLE POR LA NUEVA CONSTITUCION (D19)': colores['azul-marino'],
+	'INDEPENDIENTES DEL BIOBIO POR UNA NUEVA CONSTITUCION (D20)': colores['azul-marino'],
+	'INDEPENDIENTES DISTRITO 6 + LISTA DEL PUEBLO (D6)': colores['rosado'],
+	'INDEPENDIENTES NUEVA CONSTITUCION (D26)': colores['azul-marino'],
+	'INDEPENDIENTES POR LA NUEVA CONSTITUCION  (D10)': colores['azul-marino'],
+	'INDEPENDIENTES POR LA NUEVA CONSTITUCION (D14)': colores['azul-marino'],
+	'INDEPENDIENTES POR LA NUEVA CONSTITUCION (D23)': colores['azul-marino'],
+	'INDEPENDIENTES POR LA NUEVA CONSTITUCION (D4)': colores['azul-marino'],
+	'INDEPENDIENTES POR LA NUEVA CONSTITUCION (D6)': colores['azul-marino'],
+	'INDEPENDIENTES POR LA REGION DE COQUIMBO (D5)': colores['gris'],
+	'INDEPENDIENTES POR UNA NUEVA CONSTITUCION (D12)': colores['azul-marino'],
+	'INDEPENDIENTES POR UNA NUEVA CONSTITUCION (D21)': colores['azul-marino'],
+	'INSULARES E INDEPENDIENTES (D26)': colores['rosado'],
+	'LA LISTA DEL PUEBLO (D10)': colores['rosado'],
+	'LA LISTA DEL PUEBLO (D13)': colores['rosado'],
+	'LA LISTA DEL PUEBLO (D17)': colores['rosado'],
+	'LA LISTA DEL PUEBLO (D3)': colores['rosado'],
+	'LA LISTA DEL PUEBLO (D7)': colores['rosado'],
+	'LA LISTA DEL PUEBLO (D8)': colores['rosado'],
+	'LA LISTA DEL PUEBLO 100% INDEPENDIENTES (D15)': colores['rosado'],
+	'LA LISTA DEL PUEBLO DISTRITO 12 (D12)': colores['rosado'],
+	'LA LISTA DEL PUEBLO DISTRITO 14 (D14)': colores['rosado'],
+	'LA LISTA DEL PUEBLO DISTRITO 9 (D9)': colores['rosado'],
+	'LA LISTA DEL PUEBLO MAULE SUR (D18)': colores['rosado'],
+	'LA LISTA DEL PUEBLO(D20)': colores['rosado'],
+	'LISTA DEL APRUEBO': colores['violeta'],
+	'LISTA DEL PUEBLO - MOVIMIENTO TERRITORIAL CONSTITUYENTE (D5)': colores['rosado'],
+	'MOVIMIENTO INDEPENDIENTES DEL NORTE (D3)': colores['gris'],
+	'MOVIMIENTOS SOCIALES AUTONOMOS (D15)': colores['gris'],
+	'MOVIMIENTOS SOCIALES INDEPENDIENTES (D6)': colores['gris'],
+	'REGIONALISMO CIUDADANO INDEPENDIENTE (D28)': colores['gris'],
+	'VAMOS POR CHILE': colores['azul'],
+	'VOCES CONSTITUYENTES (D12)': colores['gris'],
+};
 
 
 var coloresAlc = {
@@ -96,46 +74,52 @@ var coloresAlc = {
 	'CANDIDATURA INDEPENDIENTE': colores['gris']
 };
 
-var coloresConc = {'CHILE VAMOS - PRI E IND': colores['azul'], 
-			       'CHILE VAMOS EVOPOLI - IND': colores['azul'], 
-			       'CHILE VAMOS RN - IND': colores['azul'], 
-			       'CHILE VAMOS UDI - IND': colores['azul'], 
-			       'REPUBLICANOS': colores['azul-marino'], 
-			       'CIUDADANOS IND': colores['azul-marino'], 
-			       'UNIDAD POR EL APRUEBO': colores['violeta'], 
-			       'RADICALES E IND': colores['violeta'],  
-			       'UNIDOS POR LA DIGNIDAD': colores['marron'], 
-			       'FRENTE AMPLIO': colores['verde-agua'], 
-			       'ECOLOGISTAS E IND': colores['verde'], 
-			       'CHILE DIGNO VERDE Y SOBERANO': colores['rojo'], 
-			       'UNION PATRIOTICA': colores['rojo-oscuro'], 
-			       'DIGNIDAD AHORA': colores['amarillo'], 
-			       'PARTIDO DE TRABAJADORES REVOLUCIONARIOS': colores['naranja'], 
-			       'CANDIDATURA INDEPENDIENTE': colores['gris']};          
+var coloresConc = {
+	'CHILE VAMOS - PRI E IND': colores['azul'], 
+	'CHILE VAMOS EVOPOLI - IND': colores['azul'], 
+	'CHILE VAMOS RN - IND': colores['azul'], 
+	'CHILE VAMOS UDI - IND': colores['azul'], 
+	'REPUBLICANOS': colores['azul-marino'], 
+	'CIUDADANOS IND': colores['azul-marino'], 
+	'UNIDAD POR EL APRUEBO': colores['violeta'], 
+	'RADICALES E IND': colores['violeta'],  
+	'UNIDOS POR LA DIGNIDAD': colores['marron'], 
+	'FRENTE AMPLIO': colores['verde-agua'], 
+	'ECOLOGISTAS E IND': colores['verde'], 
+	'CHILE DIGNO VERDE Y SOBERANO': colores['rojo'], 
+	'UNION PATRIOTICA': colores['rojo-oscuro'], 
+	'DIGNIDAD AHORA': colores['amarillo'], 
+	'PARTIDO DE TRABAJADORES REVOLUCIONARIOS': colores['naranja'], 
+	'CANDIDATURA INDEPENDIENTE': colores['gris']
+};          
 
-var coloresConcL = {'CHILE VAMOS': colores['azul'], 
-			       'REPUBLICANOS Y CIUD.': colores['azul-marino'], 
-			       'UNIDAD POR EL APRUEBO': colores['violeta'], 
-			       'UNIDOS POR LA DIGNIDAD': colores['marron'], 
-			       'CHILE DIGNO VERDE Y SOB.': colores['rojo'], 
-			       'FRENTE AMPLIO': colores['verde-agua'], 
-			       'ECOLOGISTAS E IND': colores['verde'], 
-			       'UNION PATRIOTICA': colores['rojo-oscuro'], 
-			       'DIGNIDAD AHORA': colores['amarillo'], 
-			       'P. DE TRABAJADORES REVOL.': colores['naranja'], 
-			       'CANDIDATURA IND.': colores['gris']};    
+var coloresConcL = {
+	'Chile Vamos': colores['azul'], 
+	'Republicanos y Ciud.': colores['azul-marino'], 
+	'Unidad por el Apruebo': colores['violeta'], 
+	'Unidos por la Dignidad': colores['marron'], 
+	'Chile Digno Verde y Sob.': colores['rojo'], 
+	'Frente Amplio': colores['verde-agua'], 
+	'Ecologistas e Ind.': colores['verde'], 
+	'Unión Patriótica': colores['rojo-oscuro'], 
+	'Dignidad Ahora': colores['amarillo'], 
+	'P. de Trabajadores Revol.': colores['naranja'], 
+	'Candidaturas Ind.': colores['gris']
+};     
 
-var shortNames = {'CHILE VAMOS': 'CV', 
-			       'REPUBLICANOS Y CIUD.': 'RC',
-			       'UNIDAD POR EL APRUEBO': 'UA', 
-			       'UNIDOS POR LA DIGNIDAD': 'UD', 
-			       'FRENTE AMPLIO': 'FA', 
-			       'ECOLOGISTAS E IND': 'EC',
-			       'CHILE DIGNO VERDE Y SOB.': 'CD',
-			       'UNION PATRIOTICA': 'UP',
-			       'DIGNIDAD AHORA': 'DA', 
-			       'P. DE TRABAJADORES REVOL.': 'TR', 
-			       'CANDIDATURA IND.': 'CI'};
+var shortNames = {
+	'Chile Vamos': 'CV', 
+	'Republicanos y Ciud.': 'RC',
+	'Unidad por el Apruebo': 'UA', 
+	'Unidos por la Dignidad': 'UD', 
+	'Frente Amplio': 'FA', 
+	'Ecologistas e Ind.': 'EC',
+	'Chile Digno Verde y Sob.': 'CD',
+	'Unión Patriótica': 'UP',
+	'Dignidad Ahora': 'DA', 
+	'P. de Trabajadores Revol.': 'TR', 
+	'Candidaturas Ind.': 'CI'
+};
 
 let listasSeleccionadasAlc = [];
 let listasSeleccionadasConc = [];
@@ -306,7 +290,54 @@ map.on('load', function(){
 		'type': 'circle',
 		'filter': ['has', 'lista'],
 		'paint' : {
-			'circle-color': coloresMarkersConv,
+			'circle-color': [
+				'match',
+				['get', 'lista'],
+				'APRUEBO DIGNIDAD', colores['verde-agua'],
+				'ASAMBLEA CONSTITUYENTE ATACAMA', colores['rosado'],
+				'INDEPENDIENTES POR LA NUEVA CONSTITUCION (D4)', colores['azul-marino'],
+				'INDEPENDIENTES POR LA NUEVA CONSTITUCION (D6)', colores['azul-marino'],
+				'INDEPENDIENTES POR UNA NUEVA CONSTITUCION (D12)', colores['azul-marino'],
+				'INDEPENDIENTES POR LA NUEVA CONSTITUCION (D14)', colores['azul-marino'],
+				'INDEPENDIENTES DE ÑUBLE POR LA NUEVA CONSTITUCION (D19)', colores['azul-marino'],
+				'INDEPENDIENTES DEL BIOBIO POR UNA NUEVA CONSTITUCION (D20)', colores['azul-marino'],
+				'INDEPENDIENTES POR UNA NUEVA CONSTITUCION (D21)', colores['azul-marino'],
+				'INDEPENDIENTES POR LA NUEVA CONSTITUCION (D23)', colores['azul-marino'],
+				'INDEPENDIENTES NUEVA CONSTITUCION (D26)', colores['azul-marino'],
+				'LA LISTA DEL PUEBLO (D3)', colores['rosado'],
+				'LISTA DEL PUEBLO - MOVIMIENTO TERRITORIAL CONSTITUYENTE (D5)', colores['rosado'],
+				'INDEPENDIENTES DISTRITO 6 + LISTA DEL PUEBLO (D6)', colores['rosado'],
+				'LA LISTA DEL PUEBLO (D7)', colores['rosado'],
+				'LA LISTA DEL PUEBLO (D8)', colores['rosado'],
+				'LA LISTA DEL PUEBLO DISTRITO 9 (D9)', colores['rosado'],
+				'LA LISTA DEL PUEBLO (D10)', colores['rosado'],
+				'LA LISTA DEL PUEBLO DISTRITO 12 (D12)', colores['rosado'],
+				'LA LISTA DEL PUEBLO (D13)', colores['rosado'],
+				'LA LISTA DEL PUEBLO DISTRITO 14 (D14)', colores['rosado'],
+				'LA LISTA DEL PUEBLO 100% INDEPENDIENTES (D15)', colores['rosado'],
+				'LA LISTA DEL PUEBLO (D17)', colores['rosado'],
+				'LA LISTA DEL PUEBLO MAULE SUR (D18)', colores['rosado'],
+				'FUERZA SOCIAL DE ÑUBLE, LA LISTA DEL PUEBLO (D19)', colores['rosado'],
+				'ELIGE LA LISTA DEL PUEBLO (D23)', colores['rosado'],
+				'INSULARES E INDEPENDIENTES (D26)', colores['rosado'],
+				'LA LISTA DEL PUEBLO(D20)', colores['rosado'],
+				'COORDINADORA SOCIAL DE MAGALLANES (D28)', colores['rosado'],
+				'LISTA DEL APRUEBO', colores['violeta'],
+				'MOVIMIENTO INDEPENDIENTES DEL NORTE (D3)', colores['gris'],
+				'REGIONALISMO CIUDADANO INDEPENDIENTE (D28)', colores['gris'],
+				'VAMOS POR CHILE', colores['azul'],
+				'PUEBLO MAPUCHE', colores['marron'],
+				'PUEBLO RAPANUI', colores['marron'],
+				'PUEBLO ATACAMEÑO', colores['marron'],
+				'PUEBLO AIMARA', colores['marron'],
+				'PUEBLO QUECHUA', colores['marron'],
+				'PUEBLO COLLA', colores['marron'],
+				'PUEBLO KAWASHKAR', colores['marron'],
+				'PUEBLO DIAGUITA', colores['marron'],
+				'PUEBLO YAGAN', colores['marron'],
+				'PUEBLO CHANGO', colores['marron'],
+				colores['gris']
+			],
 			'circle-radius': [
 				'interpolate',
 				['linear'], ['zoom'],
@@ -559,7 +590,23 @@ map.on('load', function(){
         'source-layer': 'distritos2021-05-4u089z',
         'filter': ['has', 'DISTRITO'],
         'paint': {
-            'fill-color': coloresConv,
+            'fill-color': [
+				'match',
+				['get', '2021-05_ConvLMV'],
+				'APRUEBO DIGNIDAD', colores['verde-agua'],
+				'ASAMBLEA CONSTITUYENTE ATACAMA', colores['rosado'],
+				'INDEPENDIENTES POR UNA NUEVA CONSTITUCION (D12)', colores['azul-marino'],
+				'LA LISTA DEL PUEBLO (D13)', colores['rosado'],
+				'LA LISTA DEL PUEBLO 100% INDEPENDIENTES (D15)', colores['rosado'],
+				'LA LISTA DEL PUEBLO DISTRITO 9 (D9)', colores['rosado'],
+				'LA LISTA DEL PUEBLO MAULE SUR (D18)', colores['rosado'],
+				'LISTA DEL APRUEBO', colores['violeta'],
+				'LISTA DEL PUEBLO - MOVIMIENTO TERRITORIAL CONSTITUYENTE (D5)', colores['rosado'],
+				'MOVIMIENTO INDEPENDIENTES DEL NORTE (D3)', colores['gris'],
+				'REGIONALISMO CIUDADANO INDEPENDIENTE (D28)', colores['gris'],
+				'VAMOS POR CHILE', colores['azul'],
+				colores['gris']
+			],
             'fill-opacity': [
             	'interpolate',
             	['linear'],
@@ -683,6 +730,7 @@ map.on('load', function(){
         'type': 'line',
         'source': 'regiones-data',
         'source-layer': 'regiones2021-05-5k4g66',
+        'filter': ['!', ['==', ['get', 'REGION'], 'Zona sin demarcar']],
         'paint': {
             'line-color': colores['blanco'],
             'line-opacity': 1,
@@ -887,6 +935,7 @@ map.on('load', function(){
     		map.setLayoutProperty('gobernadores-violeta-gris', 'visibility', 'none');	
     	}
     );
+    mostrarConvencionales();
 });
 
 map.on('rotate', function () {
@@ -1053,7 +1102,7 @@ map.on('mousemove', 'gobernadores-azul-violeta', function (e) {
 		popup.setLngLat(e.lngLat)
 			.setHTML(
 				'<h4><span style="font-weight:bold">'+region+'</span></h4>'+
-				'<p>Segunda vuelta:<br>'+
+				'<p>Primera vuelta:<br>'+
 				'<table>'+
 				'<tr><td colspan="2">'+lista1+' ('+partido1+')</td></tr>'+
 				'<tr><td><span class="legend-key" style="background-color:'+coloresAlc[lista1]+'"></span>'+
@@ -1088,7 +1137,7 @@ map.on('mousemove', 'gobernadores-azul-gris', function (e) {
 		popup.setLngLat(e.lngLat)
 			.setHTML(
 				'<h4><span style="font-weight:bold">'+region+'</span></h4>'+
-				'<p>Segunda vuelta:<br>'+
+				'<p>Primera vuelta:<br>'+
 				'<table>'+
 				'<tr><td colspan="2">'+lista1+' ('+partido1+')</td></tr>'+
 				'<tr><td><span class="legend-key" style="background-color:'+coloresAlc[lista1]+'"></span>'+
@@ -1123,7 +1172,7 @@ map.on('mousemove', 'gobernadores-azul-verde', function (e) {
 		popup.setLngLat(e.lngLat)
 			.setHTML(
 				'<h4><span style="font-weight:bold">'+region+'</span></h4>'+
-				'<p>Segunda vuelta:<br>'+
+				'<p>Primera vuelta:<br>'+
 				'<table>'+
 				'<tr><td colspan="2">'+lista1+' ('+partido1+')</td></tr>'+
 				'<tr><td><span class="legend-key" style="background-color:'+coloresAlc[lista1]+'"></span>'+
@@ -1158,7 +1207,7 @@ map.on('mousemove', 'gobernadores-violeta-gris', function (e) {
 		popup.setLngLat(e.lngLat)
 			.setHTML(
 				'<h4><span style="font-weight:bold">'+region+'</span></h4>'+
-				'<p>Segunda vuelta:<br>'+
+				'<p>Primera vuelta:<br>'+
 				'<table>'+
 				'<tr><td colspan="2">'+lista1+' ('+partido1+')</td></tr>'+
 				'<tr><td><span class="legend-key" style="background-color:'+coloresAlc[lista1]+'"></span>'+
@@ -1193,7 +1242,7 @@ map.on('mousemove', 'gobernadores-violeta-verde-agua', function (e) {
 		popup.setLngLat(e.lngLat)
 			.setHTML(
 				'<h4><span style="font-weight:bold">'+region+'</span></h4>'+
-				'<p>Segunda vuelta:<br>'+
+				'<p>Primera vuelta:<br>'+
 				'<table>'+
 				'<tr><td colspan="2">'+lista1+' ('+partido1+')</td></tr>'+
 				'<tr><td><span class="legend-key" style="background-color:'+coloresAlc[lista1]+'"></span>'+
@@ -1212,52 +1261,6 @@ map.on('mouseleave', 'gobernadores-violeta-verde-agua', function () {
     map.getCanvas().style.cursor = '';
     popup.remove();
 });
-
-coloresConvP = {
-	'APRUEBO DIGNIDAD': colores['verde-agua'],
-	'ASAMBLEA CONSTITUYENTE ATACAMA': colores['rosado'],
-	'ASAMBLEA POPULAR CONSTITUYENTE (D20)': colores['gris'],
-	'ASAMBLEA POPULAR POR LA DIGNIDAD (D17)': colores['gris'],
-	'CANDIDATURA INDEPENDIENTE': colores['gris'],
-	'COORDINADORA SOCIAL DE MAGALLANES (D28)': colores['rosado'],
-	'CORRIENTES INDEPENDIENTES (D16)': colores['gris'],
-	'ELIGE LA LISTA DEL PUEBLO (D23)': colores['rosado'],
-	'FUERZA SOCIAL DE ÑUBLE, LA LISTA DEL PUEBLO (D19)': colores['rosado'],
-	'INDEPENDIENTES DE TARAPACA (D2)': colores['gris'],
-	'INDEPENDIENTES DE ÑUBLE POR LA NUEVA CONSTITUCION (D19)': colores['azul-marino'],
-	'INDEPENDIENTES DEL BIOBIO POR UNA NUEVA CONSTITUCION (D20)': colores['azul-marino'],
-	'INDEPENDIENTES DISTRITO 6 + LISTA DEL PUEBLO (D6)': colores['rosado'],
-	'INDEPENDIENTES NUEVA CONSTITUCION (D26)': colores['azul-marino'],
-	'INDEPENDIENTES POR LA NUEVA CONSTITUCION  (D10)': colores['azul-marino'],
-	'INDEPENDIENTES POR LA NUEVA CONSTITUCION (D14)': colores['azul-marino'],
-	'INDEPENDIENTES POR LA NUEVA CONSTITUCION (D23)': colores['azul-marino'],
-	'INDEPENDIENTES POR LA NUEVA CONSTITUCION (D4)': colores['azul-marino'],
-	'INDEPENDIENTES POR LA NUEVA CONSTITUCION (D6)': colores['azul-marino'],
-	'INDEPENDIENTES POR LA REGION DE COQUIMBO (D5)': colores['gris'],
-	'INDEPENDIENTES POR UNA NUEVA CONSTITUCION (D12)': colores['azul-marino'],
-	'INDEPENDIENTES POR UNA NUEVA CONSTITUCION (D21)': colores['azul-marino'],
-	'INSULARES E INDEPENDIENTES (D26)': colores['rosado'],
-	'LA LISTA DEL PUEBLO (D10)': colores['rosado'],
-	'LA LISTA DEL PUEBLO (D13)': colores['rosado'],
-	'LA LISTA DEL PUEBLO (D17)': colores['rosado'],
-	'LA LISTA DEL PUEBLO (D3)': colores['rosado'],
-	'LA LISTA DEL PUEBLO (D7)': colores['rosado'],
-	'LA LISTA DEL PUEBLO (D8)': colores['rosado'],
-	'LA LISTA DEL PUEBLO 100% INDEPENDIENTES (D15)': colores['rosado'],
-	'LA LISTA DEL PUEBLO DISTRITO 12 (D12)': colores['rosado'],
-	'LA LISTA DEL PUEBLO DISTRITO 14 (D14)': colores['rosado'],
-	'LA LISTA DEL PUEBLO DISTRITO 9 (D9)': colores['rosado'],
-	'LA LISTA DEL PUEBLO MAULE SUR (D18)': colores['rosado'],
-	'LA LISTA DEL PUEBLO(D20)': colores['rosado'],
-	'LISTA DEL APRUEBO': colores['violeta'],
-	'LISTA DEL PUEBLO - MOVIMIENTO TERRITORIAL CONSTITUYENTE (D5)': colores['rosado'],
-	'MOVIMIENTO INDEPENDIENTES DEL NORTE (D3)': colores['marron'],
-	'MOVIMIENTOS SOCIALES AUTONOMOS (D15)': colores['gris'],
-	'MOVIMIENTOS SOCIALES INDEPENDIENTES (D6)': colores['gris'],
-	'REGIONALISMO CIUDADANO INDEPENDIENTE (D28)': colores['naranja'],
-	'VAMOS POR CHILE': colores['azul'],
-	'VOCES CONSTITUYENTES (D12)': colores['gris'],
-};
 
 map.on('mousemove', 'convencionales', function (e) {
     map.getCanvas().style.cursor = 'pointer';
@@ -1279,7 +1282,7 @@ map.on('mousemove', 'convencionales', function (e) {
 			convencionales += '</td><td style="padding-left:10px;text-align:right;font-weight:bold">'+perctL+'%</td></tr>';
 		};
 		convencionales += '<tr>';	
-		convencionales += '<td><span class="legend-key" style="background-color:'+coloresConvP[lista]+'"></span>';
+		convencionales += '<td><span class="legend-key" style="background-color:'+coloresConv[lista]+'"></span>';
 		convencionales += e.features[0].properties[beg+'_Nom'];
 		convencionales += '</td><td style="padding-left:10px;text-align:center">('+sexo+')</td>';
 		convencionales += '</td><td style="padding-left:10px">'+partido+'</td>';
@@ -1564,9 +1567,11 @@ function mostrarParticipacion() {
 
 	legend.style.display = 'block';
     if (screen.width>=992) {
+        legend.style.width = '300px';
         legend.style.maxWidth = '300px';
         legend.style.height = '70px';
         legend2.style.display = 'block';
+        legend2.style.width = '850px';
         legend2.style.maxWidth = '850px';
         legend2.style.width = '850px';
         legend2.style.height = '40px';
@@ -1615,7 +1620,8 @@ function mostrarGobernadores() {
     legend.innerHTML = '';
 
     if (screen.width>=992) {
-    	legend.style.maxWidth = '270px';
+    	legend.style.width = '200px';
+    	legend.style.maxWidth = '200px';
     	legend.style.height = '115px';
     	legend2.style.display = 'block';
     	legend2.style.maxWidth = '850px';
@@ -1623,13 +1629,13 @@ function mostrarGobernadores() {
     	legend2.style.height = '18px';
     	legend2.innerHTML = 'Transparencia depende del porcentaje del candidato más votado.';
     } else {
-        legend.style.maxWidth = '200px';
+        legend.style.width = '185px';
+        legend.style.maxWidth = '185px';
         legend.style.height = '95px';
     }
 
-
-	var layers = ['UNIDAD CONSTITUYENTE', 'CHILE VAMOS', 'FRENTE AMPLIO', 
-	              'ECOLOGISTAS E INDEPENDIENTES',  'CANDIDATURA INDEPENDIENTE'];
+	var layers = ['Unidad Constituyente', 'Chile Vamos', 'Frente Amplio', 
+	              'Ecologistas e Independientes',  'Candidaturas Independientes'];
 	var colors = [colores['violeta'], colores['azul'], colores['verde-agua'], 
 	              colores['verde'], colores['gris']];
 
@@ -1640,7 +1646,6 @@ function mostrarGobernadores() {
 		var tr = document.createElement('tr');
 		var td1 = document.createElement('td');
 		var td2 = document.createElement('td');
-
 
 		var item = document.createElement('div');
 		var key = document.createElement('span');
@@ -1661,8 +1666,6 @@ function mostrarGobernadores() {
 	legend.appendChild(table);
 };
 
-
-
 function mostrarConvencionales() {
 	clean();
 	map.setLayoutProperty('convencionales', 'visibility', 'visible');
@@ -1671,40 +1674,73 @@ function mostrarConvencionales() {
     map.setLayoutProperty('markers-title', 'visibility', 'visible');	
 	document.getElementById('a-convencionales').style.color = 'black';
 
+    var parliament = {
+    	'Vamos por Chile': {
+    		'seats': 37,
+    		'color': colores['azul']
+    	},
+    	'Apruebo Dignidad': {
+    		'seats': 28,
+    		'color': colores['verde-agua'] 
+    	},
+    	'La Lista del Pueblo': {
+    		'seats': 26,
+    		'color': colores['rosado']
+    	},
+    	'Lista del Apruebo': {
+    		'seats': 25,
+    		'color': colores['violeta']
+    	},
+    	'Independientes No Neutrales': {
+    		'seats': 11,
+    		'color': colores['azul-marino']
+    	},
+    	'Candidaturas Independientes': {
+    		'seats': 11,
+    		'color': colores['gris']
+    	},
+    	'Pueblos Indígenas': {
+    		'seats': 17,
+    		'color': colores['marron']
+    	}
+    }	
+    parliament_order = {
+    	'Candidaturas Independientes': false,
+    	'Pueblos Indígenas': false, 
+    	'La Lista del Pueblo': true, 
+    	'Apruebo Dignidad': true, 
+    	'Lista del Apruebo': true, 
+    	'Independientes No Neutrales': true,
+    	'Vamos por Chile': true
+    }
+
 	legend.innerHTML = '';
 	legend.style.display = 'block';
     if (screen.width>=992) {
-    	legend.style.maxWidth = '350px';
-    	legend.style.height = '200px';
+    	legend.style.width = '240px';
+    	legend.style.maxWidth = '240px';
+    	legend.style.height = '160px';
     	legend2.innerHTML = '';
     	legend2.style.display = 'block';
+    	legend2.style.width = '850px';
     	legend2.style.maxWidth = '850px';
     	legend2.style.width = '360px';
     	legend2.style.height = '230px';
     	//legend2.innerHTML = 'Color y transparencia depende del porcentaje de la lista más votada en el distrito.';
     	var div = document.createElement('div');
-    	var img = document.createElement('img');
-    	img.src = 'images/convencionales.svg';
-    	div.appendChild(img);
+    	div.appendChild(generateSVG(parliament, parliament_order, true));
     	legend2.appendChild(div);
     	var span = document.createElement('span');
     	span.innerHTML = 'Color y transparencia depende del porcentaje de la lista más votada en el distrito.';
     	legend2.appendChild(span);
     } else {  
-        legend.style.maxWidth = '270px';
-        legend.style.height = '170px';  
+        legend.style.width = '195px';
+        legend.style.maxWidth = '195px';
+        legend.style.height = '135px';  
     }
 
-	var layers = ['VAMOS POR CHILE (37)', 'APRUEBO DIGNIDAD (28)', 'LA LISTA DEL PUEBLO (26)', 
-	              'LISTA DEL APRUEBO (25)', 'INDEPENDIENTES NO NEUTRALES (11)', 
-	              'MOVIMIENTO INDEPENDIENTES DEL NORTE (1)', 'REGIONALISMO CIUDADANO INDEPENDIENTE (1)',
-	              'OTRAS CANDIDATURAS INDEPENDIENTES (9)', 'PUEBLOS INDIGENAS (17)'];
-	var colors = [colores['azul'], colores['verde-agua'], colores['rosado'], colores['violeta'], 
-	              colores['azul-marino'], colores['marron'], colores['naranja'], colores['gris'],
-	              colores['gris-claro']];
-
 	var table = document.createElement('table');
-	for (i = 0; i < layers.length; i++) {
+	for (partido in parliament) {
 		var tr = document.createElement('tr');
 		var td1 = document.createElement('td');
 		var td2 = document.createElement('td');
@@ -1712,12 +1748,12 @@ function mostrarConvencionales() {
 		var item = document.createElement('div');
 		var key = document.createElement('span');
 		key.className = 'legend-key';
-		key.style.backgroundColor = colors[i];
+		key.style.backgroundColor = parliament[partido].color;
 		item.appendChild(key);
 		td1.appendChild(item);
 
 		var value = document.createElement('span');
-		value.innerHTML = layers[i];
+		value.innerHTML = partido + ' (' + parliament[partido].seats + ')';
 		td2.appendChild(value);
 
 		tr.appendChild(td1);
@@ -1726,7 +1762,6 @@ function mostrarConvencionales() {
 	};
 	legend.appendChild(table);
 };
-
 
 
 function mostrarConvencionalesMH() {
@@ -1739,6 +1774,7 @@ function mostrarConvencionalesMH() {
 	legend.innerHTML = '';
 	legend.style.display = 'block';
     if (screen.width>=992) {
+    	legend.style.width = '250px';
     	legend.style.maxWidth = '250px';
     	legend.style.height = '250px';
     	legend2.style.display = 'block';
@@ -1747,6 +1783,7 @@ function mostrarConvencionalesMH() {
     	legend2.style.height = '18px';
     	legend2.innerHTML = 'Acercarse para distinguir participación a nivel comunal.';
     } else {
+        legend.style.width = '200px';
         legend.style.maxWidth = '200px';
         legend.style.height = '190px';        
     }
@@ -1835,92 +1872,63 @@ function mostrarAlcaldes() {
 	map.setLayoutProperty('alcaldes', 'visibility', 'visible');
 	document.getElementById('a-alcaldes').style.color = 'black';
 
+	parliament = {
+		'Chile Vamos': {
+			'seats': 87,
+			'color': colores['azul'],
+			'parties': [['UDI', 32], ['RN', 31], ['EVO', 1], ['IND', 23]]
+		},
+		'Unidad por el Apruebo': {
+			'seats': 69,
+			'color': colores['violeta'],
+			'parties': [['PS', 23], ['PPD', 17], ['PR', 11], ['IND', 18]]
+		},
+		'Unidos por la Dignidad': {
+			'seats': 60,
+			'color': colores['marron'],
+			'parties': [['DC', 46], ['PRO', 2], ['IND', 12]]
+		},
+		'Frente Amplio': {
+			'seats': 12,
+			'color': colores['verde-agua'],
+			'parties': [['RD', 6], ['CS', 2], ['PL', 1], ['IND', 3]]
+		},
+		'Chile Digno Verde y Soberano': {
+			'seats': 9,
+			'color': colores['rojo'],
+			'parties': [['PCCh', 6], ['FREVS', 1], ['IND', 2]]
+		},
+		'Dignidad Ahora': {
+			'seats': 3,
+			'color': colores['amarillo'],
+			'parties': [['PH', 2], ['IGUAL', 1]]
+		},
+		'Candidaturas Independientes': {
+			'seats': 105,
+			'color': colores['gris'],
+			'parties': []
+		}
+	}
+
+
 	legend.style.display = 'block';
     legend.innerHTML = '';
     if (screen.width>=992) {
-    	legend.style.maxWidth = '520px';
+    	legend.style.width = '470px';
+    	legend.style.maxWidth = '470px';
     	legend.style.height = '160px';
     	legend2.style.display = 'block';
     	legend2.style.maxWidth = '850px';
     	legend2.style.width = '650px';
     	legend2.style.height = '18px';
     	legend2.innerHTML = 'Transparencia depende del porcentaje del candidato electo.';
-
-        var layers = ['CHILE VAMOS (87)', 'UNIDAD POR EL APRUEBO (69)', 'UNIDOS POR LA DIGNIDAD (60)', 
-                      'FRENTE AMPLIO (12)', 'CHILE DIGNO VERDE Y SOBERANO (9)   ', 
-                      'DIGNIDAD AHORA (3)', 'CANDIDATURA INDEPENDIENTE (105)'];
-        var layers2 = ['UDI (32), RN (31), EVO (1), IND (23)', 'PS (23), PPD (17), PR (11), IND (18)',
-                        'DC (46), PRO (2), IND (12)', 'RD (6), CS (2), PL (1), IND (3)', 
-                        'PCCh (6), FREVS (1), IND (2)', 'PH (2), IGUAL (1)'];
     } else {
-        legend.style.maxWidth = '285px';
-        legend.style.height = '150px';
-        var layers = ['CHILE VAMOS', 'UNIDAD POR EL APRUEBO', 'UNIDOS POR LA DIGNIDAD', 
-                      'FRENTE AMPLIO', 'CHILE DIGNO VERDE Y SOBERANO', 
-                      'DIGNIDAD AHORA', 'CANDIDATURA INDEPENDIENTE'];
-        var layers2 = ['UDI, RN, EVO, IND', 'PS, PPD, PR, IND',
-                        'DC, PRO, IND', 'RD, CS, PL, IND', 
-                        'PCCh, FREVS, IND', 'PH, IGUAL'];
+        legend.style.width = '270px';
+        legend.style.maxWidth = '270px';
+        legend.style.height = '140px';
     }
 
-	var colors = [colores['azul'], colores['violeta'], colores['marron'], colores['verde-agua'], 
-	              colores['rojo'], colores['amarillo'], colores['gris']];
-
-	var table = document.createElement('table');
-	for (i = 0; i < layers.length-1; i++) {
-		var layer = layers[i];
-		var layer2 = layers2[i];
-		var color = colors[i];
-		var tr = document.createElement('tr');
-		var td1 = document.createElement('td');
-		var td2 = document.createElement('td');
-		var td3 = document.createElement('td');
-
-
-		var item = document.createElement('div');
-		var key = document.createElement('span');
-		key.className = 'legend-key';
-		key.style.backgroundColor = color;
-		item.appendChild(key);
-		td1.appendChild(item);
-
-		var value = document.createElement('span');
-		value.innerHTML = layer;
-		td2.appendChild(value);
-		var value2 = document.createElement('span');
-		value2.innerHTML = layer2;
-		td3.appendChild(value2);
-        if (screen.width>=992) {
-		  td3.style.paddingLeft = '15px';
-        }
-
-		tr.appendChild(td1);
-		tr.appendChild(td2);
-		tr.appendChild(td3);
-		table.appendChild(tr);
-	};
-	var tr = document.createElement('tr');
-	var td1 = document.createElement('td');
-	var td2 = document.createElement('td');
-
-	var item = document.createElement('div');
-	var key = document.createElement('span');
-	key.className = 'legend-key';
-	key.style.backgroundColor = colors[layers.length-1];
-	item.appendChild(key);
-	td1.appendChild(item);
-	var value = document.createElement('span');
-	value.innerHTML = layers[layers.length-1];
-	td2.colSpan = '2'; 
-	td2.appendChild(value);
-
-	tr.appendChild(td1);
-	tr.appendChild(td2);
-	table.appendChild(tr);
-
-	legend.appendChild(table);
-
-
+	legend.appendChild(getParliamentTable(parliament));
 };
 
 function mostrarConcejalesMH() {
@@ -1934,9 +1942,11 @@ function mostrarConcejalesMH() {
     legend2.innerHTML = '';
     legend2.style.display = 'none';
     if (screen.width>=992) {
-    	legend.style.maxWidth = '250px';
+    	legend.style.width = '260px';
+    	legend.style.maxWidth = '260px';
     	legend.style.height = '250px';
     } else {
+        legend.style.width = '200px';
         legend.style.maxWidth = '200px';
         legend.style.height = '190px';
     }
@@ -2031,41 +2041,25 @@ function mostrarConcejales() {
 
     if (screen.width>=992) {
         legend.style.display = 'block';
-    	legend.style.maxWidth = '750px';
+    	legend.style.width = '460px';
+    	legend.style.maxWidth = '460px';
     	legend.style.height = '400px';
 
         var layers2 = {
-            'CHILE VAMOS': 'UDI (298), RN (377), EVO (61), PRI (36)', 
-            'REPUBLICANOS Y CIUD.': 'REP (12), CIU (1)', 
-            'UNIDAD POR EL APRUEBO': 'PS (272), PPD (202), PR (174)', 
-            'UNIDOS POR LA DIGNIDAD': 'DC+PRO (362)', 
-            'FRENTE AMPLIO': 'RD (43), CS (51), PL (4), COM (34)', 
-            'ECOLOGISTAS E IND': 'ECO (47)',
-            'CHILE DIGNO VERDE Y SOB.': 'PCCh (157), FREVS (48)', 
-            'UNION PATRIOTICA': 'UPA (1)', 
-            'DIGNIDAD AHORA': 'PH (28), IGUAL (27)',
-            'P. DE TRABAJADORES REVOL.': 'PTR (1)', 
-            'CANDIDATURA IND.': ''
+            'Chile Vamos': 'UDI (298), RN (377), EVO (61), PRI (36)', 
+            'Republicanos y Ciud.': 'REP (12), CIU (1)', 
+            'Unidad por el Apruebo': 'PS (272), PPD (202), PR (174)', 
+            'Unidos por la Dignidad': 'DC+PRO (362)', 
+            'Frente Amplio': 'RD (43), CS (51), PL (4), COM (34)', 
+            'Ecologistas e Ind.': 'ECO (47)',
+            'Chile Digno Verde y Sob.': 'PCCh (157), FREVS (48)', 
+            'Unión Patriótica': 'UPA (1)', 
+            'Dignidad Ahora': 'PH (28), IGUAL (27)',
+            'P. de Trabajadores Revol.': 'PTR (1)', 
+            'Candidaturas Ind.': ''
         };
     }  else {
         legend.style.display = 'none';
-        /*
-        legend.style.maxWidth = '210px';
-        legend.style.height = '290px';
-        var layers2 = {
-            'CHILE VAMOS': '', 
-            'REPUBLICANOS Y CIUD.': '', 
-            'UNIDAD POR EL APRUEBO': '', 
-            'UNIDOS POR LA DIGNIDAD': '', 
-            'FRENTE AMPLIO': '', 
-            'ECOLOGISTAS E IND': '',
-            'CHILE DIGNO VERDE Y SOB.': '', 
-            'UNION PATRIOTICA': '', 
-            'DIGNIDAD AHORA': '',
-            'P. DE TRABAJADORES REVOL.': '', 
-            'CANDIDATURA IND.': ''
-        }; */
-
     } 
 	legend.innerHTML = 'Selecciona lista/partidos y verás si tienen mayoría en el concejo.<br>';
 
@@ -2074,7 +2068,7 @@ function mostrarConcejales() {
 	var table = document.createElement('table');
 	table.style.borderCollapse = 'collapse';
 	for (var layer in coloresConcL) {
-		if (layer == 'CHILE VAMOS' & screen.width>=992) {
+		if (layer == 'Chile Vamos' & screen.width>=992) {
 			var tr = document.createElement('tr');
             tr.style.height = '27px';
 			var td1= document.createElement('td');
@@ -2094,7 +2088,7 @@ function mostrarConcejales() {
 			tr.appendChild(td1);
 			tr.appendChild(td2);
 			table.appendChild(tr);
-		} else if (layer == 'UNIDAD POR EL APRUEBO' & screen.width>=992) {
+		} else if (layer == 'Unidad por el Apruebo' & screen.width>=992) {
 			var tr = document.createElement('tr');
             tr.style.height = '27px';
 			tr.style.borderTop = 'solid';
@@ -2116,7 +2110,7 @@ function mostrarConcejales() {
 			tr.appendChild(td1);
 			tr.appendChild(td2);
 			table.appendChild(tr);
-		} else if (layer == 'CHILE DIGNO VERDE Y SOB.' & screen.width>=992) {
+		} else if (layer == 'Chile Digno Verde y Sob.' & screen.width>=992) {
 			var tr = document.createElement('tr');
             tr.style.height = '27px';
 			tr.style.borderTop = 'solid';
@@ -2147,7 +2141,7 @@ function mostrarConcejales() {
 		var td1 = document.createElement('td');
 		var td2 = document.createElement('td');
 		var td3 = document.createElement('td');
-		if (layer == 'ECOLOGISTAS E IND' & screen.width>=992) {
+		if (layer == 'Ecologistas e Ind.' & screen.width>=992) {
 			tr.style.borderTop = 'solid';
 			tr.style.borderWidth = '1px';			
 		}
@@ -2477,41 +2471,231 @@ function mostrarConcejales() {
 	
 };
 
-/*
 
-var shortNames = {'CHILE VAMOS': 'CV', 
-			       'REPUBLICANOS Y CIUD.': 'RC',
-			       'UNIDAD POR EL APRUEBO': 'UA', 
-			       'UNIDOS POR LA DIGNIDAD': 'UD', 
-			       'FRENTE AMPLIO': 'FA', 
-			       'ECOLOGISTAS E IND': 'EC',
-			       'CHILE DIGNO VERDE Y SOB.': 'CD',
-			       'UNION PATRIOTICA': 'UP',
-			       'DIGNIDAD AHORA': 'DA', 
-			       'P. DE TRABAJADORES REVOL.': 'TR', 
-			       'CANDIDATURA IND.': 'CI'}; 
-var coloresAlc = {'CHILE VAMOS': colores['azul'], 
-			      'UNIDAD POR EL APRUEBO': colores['violeta'],
-			      'UNIDOS POR LA DIGNIDAD': colores['marron'],
-                  'FRENTE AMPLIO': colores['verde-agua'], 
-                  'CHILE DIGNO VERDE Y SOBERANO': colores['rojo'],
-                  'DIGNIDAD AHORA': colores['amarillo'],
-                  'CANDIDATURA INDEPENDIENTE': colores['gris']};
+function seatSum(parliament) {
+	var result = 0;
+	for (party in parliament) {
+		result += parliament[party].seats;
+	}
+	return result;
+}
+function calculateSeatDistance(seatCount, numberOfRings, r) {
+	var x = Math.PI * numberOfRings * r / (seatCount - numberOfRings);
+	var y = 1 + Math.PI * (numberOfRings - 1) * numberOfRings / 2 / (seatCount - numberOfRings);
+	return x / y;
+}
+function score(m, n, r) {
+	return Math.abs(calculateSeatDistance(m, n, r) * n / r - 5 / 7);
+}
+function calculateNumberOfRings(seatCount, r) {
+	var n = Math.floor(Math.log(seatCount) / Math.log(2)) || 1;
+	var distance = score(seatCount, n, r);
 
-var coloresConc = {'CHILE VAMOS - PRI E IND': colores['azul'], 
-			       'CHILE VAMOS EVOPOLI - IND': colores['azul'], 
-			       'CHILE VAMOS RN - IND': colores['azul'], 
-			       'CHILE VAMOS UDI - IND': colores['azul'], 
-			       'REPUBLICANOS': colores['azul-marino'], 
-			       'CIUDADANOS IND': colores['azul-marino'], 
-			       'UNIDAD POR EL APRUEBO': colores['violeta'], 
-			       'RADICALES E IND': colores['violeta'],  
-			       'UNIDOS POR LA DIGNIDAD': colores['marron'], 
-			       'FRENTE AMPLIO': colores['verde-agua'], 
-			       'ECOLOGISTAS E IND': colores['verde'], 
-			       'CHILE DIGNO VERDE Y SOBERANO': colores['rojo'], 
-			       'UNION PATRIOTICA': colores['rojo-oscuro'], 
-			       'DIGNIDAD AHORA': colores['amarillo'], 
-			       'PARTIDO DE TRABAJADORES REVOLUCIONARIOS': colores['naranja'], 
-			       'CANDIDATURA INDEPENDIENTE': colores['gris']};  
-*/
+	var direction = 0;
+	if (score(seatCount, n + 1, r) < distance) direction = 1;
+	if (score(seatCount, n - 1, r) < distance && n > 1) direction = -1;
+
+	while (score(seatCount, n + direction, r) < distance && n > 0) {
+		distance = score(seatCount, n + direction, r);
+		n += direction;
+	}
+	return n;
+}
+function round(number) {
+	return Math.round(number*1000000)/1000000;
+}
+function coords(r, b) {
+	return {
+		x: round(r * Math.cos(b / r - Math.PI)),
+		y: round(r * Math.sin(b / r - Math.PI))
+	};
+}
+function nextRing(rings, ringProgress, ordered) {
+	if (ordered) {
+		var progressQuota = 0,
+	    	tQuota = 0;
+		for (var index = rings.length-1; index >= 0; index--) {
+			tQuota = round((ringProgress[index] || 0) / rings[index].length);
+			if (progressQuota==0 || tQuota < progressQuota) { progressQuota = tQuota; }
+		}
+		for (var _index = rings.length-1; _index >= 0; _index--) {
+			tQuota = round((ringProgress[_index] || 0) / rings[_index].length);
+			
+			if (tQuota === progressQuota) return _index;
+		}		
+	} else {
+		for (var i = rings.length-1; i >= 0; i--) {
+			if (ringProgress[i] < rings[i].length) return i;
+		}
+	}
+
+}
+function argMax(array) {
+ 	return [].reduce.call(array, (m, c, i, arr) => c > arr[m] ? i : m, 0)
+}
+function sainte_lague(rings, seatCount) {
+	var assign = [];
+	var aux = [];
+	for (index in rings) {assign[index] = 0;}
+	for (var i = 1; i <= seatCount; i++) {
+		for (_index in rings) {aux[_index] = rings[_index]/(2*assign[_index]+1);}
+		var idx = argMax(aux);
+		assign[idx] +=1;
+	}
+	return assign;
+}
+var merge = function merge(arrays) {
+	var result = [];
+	var _iteratorNormalCompletion = true;
+	var _didIteratorError = false;
+	var _iteratorError = undefined;
+
+	try {
+		for (var _iterator = arrays[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+			var list = _step.value;
+			result = result.concat(list);
+		}
+	} catch (err) {
+		_didIteratorError = true;
+		_iteratorError = err;
+	} finally {
+		try {
+			if (!_iteratorNormalCompletion && _iterator.return) {
+				_iterator.return();
+			}
+		} finally {
+			if (_didIteratorError) {
+				throw _iteratorError;
+			}
+		}
+	}
+
+	return result;
+}
+function generatePoints(parliament, r0) {
+	var seatCount = seatSum(parliament);
+	var numberOfRings = calculateNumberOfRings(seatCount, r0);
+	var seatDistance = calculateSeatDistance(seatCount, numberOfRings, r0);
+
+
+	var rings = [];
+	for (var i = 1; i <= numberOfRings; i++) {
+		rings[i-1] = r0 - (i - 1) * seatDistance;
+	}
+
+	rings = sainte_lague(rings, seatCount);
+	var points = [];
+	var r = void 0,
+	    a = void 0,
+	    point = void 0;
+
+	var ring = void 0;
+	for (var _i = 1; _i <= numberOfRings; _i++) {
+		ring = [];
+		// calculate ring-specific radius
+		r = r0 - (_i - 1) * seatDistance;
+		// calculate ring-specific distance
+		a = Math.PI * r / (rings[_i-1] - 1 || 1);
+
+		// loop points
+		for (var j = 0; j <= rings[_i-1] - 1; j++) {
+			point = coords(r, j * a);
+			point.r = 0.4 * seatDistance;
+			ring.push(point);
+		}
+		points.push(ring);
+	}
+	var ringProgress = Array(points.length).fill(0);
+	for (var party in parliament) {
+		for (var _i2 = 0; _i2 < parliament[party].seats; _i2++) {
+			ring = nextRing(points, ringProgress, parliament[party].ordered);
+			points[ring][ringProgress[ring]].fill = parliament[party].color;
+			points[ring][ringProgress[ring]].party = party;
+			ringProgress[ring]++;
+		}
+	}
+	return merge(points);
+}
+function generateSVG(_parliament, order, seatCount) {
+	var parliament = {};
+	for (party in order) {
+		parliament[party] = _parliament[party];
+		_parliament[party].ordered = order[party];
+	}
+	var radius = 20;
+	var points = generatePoints(parliament, radius);
+	var a = points[0].r / 0.4;
+
+	var xmlns = "http://www.w3.org/2000/svg";
+	var x = -radius - a / 2;
+	var y = -radius - a / 2;
+    var boxWidth = 2 * radius + a;
+    var boxHeight = radius + a;
+
+    var svgElem = document.createElementNS(xmlns, "svg");
+    svgElem.setAttributeNS(null, "viewBox", x + " " + y + " " + boxWidth + " " + boxHeight);
+	svgElem.setAttributeNS(null, "width", "100%");
+    svgElem.setAttributeNS(null, "height", "100%");
+    svgElem.setAttributeNS(null, "baseProfile", "tiny");
+    svgElem.setAttributeNS(null, "version", "1.2");
+    
+    for (index in points) {
+    	var circle = document.createElementNS(xmlns,"circle");
+    	circle.setAttributeNS(null, "cx", points[index].x);
+    	circle.setAttributeNS(null, "cy", points[index].y);
+    	circle.setAttributeNS(null, "r", points[index].r);
+    	circle.setAttributeNS(null, "fill", points[index].fill);
+    	svgElem.appendChild(circle);
+    }
+    if (seatCount) {
+    	var text = document.createElementNS(xmlns,"text");
+    	text.innerHTML = points.length;
+    	text.setAttributeNS(null, "x", "0");
+    	text.setAttributeNS(null, "y", "0");
+    	text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
+    	text.setAttributeNS(null, "font-size", (0.25*radius)+"px");
+    	text.setAttributeNS(null, "text-anchor", "middle");
+    	svgElem.appendChild(text);
+    }
+
+   	return svgElem;
+}
+
+function getParliamentTable(parliament) {
+	var table = document.createElement('table');
+	for (party in parliament) {
+		var tr = document.createElement('tr');
+		var td1 = document.createElement('td');
+		var td2 = document.createElement('td');
+		var td3 = document.createElement('td');
+
+		var item = document.createElement('div');
+		var key = document.createElement('span');
+		key.className = 'legend-key';
+		key.style.backgroundColor = parliament[party].color;
+		item.appendChild(key);
+		td1.appendChild(item);
+
+		var value = document.createElement('span');
+		value.innerHTML = party;
+		if (screen.width>=992) value.innerHTML += ' (' + parliament[party].seats + ')';
+		td2.appendChild(value);
+
+		var value2 = document.createElement('span');
+		value2.innerHTML = '';
+		for (index in parliament[party].parties) {
+			value2.innerHTML += ', ' + parliament[party].parties[index][0]
+			if (screen.width>=992) value2.innerHTML += ' (' + parliament[party].parties[index][1] + ')';
+		}
+		value2.innerHTML = value2.innerHTML.substring(2);
+		td3.appendChild(value2);
+        if (screen.width>=992) td3.style.paddingLeft = '15px';
+
+		tr.appendChild(td1);
+		tr.appendChild(td2);
+		tr.appendChild(td3);
+		table.appendChild(tr);
+	}
+
+	return table;
+}
