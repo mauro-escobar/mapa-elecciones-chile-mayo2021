@@ -324,10 +324,10 @@ map.on('load', function(){
             'url': 'mapbox://mauro-escobar.63q1jegu',
         }
     );
-    map.addSource('regiones-data',
+    map.addSource('gobernadores-data',
     	{
             'type': 'vector',
-            'url': 'mapbox://mauro-escobar.2dy2abc5',
+            'url': 'mapbox://mauro-escobar.2jgcxezz',
         }
     );
     map.addLayer({
@@ -355,8 +355,8 @@ map.on('load', function(){
     map.addLayer({
     	'id': 'nombre-regiones',
     	'type': 'symbol',
-    	'source': 'regiones-data',
-        'source-layer': 'regiones2021-05-5k4g66',
+    	'source': 'gobernadores-data',
+        'source-layer': 'gobernadores2021-05-0mh1ju',
     	'layout': {
     		'text-field': ['get', 'REGION'],
     		'text-font': ['Open Sans Bold','Arial Unicode MS Bold'],
@@ -390,8 +390,8 @@ map.on('load', function(){
     map.addLayer({
         'id': 'regiones-outline',
         'type': 'line',
-        'source': 'regiones-data',
-        'source-layer': 'regiones2021-05-5k4g66',
+        'source': 'gobernadores-data',
+        'source-layer': 'gobernadores2021-05-0mh1ju',
         'filter': ['!', ['==', ['get', 'REGION'], 'Zona sin demarcar']],
         'paint': {
             'line-color': colores['blanco'],
@@ -430,19 +430,6 @@ map.on('load', function(){
         'minzoom': 6.2
     }, 'zona-indeterminada');
     map.setLayoutProperty('comunas-outline-zoom', 'visibility', 'none');
-
-    /*	
-    map.addLayer({
-        'id': 'diputados-outline',
-        'type': 'line',
-        'source': 'diputados-data',
-        'filter': ['has', 'DISTRITO'],
-        'paint':{
-            'line-color': '#ffffff',
-            'line-width': 0.5,
-        }
-    }, 'zona-indeterminada');
-	*/
 
     map.addLayer({
         'id': 'distritos-outline',
@@ -589,8 +576,8 @@ map.on('load', function(){
     map.addLayer({
         'id': 'gobernadores-electos',
         'type': 'fill',
-        'source': 'regiones-data',
-        'source-layer': 'regiones2021-05-5k4g66',
+        'source': 'gobernadores-data',
+        'source-layer': 'gobernadores2021-05-0mh1ju',
         'filter': ['has', '2021-05_Gob_Nom'],
         'paint': {
             'fill-color': [
@@ -599,155 +586,15 @@ map.on('load', function(){
             	'UNIDAD CONSTITUYENTE', colores['violeta'],
             	'CANDIDATURA INDEPENDIENTE', colores['gris'],
             	'FRENTE AMPLIO', colores['verde-agua'],
+            	'ECOLOGISTAS E INDEPENDIENTES', colores['verde'],
             	colores['gris']
             ],
-            'fill-opacity': [
-            	'interpolate',
-            	['linear'],
-            	['get', '2021-05_Gob_Pct'],
-            	0, 0.3,
-            	50, 1,
-            ]
+            'fill-opacity': 1
         },
     }, 'regiones-outline');
     map.setLayoutProperty('gobernadores-electos', 'visibility', 'none');	
 
-    map.loadImage(
-    	'images/stripe_azul_violeta.png',
-    	function (err, image) {
-    		if (err) throw err;
-    		map.addImage('stripe-azul-violeta', image);
-    		map.addLayer({
-    			'id' : 'gobernadores-azul-violeta',
-    			'type': 'fill',
-    			'source': 'regiones-data',
-                'source-layer': 'regiones2021-05-5k4g66',
-       			'filter': ['all',
-       						['has', '2021-05_Gob2v1_Nom'],
-       						['any',
-       							['all', ['==', ['get', '2021-05_Gob2v1_Lis'], 'CHILE VAMOS'],
-       									['==', ['get', '2021-05_Gob2v2_Lis'], 'UNIDAD CONSTITUYENTE'] ],
-       							['all', ['==', ['get', '2021-05_Gob2v2_Lis'], 'CHILE VAMOS'],
-       									['==', ['get', '2021-05_Gob2v1_Lis'], 'UNIDAD CONSTITUYENTE'] ],
-       						]
-        		  		  ],
-    			'paint': {
-    				'fill-pattern': 'stripe-azul-violeta',
-		            'fill-opacity': [
-		            	'interpolate',
-		            	['linear'],
-		            	['get', '2021-05_Gob2v1_Pct'],
-		            	0, 0.3,
-		            	50, 1,
-		            ]
-    			}
-    		}, 'regiones-outline');
-    		map.setLayoutProperty('gobernadores-azul-violeta', 'visibility', 'none');	
-    	}
-    );	
-
-    map.loadImage(
-    	'images/stripe_azul_gris.png',
-    	function (err, image) {
-    		if (err) throw err;
-    		map.addImage('stripe-azul-gris', image);
-    		map.addLayer({
-    			'id' : 'gobernadores-azul-gris',
-    			'type': 'fill',
-    			'source': 'regiones-data',
-                'source-layer': 'regiones2021-05-5k4g66',
-       			'filter': ['all',
-       						['has', '2021-05_Gob2v1_Nom'],
-       						['any',
-       							['all', ['==', ['get', '2021-05_Gob2v1_Lis'], 'CHILE VAMOS'],
-       									['==', ['get', '2021-05_Gob2v2_Lis'], 'CANDIDATURA INDEPENDIENTE'] ],
-       							['all', ['==', ['get', '2021-05_Gob2v2_Lis'], 'CHILE VAMOS'],
-       									['==', ['get', '2021-05_Gob2v1_Lis'], 'CANDIDATURA INDEPENDIENTE'] ],
-       						]
-        		  		  ],
-    			'paint': {
-    				'fill-pattern': 'stripe-azul-gris',
-		            'fill-opacity': [
-		            	'interpolate',
-		            	['linear'],
-		            	['get', '2021-05_Gob2v1_Pct'],
-		            	0, 0.3,
-		            	50, 1,
-		            ]
-    			}
-    		}, 'regiones-outline');
-    		map.setLayoutProperty('gobernadores-azul-gris', 'visibility', 'none');	
-    	}
-    );
-
-    map.loadImage(
-    	'images/stripe_azul_verde.png',
-    	function (err, image) {
-    		if (err) throw err;
-    		map.addImage('stripe-azul-verde', image);
-    		map.addLayer({
-    			'id' : 'gobernadores-azul-verde',
-    			'type': 'fill',
-    			'source': 'regiones-data',
-                'source-layer': 'regiones2021-05-5k4g66',
-       			'filter': ['all',
-       						['has', '2021-05_Gob2v1_Nom'],
-       						['any',
-       							['all', ['==', ['get', '2021-05_Gob2v1_Lis'], 'CHILE VAMOS'],
-       									['==', ['get', '2021-05_Gob2v2_Lis'], 'ECOLOGISTAS E INDEPENDIENTES'] ],
-       							['all', ['==', ['get', '2021-05_Gob2v2_Lis'], 'CHILE VAMOS'],
-       									['==', ['get', '2021-05_Gob2v1_Lis'], 'ECOLOGISTAS E INDEPENDIENTES'] ],
-       						]
-        		  		  ],
-    			'paint': {
-    				'fill-pattern': 'stripe-azul-verde',
-		            'fill-opacity': [
-		            	'interpolate',
-		            	['linear'],
-		            	['get', '2021-05_Gob2v1_Pct'],
-		            	0, 0.3,
-		            	50, 1,
-		            ]
-    			}
-    		}, 'regiones-outline');
-    		map.setLayoutProperty('gobernadores-azul-verde', 'visibility', 'none');	
-    	}
-    );
-
-    map.loadImage(
-    	'images/stripe_violeta_verde-agua.png',
-    	function (err, image) {
-    		if (err) throw err;
-    		map.addImage('stripe-violeta-verde-agua', image);
-    		map.addLayer({
-    			'id' : 'gobernadores-violeta-verde-agua',
-    			'type': 'fill',
-    			'source': 'regiones-data',
-                'source-layer': 'regiones2021-05-5k4g66',
-       			'filter': ['all',
-       						['has', '2021-05_Gob2v1_Nom'],
-       						['any',
-       							['all', ['==', ['get', '2021-05_Gob2v1_Lis'], 'UNIDAD CONSTITUYENTE'],
-       									['==', ['get', '2021-05_Gob2v2_Lis'], 'FRENTE AMPLIO'] ],
-       							['all', ['==', ['get', '2021-05_Gob2v2_Lis'], 'UNIDAD CONSTITUYENTE'],
-       									['==', ['get', '2021-05_Gob2v1_Lis'], 'FRENTE AMPLIO'] ],
-       						]
-        		  		  ],
-    			'paint': {
-    				'fill-pattern': 'stripe-violeta-verde-agua',
-		            'fill-opacity': [
-		            	'interpolate',
-		            	['linear'],
-		            	['get', '2021-05_Gob2v1_Pct'],
-		            	0, 0.3,
-		            	50, 1,
-		            ]
-    			}
-    		}, 'regiones-outline');
-    		map.setLayoutProperty('gobernadores-violeta-verde-agua', 'visibility', 'none');	
-    	}
-    );
-
+    /*
     map.loadImage(
     	'images/stripe_violeta_gris.png',
     	function (err, image) {
@@ -756,9 +603,10 @@ map.on('load', function(){
     		map.addLayer({
     			'id' : 'gobernadores-violeta-gris',
     			'type': 'fill',
-    			'source': 'regiones-data',
-                'source-layer': 'regiones2021-05-5k4g66',
+    			'source': 'gobernadores-data',
+                'source-layer': 'gobernadores2021-05-0mh1ju',
        			'filter': ['all',
+       						['!', ['has', '2021-05_Gob_Nom']],
        						['has', '2021-05_Gob2v1_Nom'],
        						['any',
        							['all', ['==', ['get', '2021-05_Gob2v1_Lis'], 'UNIDAD CONSTITUYENTE'],
@@ -781,7 +629,7 @@ map.on('load', function(){
     		map.setLayoutProperty('gobernadores-violeta-gris', 'visibility', 'none');	
     	}
     );
-
+	*/
     mostrarDiputados();
 });
 
@@ -815,15 +663,34 @@ map.on('mousemove', 'gobernadores-electos', function (e) {
 		var perct = e.features[0].properties['2021-05_Gob_Pct'];
 		var partido = e.features[0].properties['2021-05_Gob_Ptd'];
 		var lista = e.features[0].properties['2021-05_Gob_Lis'];
-		popup.setLngLat(e.lngLat)
-			.setHTML(
-				'<h4><span style="font-weight:bold">'+region+'</span></h4>'+
-				'<p>Gobernador(a) Electo(a):<br>  '+lista+' ('+partido+')<br>'+
-				'<span class="legend-key" style="background-color:'+coloresAlc[lista]+'"></span>'+
-				'<span style="font-weight:bold">'+nombre+'</span><br>'+
-				'Porcentaje: '+perct+'%</p>'			
-				)
-			.addTo(map);    	
+		if (sex=='H') var title = 'Goberador electo:';
+		else var title = 'Goberandora electa:';
+		if (e.features[0].properties.hasOwnProperty('2021-05_Gob2v1_Nom')) {
+			if (nombre == e.features[0].properties['2021-05_Gob2v1_Nom']) {
+				var perct2 = e.features[0].properties['2021-05_Gob2v1_Pct'];
+			} else {
+				var perct2 = e.features[0].properties['2021-05_Gob2v2_Pct'];
+			}
+			popup.setLngLat(e.lngLat)
+				.setHTML(
+					'<h4><span style="font-weight:bold">'+region+'</span></h4>'+
+					'<p>'+title+'<br>  '+lista+' ('+partido+')<br>'+
+					'<span class="legend-key" style="background-color:'+coloresAlc[lista]+'"></span>'+
+					'<span style="font-weight:bold">'+nombre+'</span><br>'+
+					'Porcentaje: '+perct2+'% (1a. vuelta), '+perct+'% (2a. vuelta)</p>'			
+					)
+				.addTo(map); 
+		} else {
+			popup.setLngLat(e.lngLat)
+				.setHTML(
+					'<h4><span style="font-weight:bold">'+region+'</span></h4>'+
+					'<p>'+title+'<br>  '+lista+' ('+partido+')<br>'+
+					'<span class="legend-key" style="background-color:'+coloresAlc[lista]+'"></span>'+
+					'<span style="font-weight:bold">'+nombre+'</span><br>'+
+					'Porcentaje: '+perct+'%</p>'			
+					)
+				.addTo(map); 	
+		}
     } else {
 		var nombre1 = e.features[0].properties['2021-05_Gob2v1_Nom'];
 		var perct1 = e.features[0].properties['2021-05_Gob2v1_Pct'];
@@ -853,146 +720,7 @@ map.on('mouseleave', 'gobernadores-electos', function () {
     popup.remove();
 });
 
-map.on('mousemove', 'gobernadores-azul-violeta', function (e) {
-    map.getCanvas().style.cursor = 'pointer';
-	var region = e.features[0].properties.REGION;
-    if (e.features[0].properties.hasOwnProperty('2021-05_Gob2v1_Nom')) {
-		var nombre1 = e.features[0].properties['2021-05_Gob2v1_Nom'];
-		var perct1 = e.features[0].properties['2021-05_Gob2v1_Pct'];
-		var partido1 = e.features[0].properties['2021-05_Gob2v1_Ptd'];
-		var lista1 = e.features[0].properties['2021-05_Gob2v1_Lis'];
-		var nombre2 = e.features[0].properties['2021-05_Gob2v2_Nom'];
-		var perct2 = e.features[0].properties['2021-05_Gob2v2_Pct'];
-		var partido2 = e.features[0].properties['2021-05_Gob2v2_Ptd'];
-		var lista2 = e.features[0].properties['2021-05_Gob2v2_Lis'];
-		popup.setLngLat(e.lngLat)
-			.setHTML(
-				'<h4><span style="font-weight:bold">'+region+'</span></h4>'+
-				'<p>Primera vuelta:<br>'+
-				'<table>'+
-				'<tr><td colspan="2">'+lista1+' ('+partido1+')</td></tr>'+
-				'<tr><td><span class="legend-key" style="background-color:'+coloresAlc[lista1]+'"></span>'+
-				'<span>'+nombre1+'</span><td>'+
-				'<td style="padding-left:15px">'+perct1+'%</td></tr>'+
-				'<tr><td colspan="2">'+lista2+' ('+partido2+')</td></tr>'+
-				'<tr><td><span class="legend-key" style="background-color:'+coloresAlc[lista2]+'"></span>'+
-				'<span>'+nombre2+'</span><td>'+
-				'<td style="padding-left:15px">'+perct2+'%</td></tr>'+
-				'</table>'
-				)
-			.addTo(map);    
-    }
-});
-map.on('mouseleave', 'gobernadores-azul-violeta', function () {
-    map.getCanvas().style.cursor = '';
-    popup.remove();
-});
-
-map.on('mousemove', 'gobernadores-azul-gris', function (e) {
-    map.getCanvas().style.cursor = 'pointer';
-	var region = e.features[0].properties.REGION;
-    if (e.features[0].properties.hasOwnProperty('2021-05_Gob2v1_Nom')) {
-		var nombre1 = e.features[0].properties['2021-05_Gob2v1_Nom'];
-		var perct1 = e.features[0].properties['2021-05_Gob2v1_Pct'];
-		var partido1 = e.features[0].properties['2021-05_Gob2v1_Ptd'];
-		var lista1 = e.features[0].properties['2021-05_Gob2v1_Lis'];
-		var nombre2 = e.features[0].properties['2021-05_Gob2v2_Nom'];
-		var perct2 = e.features[0].properties['2021-05_Gob2v2_Pct'];
-		var partido2 = e.features[0].properties['2021-05_Gob2v2_Ptd'];
-		var lista2 = e.features[0].properties['2021-05_Gob2v2_Lis'];
-		popup.setLngLat(e.lngLat)
-			.setHTML(
-				'<h4><span style="font-weight:bold">'+region+'</span></h4>'+
-				'<p>Primera vuelta:<br>'+
-				'<table>'+
-				'<tr><td colspan="2">'+lista1+' ('+partido1+')</td></tr>'+
-				'<tr><td><span class="legend-key" style="background-color:'+coloresAlc[lista1]+'"></span>'+
-				'<span>'+nombre1+'</span><td>'+
-				'<td style="padding-left:15px">'+perct1+'%</td></tr>'+
-				'<tr><td colspan="2">'+lista2+' ('+partido2+')</td></tr>'+
-				'<tr><td><span class="legend-key" style="background-color:'+coloresAlc[lista2]+'"></span>'+
-				'<span>'+nombre2+'</span><td>'+
-				'<td style="padding-left:15px">'+perct2+'%</td></tr>'+
-				'</table>'
-				)
-			.addTo(map);    
-    }
-});
-map.on('mouseleave', 'gobernadores-azul-gris', function () {
-    map.getCanvas().style.cursor = '';
-    popup.remove();
-});
-
-map.on('mousemove', 'gobernadores-azul-verde', function (e) {
-    map.getCanvas().style.cursor = 'pointer';
-	var region = e.features[0].properties.REGION;
-    if (e.features[0].properties.hasOwnProperty('2021-05_Gob2v1_Nom')) {
-		var nombre1 = e.features[0].properties['2021-05_Gob2v1_Nom'];
-		var perct1 = e.features[0].properties['2021-05_Gob2v1_Pct'];
-		var partido1 = e.features[0].properties['2021-05_Gob2v1_Ptd'];
-		var lista1 = e.features[0].properties['2021-05_Gob2v1_Lis'];
-		var nombre2 = e.features[0].properties['2021-05_Gob2v2_Nom'];
-		var perct2 = e.features[0].properties['2021-05_Gob2v2_Pct'];
-		var partido2 = e.features[0].properties['2021-05_Gob2v2_Ptd'];
-		var lista2 = e.features[0].properties['2021-05_Gob2v2_Lis'];
-		popup.setLngLat(e.lngLat)
-			.setHTML(
-				'<h4><span style="font-weight:bold">'+region+'</span></h4>'+
-				'<p>Primera vuelta:<br>'+
-				'<table>'+
-				'<tr><td colspan="2">'+lista1+' ('+partido1+')</td></tr>'+
-				'<tr><td><span class="legend-key" style="background-color:'+coloresAlc[lista1]+'"></span>'+
-				'<span>'+nombre1+'</span><td>'+
-				'<td style="padding-left:15px">'+perct1+'%</td></tr>'+
-				'<tr><td colspan="2">'+lista2+' ('+partido2+')</td></tr>'+
-				'<tr><td><span class="legend-key" style="background-color:'+coloresAlc[lista2]+'"></span>'+
-				'<span>'+nombre2+'</span><td>'+
-				'<td style="padding-left:15px">'+perct2+'%</td></tr>'+
-				'</table>'
-				)
-			.addTo(map);    
-    }
-});
-map.on('mouseleave', 'gobernadores-azul-verde', function () {
-    map.getCanvas().style.cursor = '';
-    popup.remove();
-});
-
-map.on('mousemove', 'gobernadores-violeta-gris', function (e) {
-    map.getCanvas().style.cursor = 'pointer';
-	var region = e.features[0].properties.REGION;
-    if (e.features[0].properties.hasOwnProperty('2021-05_Gob2v1_Nom')) {
-		var nombre1 = e.features[0].properties['2021-05_Gob2v1_Nom'];
-		var perct1 = e.features[0].properties['2021-05_Gob2v1_Pct'];
-		var partido1 = e.features[0].properties['2021-05_Gob2v1_Ptd'];
-		var lista1 = e.features[0].properties['2021-05_Gob2v1_Lis'];
-		var nombre2 = e.features[0].properties['2021-05_Gob2v2_Nom'];
-		var perct2 = e.features[0].properties['2021-05_Gob2v2_Pct'];
-		var partido2 = e.features[0].properties['2021-05_Gob2v2_Ptd'];
-		var lista2 = e.features[0].properties['2021-05_Gob2v2_Lis'];
-		popup.setLngLat(e.lngLat)
-			.setHTML(
-				'<h4><span style="font-weight:bold">'+region+'</span></h4>'+
-				'<p>Primera vuelta:<br>'+
-				'<table>'+
-				'<tr><td colspan="2">'+lista1+' ('+partido1+')</td></tr>'+
-				'<tr><td><span class="legend-key" style="background-color:'+coloresAlc[lista1]+'"></span>'+
-				'<span>'+nombre1+'</span><td>'+
-				'<td style="padding-left:15px">'+perct1+'%</td></tr>'+
-				'<tr><td colspan="2">'+lista2+' ('+partido2+')</td></tr>'+
-				'<tr><td><span class="legend-key" style="background-color:'+coloresAlc[lista2]+'"></span>'+
-				'<span>'+nombre2+'</span><td>'+
-				'<td style="padding-left:15px">'+perct2+'%</td></tr>'+
-				'</table>'
-				)
-			.addTo(map);    
-    }
-});
-map.on('mouseleave', 'gobernadores-violeta-gris', function () {
-    map.getCanvas().style.cursor = '';
-    popup.remove();
-});
-
+/*
 map.on('mousemove', 'gobernadores-violeta-verde-agua', function (e) {
     map.getCanvas().style.cursor = 'pointer';
 	var region = e.features[0].properties.REGION;
@@ -1027,7 +755,7 @@ map.on('mouseleave', 'gobernadores-violeta-verde-agua', function () {
     map.getCanvas().style.cursor = '';
     popup.remove();
 });
-
+*/
 coloresDipP = {
 	'Chile Vamos': colores['azul'],
 	'Alianza': colores['azul'],
@@ -1429,11 +1157,6 @@ function clean() {
 	map.setLayoutProperty('comunas-outline-zoom', 'visibility', 'none');
 	map.setLayoutProperty('regiones-outline', 'visibility', 'none');
     map.setLayoutProperty('gobernadores-electos', 'visibility', 'none');
-    map.setLayoutProperty('gobernadores-azul-violeta', 'visibility', 'none');
-    map.setLayoutProperty('gobernadores-azul-verde', 'visibility', 'none');
-    map.setLayoutProperty('gobernadores-azul-gris', 'visibility', 'none');
-    map.setLayoutProperty('gobernadores-violeta-verde-agua', 'visibility', 'none');
-    map.setLayoutProperty('gobernadores-violeta-gris', 'visibility', 'none');
 
 	document.getElementById('a-diputados').style.color = 'gray';
 	document.getElementById('a-senadores').style.color = 'gray';
@@ -1603,35 +1326,25 @@ function mostrarGobernadores() {
 	clean();
 	map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
     map.setLayoutProperty('gobernadores-electos', 'visibility', 'visible');
-	map.setLayoutProperty('gobernadores-azul-violeta', 'visibility', 'visible');
-    map.setLayoutProperty('gobernadores-azul-verde', 'visibility', 'visible');
-    map.setLayoutProperty('gobernadores-azul-gris', 'visibility', 'visible');
-    map.setLayoutProperty('gobernadores-violeta-verde-agua', 'visibility', 'visible');
-    map.setLayoutProperty('gobernadores-violeta-gris', 'visibility', 'visible');
 	document.getElementById('a-gobernadores').style.color = 'black';
 
 	legend.style.display = 'block';
+	legend2.style.display = 'none';
     legend.innerHTML = '';
 
     if (screen.width>=992) {
-    	legend.style.width = '200px';
-    	legend.style.maxWidth = '200px';
+    	legend.style.width = '215px';
+    	legend.style.maxWidth = '215px';
     	legend.style.height = '115px';
-    	legend2.style.display = 'block';
-    	legend2.style.maxWidth = '850px';
-    	legend2.style.width = '650px';
-    	legend2.style.height = '18px';
-    	legend2.innerHTML = 'Transparencia depende del porcentaje del candidato más votado.';
     } else {
-        legend.style.width = '180px';
-        legend.style.maxWidth = '180px';
+        legend.style.width = '185px';
+        legend.style.maxWidth = '185px';
         legend.style.height = '95px';
     }
 
-
-	var layers = ['Unidad Constituyente', 'Chile Vamos', 'Frente Amplio', 
-	              'Ecologistas e Independientes',  'Candidaturas Independientes'];
-	var colors = [colores['violeta'], colores['azul'], colores['verde-agua'], 
+	var layers = ['Unidad Constituyente (10)', 'Frente Amplio (2)', 'Chile Vamos (1)', 
+	              'Ecologistas e Independientes (1)',  'Candidaturas Independientes (2)'];
+	var colors = [colores['violeta'], colores['verde-agua'], colores['azul'],
 	              colores['verde'], colores['gris']];
 
 	var table = document.createElement('table');
