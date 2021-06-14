@@ -181,6 +181,15 @@ a:hover {
     margin-top: 0.3em;
     margin-bottom: 0em;
 }
+.mapboxgl-popup-content h5 {
+    color: gray;
+    font-weight: 500;
+    margin-top: 0.3em;
+    margin-bottom: 0em;
+    border-width: 0.5px 0px 0px 0px;
+    border-style: solid;
+    border-color: gray;
+}
 .mapboxgl-popup-content table {
     font-weight: 300;
     margin-top: 0.3em;

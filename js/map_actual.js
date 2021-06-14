@@ -663,6 +663,8 @@ map.on('mousemove', 'gobernadores-electos', function (e) {
 		var perct = e.features[0].properties['2021-05_Gob_Pct'];
 		var partido = e.features[0].properties['2021-05_Gob_Ptd'];
 		var lista = e.features[0].properties['2021-05_Gob_Lis'];
+		var sex = e.features[0].properties['2021-05_Gob_Sex'];
+		var participacion = e.features[0].properties['2021-05_Part_TR'];
 		if (sex=='H') var title = 'Goberador electo:';
 		else var title = 'Goberandora electa:';
 		if (e.features[0].properties.hasOwnProperty('2021-05_Gob2v1_Nom')) {
@@ -671,13 +673,15 @@ map.on('mousemove', 'gobernadores-electos', function (e) {
 			} else {
 				var perct2 = e.features[0].properties['2021-05_Gob2v2_Pct'];
 			}
+			var participacion2 = e.features[0].properties['2021-05_Part2_TR'];
 			popup.setLngLat(e.lngLat)
 				.setHTML(
 					'<h4><span style="font-weight:bold">'+region+'</span></h4>'+
 					'<p>'+title+'<br>  '+lista+' ('+partido+')<br>'+
 					'<span class="legend-key" style="background-color:'+coloresAlc[lista]+'"></span>'+
 					'<span style="font-weight:bold">'+nombre+'</span><br>'+
-					'Porcentaje: '+perct2+'% (1a. vuelta), '+perct+'% (2a. vuelta)</p>'			
+					'Porcentaje: '+perct2+'% (1a. vuelta), '+perct+'% (2a. vuelta)</p>'+
+					'<h5>Participación: '+participacion+'% (1a. vuelta), '+participacion2+'% (2a. vuelta)</h5>'					
 					)
 				.addTo(map); 
 		} else {
@@ -687,7 +691,8 @@ map.on('mousemove', 'gobernadores-electos', function (e) {
 					'<p>'+title+'<br>  '+lista+' ('+partido+')<br>'+
 					'<span class="legend-key" style="background-color:'+coloresAlc[lista]+'"></span>'+
 					'<span style="font-weight:bold">'+nombre+'</span><br>'+
-					'Porcentaje: '+perct+'%</p>'			
+					'Porcentaje: '+perct+'%</p>'+
+					'<h5>Participación: '+participacion+'%</h5>'			
 					)
 				.addTo(map); 	
 		}
@@ -770,6 +775,7 @@ coloresDipP = {
 
 map.on('mousemove', 'diputados', function (e) {
     map.getCanvas().style.cursor = 'pointer';
+	var participacion = e.features[0].properties['2017-11_Part_TD'];
 	var nconv = e.features[0].properties['2017-11_NDip'];
 	var diputados = '<table style="border-collapse:collapse">';
 	var lista_ant = '';
@@ -802,6 +808,7 @@ map.on('mousemove', 'diputados', function (e) {
 		lista_ant = lista;
 	}
 	diputados += '</table>';
+	diputados += '<h5>Participación: '+participacion+'%</h5>';
 
 	var distrito = e.features[0].properties.DISTRITO;
 	var region = e.features[0].properties.REGION;
@@ -959,97 +966,12 @@ map.on('mouseleave', 'sen-markers', function () {
     map.getCanvas().style.cursor = '';
     popup.remove();
 });
-
-map.on('mousemove', 'convencionalesMH-distritos', function (e) {
-    map.getCanvas().style.cursor = 'pointer';
-
-    if (map.getZoom()<=6.2) {
-	    pctgM = Math.round(10000*e.features[0].properties['Conv_votM_D']/(e.features[0].properties['Conv_votM_D']+e.features[0].properties['Conv_votH_D']))/100;
-		pctgH = Math.round(10000*e.features[0].properties['Conv_votH_D']/(e.features[0].properties['Conv_votM_D']+e.features[0].properties['Conv_votH_D']))/100;
-
-		var distrito = e.features[0].properties.DISTRITO;
-		var region = e.features[0].properties.REGION;
-		popup.setLngLat(e.lngLat)
-			.setHTML(
-				'<h4><span style="font-weight:bold">Distrito '+distrito+'</span><br>'+region+'</h4>'+
-				'<table><tr><td></td><td style="text-align:center">Cantidad</td><td style="text-align:center">%</td>'+
-				'<tr><td>Votos hacia candidatas (M):</td><td style="text-align:right;padding-left:15px">'+
-				e.features[0].properties['Conv_votM_D']+'</td><td style="text-align:right;padding-left:15px">'+pctgM+'%</td></tr>'+
-				'<tr><td>Votos hacia candidatos (H):</td><td style="text-align:right;padding-left:15px">'+
-				e.features[0].properties['Conv_votH_D']+'</td><td style="text-align:right;padding-left:15px">'+pctgH+'%</td></tr></table>'
-				)
-			.addTo(map);
-    } else {
-		pctgM = Math.round(10000*e.features[0].properties['Conv_votM_C']/(e.features[0].properties['Conv_votM_C']+e.features[0].properties['Conv_votH_C']))/100;
-		pctgH = Math.round(10000*e.features[0].properties['Conv_votH_C']/(e.features[0].properties['Conv_votM_C']+e.features[0].properties['Conv_votH_C']))/100;
-
-		var comuna = e.features[0].properties.NOM_COM;
-		var distrito = e.features[0].properties.DISTRITO;
-		var region = e.features[0].properties.REGION;
-		popup.setLngLat(e.lngLat)
-			.setHTML(
-				'<h4><span style="font-weight:bold">'+comuna+'</span> (Distrito '+distrito+')<br>'+region+'</h4>'+
-				'<table><tr><td></td><td style="text-align:center">Cantidad</td><td style="text-align:center">%</td>'+
-				'<tr><td>Votos hacia candidatas (M):</td><td style="text-align:right;padding-left:15px">'+
-				e.features[0].properties['Conv_votM_C']+'</td><td style="text-align:right;padding-left:15px">'+pctgM+'%</td></tr>'+
-				'<tr><td>Votos hacia candidatos (H):</td><td style="text-align:right;padding-left:15px">'+
-				e.features[0].properties['Conv_votH_C']+'</td><td style="text-align:right;padding-left:15px">'+pctgH+'%</td></tr></table>'
-				)
-			.addTo(map);
-    }
-});
-map.on('mouseleave', 'convencionalesMH-distritos', function () {
-    map.getCanvas().style.cursor = '';
-    popup.remove();
-});
-
-map.on('mousemove', 'convencionalesMH-comunas', function (e) {
-    map.getCanvas().style.cursor = 'pointer';
-
-    if (map.getZoom()<=6.2) {
-	    pctgM = Math.round(10000*e.features[0].properties['Conv_votM_D']/(e.features[0].properties['Conv_votM_D']+e.features[0].properties['Conv_votH_D']))/100;
-		pctgH = Math.round(10000*e.features[0].properties['Conv_votH_D']/(e.features[0].properties['Conv_votM_D']+e.features[0].properties['Conv_votH_D']))/100;
-
-		var distrito = e.features[0].properties.DISTRITO;
-		var region = e.features[0].properties.REGION;
-		popup.setLngLat(e.lngLat)
-			.setHTML(
-				'<h4><span style="font-weight:bold">Distrito '+distrito+'</span><br>'+region+'</h4>'+
-				'<table><tr><td></td><td style="text-align:center">Cantidad</td><td style="text-align:center">%</td>'+
-				'<tr><td>Votos hacia candidatas (M):</td><td style="text-align:right;padding-left:15px">'+
-				e.features[0].properties['Conv_votM_D']+'</td><td style="text-align:right;padding-left:15px">'+pctgM+'%</td></tr>'+
-				'<tr><td>Votos hacia candidatos (H):</td><td style="text-align:right;padding-left:15px">'+
-				e.features[0].properties['Conv_votH_D']+'</td><td style="text-align:right;padding-left:15px">'+pctgH+'%</td></tr></table>'
-				)
-			.addTo(map);
-    } else {
-		pctgM = Math.round(10000*e.features[0].properties['Conv_votM_C']/(e.features[0].properties['Conv_votM_C']+e.features[0].properties['Conv_votH_C']))/100;
-		pctgH = Math.round(10000*e.features[0].properties['Conv_votH_C']/(e.features[0].properties['Conv_votM_C']+e.features[0].properties['Conv_votH_C']))/100;
-
-		var comuna = e.features[0].properties.NOM_COM;
-		var distrito = e.features[0].properties.DISTRITO;
-		var region = e.features[0].properties.REGION;
-		popup.setLngLat(e.lngLat)
-			.setHTML(
-				'<h4><span style="font-weight:bold">'+comuna+'</span> (Distrito '+distrito+')<br>'+region+'</h4>'+
-				'<table><tr><td></td><td style="text-align:center">Cantidad</td><td style="text-align:center">%</td>'+
-				'<tr><td>Votos hacia candidatas (M):</td><td style="text-align:right;padding-left:15px">'+
-				e.features[0].properties['Conv_votM_C']+'</td><td style="text-align:right;padding-left:15px">'+pctgM+'%</td></tr>'+
-				'<tr><td>Votos hacia candidatos (H):</td><td style="text-align:right;padding-left:15px">'+
-				e.features[0].properties['Conv_votH_C']+'</td><td style="text-align:right;padding-left:15px">'+pctgH+'%</td></tr></table>'
-				)
-			.addTo(map);
-    }
-});
-map.on('mouseleave', 'convencionalesMH-comunas', function () {
-    map.getCanvas().style.cursor = '';
-    popup.remove();
-});
- 			            
+            
 
 map.on('mousemove', 'concejales', function (e) {
     map.getCanvas().style.cursor = 'pointer';
 	var nconc = e.features[0].properties.NConc;
+	var participacion = e.features[0].properties.Part;
 	var concejales = '<table style="border-collapse:collapse">';
 	for (i = 1; i <= nconc; i++) {
 		if (i<10) {
@@ -1088,6 +1010,7 @@ map.on('mousemove', 'concejales', function (e) {
 	innerHTML += '<span class="legend-key" style="background-color:'+coloresAlc[lista]+'"></span>';
 	innerHTML += lista+' ('+partido+')</h4>';
 	innerHTML += concejales;	
+	innerHTML += '<h5>Participación: '+participacion+'%</h5>';
 	popup.setLngLat(e.lngLat).setHTML(innerHTML).addTo(map);
 });
 map.on('mouseleave', 'concejales', function () {
@@ -1095,31 +1018,6 @@ map.on('mouseleave', 'concejales', function () {
     popup.remove();
 });
 
-map.on('mousemove', 'concejalesMH', function (e) {
-    map.getCanvas().style.cursor = 'pointer';
-    
-    pctgM = Math.round(10000*e.features[0].properties['Conc_votM_C']/(e.features[0].properties['Conc_votM_C']+e.features[0].properties['Conc_votH_C']))/100;
-	pctgH = Math.round(10000*e.features[0].properties['Conc_votH_C']/(e.features[0].properties['Conc_votM_C']+e.features[0].properties['Conc_votH_C']))/100;
-
-	var comuna = e.features[0].properties.NOM_COM;
-	var distrito = e.features[0].properties.DISTRITO;
-	var region = e.features[0].properties.REGION;
-	popup.setLngLat(e.lngLat)
-		.setHTML(
-			'<h4><span style="font-weight:bold">'+comuna+'</span><br>'+region+'</h4>'+
-			'<table><tr><td></td><td style="text-align:center">Cantidad</td><td style="text-align:center">%</td>'+
-			'<tr><td>Votos hacia candidatas (M):</td><td style="text-align:right;padding-left:15px">'+
-			e.features[0].properties['Conc_votM_C']+'</td><td style="text-align:right;padding-left:15px">'+pctgM+'%</td></tr>'+
-			'<tr><td>Votos hacia candidatos (H):</td><td style="text-align:right;padding-left:15px">'+
-			e.features[0].properties['Conc_votH_C']+'</td><td style="text-align:right;padding-left:15px">'+pctgH+'%</td></tr></table>'
-			)
-		.addTo(map);
-    
-});
-map.on('mouseleave', 'concejalesMH', function () {
-    map.getCanvas().style.cursor = '';
-    popup.remove();
-});
 
 map.on('mousemove', 'alcaldes', function (e) {
     map.getCanvas().style.cursor = 'pointer';
@@ -1128,13 +1026,15 @@ map.on('mousemove', 'alcaldes', function (e) {
 	var perct = e.features[0].properties.Alc_Pct;
 	var partido = e.features[0].properties.Alc_Ptd;
 	var lista = e.features[0].properties.Alc_Lis;
+	var participacion = e.features[0].properties.Part;
 	popup.setLngLat(e.lngLat)
 		.setHTML(
 			'<h4><span style="font-weight:bold">'+comuna+'</span></h4>'+
 			'<p>Alcalde(sa) Electo(a):<br>  '+lista+' ('+partido+')<br>'+
 			'<span class="legend-key" style="background-color:'+coloresAlc[lista]+'"></span>'+
 			'<span style="font-weight:bold">'+nombre+'</span><br>'+
-			'Porcentaje: '+perct+'%</p>'			
+			'Porcentaje: '+perct+'%</p>'+
+			'<h5>Participación: '+participacion+'%</h5>'		
 			)
 		.addTo(map);
 });
@@ -1330,16 +1230,16 @@ function mostrarGobernadores() {
 
 	legend.style.display = 'block';
 	legend2.style.display = 'none';
-    legend.innerHTML = '';
+    legend.innerHTML = '<span style="font-weight:bold;">Goberadores Regionales 2021-2025</span>';
 
     if (screen.width>=992) {
-    	legend.style.width = '215px';
-    	legend.style.maxWidth = '215px';
-    	legend.style.height = '115px';
+    	legend.style.width = '235px';
+    	legend.style.maxWidth = '235px';
+    	legend.style.height = '130px';
     } else {
         legend.style.width = '185px';
         legend.style.maxWidth = '185px';
-        legend.style.height = '95px';
+        legend.style.height = '110px';
     }
 
 	var layers = ['Unidad Constituyente (10)', 'Frente Amplio (2)', 'Chile Vamos (1)', 
@@ -1422,20 +1322,20 @@ function mostrarAlcaldes() {
 	}
 
 	legend.style.display = 'block';
-    legend.innerHTML = '';
+    legend.innerHTML = '<span style="font-weight:bold">Alcaldes 2021-2024</span>';
     if (screen.width>=992) {
     	legend.style.width = '470px';
     	legend.style.maxWidth = '470px';
-    	legend.style.height = '160px';
+    	legend.style.height = '175px';
     	legend2.style.display = 'block';
     	legend2.style.maxWidth = '850px';
     	legend2.style.width = '650px';
     	legend2.style.height = '18px';
     	legend2.innerHTML = 'Transparencia depende del porcentaje del candidato electo.';
     } else {
-        legend.style.width = '265px';
-        legend.style.maxWidth = '265px';
-        legend.style.height = '130px';
+        legend.style.width = '270px';
+        legend.style.maxWidth = '270px';
+        legend.style.height = '150px';
     }
 
 	legend.appendChild(getParliamentTable(parliament));
@@ -1455,7 +1355,7 @@ function mostrarConcejales() {
         legend.style.display = 'block';
     	legend.style.width = '460px';
     	legend.style.maxWidth = '460px';
-    	legend.style.height = '400px';
+    	legend.style.height = '415px';
 
         var layers2 = {
             'Chile Vamos': 'UDI (298), RN (377), EVO (61), PRI (36)', 
@@ -1473,7 +1373,7 @@ function mostrarConcejales() {
     }  else {
         legend.style.display = 'none';
     } 
-	legend.innerHTML = 'Selecciona lista/partidos y verás si tienen mayoría en el concejo.<br>';
+	legend.innerHTML = '<span style="font-weight:bold">Alcaldes 2021-2024</span><br>Selecciona lista/partidos y verás si tienen mayoría en el concejo.<br>';
 
 
 
