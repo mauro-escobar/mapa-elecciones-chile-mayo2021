@@ -217,7 +217,7 @@ function paintConcejales() {
 	]);
 
 
-	var count_data = map.querySourceFeatures('comunas-data');
+	var count_data = map.querySourceFeatures('municipales-data');
 	var count_true = {};
 	var count_total = {};
 	var ret = {'0': 0, '1/11':0, '1/9':0, '1/7':0, '2/11':0, '2/9':0, '3/11':0, '2/7':0, '3/9':0, 
@@ -379,10 +379,10 @@ map.on('load', function(){
             break;
         }
     }
-    map.addSource('comunas-data',
+    map.addSource('municipales-data',
     	{
             'type': 'vector',
-            'url': 'mapbox://mauro-escobar.63q1jegu',
+            'url': 'mapbox://mauro-escobar.crz9meen',
         }
     );
     map.addSource('distritos-data',
@@ -397,11 +397,17 @@ map.on('load', function(){
             'url': 'mapbox://mauro-escobar.2jgcxezz',
         }
     );
+    map.addSource('gobernadores-municipales-data',
+    	{
+            'type': 'vector',
+            'url': 'mapbox://mauro-escobar.3ajwn0m7',
+        }
+    );
     map.addLayer({
     	'id': 'nombre-comunas',
     	'type': 'symbol',
-    	'source': 'comunas-data',
-        'source-layer': 'comunas-2t6cqo',
+    	'source': 'municipales-data',
+        'source-layer': 'municipales2021-05-7cl0n6',
     	'layout': {
     		'text-field': ['get', 'NOM_COM'],
     		'text-font': ['Open Sans Bold','Arial Unicode MS Bold'],
@@ -445,8 +451,8 @@ map.on('load', function(){
     map.addLayer({
     	'id': 'zona-indeterminada',
     	'type': 'fill',
-    	'source': 'comunas-data',
-        'source-layer': 'comunas-2t6cqo',
+    	'source': 'municipales-data',
+        'source-layer': 'municipales2021-05-7cl0n6',
         'filter': ['!', ['has', 'Part_TD']],
         'paint': {
         	'fill-color': colores['blanco'],
@@ -457,8 +463,8 @@ map.on('load', function(){
     map.addLayer({
         'id': 'comunas-outline',
         'type': 'line',
-        'source': 'comunas-data',
-        'source-layer': 'comunas-2t6cqo',
+        'source': 'municipales-data',
+        'source-layer': 'municipales2021-05-7cl0n6',
         'filter': ['has', 'Part_TD'],
         'paint': {
             'line-color': colores['blanco'],
@@ -471,8 +477,8 @@ map.on('load', function(){
     map.addLayer({
         'id': 'comunas-outline-zoom',
         'type': 'line',
-        'source': 'comunas-data',
-        'source-layer': 'comunas-2t6cqo',
+        'source': 'municipales-data',
+        'source-layer': 'municipales2021-05-7cl0n6',
         'filter': ['has', 'Part_TD'],
         'paint': {
             'line-color': colores['blanco'],
@@ -566,8 +572,8 @@ map.on('load', function(){
     map.addLayer({
         'id': 'participacion-comunas',
         'type': 'fill',
-        'source': 'comunas-data',
-        'source-layer': 'comunas-2t6cqo',
+        'source': 'municipales-data',
+        'source-layer': 'municipales2021-05-7cl0n6',
         'filter': ['has', 'Part_TD'],
         'paint': {
             'fill-color': colores['marron'],
@@ -643,8 +649,8 @@ map.on('load', function(){
     map.addLayer({
         'id': 'convencionalesMH-comunas',
         'type': 'fill',
-        'source': 'comunas-data',
-        'source-layer': 'comunas-2t6cqo',
+        'source': 'municipales-data',
+        'source-layer': 'municipales2021-05-7cl0n6',
         'filter': ['has', 'Part_TD'],
         'paint': { 
             'fill-color': [
@@ -666,8 +672,8 @@ map.on('load', function(){
     map.addLayer({
         'id': 'concejales',
         'type': 'fill',
-        'source': 'comunas-data',
-        'source-layer': 'comunas-2t6cqo',
+        'source': 'municipales-data',
+        'source-layer': 'municipales2021-05-7cl0n6',
         'filter': ['has', 'Part_TD'],
         'paint': {
             'fill-color': colores['suave'],
@@ -678,8 +684,8 @@ map.on('load', function(){
     map.addLayer({
         'id': 'concejalesMH',
         'type': 'fill',
-        'source': 'comunas-data',
-        'source-layer': 'comunas-2t6cqo',
+        'source': 'municipales-data',
+        'source-layer': 'municipales2021-05-7cl0n6',
         'filter': ['has', 'Part_TD'],
         'paint': {
             'fill-color': [
@@ -699,8 +705,8 @@ map.on('load', function(){
     map.addLayer({
         'id': 'alcaldes',
         'type': 'fill',
-        'source': 'comunas-data',
-        'source-layer': 'comunas-2t6cqo',
+        'source': 'municipales-data',
+        'source-layer': 'municipales2021-05-7cl0n6',
         'filter': ['has', 'Part_TD'],
         'paint': {
             'fill-color': [
@@ -758,8 +764,31 @@ map.on('load', function(){
             ],
             'fill-opacity': 1
         },
+       	'maxzoom': 6.2
     }, 'regiones-outline');
     map.setLayoutProperty('gobernadores-electos', 'visibility', 'none');	
+
+    map.addLayer({
+        'id': 'gobernadores-comunas',
+        'type': 'fill',
+        'source': 'gobernadores-municipales-data',
+        'source-layer': 'gobernadores2021-05_comunas-20r0iv',
+        'filter': ['has', 'Gob1_2v_Nom'],
+        'paint': {
+            'fill-color': [
+            	'match', ['get', 'Gob1_2v_Lis'],
+            	'CHILE VAMOS', colores['azul'],
+            	'UNIDAD CONSTITUYENTE', colores['violeta'],
+            	'CANDIDATURA INDEPENDIENTE', colores['gris'],
+            	'FRENTE AMPLIO', colores['verde-agua'],
+            	'ECOLOGISTAS E INDEPENDIENTES', colores['verde'],
+            	colores['gris']
+            ],
+            'fill-opacity': 0.8
+        },
+        'minzoom': 6.2
+    }, 'regiones-outline');
+    map.setLayoutProperty('gobernadores-comunas', 'visibility', 'none');	
     
     /*
     map.loadImage(
@@ -969,6 +998,45 @@ map.on('mousemove', 'gobernadores-electos', function (e) {
     }
 });
 map.on('mouseleave', 'gobernadores-electos', function () {
+    map.getCanvas().style.cursor = '';
+    popup.remove();
+});
+
+map.on('mousemove', 'gobernadores-comunas', function (e) {
+    map.getCanvas().style.cursor = 'pointer';
+	var region = e.features[0].properties.REGION;
+	var comuna = e.features[0].properties.NOM_COM;
+	var nombre1 = e.features[0].properties['Gob1_2v_Nom'];
+	var perct1 = e.features[0].properties['Gob1_2v_Pct'];
+	var partido1 = e.features[0].properties['Gob1_2v_Ptd'];
+	var lista1 = e.features[0].properties['Gob1_2v_Lis'];
+	var nombre2 = e.features[0].properties['Gob2_2v_Nom'];
+	var perct2 = e.features[0].properties['Gob2_2v_Pct'];
+	var partido2 = e.features[0].properties['Gob2_2v_Ptd'];
+	var lista2 = e.features[0].properties['Gob2_2v_Lis'];	
+
+	popup.setLngLat(e.lngLat)
+		.setHTML(
+			'<h4><span style="font-weight:bold">'+comuna+'</span> ('+region+')</h4>'+
+			'<table>'+
+			'<tr><td colspan=3>'+lista1+' ('+partido1+')</td></tr>'+
+			'<tr><td><span class="legend-key" style="background-color:'+coloresAlc[lista1]+'"></span></td>'+
+			'<td><span>'+nombre1+'</span></td><td style="padding-left:15px">'+perct1+'%</td></tr>'+
+			'<tr><td colspan=3>'+lista2+' ('+partido2+')</td></tr>'+
+			'<tr><td><span class="legend-key" style="background-color:'+coloresAlc[lista2]+'"></span></td>'+
+			'<td><span>'+nombre2+'</span></td><td style="padding-left:15px">'+perct2+'%</td></tr>'+
+			'</table>'+
+			'<h5>Votos nulos: '+e.features[0].properties['Gob_nulos']+	
+			', Votos blancos: '+e.features[0].properties['Gob_blancos']+	
+			'<br>Votos válidos: '+e.features[0].properties['Gob_validos']+
+			', Votos totales: '+e.features[0].properties['Gob_total']+'</h5>'			
+			)
+		.addTo(map); 
+
+
+   
+});
+map.on('mouseleave', 'gobernadores-comunas', function () {
     map.getCanvas().style.cursor = '';
     popup.remove();
 });
@@ -1216,6 +1284,10 @@ map.on('mouseleave', 'concejales', function () {
 map.on('mousemove', 'concejalesMH', function (e) {
     map.getCanvas().style.cursor = 'pointer';
     
+    elecM = e.features[0].properties['Conc_elecM_C']
+    elecH = e.features[0].properties['Conc_elecH_C']
+    candM = e.features[0].properties['Conc_candM_C']
+    candH = e.features[0].properties['Conc_candH_C']
     pctgM = Math.round(10000*e.features[0].properties['Conc_votM_C']/(e.features[0].properties['Conc_votM_C']+e.features[0].properties['Conc_votH_C']))/100;
 	pctgH = Math.round(10000*e.features[0].properties['Conc_votH_C']/(e.features[0].properties['Conc_votM_C']+e.features[0].properties['Conc_votH_C']))/100;
 
@@ -1225,11 +1297,15 @@ map.on('mousemove', 'concejalesMH', function (e) {
 	popup.setLngLat(e.lngLat)
 		.setHTML(
 			'<h4><span style="font-weight:bold">'+comuna+'</span><br>'+region+'</h4>'+
-			'<table><tr><td></td><td style="text-align:center">Cantidad</td><td style="text-align:center">%</td>'+
-			'<tr><td>Votos hacia candidatas (M):</td><td style="text-align:right;padding-left:15px">'+
-			e.features[0].properties['Conc_votM_C']+'</td><td style="text-align:right;padding-left:15px">'+pctgM+'%</td></tr>'+
-			'<tr><td>Votos hacia candidatos (H):</td><td style="text-align:right;padding-left:15px">'+
-			e.features[0].properties['Conc_votH_C']+'</td><td style="text-align:right;padding-left:15px">'+pctgH+'%</td></tr></table>'
+			'<table><tr><td></td><td style="text-align:right">Mujeres</td><td style="text-align:right">Hombres</td>'+
+			'<tr><td>Candidatas/os:</td><td style="text-align:right;padding-left:15px">'+
+			candM+'</td><td style="text-align:right;padding-left:15px">'+candH+'</td></tr>'+
+			'<tr><td>Electas/os:</td><td style="text-align:right;padding-left:15px">'+
+			elecM+'</td><td style="text-align:right;padding-left:15px">'+elecH+'</td></tr>'+
+			'<tr><td>Votos obtenidos:</td><td style="text-align:right;padding-left:15px">'+
+			e.features[0].properties['Conc_votM_C']+'</td><td style="text-align:right;padding-left:15px">'+e.features[0].properties['Conc_votH_C']+'</td></tr>'+
+			'<tr><td>Porcentaje:</td><td style="text-align:right;padding-left:15px">'+
+			pctgM+'%</td><td style="text-align:right;padding-left:15px">'+pctgH+'%</td></tr></table>'
 			)
 		.addTo(map);
     
@@ -1280,6 +1356,7 @@ function clean() {
 	map.setLayoutProperty('concejalesMH', 'visibility', 'none');
 	map.setLayoutProperty('regiones-outline', 'visibility', 'none');
     map.setLayoutProperty('gobernadores-electos', 'visibility', 'none');
+    map.setLayoutProperty('gobernadores-comunas', 'visibility', 'none');	
 
 	document.getElementById('a-distritos').style.color = 'gray';
 	document.getElementById('a-participacion').style.color = 'gray';
@@ -1359,6 +1436,7 @@ function mostrarGobernadores() {
 	clean();
 	map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
     map.setLayoutProperty('gobernadores-electos', 'visibility', 'visible');
+    map.setLayoutProperty('gobernadores-comunas', 'visibility', 'visible');	
 	document.getElementById('a-gobernadores').style.color = 'black';
 
 	legend.style.display = 'block';
@@ -1683,13 +1761,13 @@ function mostrarConcejalesMH() {
     legend2.innerHTML = '';
     legend2.style.display = 'none';
     if (screen.width>=992) {
-    	legend.style.width = '260px';
-    	legend.style.maxWidth = '260px';
-    	legend.style.height = '250px';
+    	legend.style.width = '250px';
+    	legend.style.maxWidth = '250px';
+    	legend.style.height = '310px';
     } else {
-        legend.style.width = '200px';
-        legend.style.maxWidth = '200px';
-        legend.style.height = '190px';
+        legend.style.width = '205px';
+        legend.style.maxWidth = '205px';
+        legend.style.height = '250px';
     }
 
 	var layers = ['>65% votación hacia mujeres', '60% votación hacia mujeres', '55% votación hacia mujeres', '50%',
@@ -1736,33 +1814,80 @@ function mostrarConcejalesMH() {
 
 	var tr = document.createElement('tr');
 	var td = document.createElement('td');
-	td.innerHTML = 'Votos mujeres';
 	tr.appendChild(td);
 	var td = document.createElement('td');
-	td.innerHTML = '2.499.063';
+	td.innerHTML = 'Mujeres';
 	td.style.textAlign = 'right';
-	td.style.paddingLeft = '20px';
+	td.style.paddingLeft = '10px';
 	tr.appendChild(td);
 	var td = document.createElement('td');
-	td.innerHTML = '41,05%';
+	td.innerHTML = 'Hombres';
 	td.style.textAlign = 'right';
-	td.style.paddingLeft = '20px';
+	td.style.paddingLeft = '10px';
 	tr.appendChild(td);
 	table.appendChild(tr);
 
 	var tr = document.createElement('tr');
 	var td = document.createElement('td');
-	td.innerHTML = 'Votos hombres';
+	td.innerHTML = 'Candidatas/os:';
+	tr.appendChild(td);
+	var td = document.createElement('td');
+	td.innerHTML = '5.363';
+	td.style.textAlign = 'right';
+	td.style.paddingLeft = '10px';
+	tr.appendChild(td);
+	var td = document.createElement('td');
+	td.innerHTML = '8.457';
+	td.style.textAlign = 'right';
+	td.style.paddingLeft = '10px';
+	tr.appendChild(td);
+	table.appendChild(tr);
+
+	var tr = document.createElement('tr');
+	var td = document.createElement('td');
+	td.innerHTML = 'Electas/os:';
+	tr.appendChild(td);
+	var td = document.createElement('td');
+	td.innerHTML = '751';
+	td.style.textAlign = 'right';
+	td.style.paddingLeft = '10px';
+	tr.appendChild(td);
+	var td = document.createElement('td');
+	td.innerHTML = '1.502';
+	td.style.textAlign = 'right';
+	td.style.paddingLeft = '10px';
+	tr.appendChild(td);
+	table.appendChild(tr);
+
+	var tr = document.createElement('tr');
+	var td = document.createElement('td');
+	td.innerHTML = 'Votos obtenidos:';
+	tr.appendChild(td);
+	var td = document.createElement('td');
+	td.innerHTML = '2.499.063';
+	td.style.textAlign = 'right';
+	td.style.paddingLeft = '10px';
 	tr.appendChild(td);
 	var td = document.createElement('td');
 	td.innerHTML = '3.589.511';
 	td.style.textAlign = 'right';
-	td.style.paddingLeft = '20px';
+	td.style.paddingLeft = '10px';
+	tr.appendChild(td);
+	table.appendChild(tr);
+
+	var tr = document.createElement('tr');
+	var td = document.createElement('td');
+	td.innerHTML = 'Porcentaje:';
+	tr.appendChild(td);
+	var td = document.createElement('td');
+	td.innerHTML = '41,05%';
+	td.style.textAlign = 'right';
+	td.style.paddingLeft = '10px';
 	tr.appendChild(td);
 	var td = document.createElement('td');
 	td.innerHTML = '58,95%';
 	td.style.textAlign = 'right';
-	td.style.paddingLeft = '20px';
+	td.style.paddingLeft = '10px';
 	tr.appendChild(td);
 	table.appendChild(tr);
 
