@@ -304,6 +304,7 @@ map.on('load', function(){
 				'INDEPENDIENTES POR UNA NUEVA CONSTITUCION (D21)', colores['azul-marino'],
 				'INDEPENDIENTES POR LA NUEVA CONSTITUCION (D23)', colores['azul-marino'],
 				'INDEPENDIENTES NUEVA CONSTITUCION (D26)', colores['azul-marino'],
+				'INDEPENDIENTES POR LA NUEVA CONSTITUCION  (D10)', colores['azul-marino'],
 				'LA LISTA DEL PUEBLO (D3)', colores['rosado'],
 				'LISTA DEL PUEBLO - MOVIMIENTO TERRITORIAL CONSTITUYENTE (D5)', colores['rosado'],
 				'INDEPENDIENTES DISTRITO 6 + LISTA DEL PUEBLO (D6)', colores['rosado'],
@@ -1496,31 +1497,200 @@ function mostrarConvencionales() {
     var parliament = {
     	'Vamos por Chile': {
     		'seats': 37,
-    		'color': colores['azul']
+    		'color': colores['azul'],
+    		'names': [
+				["POLLYANA RIVERA BIGAS", false],
+				["ALVARO JOFRE CACERES", false],
+				["PABLO ANTONIO TOLOZA FERNANDEZ", false],
+				["ROBERTO VEGA CAMPUSANO", false],
+				["RUGGERO COZZI ELZO", false],
+				["CLAUDIA MABEL CASTRO GUTIERREZ", false],
+				["JORGE ARANCIBIA REYES", false],
+				["RAUL CELIS MONTT", false],
+				["BERNARDO  DE LA MAZA BAÑADOS", false],
+				["MARCELA CUBILLOS SIGALL", false],
+				["HERNAN LARRAIN MATTE", false],
+				["CONSTANZA  HUBE PORTUS", false],
+				["BERNARDO FONTAINE TALAVERA", false],
+				["ARTURO ZUÑIGA JORY", false],
+				["TERESA MARINOVIC VIAL", false],
+				["CRISTIAN MONCKEBERG BRUNER", false],
+				["MANUEL JOSE OSSANDON LIRA", false],
+				["CAROL BOWN SEPULVEDA", false],
+				["RICARDO NEUMANN BERTIN", false],
+				["BARBARA REBOLLEDO AGUIRRE", false],
+				["ALFREDO MORENO ECHEVERRIA", false],
+				["PATRICIA LABRA BESSERER", false],
+				["MARTIN ARRAU GARCIA-HUIDOBRO", false],
+				["MARGARITA LETELIER CORTES", false],
+				["ROCIO  CANTUARIAS RUBIO", false],
+				["LUCIANO ERNESTO SILVA MORA", false],
+				["PAULINA VELOSO MUÑOZ", false],
+				["EDUARDO ANDRES CRETTON REBOLLEDO", false],
+				["RUTH HURTADO OLAVE", false],
+				["LUIS MAYOL BOUCHON", false],
+				["ANGELICA TEPPER KOLOSSA", false],
+				["FELIPE IGNACIO MENA VILLAR", false],
+				["HARRY JURGENSEN CAESAR", false],
+				["MARIA CECILIA UBILLA PEREZ", false],
+				["KATERINE MONTEALEGRE NAVARRO", false],
+				["GEOCONDA NAVARRETE ARRATIA", false],
+				["RODRIGO ALVAREZ ZENTENO", false]
+    		]
     	},
     	'Apruebo Dignidad': {
     		'seats': 28,
-    		'color': colores['verde-agua'] 
+    		'color': colores['verde-agua'],
+    		'names': [
+				["CAROLINA ELIANA VIDELA OSORIO", false],
+				["HUGO HUMBERTO GUTIERREZ GALVEZ", false],
+				["HERNAN JESUS VELASQUEZ NUÑEZ", false],
+				["ERICKA  PORTILLA BARRIOS", false],
+				["JENIFFER VALERIA MELLA ESCOBAR", false],
+				["CAROLINA CYNTIA VILCHES FUENZALIDA", false],
+				["MARIELA ANDREA SEREY JIMENEZ", false],
+				["IGNACIO JAIME ACHURRA DIAZ", false],
+				["JAIME ANDRES BASSA MERCADO", false],
+				["MARIA JOSE OYARZUN SOLIS", false],
+				["DANIEL RODRIGO STINGO CAMUS", false],
+				["VALENTINA ANDREA MIRANDA ARCE", false],
+				["TATIANA KARINA URRUTIA HERRERA", false],
+				["CONSTANZA GABRIELA SCHONHAUT SOTO", false],
+				["BARBARA SEPULVEDA HALES", false],
+				["FERNANDO ATRIA LEMAITRE", false],
+				["GIOVANNA ANGELA ROA CADIN", false],
+				["BEATRIZ DE JESUS SANCHEZ MUÑOZ", false],
+				["MARCOS PATRICIO BARRAZA GOMEZ", false],
+				["DAMARIS ABARCA GONZALEZ", false],
+				["NICOLAS FERNANDO NUÑEZ GANGAS", false],
+				["ROBERTO ANTONIO CELEDON FERNANDEZ", false],
+				["PAOLA ALEJANDRA GRANDON GONZALEZ", false],
+				["AMAYA PAULINA ALVEZ MARIN", false],
+				["VANESSA CAMILA HOPPE ESPOZ", false],
+				["MANUELA ROYO LETELIER", false],
+				["AURORA GENOVEVA DELGADO VERGARA", false],
+				["YARELA NICOHL GOMEZ SANCHEZ", false]
+    		]
     	},
     	'La Lista del Pueblo': {
     		'seats': 26,
-    		'color': colores['rosado']
+    		'color': colores['rosado'],
+    		'names': [
+				["DAYYANA GONZALEZ ARAYA", false],
+				["CONSTANZA ANDREA SAN JUAN STANDEN", false],
+				["IVANNA DANIELA OLIVARES MIRANDA", false],
+				["DANIEL ALEJANDRO BRAVO SILVA", false],
+				["LISETTE LORENA VERGARA RIQUELME", false],
+				["CRISTOBAL PATRICIO ANDRADE LEON", false],
+				["FRANCISCO JAVIER CAAMAÑO ROJAS", false],
+				["CAMILA IGNACIA ZARATE ZARATE", false],
+				["TANIA ISABEL MADRIAGA FLORES", false],
+				["MARCO ANTONIO ARELLANO ORTEGA", false],
+				["MARIA MAGDALENA RIVERA IRIBARREN", false],
+				["ALEJANDRA PIA PEREZ ESPINA", false],
+				["NATALIA ESTHER HENRIQUEZ CARREÑO", false],
+				["MANUEL MAURICIO WOLDARSKY GONZALEZ", false],
+				["GIOVANNA JAZMIN GRANDON CARO", false],
+				["INGRID FERNANDA VILLENA NARBONA", false],
+				["RODRIGO ERNESTO ROJAS VADE", false],
+				["LORETO CRISTINA VALLEJOS DAVILA", false],
+				["ELSA CAROLINA LABRAÑA PINO", false],
+				["FRANCISCA MARYCARMEN ARAUNA URRUTIA", false],
+				["FERNANDO SALINAS MANFREDINI", false],
+				["CESAR  URIBE ARAYA", false],
+				["ROSSANA LORETO VIDAL HERNANDEZ", false],
+				["HELMUTH JACOBO MARTINEZ LLANCAPAN", false],
+				["ADRIANA CAMILA AMPUERO BARRIENTOS", false],
+				["ELISA AMANDA GIUSTINIANOVICH CAMPOS", false]
+    		]
     	},
     	'Lista del Apruebo': {
     		'seats': 25,
-    		'color': colores['violeta']
+    		'color': colores['violeta'],
+    		'names': [
+				["JORGE BRUNO ABARCA RIVEROS", false],
+				["MAXIMILIANO HURTADO ROCO", false],
+				["CARLOS CALVO MUÑOZ", false],
+				["CLAUDIO GOMEZ CASTRO", false],
+				["RENATO FABRIZIO GARIN GONZALEZ", false],
+				["AGUSTIN SQUELLA NARDUCCI", false],
+				["BESSY MIREYA DEL ROSARIO GALLARDO PRADO", false],
+				["PATRICIO  FERNANDEZ CHADWICK", false],
+				["CESAR VALENZUELA MAASS", false],
+				["JORGE BARADIT MORALES", false],
+				["MALUCHA PINTO SOLARI", false],
+				["MATIAS ORELLANA CUELLAR", false],
+				["ADRIANA CANCINO MENESES", false],
+				["CHRISTIAN VIERA ALVAREZ", false],
+				["RICARDO MONTERO ALLENDE", false],
+				["FELIPE HARBOE BASCUÑAN", false],
+				["ANDRES CRUZ CARRASCO", false],
+				["LUIS RAMON BARCELO AMADO", false],
+				["FUAD  CHAHIN VALENZUELA", false],
+				["EDUARDO GUILLERMO CASTILLO VIGOUROUX", false],
+				["RAMONA REYES PAINEQUEO", false],
+				["PEDRO MUÑOZ LEIVA", false],
+				["MARIO VARGAS VIDAL", false],
+				["JULIO ALVAREZ PINTO", false],
+				["TOMAS LAIBE SAEZ", false]
+    		]
     	},
     	'Independientes No Neutrales': {
     		'seats': 11,
-    		'color': colores['azul-marino']
+    		'color': colores['azul-marino'],
+    		'names': [
+				["GUILLERMO NICOLAS NAMOR KONG", false],
+				["MIGUEL ANGEL BOTTO SALINAS", false],
+				["PAULINA VALERIA VALENZUELA RIO", false],
+				["PATRICIA POLITZER KEREKES", false],
+				["BENITO JOSE BARANDA FERRAN", false],
+				["JUAN JOSE MARTIN BRAVO", false],
+				["CAROLINA ANDREA SEPULVEDA SEPULVEDA", false],
+				["TAMMY SOLANGE PUSTILNICK ARDITI", false],
+				["JAVIER FUCHSLOCHER BAEZA", false],
+				["LORENA DEL PILAR CESPEDES FERNANDEZ", false],
+				["GASPAR ROBERTO DOMINGUEZ DONOSO", false]
+    		]
     	},
     	'Candidaturas Independientes': {
     		'seats': 11,
-    		'color': colores['gris']
+    		'color': colores['gris'],
+    		'names': [
+				["ALEJANDRA ALICIA FLORES CARLOS", false],
+				["CRISTINA INES DORADOR ORTIZ", false],
+				["MARIA TRINIDAD CASTILLO BOILET", false],
+				["JANIS JAN DEL CARMEN MENESES PALMA", false],
+				["RODRIGO  LOGAN SOTO", false],
+				["ALONDRA CARRILLO VIDAL", false],
+				["ALVIN ANTONIO SALDAÑA MUÑOZ", false],
+				["GLORIA DEL TRANSITO ALVARADO JORQUERA", false],
+				["MARIA ELISA QUINTEROS CACERES", false],
+				["BASTIAN ESTEBAN LABBE SALAZAR", false],
+				["MAURICIO DAZA CARRASCO", false]
+    		]
     	},
     	'Pueblos Indígenas': {
     		'seats': 17,
-    		'color': colores['marron']
+    		'color': colores['marron'],
+    		'names': [
+				["FRANCISCA LINCONAO HUIRCAPAN", false],
+				["NATIVIDAD LLANQUILEO PILQUIMAN", false],
+				["ADOLFO MILLABUR ÑANCUIL", false],
+				["ELISA LONCON ANTILEO", false],
+				["ROSA ELIZABETH CATRILEO ARIAS", false],
+				["VICTORINO ERNESTO ANTILEF ÑANCO", false],
+				["ALEXIS REINALDO CAIGUAN ANCAPAN", false],
+				["TIARE MAEVA CAROLINA AGUILERA HEY", false],
+				["FELIX RAMON GALLEGUILLOS AYMANI", false],
+				["ISABELLA BRUNILDA MAMANI MAMANI", false],
+				["LUIS ALBERTO JIMENEZ CACERES", false],
+				["WILFREDO MANUEL BACIAN DELGADO", false],
+				["ISABEL SELENA GODOY MONARDEZ", false],
+				["ERIC JOHANNY CHINGA FERREIRA", false],
+				["MARGARITA VARGAS LOPEZ", false],
+				["LIDIA GONZALEZ CALDERON", false],
+				["FERNANDO DEL CARMEN TIRADO SOTO", false]
+    		]
     	}
     }	
     parliament_order = {
@@ -1544,13 +1714,14 @@ function mostrarConvencionales() {
     	legend2.style.width = '850px';
     	legend2.style.maxWidth = '850px';
     	legend2.style.width = '360px';
-    	legend2.style.height = '230px';
+    	legend2.style.height = '215px';
     	//legend2.innerHTML = 'Color y transparencia depende del porcentaje de la lista más votada en el distrito.';
     	var div = document.createElement('div');
     	div.appendChild(generateSVG(parliament, parliament_order, true));
     	legend2.appendChild(div);
     	var span = document.createElement('span');
-    	span.innerHTML = 'Color y transparencia depende del porcentaje de la lista más votada en el distrito.';
+    	span.id = 'nombre-seat';
+    	span.innerHTML = 'Muévete sobre los puntos...';
     	legend2.appendChild(span);
     } else {  
         legend.style.width = '195px';
@@ -2471,15 +2642,28 @@ function generatePoints(parliament, r0) {
 		points.push(ring);
 	}
 	var ringProgress = Array(points.length).fill(0);
+	var blackDots = [];
 	for (var party in parliament) {
 		for (var _i2 = 0; _i2 < parliament[party].seats; _i2++) {
 			ring = nextRing(points, ringProgress, parliament[party].ordered);
 			points[ring][ringProgress[ring]].fill = parliament[party].color;
 			points[ring][ringProgress[ring]].party = party;
+			if (parliament[party].hasOwnProperty('names')) {
+				points[ring][ringProgress[ring]].name = parliament[party].names[_i2][0];
+				if (parliament[party].names[_i2][1]) {
+					var newpoint = {};
+					newpoint.x = points[ring][ringProgress[ring]].x;
+					newpoint.y = points[ring][ringProgress[ring]].y;
+					newpoint.r = points[ring][ringProgress[ring]].r/2.8;
+					newpoint.fill = colores['negro'];
+					newpoint.name = parliament[party].names[_i2][0];
+					blackDots.push(newpoint);
+				}
+			}
 			ringProgress[ring]++;
 		}
 	}
-	return merge(points);
+	return [merge(points), merge(blackDots)];
 }
 function generateSVG(_parliament, order, seatCount) {
 	var parliament = {};
@@ -2488,7 +2672,9 @@ function generateSVG(_parliament, order, seatCount) {
 		_parliament[party].ordered = order[party];
 	}
 	var radius = 20;
-	var points = generatePoints(parliament, radius);
+	var ret = generatePoints(parliament, radius);
+	var points = ret[0];
+	var blackDots = ret[1];
 	var a = points[0].r / 0.4;
 
 	var xmlns = "http://www.w3.org/2000/svg";
@@ -2510,6 +2696,11 @@ function generateSVG(_parliament, order, seatCount) {
     	circle.setAttributeNS(null, "cy", points[index].y);
     	circle.setAttributeNS(null, "r", points[index].r);
     	circle.setAttributeNS(null, "fill", points[index].fill);
+    	if (points[index].hasOwnProperty('name')) {
+    		circle.setAttributeNS(null, "data-name", points[index].name);
+	    	circle.setAttributeNS(null, "onmousemove", "touchParliamentSeat(evt)");
+	    	circle.setAttributeNS(null, "onmouseleave", "unTouchParliamentSeat(evt)");
+    	}
     	svgElem.appendChild(circle);
     }
     if (seatCount) {

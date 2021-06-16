@@ -49,6 +49,18 @@
     	function desplegarMenu(x) {
     		x.classList.toggle("change");
     	}
+    	function touchParliamentSeat(evt) {
+    		var svgobj=evt.target; 
+    		svgobj.style.opacity=0.3;
+    		var span = document.getElementById('nombre-seat');
+    		span.innerHTML = '<span style="font-weight:bold">'+svgobj.dataset.name+'</span>';
+    	}
+    	function unTouchParliamentSeat(evt) {
+    		var svgobj=evt.target; 
+    		svgobj.style.opacity=1;
+    		var span = document.getElementById('nombre-seat');
+    		span.innerHTML = 'Muévete sobre los puntos...';
+    	}
     </script>
 </body>
 
