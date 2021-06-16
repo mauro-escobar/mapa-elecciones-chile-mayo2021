@@ -294,6 +294,43 @@ map.on('load', function(){
 		'paint' : {
 			'circle-color': [
 				'match',
+				['get', 'PERIODO'],
+				'2014-2022', colores['negro'],
+				[
+					'match',
+					['get', 'LISTA'],
+					'Chile Vamos', colores['azul'],
+					'Frente Amplio', colores['verde-agua'],
+					'La Fuerza de la Mayoría', colores['rojo-oscuro'],
+					'Convergencia Democrática', colores['marron'],
+					'Progresistas', colores['rosado'],
+					colores['gris']
+				]
+			],
+			'circle-radius': [
+				'interpolate',
+				['linear'], ['zoom'],
+				6, [
+					'match',
+					['get', 'PERIODO'],
+					'2014-2022', 5,
+					12
+				],
+				10, [
+					'match',
+					['get', 'PERIODO'],
+					'2014-2022', 15,
+					22
+				]
+			],
+			'circle-stroke-width': [
+				'match',
+				['get', 'PERIODO'],
+				'2014-2022', 7,
+				0
+			],
+			'circle-stroke-color': [
+				'match',
 				['get', 'LISTA'],
 				'Chile Vamos', colores['azul'],
 				'Frente Amplio', colores['verde-agua'],
@@ -301,12 +338,6 @@ map.on('load', function(){
 				'Convergencia Democrática', colores['marron'],
 				'Progresistas', colores['rosado'],
 				colores['gris']
-			],
-			'circle-radius': [
-				'interpolate',
-				['linear'], ['zoom'],
-				6, 10,
-				10, 20
 			]
 		}
     }, 'dip-markers-lines');
@@ -1162,32 +1193,38 @@ function mostrarSenadores() {
 		'Chile Vamos': {
 			'seats': 19,
 			'color': colores['azul'],
-			'parties': [['UDI', 9], ['RN', 8], ['EVO', 2]]
+			'parties': [['UDI', 9], ['RN', 8], ['EVO', 2]],
+			'dotted': 7
 		},
 		'La Fuerza de la Mayoría': {
 			'seats': 16,
 			'color': colores['rojo-oscuro'],
-			'parties': [['PPD', 8], ['PS', 7], ['PRSD', 1]]
+			'parties': [['PPD', 8], ['PS', 7], ['PRSD', 1]],
+			'dotted': 9
 		},
 		'Convergencia Democrática': {
 			'seats': 5,
 			'color': colores['marron'],
-			'parties': [['PDC', 5]]
+			'parties': [['PDC', 5]],
+			'dotted': 2
 		},
 		'Frente Amplio': {
 			'seats': 1,
 			'color': colores['verde-agua'],
-			'parties': [['RD', 1]]
+			'parties': [['RD', 1]],
+			'dotted': 0
 		},
 		'Progresistas': {
 			'seats': 1,
 			'color': colores['rosado'],
-			'parties': [['PRO', 1]]
+			'parties': [['PRO', 1]],
+			'dotted': 1
 		},
 		'Candidatura Independiente': {
 			'seats': 1,
 			'color': colores['gris'],
-			'parties': [['IND', 1]]
+			'parties': [['IND', 1]],
+			'dotted': 1
 		}
 	}
     parliament_order = {
@@ -1209,7 +1246,7 @@ function mostrarSenadores() {
     	legend2.style.display = 'block';
     	legend2.style.maxWidth = '850px';
     	legend2.style.width = '360px';
-    	legend2.style.height = '230px';
+    	legend2.style.height = '265px';
     	var div = document.createElement('div');
     	div.appendChild(generateSVG(parliament, parliament_order, true));
     	legend2.appendChild(div);
@@ -1918,15 +1955,24 @@ function generatePoints(parliament, r0) {
 		points.push(ring);
 	}
 	var ringProgress = Array(points.length).fill(0);
+	var blackDots = [];
 	for (var party in parliament) {
 		for (var _i2 = 0; _i2 < parliament[party].seats; _i2++) {
 			ring = nextRing(points, ringProgress, parliament[party].ordered);
 			points[ring][ringProgress[ring]].fill = parliament[party].color;
 			points[ring][ringProgress[ring]].party = party;
+			if (parliament[party].hasOwnProperty('dotted') && _i2<parliament[party].dotted) {
+				var newpoint = {};
+				newpoint.x = points[ring][ringProgress[ring]].x;
+				newpoint.y = points[ring][ringProgress[ring]].y;
+				newpoint.r = points[ring][ringProgress[ring]].r/2.8;
+				newpoint.fill = colores['negro'];
+				blackDots.push(newpoint);
+			}
 			ringProgress[ring]++;
 		}
 	}
-	return merge(points);
+	return [merge(points), merge(blackDots)];
 }
 function generateSVG(_parliament, order, seatCount) {
 	var parliament = {};
@@ -1935,14 +1981,17 @@ function generateSVG(_parliament, order, seatCount) {
 		_parliament[party].ordered = order[party];
 	}
 	var radius = 20;
-	var points = generatePoints(parliament, radius);
+	var ret = generatePoints(parliament, radius);
+	var points = ret[0];
+	var blackDots = ret[1];
 	var a = points[0].r / 0.4;
 
 	var xmlns = "http://www.w3.org/2000/svg";
 	var x = -radius - a / 2;
 	var y = -radius - a / 2;
     var boxWidth = 2 * radius + a;
-    var boxHeight = radius + a;
+    if (blackDots.length > 0) var boxHeight = radius + 2.5*a;
+    else var boxHeight = radius + a;
 
     var svgElem = document.createElementNS(xmlns, "svg");
     svgElem.setAttributeNS(null, "viewBox", x + " " + y + " " + boxWidth + " " + boxHeight);
@@ -1959,6 +2008,14 @@ function generateSVG(_parliament, order, seatCount) {
     	circle.setAttributeNS(null, "fill", points[index].fill);
     	svgElem.appendChild(circle);
     }
+    for (index in blackDots) {
+    	var circle = document.createElementNS(xmlns,"circle");
+    	circle.setAttributeNS(null, "cx", blackDots[index].x);
+    	circle.setAttributeNS(null, "cy", blackDots[index].y);
+    	circle.setAttributeNS(null, "r", blackDots[index].r);
+    	circle.setAttributeNS(null, "fill", blackDots[index].fill);
+    	svgElem.appendChild(circle);
+    }
     if (seatCount) {
     	var text = document.createElementNS(xmlns,"text");
     	text.innerHTML = points.length;
@@ -1968,6 +2025,43 @@ function generateSVG(_parliament, order, seatCount) {
     	text.setAttributeNS(null, "font-size", (0.25*radius)+"px");
     	text.setAttributeNS(null, "text-anchor", "middle");
     	svgElem.appendChild(text);
+    }
+    if (blackDots.length > 0) {
+    	var circle = document.createElementNS(xmlns,"circle");
+    	circle.setAttributeNS(null, "cx", -3*a);
+    	circle.setAttributeNS(null, "cy", 1.5*a);
+    	circle.setAttributeNS(null, "r", points[0].r);
+    	circle.setAttributeNS(null, "fill", colores['suave']);
+    	svgElem.appendChild(circle);
+    	var circle = document.createElementNS(xmlns,"circle");
+    	circle.setAttributeNS(null, "cx", 1*a);
+    	circle.setAttributeNS(null, "cy", 1.5*a);
+    	circle.setAttributeNS(null, "r", points[0].r);
+    	circle.setAttributeNS(null, "fill", colores['suave']);
+    	svgElem.appendChild(circle);
+    	var circle = document.createElementNS(xmlns,"circle");
+    	circle.setAttributeNS(null, "cx", 1*a);
+    	circle.setAttributeNS(null, "cy", 1.5*a);
+    	circle.setAttributeNS(null, "r", points[0].r/2.8);
+    	circle.setAttributeNS(null, "fill", colores['negro']);
+    	svgElem.appendChild(circle);
+    	var text = document.createElementNS(xmlns,"text");
+    	text.innerHTML = '2018-2026';
+    	text.setAttributeNS(null, "x", -2.5*a);
+    	text.setAttributeNS(null, "y", 1.65*a);
+    	text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
+    	text.setAttributeNS(null, "font-size", a/2.2+"px");
+    	text.setAttributeNS(null, "text-anchor", "start");
+    	svgElem.appendChild(text);
+    	var text = document.createElementNS(xmlns,"text");
+    	text.innerHTML = '2014-2022';
+    	text.setAttributeNS(null, "x", 1.5*a);
+    	text.setAttributeNS(null, "y", 1.65*a);
+    	text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
+    	text.setAttributeNS(null, "font-size", a/2.2+"px");
+    	text.setAttributeNS(null, "text-anchor", "start");
+    	svgElem.appendChild(text);
+
     }
 
    	return svgElem;
