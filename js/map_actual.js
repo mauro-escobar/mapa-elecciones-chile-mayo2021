@@ -755,7 +755,7 @@ var region2cores = {
    			'Por Todo Chile': {
    				'parties': [['IND', 1]], 
 				'color': colores['rosado'],
-   				'seats': 2
+   				'seats': 1
    			},
    			'Por un Chile Justo y Descentralizado': {
    				'parties': [['PCCH', 1],['IND', 1]],
