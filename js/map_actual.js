@@ -361,6 +361,12 @@ map.on('load', function(){
             'url': 'mapbox://mauro-escobar.2jgcxezz',
         }
     );
+    map.addSource('cores-data',
+    	{
+            'type': 'vector',
+            'url': 'mapbox://mauro-escobar.5vdcnd9t'
+        }
+    );
     map.addLayer({
     	'id': 'nombre-comunas',
     	'type': 'symbol',
@@ -441,7 +447,7 @@ map.on('load', function(){
         'paint': {
             'line-color': colores['blanco'],
             'line-opacity': 1,
-            'line-width': 0.3,
+            'line-width': 0.2,
             //'fill-opacity': 0.5
         },
     }, 'zona-indeterminada');
@@ -455,7 +461,7 @@ map.on('load', function(){
         'paint': {
             'line-color': colores['blanco'],
             'line-opacity': 1,
-            'line-width': 0.3,
+            'line-width': 0.2,
             //'fill-opacity': 0.5
         },
         'minzoom': 6.2
@@ -492,7 +498,7 @@ map.on('load', function(){
 				'La Fuerza de la Mayoría', colores['rojo-oscuro'],
 				'Coalición Regionalista Verde', colores['verde'],
 				'Convergencia Democrática', colores['marron'],
-				'Por Todo Chile', colores['naranja'],
+				'Por Todo Chile', colores['rosado'],
 				colores['gris']
 			],
             'fill-opacity': [
@@ -519,7 +525,7 @@ map.on('load', function(){
 				'La Fuerza de la Mayoría', colores['rojo-oscuro'],
 				'Coalición Regionalista Verde', colores['verde'],
 				'Convergencia Democrática', colores['marron'],
-				'Por Todo Chile', colores['naranja'],
+				'Por Todo Chile', colores['rosado'],
 				colores['gris']
 			],
             'fill-opacity': [
@@ -548,7 +554,7 @@ map.on('load', function(){
 				'Nueva Mayoría', colores['rojo-oscuro'],
 				'Coalición Regionalista Verde', colores['verde'],
 				'Convergencia Democrática', colores['marron'],
-				'Por Todo Chile', colores['naranja'],
+				'Por Todo Chile', colores['rosado'],
 				colores['gris']
 			],
             'fill-opacity': [
@@ -625,6 +631,30 @@ map.on('load', function(){
     }, 'regiones-outline');
     map.setLayoutProperty('gobernadores-electos', 'visibility', 'none');	
 
+    map.addLayer({
+        'id': 'cores',
+        'type': 'fill',
+        'source': 'cores-data',
+        'source-layer': 'cores2017-11-0by2rp',
+        'filter': ['has', 'Conc01_Nom'],
+        'paint': {
+            'fill-color': [
+            	'match', ['get', 'Conc01_Lis'],
+            	'Chile Vamos RN-EVO', colores['azul'],
+            	'Chile Vamos UDI-PRI', colores['azul'],
+            	'Sumemos', colores['azul-marino'],
+            	'Unidos por la Descentralización', colores['violeta'],
+            	'Por un Chile Justo y Descentralizado', colores['violeta'],
+            	'Frente Amplio', colores['verde-agua'],
+            	'Frente Ecologista y Ciudadano', colores['verde'],
+            	'Coalición Regionalista Verde', colores['verde'],
+            	colores['gris']
+            ],
+            'fill-opacity': 0.9
+        },
+    }, 'regiones-outline');
+    map.setLayoutProperty('cores', 'visibility', 'none');	
+
     /*
     map.loadImage(
     	'images/stripe_violeta_gris.png',
@@ -685,6 +715,704 @@ map.on('dblclick', function () {
 });*/
 
 // Create the popup
+
+var coloresCORE = {
+	'Chile Vamos RN-EVO': colores['azul'],
+	'Chile Vamos UDI-PRI': colores['azul'],
+	'Sumemos': colores['azul-marino'],
+	'Frente Amplio': colores['verde-agua'],
+	'Unidos por la Descentralización': colores['violeta'],
+	'Por un Chile Justo y Descentralizado': colores['violeta'],
+	'Coalición Regionalista Verde': colores['verde'],
+	'Frente Ecologista y Ciudadano': colores['verde'],
+	'Fuera de pacto': colores['gris'],
+	'Integración para el Desarrollo': colores['naranja'],
+	'Por Todo Chile': colores['rosado'],
+};
+var region2cores = {
+	'Región de Arica y Parinacota': [
+		{
+			'Chile Vamos RN-EVO': {
+				'parties': [['RN',1],['EVO', 1]],
+				'color': colores['azul'],
+				'seats': 2
+			},
+   			'Chile Vamos UDI-PRI': {
+   				'parties': [['UDI', 1], ['IND', 2]], 
+				'color': colores['azul'],
+   				'seats': 3
+   			},
+   			'Frente Amplio': {
+   				'parties': [['PH', 1]], 
+				'color': colores['verde-agua'],
+   				'seats': 1
+   			},
+   			'Frente Ecologista y Ciudadano': {
+   				'parties': [['PODER', 1]], 
+				'color': colores['verde'],
+   				'seats': 1
+   			},
+   			'Por Todo Chile': {
+   				'parties': [['IND', 2]], 
+				'color': colores['rosado'],
+   				'seats': 2
+   			},
+   			'Por un Chile Justo y Descentralizado': {
+   				'parties': [['PCCH', 1],['IND', 1]],
+				'color': colores['violeta'],
+    			'seats': 2
+    		},
+   			'Unidos por la Descentralización': {
+   				'parties': [['PSCH', 2], ['PDC', 1]],
+				'color': colores['violeta'],
+    			'seats': 3
+    		}
+    	},
+    	{
+    		'Frente Amplio': true,
+    		'Frente Ecologista y Ciudadano': true,
+    		'Por Todo Chile': true,
+    		'Por un Chile Justo y Descentralizado': true,
+    		'Unidos por la Descentralización': true,
+    		'Chile Vamos RN-EVO': true,
+    		'Chile Vamos UDI-PRI': true
+    	}
+    ],
+    'Región de Atacama': [
+    	{
+    		'Chile Vamos RN-EVO': {
+    			'parties': [['RN', 3],['IND', 1]],
+				'color': colores['azul'],
+    			'seats': 4
+    		},
+   			'Chile Vamos UDI-PRI': {
+   				'parties': [['UDI', 1]], 
+				'color': colores['azul'],
+   				'seats': 1
+   			},
+   			'Coalición Regionalista Verde': {
+   				'parties': [['FRVS', 1], ['IND', 1]],
+				'color': colores['verde'],
+   				'seats': 2
+   			},
+   			'Por un Chile Justo y Descentralizado': {
+   				'parties': [['MAS', 1],['PCCH', 2],['IND', 1],['PRSD', 1]],
+				'color': colores['violeta'],
+   				'seats': 5
+   			},
+   			'Unidos por la Descentralización': {
+   				'parties': [['IND', 1], ['PSCH', 1]],
+				'color': colores['violeta'],
+   				'seats': 2
+   			}
+   		},
+    	{
+    		'Coalición Regionalista Verde': true,
+    		'Por un Chile Justo y Descentralizado': true,
+    		'Unidos por la Descentralización': true,
+    		'Chile Vamos RN-EVO': true,
+    		'Chile Vamos UDI-PRI': true
+    	}
+   	],
+   	'Región de Tarapacá': [
+   		{
+   			'Chile Vamos RN-EVO': {
+   				'parties': [['RN', 3],['EVO', 1]],
+				'color': colores['azul'],
+   				'seats': 4
+   			},
+   			'Chile Vamos UDI-PRI': {
+   				'parties': [['UDI', 1]], 
+				'color': colores['azul'],
+   				'seats': 1
+   			},
+   			'Frente Amplio': {
+   				'parties': [['IND', 2]], 
+				'color': colores['verde-agua'],
+   				'seats': 2
+   			},
+   			'Frente Ecologista y Ciudadano': {
+   				'parties': [['PODER', 1]], 
+				'color': colores['verde'],
+   				'seats': 1
+   			},
+   			'Integración para el Desarrollo': {
+   				'parties': [['PLIR', 1]], 
+				'color': colores['naranja'],
+   				'seats': 1
+   			},
+   			'Por un Chile Justo y Descentralizado': {
+   				'parties': [['PCCH', 1],['PPD', 1]],
+				'color': colores['violeta'],
+   				'seats': 2
+   			},
+   			'Unidos por la Descentralización': {
+   				'parties': [['PDC', 2], ['PSCH', 1]],
+				'color': colores['violeta'],
+   				'seats': 3
+   			}
+   		},
+    	{
+    		'Frente Amplio': true,
+    		'Frente Ecologista y Ciudadano': true,
+    		'Integración para el Desarrollo': true,
+    		'Por un Chile Justo y Descentralizado': true,
+    		'Unidos por la Descentralización': true,
+    		'Chile Vamos RN-EVO': true,
+    		'Chile Vamos UDI-PRI': true
+    	}
+   	],
+   	'Región de Antofagasta': [
+   		{
+   			'Chile Vamos RN-EVO': {
+   				'parties': [['RN', 2],['IND', 2]],
+				'color': colores['azul'],
+   				'seats': 4
+   			},
+   			'Chile Vamos UDI-PRI': {
+   				'parties': [['UDI', 3], ['PRI', 1]], 
+				'color': colores['azul'],
+   				'seats': 4
+   			},
+   			'Frente Amplio': {
+   				'parties': [['RD', 1]], 
+				'color': colores['verde-agua'],
+   				'seats': 1
+   			},
+   			'Por un Chile Justo y Descentralizado': {
+   				'parties': [['PPD', 1], ['IC', 1]],
+				'color': colores['violeta'],
+   				'seats': 2
+   			},
+   			'Unidos por la Descentralización': {
+   				'parties': [['PDC', 3], ['PSCH', 2]],
+				'color': colores['violeta'],
+   				'seats': 5
+   			}
+   		},
+    	{
+    		'Frente Amplio': true,
+    		'Por un Chile Justo y Descentralizado': true,
+    		'Unidos por la Descentralización': true,
+    		'Chile Vamos RN-EVO': true,
+    		'Chile Vamos UDI-PRI': true
+    	}
+   	],
+   	'Región de Coquimbo': [
+   		{
+   			'Chile Vamos RN-EVO': {
+   				'parties': [['RN', 3],['IND', 1]],
+				'color': colores['azul'],
+   				'seats': 4
+   			},
+   			'Chile Vamos UDI-PRI': {
+   				'parties': [['UDI', 3], ['IND', 1]], 
+				'color': colores['azul'],
+   				'seats': 4
+   			},
+   			'Fuera de pacto': {
+   				'parties': [['IND', 1]], 
+				'color': colores['gris'],
+   				'seats': 1
+   			},
+   			'Por un Chile Justo y Descentralizado': {
+   				'parties': [['PPD', 2],['PCCH', 1]],
+				'color': colores['violeta'],
+   				'seats': 3
+   			},
+   			'Unidos por la Descentralización': {
+   				'parties': [['PDC', 3], ['PSCH', 1]],
+				'color': colores['violeta'],
+   				'seats': 4
+   			}
+   		},
+    	{
+    		'Por un Chile Justo y Descentralizado': true,
+    		'Unidos por la Descentralización': true,
+    		'Fuera de pacto': true,
+    		'Chile Vamos RN-EVO': true,
+    		'Chile Vamos UDI-PRI': true
+    	}
+   	],
+   	'Región de Valparaíso': [
+   		{
+   			'Chile Vamos RN-EVO': {
+   				'parties': [['RN', 5],['IND', 4]],
+				'color': colores['azul'],
+   				'seats': 9
+   			},
+   			'Chile Vamos UDI-PRI': {
+   				'parties': [['UDI', 4]], 
+				'color': colores['azul'],
+   				'seats': 4
+   			},
+   			'Frente Amplio': {
+   				'parties': [['IND', 4]], 
+				'color': colores['verde-agua'],
+   				'seats': 4
+   			},
+   			'Por un Chile Justo y Descentralizado': {
+   				'parties': [['PPD', 3],['IND', 1]],
+				'color': colores['violeta'],
+   				'seats': 4
+   			},
+   			'Sumemos': {
+   				'parties': [['AMPLI', 1]], 
+				'color': colores['azul-marino'],
+   				'seats': 1
+   			},
+   			'Unidos por la Descentralización': {
+   				'parties': [['PDC', 6]], 
+				'color': colores['violeta'],
+   				'seats': 6
+   			}
+   		},
+    	{
+    		'Frente Amplio': true,
+    		'Por un Chile Justo y Descentralizado': true,
+    		'Unidos por la Descentralización': true,
+    		'Sumemos': true,
+    		'Chile Vamos RN-EVO': true,
+    		'Chile Vamos UDI-PRI': true
+    	}
+   	],
+   	'Región Metropolitana de Santiago': [
+   		{
+   			'Chile Vamos RN-EVO': {
+   				'parties': [['RN',8],['IND', 1]],
+				'color': colores['azul'],
+   				'seats': 9
+   			},
+   			'Chile Vamos UDI-PRI': {
+   				'parties': 
+   				[['UDI', 8]], 
+				'color': colores['azul'],
+   				'seats': 8
+   			},
+   			'Frente Amplio': {
+   				'parties': [['PH', 1], ['RD', 5]], 
+				'color': colores['verde-agua'],
+   				'seats': 6
+   			},
+   			'Por un Chile Justo y Descentralizado': {
+   				'parties': [['PPD', 2]],
+				'color': colores['violeta'],
+   				'seats': 2
+   			},
+   			'Unidos por la Descentralización': {
+   				'parties': [['PSCH', 7], ['PDC', 2]],
+				'color': colores['violeta'],
+   				'seats': 9
+   			}
+   		},
+    	{
+    		'Frente Amplio': true,
+    		'Por un Chile Justo y Descentralizado': true,
+    		'Unidos por la Descentralización': true,
+    		'Chile Vamos RN-EVO': true,
+    		'Chile Vamos UDI-PRI': true
+    	}
+   	],
+   	"Región del Libertador Bernardo O'Higgins": [
+   		{
+   			'Chile Vamos RN-EVO': {
+   				'parties': [['RN',5]],
+				'color': colores['azul'],
+	   			'seats': 5
+	   		},
+	   		'Chile Vamos UDI-PRI': {
+	   			'parties': [['IND', 2], ['UDI', 2]], 
+				'color': colores['azul'],
+	   			'seats': 4
+	   		},
+	   		'Frente Amplio': {
+	   			'parties': [['RD', 1]], 
+				'color': colores['verde-agua'],
+	   			'seats': 1
+	   		},
+	   		'Por un Chile Justo y Descentralizado': {
+	   			'parties': [['PRSD', 1]],
+				'color': colores['violeta'],
+	   			'seats': 1
+	   		},
+	   		'Unidos por la Descentralización': {
+	   			'parties': [['PDC', 3], ['PSCH', 2]],
+				'color': colores['violeta'],
+	   			'seats': 5
+	   		}
+	   	},
+    	{
+    		'Frente Amplio': true,
+    		'Por un Chile Justo y Descentralizado': true,
+    		'Unidos por la Descentralización': true,
+    		'Chile Vamos RN-EVO': true,
+    		'Chile Vamos UDI-PRI': true
+    	}
+   	],
+   	'Región del Maule': [
+   		{
+   			'Chile Vamos RN-EVO': {
+   				'parties': [['RN', 5],['IND', 2]],
+				'color': colores['azul'],
+   				'seats': 7
+   			},
+   			'Chile Vamos UDI-PRI': {
+   				'parties': [['UDI', 4]], 
+				'color': colores['azul'],
+   				'seats': 4
+   			},
+   			'Por un Chile Justo y Descentralizado': {
+   				'parties': [['PCCH', 1],['PRSD', 1], ['PPD', 1]],
+				'color': colores['violeta'],
+   				'seats': 3
+   			},
+   			'Unidos por la Descentralización': {
+   				'parties': [['PSCH', 1], ['IND', 1],['PDC', 4]],
+				'color': colores['violeta'],
+   				'seats': 6
+   			}
+   		},
+    	{
+    		'Por un Chile Justo y Descentralizado': true,
+    		'Unidos por la Descentralización': true,
+    		'Chile Vamos RN-EVO': true,
+    		'Chile Vamos UDI-PRI': true
+    	}
+   	],
+   	'Región de Ñuble': [
+   		{
+   			'Chile Vamos RN-EVO': {
+   				'parties': [['RN', 1],['IND', 1]],
+				'color': colores['azul'],
+   				'seats': 2
+   			},
+   			'Chile Vamos UDI-PRI': {
+   				'parties': [['UDI', 1]], 
+				'color': colores['azul'],
+   				'seats': 1
+   			},
+   			'Por un Chile Justo y Descentralizado': {
+   				'parties': [['PPD', 1],['PRSD', 1]],
+				'color': colores['violeta'],
+   				'seats': 2
+   			},
+   			'Unidos por la Descentralización': {
+   				'parties': [['PDC', 1]], 
+				'color': colores['violeta'],
+   				'seats': 1
+   			}
+   		},
+    	{
+    		'Por un Chile Justo y Descentralizado': true,
+    		'Unidos por la Descentralización': true,
+    		'Chile Vamos RN-EVO': true,
+    		'Chile Vamos UDI-PRI': true
+    	}
+   	],
+   	'Región del Bío-Bío': [
+   		{
+   			'Chile Vamos RN-EVO': {
+   				'parties': [['RN', 4]],
+				'color': colores['azul'],
+   				'seats': 4
+   			},
+			'Chile Vamos UDI-PRI': {
+				'parties': [['UDI', 6], ['IND', 2]], 
+				'color': colores['azul'],
+				'seats': 8
+			},
+			'Frente Amplio': {
+				'parties': [['IGUAL', 1]], 
+				'color': colores['verde-agua'],
+				'seats': 1
+			},
+			'Por un Chile Justo y Descentralizado': {
+				'parties': [['IND', 1],['PPD', 2],['PCCH', 2]],
+				'color': colores['violeta'],
+				'seats': 5
+			},
+			'Unidos por la Descentralización': {
+				'parties': [['PSCH', 1], ['PDC', 3]],
+				'color': colores['violeta'],
+				'seats': 4
+			}
+		},
+    	{
+    		'Frente Amplio': true,
+    		'Por un Chile Justo y Descentralizado': true,
+    		'Unidos por la Descentralización': true,
+    		'Chile Vamos RN-EVO': true,
+    		'Chile Vamos UDI-PRI': true
+    	}
+	],
+	'Región de La Araucanía': [
+		{
+			'Chile Vamos RN-EVO': {
+				'parties': [['RN', 6],['IND', 1]],
+				'color': colores['azul'],
+    			'seats': 7
+    		},
+    		'Chile Vamos UDI-PRI': {
+    			'parties': [['UDI', 3]], 
+				'color': colores['azul'],
+    			'seats': 3
+    		},
+   			'Por un Chile Justo y Descentralizado': {
+   				'parties': [['PPD', 5]],
+				'color': colores['violeta'],
+    			'seats': 5
+    		},
+   			'Sumemos': {
+   				'parties': [['IND', 1]], 
+				'color': colores['azul-marino'],
+   				'seats': 1
+   			},
+   			'Unidos por la Descentralización': {
+   				'parties': [['PDC', 3], ['IND', 1]],
+				'color': colores['violeta'],
+    			'seats': 4
+    		}
+    	},
+    	{
+    		'Por un Chile Justo y Descentralizado': true,
+    		'Unidos por la Descentralización': true,
+    		'Sumemos': true,
+    		'Chile Vamos RN-EVO': true,
+    		'Chile Vamos UDI-PRI': true
+    	}
+    ],
+    'Región de Los Ríos': [
+    	{
+    		'Chile Vamos RN-EVO': {
+    			'parties': [['RN', 3],['EVO', 1]],
+				'color': colores['azul'],
+    			'seats': 4
+    		},
+   			'Chile Vamos UDI-PRI': {
+   				'parties': [['UDI', 2], ['IND', 2]], 
+				'color': colores['azul'],
+   				'seats': 4
+   			},
+   			'Frente Amplio': {
+   				'parties': [['RD', 1]], 
+				'color': colores['verde-agua'],
+   				'seats': 1
+   			},
+   			'Por un Chile Justo y Descentralizado': {
+   				'parties': [['PPD', 2]],
+				'color': colores['violeta'],
+    			'seats': 2
+    		},
+   			'Unidos por la Descentralización': {
+   				'parties': [['PDC', 2], ['PSCH', 1]],
+				'color': colores['violeta'],
+    			'seats': 3
+    		}
+    	},
+    	{
+    		'Frente Amplio': true,
+    		'Por un Chile Justo y Descentralizado': true,
+    		'Unidos por la Descentralización': true,
+    		'Chile Vamos RN-EVO': true,
+    		'Chile Vamos UDI-PRI': true
+    	}
+    ],
+    'Región de Los Lagos': [
+    	{
+    		'Chile Vamos RN-EVO': {
+    			'parties': [['RN', 5]],
+				'color': colores['azul'],
+    			'seats': 5
+    		},
+   			'Chile Vamos UDI-PRI': {
+   				'parties': [['UDI', 3]], 
+				'color': colores['azul'],
+   				'seats': 3
+   			},
+   			'Por un Chile Justo y Descentralizado': {
+   				'parties': [['PPD', 1],['IND', 1]],
+				'color': colores['violeta'],
+    			'seats': 2
+    		},
+   			'Unidos por la Descentralización': {
+   				'parties': [['PDC', 3], ['PSCH', 3]],
+				'color': colores['violeta'],
+    			'seats': 6
+    		}
+    	},
+    	{
+    		'Por un Chile Justo y Descentralizado': true,
+    		'Unidos por la Descentralización': true,
+    		'Chile Vamos RN-EVO': true,
+    		'Chile Vamos UDI-PRI': true
+    	}
+   ],
+   'Región de Aysén del Gral. Ibañez del Campo': [
+	   	{
+	   		'Chile Vamos RN-EVO': {
+	   			'parties': [['RN',3]],
+				'color': colores['azul'],
+	    		'seats': 3
+	    	},
+	   		'Chile Vamos UDI-PRI': {
+	   			'parties': [['UDI', 2]], 
+				'color': colores['azul'],
+	   			'seats': 2
+	   		},
+	   		'Frente Amplio': {
+	   			'parties': [['RD', 1]], 
+				'color': colores['verde-agua'],
+	   			'seats': 1
+	   		},
+	   		'Por un Chile Justo y Descentralizado': {
+	   			'parties': [['PPD', 1],['PRSD', 3]],
+				'color': colores['violeta'],
+	    		'seats': 4
+	    	},
+	   		'Unidos por la Descentralización': {
+	   			'parties': [['PDC', 3], ['PSCH', 1]],
+				'color': colores['violeta'],
+	    		'seats': 4
+	    	}
+	    },
+    	{
+    		'Frente Amplio': true,
+    		'Por un Chile Justo y Descentralizado': true,
+    		'Unidos por la Descentralización': true,
+    		'Chile Vamos RN-EVO': true,
+    		'Chile Vamos UDI-PRI': true
+    	}
+    ],
+    'Región de Magallanes y Antártica Chilena': [
+    	{
+    		'Chile Vamos RN-EVO': {
+    			'parties': [['RN',2],['IND', 2]],
+				'color': colores['azul'],
+    			'seats': 4
+    		},
+   			'Chile Vamos UDI-PRI': {
+   				'parties': [['UDI', 2]], 
+				'color': colores['azul'],
+   				'seats': 2
+   			},
+   			'Por un Chile Justo y Descentralizado': {
+   				'parties': [['PPD', 1],['IND', 1],['PCCH', 1]],
+				'color': colores['violeta'],
+    			'seats': 3
+    		},
+   			'Unidos por la Descentralización': {
+   				'parties': [['PDC', 2],['PSCH', 2],['IND', 1]],
+				'color': colores['violeta'],
+   				'seats': 5
+   			}
+   		},
+    	{
+    		'Por un Chile Justo y Descentralizado': true,
+    		'Unidos por la Descentralización': true,
+    		'Chile Vamos RN-EVO': true,
+    		'Chile Vamos UDI-PRI': true
+    	}
+   	]
+}
+
+var hoveredStateId = null;
+map.on('mousemove', 'cores', function (e){
+	/*
+	if (hoveredStateId !== null) {
+		map.setFeatureState(
+			{ source: 'cores-data', sourceLayer: 'cores2017-11-0by2rp', id: hoveredStateId},
+			{ hover: false }
+		);
+	}
+	hoveredStateId = e.features[0].id;
+	map.setFeatureState(
+		{ source: 'cores-data', sourceLayer: 'cores2017-11-0by2rp', id: hoveredStateId},
+		{ hover: true }
+	);*/
+
+    map.getCanvas().style.cursor = 'pointer';
+	var region = e.features[0].properties.REGION;
+	var prov = e.features[0].properties.PROV;
+	var circ = e.features[0].properties['NOM_CIRC'];
+	var nconc = e.features[0].properties['NConcReg'];
+	var concejeros = '<table style="border-collapse:collapse">';
+	var lista_ant = '';
+	for (i = 1; i <= nconc; i++) {
+		var beg = 'Conc';
+		if (i<10) beg += '0';
+		beg += i;
+		var lista = e.features[0].properties[beg+'_Lis'];
+		var partido = e.features[0].properties[beg+'_Ptd'];
+		var perct = e.features[0].properties[beg+'_Pct'];
+		var perctL = e.features[0].properties[beg+'_PctL'];
+		if (lista!=lista_ant) {
+			concejeros += '<tr><td colspan=2><span style="font-weight:bold">'+lista+'</span></td>';
+			concejeros += '</td><td style="padding-left:10px;text-align:right;font-weight:bold">'+perctL+'%</td></tr>';
+		};
+		concejeros += '<tr>';	
+		concejeros += '<td><span class="legend-key" style="background-color:'+coloresCORE[lista]+'"></span>';
+		if (e.features[0].properties.hasOwnProperty(beg+'_Rem')) {
+			concejeros += '<strike>'+e.features[0].properties[beg+'_Nom']+'</strike>';
+		} else {
+			concejeros += e.features[0].properties[beg+'_Nom'];
+		}
+		concejeros += '</td><td style="padding-left:10px">'+partido+'</td>';
+		concejeros += '</td><td style="padding-left:10px;text-align:right">'+perct+'%</td>';
+		concejeros += '</tr>';
+		if (e.features[0].properties.hasOwnProperty(beg+'_Rem')) {
+			concejeros += '<tr>'
+			concejeros += '<td colspan=3 style="padding-left:16px"> reemplazado/a por '
+			concejeros += e.features[0].properties[beg+'_Rem'] +'</td>'
+			concejeros += '</tr>'	
+		}
+		lista_ant = lista;
+	}
+	concejeros += '</table>';
+
+	var comunas = '';
+	var count = 1;
+	var comStr = e.features[0].properties.COMUNAS;
+	for (key in comStr) {
+		if (!['{','}','1','2','3','4','5','6','7','8','9','0','"',':',','].includes(comStr[key])) comunas += comStr[key];
+		if ([','].includes(comStr[key])){ 
+			comunas += ', ';
+			count += 1;
+			if (count==4) {count=0; comunas += '<br>';}
+		}
+	}
+
+	popup.setLngLat(e.lngLat)
+		.setHTML(
+			'<h4><span style="font-weight:bold">Circunscripción Provincial '+circ+'</span><br>Comunas: '+comunas+'<br>'+region+'</h4>'+concejeros
+			)
+		.addTo(map);
+
+
+    if (screen.width>=992) {
+    	legend2.style.display = 'block';
+    	legend2.innerHTML = 'Consejeros Regionales 2018-2022<br>'+ region;
+    	legend2.style.fontWeight = 'bold';
+    	legend2.style.textAlign = 'center';
+    	var div = document.createElement('div');
+    	div.appendChild(generateSVG(region2cores[region][0], region2cores[region][1], true));
+    	legend2.appendChild(div);
+    }
+});
+map.on('mouseleave', 'cores', function () {
+	/*
+	if (hoveredStateId !== null) {
+		map.setFeatureState(
+			{ source: 'cores-data', sourceLayer: 'cores2017-11-0by2rp', id: hoveredStateId},
+			{ hover: false }
+		);
+	}
+	hoveredStateId = null;*/
+    map.getCanvas().style.cursor = '';
+    popup.remove();
+    if (screen.width>=992) {
+    	legend2.style.display = 'none';
+    }
+});
 
 map.on('mousemove', 'gobernadores-electos', function (e) {
     map.getCanvas().style.cursor = 'pointer';
@@ -748,7 +1476,6 @@ map.on('mousemove', 'gobernadores-electos', function (e) {
 				'</table>'
 				)
 			.addTo(map);    
-
     }
 });
 map.on('mouseleave', 'gobernadores-electos', function () {
@@ -801,8 +1528,9 @@ coloresDipP = {
 	'Coalición Regionalista Verde': colores['verde'],
 	'Convergencia Democrática': colores['marron'],
 	'Candidatura Independiente': colores['gris'],
-	'Por Todo Chile': colores['naranja'],
+	'Por Todo Chile': colores['rosado'],
 };
+
 
 map.on('mousemove', 'diputados', function (e) {
     map.getCanvas().style.cursor = 'pointer';
@@ -1088,10 +1816,12 @@ function clean() {
 	map.setLayoutProperty('comunas-outline-zoom', 'visibility', 'none');
 	map.setLayoutProperty('regiones-outline', 'visibility', 'none');
     map.setLayoutProperty('gobernadores-electos', 'visibility', 'none');
+    map.setLayoutProperty('cores', 'visibility', 'none');
 
 	document.getElementById('a-diputados').style.color = 'gray';
 	document.getElementById('a-senadores').style.color = 'gray';
 	document.getElementById('a-gobernadores').style.color = 'gray';
+	document.getElementById('a-cores').style.color = 'gray';
 	document.getElementById('a-alcaldes').style.color = 'gray';
 	document.getElementById('a-concejales').style.color = 'gray';
 }
@@ -1492,6 +2222,86 @@ function mostrarSenadores() {
 
 	legend.appendChild(getParliamentTable(parliament));
 };
+
+function mostrarCORES() {
+	clean();
+	map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
+    //map.setLayoutProperty('comunas-outline', 'visibility', 'visible');	
+    map.setLayoutProperty('cores', 'visibility', 'visible');
+	document.getElementById('a-cores').style.color = 'black';
+
+	parliament = {
+		'Chile Vamos': {
+			'seats': 133,
+			'color': colores['azul'],
+			'parties': [['RN', 72], ['UDI', 52], ['EVO', 5], ['PRI', 4]]
+		},
+		'Unidos por la Descentr.': {
+			'seats': 70,
+			'color': colores['violeta'],
+			'parties': [['PDC', 44], ['PS', 26]]
+		},
+		'Por un Chile Justo y Descentr.': {
+			'seats': 47,
+			'color': colores['violeta'],
+			'parties': [['PPD', 26], ['PCCH', 11], ['PRSD', 8], ['MAS', 1], ['IC', 1]]
+		},
+		'Frente Amplio': {
+			'seats': 18,
+			'color': colores['verde-agua'],
+			'parties': [['RD', 10], ['PH', 6], ['IGUAL', 2]]
+		},
+		'Por Todo Chile': {
+			'seats': 2,
+			'color': colores['rosado'],
+			'parties': [['PRO', 2]]
+		},
+		'Sumemos': {
+			'seats': 2,
+			'color': colores['azul-marino'],
+			'parties': [['AMPLI', 2]]
+		},
+		'Coalición Regionalista Verde': {
+			'seats': 2,
+			'color': colores['verde'],
+			'parties': [['FREVS', 2]]
+		},
+		'Frente Ecologista y Ciudadano': {
+			'seats': 2,
+			'color': colores['verde'],
+			'parties': [['PODER', 2]]
+		},
+		'Integración para el Desarrollo': {
+			'seats': 1,
+			'color': colores['naranja'],
+			'parties': [['PLIR', 1]]
+ 		},
+		'Fuera de Pacto': {
+			'seats': 1,
+			'color': colores['gris'],
+			'parties': [['IND', 1]]
+ 		}
+	}
+
+
+	legend.style.display = 'block';
+    legend.innerHTML = '';
+    if (screen.width>=992) {
+    	legend.style.width = '540px';
+    	legend.style.maxWidth = '540px';
+    	legend.style.height = '225px';
+    	legend2.style.display = 'none';
+    	legend2.style.maxWidth = '850px';
+    	legend2.style.width = '360px';
+    	legend2.style.height = '250px';
+    } else {
+        legend.style.width = '295px';
+        legend.style.maxWidth = '295px';
+        legend.style.height = '190px';
+    }
+
+	legend.appendChild(getParliamentTable(parliament));
+}
 
 function mostrarGobernadores() {
 	clean();
