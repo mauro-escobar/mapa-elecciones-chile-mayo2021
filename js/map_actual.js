@@ -1,9 +1,9 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoibWF1cm8tZXNjb2JhciIsImEiOiJja3A1aGxiajIwZ3lrMnRxdHN1M2NhcXpiIn0.mXzXiupFZlOThQTwmpK20Q';
 
-var colores = {'azul': '#3b83bd', 'azul-marino': '#00008B', 'violeta': '#985698', 'marron': '#A0522D', 'verde-agua': '#00B771',
+var colores = {'azul': '#3b83bd', 'azul-marino': '#122562', 'violeta': '#985698', 'marron': '#A0522D', 'verde-agua': '#00B771',
 		   	   'verde': '#008000', 'rojo': '#ff0000', 'rojo-oscuro': '#CC0000', 'amarillo': '#f9d71c', 'naranja': '#ffa500',
 		   	   'gris': '#797979', 'gris-claro': '#d3d3d3', 'blanco': '#ffffff', 'suave': '#f8ca92', 'negro': '#000000',
-		   	   'rosado': '#e6007e'}
+		   	   'rosado': '#e6007e', 'celeste': '#00aae4', 'verde2': '#a9dfbf'}
 
 function capitalize(words) {
    var separateWord = words.toLowerCase().split(' ');
@@ -364,7 +364,7 @@ map.on('load', function(){
     map.addSource('cores-data',
     	{
             'type': 'vector',
-            'url': 'mapbox://mauro-escobar.5vdcnd9t'
+            'url': 'mapbox://mauro-escobar.5vdcnd9t',
         }
     );
     map.addLayer({
@@ -641,16 +641,22 @@ map.on('load', function(){
             'fill-color': [
             	'match', ['get', 'Conc01_Lis'],
             	'Chile Vamos RN-EVO', colores['azul'],
-            	'Chile Vamos UDI-PRI', colores['azul'],
-            	'Sumemos', colores['azul-marino'],
+            	'Chile Vamos UDI-PRI', colores['azul-marino'],
+            	'Sumemos', colores['celeste'],
             	'Unidos por la Descentralización', colores['violeta'],
-            	'Por un Chile Justo y Descentralizado', colores['violeta'],
+            	'Por un Chile Justo y Descentralizado', colores['rojo-oscuro'],
             	'Frente Amplio', colores['verde-agua'],
-            	'Frente Ecologista y Ciudadano', colores['verde'],
+            	'Frente Ecologista y Ciudadano', colores['verde2'],
             	'Coalición Regionalista Verde', colores['verde'],
             	colores['gris']
             ],
-            'fill-opacity': 0.9
+            'fill-opacity': [
+            	'interpolate',
+            	['linear'],
+            	['get', 'Conc01_PctL'],
+            	15, 0.4,
+            	35, 0.8
+            ]
         },
     }, 'regiones-outline');
     map.setLayoutProperty('cores', 'visibility', 'none');	
@@ -718,13 +724,13 @@ map.on('dblclick', function () {
 
 var coloresCORE = {
 	'Chile Vamos RN-EVO': colores['azul'],
-	'Chile Vamos UDI-PRI': colores['azul'],
-	'Sumemos': colores['azul-marino'],
+	'Chile Vamos UDI-PRI': colores['azul-marino'],
+	'Sumemos': colores['celeste'],
 	'Frente Amplio': colores['verde-agua'],
 	'Unidos por la Descentralización': colores['violeta'],
-	'Por un Chile Justo y Descentralizado': colores['violeta'],
+	'Por un Chile Justo y Descentralizado': colores['rojo-oscuro'],
 	'Coalición Regionalista Verde': colores['verde'],
-	'Frente Ecologista y Ciudadano': colores['verde'],
+	'Frente Ecologista y Ciudadano': colores['verde2'],
 	'Fuera de pacto': colores['gris'],
 	'Integración para el Desarrollo': colores['naranja'],
 	'Por Todo Chile': colores['rosado'],
@@ -739,7 +745,7 @@ var region2cores = {
 			},
    			'Chile Vamos UDI-PRI': {
    				'parties': [['UDI', 1], ['IND', 2]], 
-				'color': colores['azul'],
+				'color': colores['azul-marino'],
    				'seats': 3
    			},
    			'Frente Amplio': {
@@ -749,7 +755,7 @@ var region2cores = {
    			},
    			'Frente Ecologista y Ciudadano': {
    				'parties': [['PODER', 1]], 
-				'color': colores['verde'],
+				'color': colores['verde2'],
    				'seats': 1
    			},
    			'Por Todo Chile': {
@@ -759,7 +765,7 @@ var region2cores = {
    			},
    			'Por un Chile Justo y Descentralizado': {
    				'parties': [['PCCH', 1],['IND', 1]],
-				'color': colores['violeta'],
+				'color': colores['rojo-oscuro'],
     			'seats': 2
     		},
    			'Unidos por la Descentralización': {
@@ -787,7 +793,7 @@ var region2cores = {
     		},
    			'Chile Vamos UDI-PRI': {
    				'parties': [['UDI', 1]], 
-				'color': colores['azul'],
+				'color': colores['azul-marino'],
    				'seats': 1
    			},
    			'Coalición Regionalista Verde': {
@@ -797,7 +803,7 @@ var region2cores = {
    			},
    			'Por un Chile Justo y Descentralizado': {
    				'parties': [['MAS', 1],['PCCH', 2],['IND', 1],['PRSD', 1]],
-				'color': colores['violeta'],
+				'color': colores['rojo-oscuro'],
    				'seats': 5
    			},
    			'Unidos por la Descentralización': {
@@ -823,7 +829,7 @@ var region2cores = {
    			},
    			'Chile Vamos UDI-PRI': {
    				'parties': [['UDI', 1]], 
-				'color': colores['azul'],
+				'color': colores['azul-marino'],
    				'seats': 1
    			},
    			'Frente Amplio': {
@@ -833,7 +839,7 @@ var region2cores = {
    			},
    			'Frente Ecologista y Ciudadano': {
    				'parties': [['PODER', 1]], 
-				'color': colores['verde'],
+				'color': colores['verde2'],
    				'seats': 1
    			},
    			'Integración para el Desarrollo': {
@@ -843,7 +849,7 @@ var region2cores = {
    			},
    			'Por un Chile Justo y Descentralizado': {
    				'parties': [['PCCH', 1],['PRSD', 1]],
-				'color': colores['violeta'],
+				'color': colores['rojo-oscuro'],
    				'seats': 2
    			},
    			'Unidos por la Descentralización': {
@@ -871,7 +877,7 @@ var region2cores = {
    			},
    			'Chile Vamos UDI-PRI': {
    				'parties': [['UDI', 3], ['PRI', 1]], 
-				'color': colores['azul'],
+				'color': colores['azul-marino'],
    				'seats': 4
    			},
    			'Frente Amplio': {
@@ -881,7 +887,7 @@ var region2cores = {
    			},
    			'Por un Chile Justo y Descentralizado': {
    				'parties': [['PPD', 1], ['IC', 1]],
-				'color': colores['violeta'],
+				'color': colores['rojo-oscuro'],
    				'seats': 2
    			},
    			'Unidos por la Descentralización': {
@@ -907,7 +913,7 @@ var region2cores = {
    			},
    			'Chile Vamos UDI-PRI': {
    				'parties': [['UDI', 3], ['IND', 1]], 
-				'color': colores['azul'],
+				'color': colores['azul-marino'],
    				'seats': 4
    			},
    			'Fuera de pacto': {
@@ -917,7 +923,7 @@ var region2cores = {
    			},
    			'Por un Chile Justo y Descentralizado': {
    				'parties': [['PPD', 1],['PCCH', 1]],
-				'color': colores['violeta'],
+				'color': colores['rojo-oscuro'],
    				'seats': 3
    			},
    			'Unidos por la Descentralización': {
@@ -943,7 +949,7 @@ var region2cores = {
    			},
    			'Chile Vamos UDI-PRI': {
    				'parties': [['UDI', 4]], 
-				'color': colores['azul'],
+				'color': colores['azul-marino'],
    				'seats': 4
    			},
    			'Frente Amplio': {
@@ -953,12 +959,12 @@ var region2cores = {
    			},
    			'Por un Chile Justo y Descentralizado': {
    				'parties': [['PPD', 3],['IND', 1]],
-				'color': colores['violeta'],
+				'color': colores['rojo-oscuro'],
    				'seats': 4
    			},
    			'Sumemos': {
    				'parties': [['AMPLI', 1]], 
-				'color': colores['azul-marino'],
+				'color': colores['celeste'],
    				'seats': 1
    			},
    			'Unidos por la Descentralización': {
@@ -986,7 +992,7 @@ var region2cores = {
    			'Chile Vamos UDI-PRI': {
    				'parties': 
    				[['UDI', 8]], 
-				'color': colores['azul'],
+				'color': colores['azul-marino'],
    				'seats': 8
    			},
    			'Frente Amplio': {
@@ -996,7 +1002,7 @@ var region2cores = {
    			},
    			'Por un Chile Justo y Descentralizado': {
    				'parties': [['PPD', 1]],
-				'color': colores['violeta'],
+				'color': colores['rojo-oscuro'],
    				'seats': 1
    			},
    			'Unidos por la Descentralización': {
@@ -1022,7 +1028,7 @@ var region2cores = {
 	   		},
 	   		'Chile Vamos UDI-PRI': {
 	   			'parties': [['IND', 2], ['UDI', 2]], 
-				'color': colores['azul'],
+				'color': colores['azul-marino'],
 	   			'seats': 4
 	   		},
 	   		'Frente Amplio': {
@@ -1032,7 +1038,7 @@ var region2cores = {
 	   		},
 	   		'Por un Chile Justo y Descentralizado': {
 	   			'parties': [['PRSD', 1]],
-				'color': colores['violeta'],
+				'color': colores['rojo-oscuro'],
 	   			'seats': 1
 	   		},
 	   		'Unidos por la Descentralización': {
@@ -1058,12 +1064,12 @@ var region2cores = {
    			},
    			'Chile Vamos UDI-PRI': {
    				'parties': [['UDI', 4]], 
-				'color': colores['azul'],
+				'color': colores['azul-marino'],
    				'seats': 4
    			},
    			'Por un Chile Justo y Descentralizado': {
    				'parties': [['PCCH', 1],['PRSD', 1], ['PPD', 1]],
-				'color': colores['violeta'],
+				'color': colores['rojo-oscuro'],
    				'seats': 3
    			},
    			'Unidos por la Descentralización': {
@@ -1088,12 +1094,12 @@ var region2cores = {
    			},
    			'Chile Vamos UDI-PRI': {
    				'parties': [['UDI', 1]], 
-				'color': colores['azul'],
+				'color': colores['azul-marino'],
    				'seats': 1
    			},
    			'Por un Chile Justo y Descentralizado': {
    				'parties': [['PPD', 1],['PRSD', 1]],
-				'color': colores['violeta'],
+				'color': colores['rojo-oscuro'],
    				'seats': 2
    			},
    			'Unidos por la Descentralización': {
@@ -1118,7 +1124,7 @@ var region2cores = {
    			},
 			'Chile Vamos UDI-PRI': {
 				'parties': [['UDI', 6], ['IND', 2]], 
-				'color': colores['azul'],
+				'color': colores['azul-marino'],
 				'seats': 8
 			},
 			'Frente Amplio': {
@@ -1128,7 +1134,7 @@ var region2cores = {
 			},
 			'Por un Chile Justo y Descentralizado': {
 				'parties': [['IND', 1],['PPD', 2],['PCCH', 2]],
-				'color': colores['violeta'],
+				'color': colores['rojo-oscuro'],
 				'seats': 5
 			},
 			'Unidos por la Descentralización': {
@@ -1154,17 +1160,17 @@ var region2cores = {
     		},
     		'Chile Vamos UDI-PRI': {
     			'parties': [['UDI', 3]], 
-				'color': colores['azul'],
+				'color': colores['azul-marino'],
     			'seats': 3
     		},
    			'Por un Chile Justo y Descentralizado': {
    				'parties': [['PPD', 5]],
-				'color': colores['violeta'],
+				'color': colores['rojo-oscuro'],
     			'seats': 5
     		},
    			'Sumemos': {
    				'parties': [['IND', 1]], 
-				'color': colores['azul-marino'],
+				'color': colores['celeste'],
    				'seats': 1
    			},
    			'Unidos por la Descentralización': {
@@ -1190,7 +1196,7 @@ var region2cores = {
     		},
    			'Chile Vamos UDI-PRI': {
    				'parties': [['UDI', 2], ['IND', 2]], 
-				'color': colores['azul'],
+				'color': colores['azul-marino'],
    				'seats': 4
    			},
    			'Frente Amplio': {
@@ -1200,7 +1206,7 @@ var region2cores = {
    			},
    			'Por un Chile Justo y Descentralizado': {
    				'parties': [['PPD', 2]],
-				'color': colores['violeta'],
+				'color': colores['rojo-oscuro'],
     			'seats': 2
     		},
    			'Unidos por la Descentralización': {
@@ -1226,12 +1232,12 @@ var region2cores = {
     		},
    			'Chile Vamos UDI-PRI': {
    				'parties': [['UDI', 3]], 
-				'color': colores['azul'],
+				'color': colores['azul-marino'],
    				'seats': 3
    			},
    			'Por un Chile Justo y Descentralizado': {
    				'parties': [['PPD', 1],['IND', 1]],
-				'color': colores['violeta'],
+				'color': colores['rojo-oscuro'],
     			'seats': 2
     		},
    			'Unidos por la Descentralización': {
@@ -1256,7 +1262,7 @@ var region2cores = {
 	    	},
 	   		'Chile Vamos UDI-PRI': {
 	   			'parties': [['UDI', 2]], 
-				'color': colores['azul'],
+				'color': colores['azul-marino'],
 	   			'seats': 2
 	   		},
 	   		'Frente Amplio': {
@@ -1266,7 +1272,7 @@ var region2cores = {
 	   		},
 	   		'Por un Chile Justo y Descentralizado': {
 	   			'parties': [['PPD', 1],['PRSD', 2],['PCCH',1]],
-				'color': colores['violeta'],
+				'color': colores['rojo-oscuro'],
 	    		'seats': 4
 	    	},
 	   		'Unidos por la Descentralización': {
@@ -1292,12 +1298,12 @@ var region2cores = {
     		},
    			'Chile Vamos UDI-PRI': {
    				'parties': [['UDI', 2]], 
-				'color': colores['azul'],
+				'color': colores['azul-marino'],
    				'seats': 2
    			},
    			'Por un Chile Justo y Descentralizado': {
    				'parties': [['PPD', 1],['IND', 1],['PCCH', 1]],
-				'color': colores['violeta'],
+				'color': colores['rojo-oscuro'],
     			'seats': 3
     		},
    			'Unidos por la Descentralización': {
@@ -1316,20 +1322,11 @@ var region2cores = {
 }
 
 var hoveredStateId = null;
+var clicked = false;
+map.on('click', 'cores', function() {
+	clicked = !clicked;
+});
 map.on('mousemove', 'cores', function (e){
-	/*
-	if (hoveredStateId !== null) {
-		map.setFeatureState(
-			{ source: 'cores-data', sourceLayer: 'cores2017-11-0by2rp', id: hoveredStateId},
-			{ hover: false }
-		);
-	}
-	hoveredStateId = e.features[0].id;
-	map.setFeatureState(
-		{ source: 'cores-data', sourceLayer: 'cores2017-11-0by2rp', id: hoveredStateId},
-		{ hover: true }
-	);*/
-
     map.getCanvas().style.cursor = 'pointer';
 	var region = e.features[0].properties.REGION;
 	var prov = e.features[0].properties.PROV;
@@ -1359,7 +1356,7 @@ map.on('mousemove', 'cores', function (e){
 		concejeros += '</td><td style="padding-left:10px">'+partido+'</td>';
 		concejeros += '</td><td style="padding-left:10px;text-align:right">'+perct+'%</td>';
 		concejeros += '</tr>';
-		if (e.features[0].properties.hasOwnProperty(beg+'_Rem')) {
+		if (e.features[0].properties.hasOwnProperty(beg+'_Rem') && e.features[0].properties[beg+'_Rem']!="") {
 			concejeros += '<tr>'
 			concejeros += '<td colspan=3 style="padding-left:16px"> reemplazado/a por '
 			concejeros += e.features[0].properties[beg+'_Rem'] +'</td>'
@@ -1399,17 +1396,9 @@ map.on('mousemove', 'cores', function (e){
     }
 });
 map.on('mouseleave', 'cores', function () {
-	/*
-	if (hoveredStateId !== null) {
-		map.setFeatureState(
-			{ source: 'cores-data', sourceLayer: 'cores2017-11-0by2rp', id: hoveredStateId},
-			{ hover: false }
-		);
-	}
-	hoveredStateId = null;*/
     map.getCanvas().style.cursor = '';
     popup.remove();
-    if (screen.width>=992) {
+    if (screen.width>=992 & !clicked) {
     	legend2.style.display = 'none';
     }
 });
@@ -1824,6 +1813,9 @@ function clean() {
 	document.getElementById('a-cores').style.color = 'gray';
 	document.getElementById('a-alcaldes').style.color = 'gray';
 	document.getElementById('a-concejales').style.color = 'gray';
+	legend2.innerHTML = '';
+	legend2.style.fontWeight = '';
+	legend2.style.textAlign = '';
 }
 
 
@@ -2231,19 +2223,24 @@ function mostrarCORES() {
 	document.getElementById('a-cores').style.color = 'black';
 
 	parliament = {
-		'Chile Vamos': {
-			'seats': 132,
+		'Chile Vamos RN-EVO': {
+			'seats': 76,
 			'color': colores['azul'],
-			'parties': [['RN', 71], ['UDI', 52], ['EVO', 5], ['PRI', 4]]
+			'parties': [['RN', 71], ['EVO', 5]]
 		},
 		'Unidos por la Descentr.': {
 			'seats': 71,
 			'color': colores['violeta'],
 			'parties': [['PDC', 45], ['PS', 26]]
 		},
+		'Chile Vamos UDI-PRI': {
+			'seats': 56,
+			'color': colores['azul-marino'],
+			'parties': [['UDI', 52], ['PRI', 4]]
+		},
 		'Por un Chile Justo y Descentr.': {
 			'seats': 45,
-			'color': colores['violeta'],
+			'color': colores['rojo-oscuro'],
 			'parties': [['PPD', 23], ['PCCH', 12], ['PRSD', 8], ['MAS', 1], ['IC', 1]]
 		},
 		'Frente Amplio': {
@@ -2258,7 +2255,7 @@ function mostrarCORES() {
 		},
 		'Sumemos': {
 			'seats': 2,
-			'color': colores['azul-marino'],
+			'color': colores['celeste'],
 			'parties': [['AMPLI', 2]]
 		},
 		'Coalición Regionalista Verde': {
@@ -2268,7 +2265,7 @@ function mostrarCORES() {
 		},
 		'Frente Ecologista y Ciudadano': {
 			'seats': 2,
-			'color': colores['verde'],
+			'color': colores['verde2'],
 			'parties': [['PODER', 2]]
 		},
 		'Integración para el Desarrollo': {
@@ -2289,7 +2286,7 @@ function mostrarCORES() {
     if (screen.width>=992) {
     	legend.style.width = '540px';
     	legend.style.maxWidth = '540px';
-    	legend.style.height = '225px';
+    	legend.style.height = '240px';
     	legend2.style.display = 'none';
     	legend2.style.maxWidth = '850px';
     	legend2.style.width = '360px';
@@ -2297,7 +2294,7 @@ function mostrarCORES() {
     } else {
         legend.style.width = '295px';
         legend.style.maxWidth = '295px';
-        legend.style.height = '190px';
+        legend.style.height = '205px';
     }
 
 	legend.appendChild(getParliamentTable(parliament));
