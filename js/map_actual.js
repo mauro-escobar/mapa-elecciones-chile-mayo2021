@@ -1391,7 +1391,7 @@ map.on('mousemove', 'cores', function (e){
     	legend2.style.fontWeight = 'bold';
     	legend2.style.textAlign = 'center';
     	var div = document.createElement('div');
-    	div.appendChild(generateSVG(region2cores[region][0], region2cores[region][1], true));
+    	div.appendChild(generateSVG(region2cores[region][0], region2cores[region][1], true, "Cores"));
     	legend2.appendChild(div);
     }
 });
@@ -1827,156 +1827,256 @@ function mostrarDiputados() {
 	map.setLayoutProperty('dip-markers-lines', 'visibility', 'visible');
 	document.getElementById('a-diputados').style.color = 'black';
 
-	parliament = {
+	var parl_listas = {
 		'Chile Vamos': {
 			'seats': 68,
 			'color': colores['azul'],
-			'parties': [['RN', 32], ['UDI', 26], ['EVO', 6], ['IND', 4]],
-			'names': [
-				["BALTOLU RASERA NINO (UDI)", false],
-				["TRISOTTI MARTINEZ RENZO (UDI)", false],
-				["GALLEGUILLOS CASTILLO RAMON (RN)", false],
-				["NUÑEZ URRUTIA PAULINA (RN)", false],
-				["CASTRO BASCUÑAN JOSE MIGUEL (RN)", false],
-				["CID VERSALOVIC SOFIA (RN)", false],
-				["NOMAN GARRIDO NICOLAS (UDI)", false],
-				["GAHONA SALAZAR SERGIO (UDI)", false],
-				["EGUIGUREN CORREA FRANCISCO (RN)", false],
-				["FUENZALIDA COBO JUAN MANUEL (UDI)", false],
-				["LONGTON HERRERA ANDRES (RN)", false],
-				["KAST SOMMERHOFF PABLO (IND-EVO)", false],
-				["PARDO SAINZ LUIS (RN)", false],
-				["FLORES OPORTO CAMILA (RN)", false],
-				["HOFFMANN OPAZO MARIA JOSE (UDI)", false],
-				["CELIS MONTT ANDRES (RN)", false],
-				["URRUTIA SOTO OSVALDO (UDI)", false],
-				["LAVIN LEON JOAQUIN (UDI)", false],
-				["LABBE MARTINEZ CRISTIAN (UDI)", false],
-				["MORAN BAHAMONDES CAMILO (RN)", false],
-				["OLIVERA DE LA FUENTE ERIKA (IND-RN)", false],
-				["KEITEL BIANCHI SEBASTIAN (IND-EVO)", false],
-				["DURAN ESPINOZA JORGE (RN)", false],
-				["FUENTES BARROS TOMAS (RN)", false],
-				["CRUZ-COKE CARVALLO LUCIANO (EVO)", false],
-				["ALESSANDRI VERGARA JORGE (UDI)", false],
-				["TORREALBA ALVARADO SEBASTIAN (RN)", false],
-				["FUENZALIDA FIGUEROA GONZALO (RN)", false],
-				["UNDURRAGA GAZITUA FRANCISCO (EVO)", false],
-				["DEL REAL MIHOVILOVIC CATALINA (RN)", false],
-				["RAMIREZ DIEZ GUILLERMO (UDI)", false],
-				["LUCK URBAN KARIN (RN)", false],
-				["OSSANDON IRARRAZABAL XIMENA (RN)", false],
-				["PEREZ LAHSEN LEOPOLDO (RN)", false],
-				["CARTER FERNANDEZ ALVARO (IND)", false],
-				["DURAN SALINAS EDUARDO (RN)", false],
-				["MOREIRA BARROS CRISTHIAN (UDI)", false],
-				["COLOMA ALAMOS JUAN ANTONIO (UDI)", false],
-				["CUEVAS CONTRERAS NORA (UDI)", false],
-				["MACAYA DANUS JAVIER (UDI)", false],
-				["SCHALPER SEPULVEDA DIEGO (IND-RN)", false],
-				["MASFERRER VIDAL JUAN MANUEL (UDI)", false],
-				["BARROS MONTERO RAMON (UDI)", false],
-				["TRONCOSO HELLMAN VIRGINIA (IND)", false],
-				["MORALES MUÑOZ CELSO (UDI)", false],
-				["ALVAREZ-SALAMANCA RAMIREZ PEDRO PABLO (UDI)", false],
-				["REY MARTINEZ HUGO (RN)", false],
-				["RENTERIA MOLLER ROLANDO (UDI)", false],
-				["SAUERBAUM MUÑOZ FRANK (RN)", false],
-				["SANHUEZA DUEÑAS GUSTAVO (UDI)", false],
-				["VAN RYSSELBERGHE HERRERA ENRIQUE (UDI)", false],
-				["MUÑOZ GONZALEZ FRANCESCA (RN)", false],
-				["BOBADILLA MUÑOZ SERGIO (UDI)", false],
-				["ROMERO SAEZ LEONIDAS (RN)", false],
-				["NORAMBUENA FARIAS IVAN (UDI)", false],
-				["PAULSEN KEHR DIEGO (RN)", false],
-				["RATHGEB SCHIFFERLI JORGE (RN)", false],
-				["MOLINA MAGOFKE ANDRES (EVO)", false],
-				["GARCIA GARCIA RENE MANUEL (RN)", false],
-				["MELLADO SUAZO MIGUEL (RN)", false],
-				["ALVAREZ RAMIREZ SEBASTIAN (EVO)", false],
-				["BERGER FETT BERNARDO (IND)", false],
-				["VON MUHLENBROCK ZAMORA GASTON (UDI)", false],
-				["HERNANDEZ HERNANDEZ JAVIER (UDI)", false],
-				["SANTANA TIRACHINI ALEJANDRO (RN)", false],
-				["KUSCHEL SILVA CARLOS IGNACIO (RN)", false],
-				["LEUQUEN URIBE ARACELY (RN)", false],
-				["AMAR MANCILLA SANDRA (IND)", false]
-			]
+			'parties': [['RN', 32], ['UDI', 27], ['EVO', 6], ['IND', 3]]
 		},
 		'La Fuerza de la Mayoría': {
 			'seats': 30,
 			'color': colores['rojo-oscuro'],
-			'parties': [['PS', 17], ['PPD', 8], ['PRSD', 5]],
+			'parties': [['PS', 17], ['PPD', 8], ['PRSD', 5]]
+		},
+		'Frente Amplio': {
+			'seats': 13,
+			'color': colores['verde-agua'],
+			'parties': [['RD', 6], ['CS', 4], ['COM', 2], ['UNIR', 1]]
+		},
+		'Chile Digno': {
+			'seats': 13,
+			'color': colores['rojo'],
+			'parties': [['PCCH', 9], ['FRVS', 3], ['AH', 1]]
+		},
+		'Convergencia Democrática': {
+			'seats': 12,
+			'color': colores['marron'],
+			'parties': [['PDC', 12]]
+		},
+		'Nuevo Trato': {
+			'seats': 4,
+			'color': colores['amarillo'],
+			'parties': [['PL', 2], ['IND', 2]]
+		},
+		'Acción Republicana': {
+			'seats': 4,
+			'color': colores['azul-marino'],
+			'parties': [['PLR', 1], ['IND', 3]]
+		},
+		'Fuera de Pacto': {
+			'seats': 11,
+			'color': colores['gris'],
+			'parties': [['PH', 1], ['PEV', 1], ['IND', 9]]
+ 		}
+	}
+
+
+	var parliament = {
+		'Chile Vamos (UDI)': {
+			'seats': 27,
+			'color': '#2473ac',//colores['azul'],
+			'names': [
+				["BALTOLU RASERA NINO (UDI)", false],
+				["TRISOTTI MARTINEZ RENZO (UDI)", false],
+				["NOMAN GARRIDO NICOLAS (UDI)", false],
+				["GAHONA SALAZAR SERGIO (UDI)", false],
+				["FUENZALIDA COBO JUAN MANUEL (UDI)", false],
+				["HOFFMANN OPAZO MARIA JOSE (UDI)", false],
+				["URRUTIA SOTO OSVALDO (UDI)", false],
+				["LAVIN LEON JOAQUIN (UDI)", false],
+				["LABBE MARTINEZ CRISTIAN (UDI)", false],
+				["ALESSANDRI VERGARA JORGE (UDI)", false],
+				["RAMIREZ DIEZ GUILLERMO (UDI)", false],
+				["MOREIRA BARROS CRISTHIAN (UDI)", false],
+				["CARTER FERNANDEZ ALVARO (UDI)", false],
+				["COLOMA ALAMOS JUAN ANTONIO (UDI)", false],
+				["CUEVAS CONTRERAS NORA (UDI)", false],
+				["MACAYA DANUS JAVIER (UDI)", false],
+				["MASFERRER VIDAL JUAN MANUEL (UDI)", false],
+				["BARROS MONTERO RAMON (UDI)", false],
+				["MORALES MUÑOZ CELSO (UDI)", false],
+				["ALVAREZ-SALAMANCA RAMIREZ PEDRO PABLO (UDI)", false],
+				["RENTERIA MOLLER ROLANDO (UDI)", false],
+				["SANHUEZA DUEÑAS GUSTAVO (UDI)", false],
+				["VAN RYSSELBERGHE HERRERA ENRIQUE (UDI)", false],
+				["BOBADILLA MUÑOZ SERGIO (UDI)", false],
+				["NORAMBUENA FARIAS IVAN (UDI)", false],
+				["VON MUHLENBROCK ZAMORA GASTON (UDI)", false],
+				["HERNANDEZ HERNANDEZ JAVIER (UDI)", false]
+			]
+		},
+		'Chile Vamos (EVO)': {
+			'seats': 6,
+			'color': '#4f93ce', //colores['azul'],
+			'names': [
+				["KAST SOMMERHOFF PABLO (IND-EVO)", false],
+				["KEITEL BIANCHI SEBASTIAN (IND-EVO)", false],
+				["CRUZ-COKE CARVALLO LUCIANO (EVO)", false],
+				["UNDURRAGA GAZITUA FRANCISCO (EVO)", false],
+				["MOLINA MAGOFKE ANDRES (EVO)", false],
+				["ALVAREZ RAMIREZ SEBASTIAN (EVO)", false]
+			]
+		},
+		'Chile Vamos (IND)': {
+			'seats': 3,
+			'color': '#6496c8',//colores['azul'],
+			'names': [
+				["TRONCOSO HELLMAN VIRGINIA (IND)", false],
+				["BERGER FETT BERNARDO (IND)", false],
+				["AMAR MANCILLA SANDRA (IND)", false]
+			]
+		},
+		'Chile Vamos (RN)': {
+			'seats': 32,
+			'color': '#3b83bd', //colores['azul'],
+			'names': [
+				["GALLEGUILLOS CASTILLO RAMON (RN)", false],
+				["NUÑEZ URRUTIA PAULINA (RN)", false],
+				["CASTRO BASCUÑAN JOSE MIGUEL (RN)", false],
+				["CID VERSALOVIC SOFIA (RN)", false],
+				["EGUIGUREN CORREA FRANCISCO (RN)", false],
+				["LONGTON HERRERA ANDRES (RN)", false],
+				["PARDO SAINZ LUIS (RN)", false],
+				["FLORES OPORTO CAMILA (RN)", false],
+				["CELIS MONTT ANDRES (RN)", false],
+				["MORAN BAHAMONDES CAMILO (RN)", false],
+				["OLIVERA DE LA FUENTE ERIKA (IND-RN)", false],
+				["DURAN ESPINOZA JORGE (RN)", false],
+				["FUENTES BARROS TOMAS (RN)", false],
+				["TORREALBA ALVARADO SEBASTIAN (RN)", false],
+				["FUENZALIDA FIGUEROA GONZALO (RN)", false],
+				["DEL REAL MIHOVILOVIC CATALINA (RN)", false],
+				["LUCK URBAN KARIN (RN)", false],
+				["OSSANDON IRARRAZABAL XIMENA (RN)", false],
+				["PEREZ LAHSEN LEOPOLDO (RN)", false],
+				["DURAN SALINAS EDUARDO (RN)", false],
+				["SCHALPER SEPULVEDA DIEGO (IND-RN)", false],
+				["REY MARTINEZ HUGO (RN)", false],
+				["SAUERBAUM MUÑOZ FRANK (RN)", false],
+				["MUÑOZ GONZALEZ FRANCESCA (RN)", false],
+				["ROMERO SAEZ LEONIDAS (RN)", false],
+				["PAULSEN KEHR DIEGO (RN)", false],
+				["RATHGEB SCHIFFERLI JORGE (RN)", false],
+				["GARCIA GARCIA RENE MANUEL (RN)", false],
+				["MELLADO SUAZO MIGUEL (RN)", false],
+				["SANTANA TIRACHINI ALEJANDRO (RN)", false],
+				["KUSCHEL SILVA CARLOS IGNACIO (RN)", false],
+				["LEUQUEN URIBE ARACELY (RN)", false],
+			]
+		},
+		'La Fuerza de la Mayoría (PS)': {
+			'seats': 17,
+			'color': colores['rojo-oscuro'],
 			'names': [
 				["ROCAFULL LOPEZ LUIS (PS)", false],
-				["HERNANDO PEREZ MARCELA XIMENA (PRSD)", false],
 				["CICARDINI MILLA DANIELLA (PS)", false],
 				["SANTANA CASTILLO JUAN RUBEN (PS)", false],
 				["SALDIVAR AUGER RAUL (PS)", false],
 				["SCHILLING RODRIGUEZ MARCELO (PS)", false],
-				["MARZAN PINTO CAROLINA (PPD)", false],
-				["GONZALEZ TORRES RODRIGO (PPD)", false],
-				["GIRARDI LAVIN CRISTINA (PPD)", false],
 				["FERNANDEZ ALLENDE MAYA (PS)", false],
-				["JIMENEZ FUENTES TUCAPEL FRANCISCO (PPD)", false],
 				["LEIVA CARVAJAL RAUL (PS)", false],
 				["SOTO FERRADA LEONARDO (PS)", false],
 				["CASTRO GONZALEZ JUAN LUIS (PS)", false],
-				["SOTO MARDONES RAUL (PPD)", false],
-				["MELLADO PINO COSME (PRSD)", false],
-				["SEPULVEDA SOTO ALEXIS (PRSD)", false],
 				["NARANJO ORTIZ JAIME (PS)", false],
-				["RUBIO ESCOBAR PATRICIA (PPD)", false],
 				["SAAVEDRA CHANDIA GASTON (PS)", false],
 				["TOHA GONZALEZ JAIME (PS)", false],
-				["PEREZ ARRIAGADA JOSE (PRSD)", false],
 				["MONSALVE BENAVIDES MANUEL (PS)", false],
-				["PARRA SAUTEREL ANDREA (PPD)", false],
-				["CELIS ARAYA RICARDO (PPD)", false],
-				["MEZA MONCADA FERNANDO (PRSD)", false],
 				["ILABACA CERDA MARCOS (PS)", false],
 				["ESPINOZA SANDOVAL FIDEL (PS)", false],
 				["NUYADO ANCAPICHUN EMILIA IRIS (PS)", false],
 				["ALVAREZ VERA JENNY (PS)", false]
 			]
 		},
-		'Frente Amplio': {
-			'seats': 13,
-			'color': colores['verde-agua'],
-			'parties': [['RD', 6], ['CS', 4], ['COM', 2], ['UNIR', 1]],
+		'La Fuerza de la Mayoría (PPD)': {
+			'seats': 8,
+			'color': '#b40000',//colores['rojo-oscuro'],
+			'names': [
+				["MARZAN PINTO CAROLINA (PPD)", false],
+				["GONZALEZ TORRES RODRIGO (PPD)", false],
+				["GIRARDI LAVIN CRISTINA (PPD)", false],
+				["JIMENEZ FUENTES TUCAPEL FRANCISCO (PPD)", false],
+				["SOTO MARDONES RAUL (PPD)", false],
+				["RUBIO ESCOBAR PATRICIA (PPD)", false],
+				["PARRA SAUTEREL ANDREA (PPD)", false],
+				["CELIS ARAYA RICARDO (PPD)", false]
+			]
+		},
+		'La Fuerza de la Mayoría (PRSD)': {
+			'seats': 5,
+			'color': '#bf2c17',//colores['rojo-oscuro'],
+			'names': [
+				["HERNANDO PEREZ MARCELA XIMENA (PRSD)", false],
+				["MELLADO PINO COSME (PRSD)", false],
+				["SEPULVEDA SOTO ALEXIS (PRSD)", false],
+				["PEREZ ARRIAGADA JOSE (PRSD)", false],
+				["MEZA MONCADA FERNANDO (PRSD)", false]
+			]
+		},
+		'Frente Amplio (RD)': {
+			'seats': 6,
+			'color': '#21c27b', //colores['verde-agua'],
 			'names': [
 				["PEREZ SALINAS CATALINA (RD)", false],
-				["IBAÑEZ COTRONEO DIEGO (CS)", false],
-				["ROJAS VALDERRAMA CAMILA (COMUNES)", false],
 				["BRITO HASBUN JORGE (RD)", false],
-				["DIAZ DIAZ MARCELO (UNIR)", false],
-				["MIX JIMENEZ CLAUDIA NATHALIE (COMUNES)", false],
 				["ORSINI PASCAL MAITE (RD)", false],
 				["JACKSON DRAGO GIORGIO (RD)", false],
-				["WINTER ETCHEBERRY GONZALO (CS)", false],
 				["CRISPI SERRANO MIGUEL (RD)", false],
+				["SANDOVAL OSORIO MARCELA (RD)", false]
+			]
+		},
+		'Frente Amplio (CS)': {
+			'seats': 4,
+			'color': '#00b771', //colores['verde-agua'],
+			'names': [
+				["IBAÑEZ COTRONEO DIEGO (CS)", false],
+				["WINTER ETCHEBERRY GONZALO (CS)", false],
 				["YEOMANS ARAYA GAEL FERNANDA (CS)", false],
-				["SANDOVAL OSORIO MARCELA (RD)", false],
 				["BORIC FONT GABRIEL (CS)", false]
 			]
 		},
-		'Chile Digno': {
-			'seats': 13,
+		'Frente Amplio (COM)': {
+			'seats': 2,
+			'color': '#33cd85',//colores['verde-agua'],
+			'names': [
+				["ROJAS VALDERRAMA CAMILA (COMUNES)", false],
+				["MIX JIMENEZ CLAUDIA NATHALIE (COMUNES)", false]
+			]
+		},
+		'Frente Amplio (UNIR)': {
+			'seats': 1,
+			'color': '#42d88f',//colores['verde-agua'],
+			'names': [
+				["DIAZ DIAZ MARCELO (UNIR)", false]
+			]
+		},
+		'Chile Digno (PCCH)': {
+			'seats': 9,
 			'color': colores['rojo'],
-			'parties': [['PCCH', 9], ['FRVS', 3], ['AH', 1]],
 			'names': [
 				["MORAGA MAMANI RUBEN (PCCH)", false],
-				["VELASQUEZ NUÑEZ ESTEBAN JORGE (FRVS)", false],
-				["MULET MARTINEZ JAIME (FRVS)", false],
 				["NUÑEZ ARANCIBIA DANIEL (PCCH)", false],
 				["HERTZ CADIZ CARMEN (PCCH)", false],
 				["CARIOLA OLIVA KAROL (PCCH)", false],
 				["BARRERA MORENO BORIS ANTHONY (PCCH)", false],
-				["HIRSCH GOLDSCHMIDT TOMAS (AH)", false],
 				["VALLEJO DOWLING CAMILA (PCCH)", false],
 				["LABRA SEPULVEDA AMARO (PCCH)", false],
 				["TEILLIER DEL VALLE GUILLERMO (PCCH)", false],
-				["SANTIBAÑEZ NOVOA MARISELA (PCCH)", false],
+				["SANTIBAÑEZ NOVOA MARISELA (PCCH)", false]
+			]
+		},
+		'Chile Digno (AH)': {
+			'seats': 1,
+			'color': '#ff5232',//colores['rojo'],
+			'names': [
+				["HIRSCH GOLDSCHMIDT TOMAS (AH)", false]
+			]
+		},
+		'Chile Digno (FRVS)': {
+			'seats': 3,
+			'color': '#ca6048',//colores['rojo'],
+			'names': [
+				["VELASQUEZ NUÑEZ ESTEBAN JORGE (FRVS)", false],
+				["MULET MARTINEZ JAIME (FRVS)", false],
 				["SEPULVEDA ORBENES ALEJANDRA (FRVS)", false]
 			]
 		},
@@ -1999,24 +2099,34 @@ function mostrarDiputados() {
 				["CALISTO AGUILA MIGUEL ANGEL (PDC)", false]
 			]
 		},
-		'Nuevo Trato': {
-			'seats': 4,
+		'Nuevo Trato (PL)': {
+			'seats': 2,
 			'color': colores['amarillo'],
-			'parties': [['PL', 2], ['IND', 2]],
 			'names': [
 				["MIROSEVIC VERDUGO VLADO (PL)", false],
-				["VIDAL ROJAS PABLO (IND)", false],
-				["CASTILLO MUÑOZ NATALIA (IND)", false],
 				["BERNALES MALDONADO ALEJANDRO JAVIER (PL)", false]
 			]
 		},
-		'Acción Republicana': {
-			'seats': 4,
+		'Nuevo Trato (IND)': {
+			'seats': 2,
+			'color': '#e8ca3e',//colores['amarillo'],
+			'names': [
+				["VIDAL ROJAS PABLO (IND)", false],
+				["CASTILLO MUÑOZ NATALIA (IND)", false]
+			]
+		},
+		'Acción Republicana (PLR)': {
+			'seats': 1,
 			'color': colores['azul-marino'],
-			'parties': [['PLR', 1], ['IND', 3]],
+			'names': [
+				["URRUTIA BONILLA IGNACIO (PLR)", false]
+			]
+		},
+		'Acción Republicana (IND)': {
+			'seats': 3,
+			'color': '#40447b',//colores['azul-marino'],
 			'names': [
 				["PRIETO LORCA PABLO (IND)", false],
-				["URRUTIA BONILLA IGNACIO (PLR)", false],
 				["URRUTICOECHEA RIOS CRISTOBAL (IND)", false],
 				["JURGENSEN RUNDSHAGEN HARRY (IND)", false]
 			]
@@ -2040,15 +2150,27 @@ function mostrarDiputados() {
 			]
  		}
 	}
-    parliament_order = {
+    var parliament_order = {
     	'Fuera de Pacto': false,
-    	'Chile Digno': true,
-    	'Frente Amplio': true, 
-    	'Nuevo Trato': true, 
-    	'La Fuerza de la Mayoría': true, 
+    	'Chile Digno (PCCH)': true,
+    	'Chile Digno (FRVS)': true,
+    	'Chile Digno (AH)': true,
+    	'Frente Amplio (RD)': true, 
+    	'Frente Amplio (CS)': true, 
+    	'Frente Amplio (COM)': true, 
+    	'Frente Amplio (UNIR)': true, 
+    	'Nuevo Trato (PL)': true, 
+    	'Nuevo Trato (IND)': true, 
+    	'La Fuerza de la Mayoría (PS)': true, 
+    	'La Fuerza de la Mayoría (PPD)': true, 
+    	'La Fuerza de la Mayoría (PRSD)': true, 
     	'Convergencia Democrática': true, 
-    	'Chile Vamos': true,
-    	'Acción Republicana': true
+    	'Chile Vamos (EVO)': true,
+    	'Chile Vamos (RN)': true,
+    	'Chile Vamos (IND)': true,
+    	'Chile Vamos (UDI)': true,
+    	'Acción Republicana (IND)': true,
+    	'Acción Republicana (PLR)': true
     }
 
 	legend.style.display = 'block';
@@ -2061,10 +2183,13 @@ function mostrarDiputados() {
     	legend2.style.display = 'block';
     	legend2.style.maxWidth = '850px';
     	legend2.style.width = '360px';
-    	legend2.style.height = '235px';
+    	legend2.style.height = '250px';
     	var div = document.createElement('div');
-    	div.appendChild(generateSVG(parliament, parliament_order, true));
-    	legend2.appendChild(div);
+    	div.appendChild(generateSVG(parliament, parliament_order, true, "Diputados"));
+    	legend2.appendChild(div);var span = document.createElement('span');
+    	span.id = 'lista-seat';
+    	span.innerHTML = '<br>';
+    	legend2.appendChild(span);
     	var span = document.createElement('span');
     	span.id = 'nombre-seat';
     	span.innerHTML = 'Muévete sobre los puntos...';
@@ -2075,7 +2200,7 @@ function mostrarDiputados() {
         legend.style.height = '150px';
     }
 
-	legend.appendChild(getParliamentTable(parliament));
+	legend.appendChild(getParliamentTable(parl_listas));
 };
 
 function mostrarSenadores() {
@@ -2086,56 +2211,114 @@ function mostrarSenadores() {
     map.setLayoutProperty('sen-markers', 'visibility', 'visible');	
 	document.getElementById('a-senadores').style.color = 'black';
 
-	parliament = {
+	var parl_listas = {
 		'Chile Vamos': {
 			'seats': 19,
 			'color': colores['azul'],
-			'parties': [['UDI', 9], ['RN', 8], ['EVO', 2]],
-			'dotted': 7,
-			'names': [
-				["DURANA SEMIR JOSE (UDI)", false],
-				["EBENSPERGER ORREGO LUZ (UDI)", false],
-				["PROHENS ESPINOSA RAFAEL (RN)", false],
-				["CHAHUAN CHAHUAN FRANCISCO (RN)", false],
-				["PUGH OLAVARRIA KENNETH (IND-RN)", false],
-				["GARCIA-HUIDOBRO SANFUENTES ALEJANDRO (UDI)", true],
-				["COLOMA CORREA JUAN ANTONIO (UDI)", false],
-				["CASTRO PRIETO JUAN (IND-RN)", false],
-				["GALILEA VIAL RODRIGO (RN)", false],
-				["VAN RYSSELBERGHE HERRERA JACQUELINE (UDI)", true],
-				["ALVARADO ANDRADE CLAUDIO (UDI)", true],
-				["KAST SOMMERHOFF FELIPE (EVO)", false],
-				["GARCIA RUMINOT JOSE (RN)", false],
-				["ARAVENA ACUÑA CARMEN GLORIA (EVO)", false],
-				["MOREIRA BARROS IVAN (UDI)", true],
-				["SANDOVAL PLAZA DAVID (UDI)", false],
-				["SABAT FERNANDEZ MARCELA (RN)", true],
-				["OSSANDON IRARRAZABAL MANUEL JOSE (RN)", true],
-				["VON BAER JAHN ENA (UDI)", true]
-			]
+			'parties': [['UDI', 9], ['RN', 8], ['EVO', 2]]
 		},
 		'La Fuerza de la Mayoría': {
 			'seats': 16,
 			'color': colores['rojo-oscuro'],
-			'parties': [['PPD', 8], ['PS', 7], ['PRSD', 1]],
-			'dotted': 9,
+			'parties': [['PPD', 8], ['PS', 7], ['PRSD', 1]]
+		},
+		'Convergencia Democrática': {
+			'seats': 5,
+			'color': colores['marron'],
+			'parties': [['PDC', 5]]
+		},
+		'Frente Amplio': {
+			'seats': 1,
+			'color': colores['verde-agua'],
+			'parties': [['RD', 1]]
+		},
+		'Progresistas': {
+			'seats': 1,
+			'color': colores['rosado'],
+			'parties': [['PRO', 1]]
+		},
+		'Candidatura Independiente': {
+			'seats': 1,
+			'color': colores['gris'],
+			'parties': [['IND', 1]]
+		}
+	}
+	var parliament = {
+		'Chile Vamos (UDI)': {
+			'seats': 9,
+			'color': '#2473ac',//colores['azul'],
+			'dotted': 5,
+			'names': [
+				["DURANA SEMIR JOSE (UDI)", false],
+				["EBENSPERGER ORREGO LUZ (UDI)", false],
+				["GARCIA-HUIDOBRO SANFUENTES ALEJANDRO (UDI)", true],
+				["COLOMA CORREA JUAN ANTONIO (UDI)", false],
+				["VAN RYSSELBERGHE HERRERA JACQUELINE (UDI)", true],
+				["ALVARADO ANDRADE CLAUDIO (UDI)", true],
+				["MOREIRA BARROS IVAN (UDI)", true],
+				["SANDOVAL PLAZA DAVID (UDI)", false],
+				["VON BAER JAHN ENA (UDI)", true]
+			]
+		},
+		'Chile Vamos (RN)': {
+			'seats': 8,
+			'color': '#3b83bd', //colores['azul'],
+			'dotted': 1,
+			'names': [
+				["PROHENS ESPINOSA RAFAEL (RN)", false],
+				["CHAHUAN CHAHUAN FRANCISCO (RN)", false],
+				["PUGH OLAVARRIA KENNETH (IND-RN)", false],
+				["CASTRO PRIETO JUAN (IND-RN)", false],
+				["GALILEA VIAL RODRIGO (RN)", false],
+				["GARCIA RUMINOT JOSE (RN)", false],
+				["SABAT FERNANDEZ MARCELA (RN)", true],
+				["OSSANDON IRARRAZABAL MANUEL JOSE (RN)", true]
+			]
+		},
+		'Chile Vamos (EVO)': {
+			'seats': 2,
+			'color': '#4f93ce', //colores['azul'],
+			'dotted': 0,
+			'names': [
+				["KAST SOMMERHOFF FELIPE (EVO)", false],
+				["ARAVENA ACUÑA CARMEN GLORIA (EVO)", false]
+			]
+		},
+		'La Fuerza de la Mayoría (PS)': {
+			'seats': 7,
+			'color': colores['rojo-oscuro'],
+			'dotted': 4,
 			'names': [
 				["INSULZA SALINAS JOSE MIGUEL (PS)", false],
-				["SORIA QUIROGA JORGE (IND-PPD)", false],
-				["GUILLIER ALVAREZ ALEJANDRO (IND-PRSD)", true],
-				["ARAYA GUERRERO PEDRO (IND-PPD)", true],
-				["MUÑOZ D'ALBORA ADRIANA (PPD)", true],
-				["LAGOS WEBER RICARDO (PPD)", false],
 				["ALLENDE BUSSI ISABEL (PS)", false],
 				["LETELIER MOREL JUAN PABLO (PS)", true],
 				["ELIZALDE SOTO ALVARO (PS)", false],
-				["CARVAJAL AMBIADO LORETO (PPD)", true],
-				["QUINTANA LEAL JAIME (PPD)", false],
 				["QUINTEROS LARA RABINDRANATH (PS)", true],
-				["ORDENES NEIRA XIMENA (IND-PPD)", false],
-				["GIRARDI LAVIN GUIDO (PPD)", true],
 				["MONTES CISTERNAS CARLOS (PS)", true],
 				["DE URRESTI LONGTON ALFONSO (PS)", true]
+			]
+		},
+		'La Fuerza de la Mayoría (PPD)': {
+			'seats': 8,
+			'color': '#b40000',//colores['rojo-oscuro'],
+			'dotted': 4,
+			'names': [
+				["SORIA QUIROGA JORGE (IND-PPD)", false],
+				["ARAYA GUERRERO PEDRO (IND-PPD)", true],
+				["MUÑOZ D'ALBORA ADRIANA (PPD)", true],
+				["LAGOS WEBER RICARDO (PPD)", false],
+				["CARVAJAL AMBIADO LORETO (PPD)", true],
+				["QUINTANA LEAL JAIME (PPD)", false],
+				["ORDENES NEIRA XIMENA (IND-PPD)", false],
+				["GIRARDI LAVIN GUIDO (PPD)", true]
+			]
+		},
+		'La Fuerza de la Mayoría (PRSD)': {
+			'seats': 1,
+			'color': '#bf2c17',//colores['rojo-oscuro'],
+			'dotted': 1,
+			'names': [
+				["GUILLIER ALVAREZ ALEJANDRO (IND-PRSD)", true],
 			]
 		},
 		'Convergencia Democrática': {
@@ -2179,13 +2362,17 @@ function mostrarSenadores() {
 			]
 		}
 	}
-    parliament_order = {
+    var parliament_order = {
     	'Frente Amplio': true, 
-    	'La Fuerza de la Mayoría': true, 
+    	'La Fuerza de la Mayoría (PS)': true, 
+    	'La Fuerza de la Mayoría (PRSD)': true, 
+    	'La Fuerza de la Mayoría (PPD)': true, 
     	'Progresistas': true, 
     	'Candidatura Independiente': true,
     	'Convergencia Democrática': true, 
-    	'Chile Vamos': true,
+    	'Chile Vamos (EVO)': true,
+    	'Chile Vamos (RN)': true,
+    	'Chile Vamos (UDI)': true,
     }
 
 	legend.style.display = 'block';
@@ -2198,10 +2385,14 @@ function mostrarSenadores() {
     	legend2.style.display = 'block';
     	legend2.style.maxWidth = '850px';
     	legend2.style.width = '360px';
-    	legend2.style.height = '285px';
+    	legend2.style.height = '300px';
     	var div = document.createElement('div');
-    	div.appendChild(generateSVG(parliament, parliament_order, true));
+    	div.appendChild(generateSVG(parliament, parliament_order, true, "Senado"));
     	legend2.appendChild(div);
+    	var span = document.createElement('span');
+    	span.id = 'lista-seat';
+    	span.innerHTML = '<br>';
+    	legend2.appendChild(span);
     	var span = document.createElement('span');
     	span.id = 'nombre-seat';
     	span.innerHTML = 'Muévete sobre los puntos...';
@@ -2212,7 +2403,7 @@ function mostrarSenadores() {
         legend.style.height = '120px';
     }
 
-	legend.appendChild(getParliamentTable(parliament));
+	legend.appendChild(getParliamentTable(parl_listas));
 };
 
 function mostrarCORES() {
@@ -3001,7 +3192,7 @@ function generatePoints(parliament, r0) {
 		for (var _i2 = 0; _i2 < parliament[party].seats; _i2++) {
 			ring = nextRing(points, ringProgress, parliament[party].ordered);
 			points[ring][ringProgress[ring]].fill = parliament[party].color;
-			points[ring][ringProgress[ring]].party = party;
+			points[ring][ringProgress[ring]].party = party.replace(/ /g,"-");
 			if (parliament[party].hasOwnProperty('names')) {
 				points[ring][ringProgress[ring]].name = parliament[party].names[_i2][0];
 				if (parliament[party].names[_i2][1]) {
@@ -3011,6 +3202,7 @@ function generatePoints(parliament, r0) {
 					newpoint.r = points[ring][ringProgress[ring]].r/2.8;
 					newpoint.fill = colores['negro'];
 					newpoint.name = parliament[party].names[_i2][0];
+					newpoint.party = party.replace(/ /g,"-");
 					blackDots.push(newpoint);
 				}
 			} else if (parliament[party].hasOwnProperty('dotted') && _i2<parliament[party].dotted) {
@@ -3026,7 +3218,7 @@ function generatePoints(parliament, r0) {
 	}
 	return [merge(points), merge(blackDots)];
 }
-function generateSVG(_parliament, order, seatCount) {
+function generateSVG(_parliament, order, seatCount, type) {
 	var parliament = {};
 	for (party in order) {
 		parliament[party] = _parliament[party];
@@ -3061,7 +3253,7 @@ function generateSVG(_parliament, order, seatCount) {
 
     for (index in points) {
     	var circle = document.createElementNS(xmlns,"circle");
-    	circle.setAttributeNS(null, "class", "parliament-seat");
+    	circle.setAttributeNS(null, "class", "parliament-seat "+points[index].party);
     	circle.setAttributeNS(null, "onmousemove", "touchParliamentSeat(evt)");
     	circle.setAttributeNS(null, "onmouseleave", "unTouchParliamentSeat(evt)");
     	circle.setAttributeNS(null, "cx", points[index].x);
@@ -3069,6 +3261,7 @@ function generateSVG(_parliament, order, seatCount) {
     	circle.setAttributeNS(null, "r", points[index].r);
     	circle.setAttributeNS(null, "fill", points[index].fill);
     	circle.setAttributeNS(null, "data-name", points[index].name);
+    	circle.setAttributeNS(null, "data-party", points[index].party);
     	svgElem.appendChild(circle);
     }
     for (index in blackDots) {
@@ -3078,7 +3271,10 @@ function generateSVG(_parliament, order, seatCount) {
     	circle.setAttributeNS(null, "r", blackDots[index].r);
     	circle.setAttributeNS(null, "fill", blackDots[index].fill);
     	if (blackDots[index].hasOwnProperty('name')) {
+    		circle.setAttributeNS(null, "class", "parliament-seat "+blackDots[index].party);
     		circle.setAttributeNS(null, "data-name", blackDots[index].name);
+    		circle.setAttributeNS(null, "data-party", blackDots[index].party);
+    		circle.setAttributeNS(null, "data-dotted", "yes");
 	    	circle.setAttributeNS(null, "onmousemove", "touchParliamentSeat(evt)");
 	    	circle.setAttributeNS(null, "onmouseleave", "unTouchParliamentSeat(evt)");
     	}
@@ -3113,23 +3309,24 @@ function generateSVG(_parliament, order, seatCount) {
     	circle.setAttributeNS(null, "r", points[0].r/2.8);
     	circle.setAttributeNS(null, "fill", colores['negro']);
     	svgElem.appendChild(circle);
-    	var text = document.createElementNS(xmlns,"text");
-    	text.innerHTML = '2018-2026';
-    	text.setAttributeNS(null, "x", -2.5*a);
-    	text.setAttributeNS(null, "y", 1.65*a);
-    	text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
-    	text.setAttributeNS(null, "font-size", a/2.2+"px");
-    	text.setAttributeNS(null, "text-anchor", "start");
-    	svgElem.appendChild(text);
-    	var text = document.createElementNS(xmlns,"text");
-    	text.innerHTML = '2014-2022';
-    	text.setAttributeNS(null, "x", 1.5*a);
-    	text.setAttributeNS(null, "y", 1.65*a);
-    	text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
-    	text.setAttributeNS(null, "font-size", a/2.2+"px");
-    	text.setAttributeNS(null, "text-anchor", "start");
-    	svgElem.appendChild(text);
-
+    	if (type=="Senado") {
+	    	var text = document.createElementNS(xmlns,"text");
+	    	text.innerHTML = '2018-2026';
+	    	text.setAttributeNS(null, "x", -2.5*a);
+	    	text.setAttributeNS(null, "y", 1.65*a);
+	    	text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
+	    	text.setAttributeNS(null, "font-size", a/2.2+"px");
+	    	text.setAttributeNS(null, "text-anchor", "start");
+	    	svgElem.appendChild(text);
+	    	var text = document.createElementNS(xmlns,"text");
+	    	text.innerHTML = '2014-2022';
+	    	text.setAttributeNS(null, "x", 1.5*a);
+	    	text.setAttributeNS(null, "y", 1.65*a);
+	    	text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
+	    	text.setAttributeNS(null, "font-size", a/2.2+"px");
+	    	text.setAttributeNS(null, "text-anchor", "start");
+	    	svgElem.appendChild(text);
+    	}
     }
 
    	return svgElem;

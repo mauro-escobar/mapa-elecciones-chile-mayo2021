@@ -1494,213 +1494,391 @@ function mostrarConvencionales() {
     map.setLayoutProperty('markers-title', 'visibility', 'visible');	
 	document.getElementById('a-convencionales').style.color = 'black';
 
-    var parliament = {
-    	'Vamos por Chile': {
+	var parl_listas = { 
+		'Vamos por Chile': {
     		'seats': 37,
-    		'color': colores['azul'],
-    		'names': [
-				["POLLYANA RIVERA BIGAS", false],
-				["ALVARO JOFRE CACERES", false],
-				["PABLO ANTONIO TOLOZA FERNANDEZ", false],
-				["ROBERTO VEGA CAMPUSANO", false],
-				["RUGGERO COZZI ELZO", false],
-				["CLAUDIA MABEL CASTRO GUTIERREZ", false],
-				["JORGE ARANCIBIA REYES", false],
-				["RAUL CELIS MONTT", false],
-				["BERNARDO  DE LA MAZA BAÑADOS", false],
-				["MARCELA CUBILLOS SIGALL", false],
-				["HERNAN LARRAIN MATTE", false],
-				["CONSTANZA  HUBE PORTUS", false],
-				["BERNARDO FONTAINE TALAVERA", false],
-				["ARTURO ZUÑIGA JORY", false],
-				["TERESA MARINOVIC VIAL", false],
-				["CRISTIAN MONCKEBERG BRUNER", false],
-				["MANUEL JOSE OSSANDON LIRA", false],
-				["CAROL BOWN SEPULVEDA", false],
-				["RICARDO NEUMANN BERTIN", false],
-				["BARBARA REBOLLEDO AGUIRRE", false],
-				["ALFREDO MORENO ECHEVERRIA", false],
-				["PATRICIA LABRA BESSERER", false],
-				["MARTIN ARRAU GARCIA-HUIDOBRO", false],
-				["MARGARITA LETELIER CORTES", false],
-				["ROCIO  CANTUARIAS RUBIO", false],
-				["LUCIANO ERNESTO SILVA MORA", false],
-				["PAULINA VELOSO MUÑOZ", false],
-				["EDUARDO ANDRES CRETTON REBOLLEDO", false],
-				["RUTH HURTADO OLAVE", false],
-				["LUIS MAYOL BOUCHON", false],
-				["ANGELICA TEPPER KOLOSSA", false],
-				["FELIPE IGNACIO MENA VILLAR", false],
-				["HARRY JURGENSEN CAESAR", false],
-				["MARIA CECILIA UBILLA PEREZ", false],
-				["KATERINE MONTEALEGRE NAVARRO", false],
-				["GEOCONDA NAVARRETE ARRATIA", false],
-				["RODRIGO ALVAREZ ZENTENO", false]
-    		]
-    	},
+    		'color': colores['azul']
+		},
     	'Apruebo Dignidad': {
     		'seats': 28,
-    		'color': colores['verde-agua'],
+    		'color': colores['verde-agua']
+    	},
+    	'La Lista del Pueblo': {
+    		'seats': 26,
+    		'color': colores['rosado']
+    	},
+    	'Lista del Apruebo': {
+    		'seats': 25,
+    		'color': colores['violeta']
+		},
+    	'Independientes No Neutrales': {
+    		'seats': 11,
+    		'color': colores['azul-marino']
+    	},
+    	'Candidaturas Independientes': {
+    		'seats': 11,
+    		'color': colores['gris']
+    	},
+    	'Pueblos Indígenas (Mapuche)': {
+    		'seats': 17,
+    		'color': colores['marron']
+    	}
+	}
+
+    var parliament = {
+    	'Vamos por Chile (UDI)': {
+    		'seats': 17,
+    		'color': '#2473ac', //colores['azul'],
     		'names': [
-				["CAROLINA ELIANA VIDELA OSORIO", false],
-				["HUGO HUMBERTO GUTIERREZ GALVEZ", false],
-				["HERNAN JESUS VELASQUEZ NUÑEZ", false],
-				["ERICKA  PORTILLA BARRIOS", false],
-				["JENIFFER VALERIA MELLA ESCOBAR", false],
-				["CAROLINA CYNTIA VILCHES FUENZALIDA", false],
-				["MARIELA ANDREA SEREY JIMENEZ", false],
-				["IGNACIO JAIME ACHURRA DIAZ", false],
-				["JAIME ANDRES BASSA MERCADO", false],
-				["MARIA JOSE OYARZUN SOLIS", false],
-				["DANIEL RODRIGO STINGO CAMUS", false],
-				["VALENTINA ANDREA MIRANDA ARCE", false],
-				["TATIANA KARINA URRUTIA HERRERA", false],
-				["CONSTANZA GABRIELA SCHONHAUT SOTO", false],
-				["BARBARA SEPULVEDA HALES", false],
-				["FERNANDO ATRIA LEMAITRE", false],
-				["GIOVANNA ANGELA ROA CADIN", false],
-				["BEATRIZ DE JESUS SANCHEZ MUÑOZ", false],
-				["MARCOS PATRICIO BARRAZA GOMEZ", false],
-				["DAMARIS ABARCA GONZALEZ", false],
-				["NICOLAS FERNANDO NUÑEZ GANGAS", false],
-				["ROBERTO ANTONIO CELEDON FERNANDEZ", false],
-				["PAOLA ALEJANDRA GRANDON GONZALEZ", false],
-				["AMAYA PAULINA ALVEZ MARIN", false],
-				["VANESSA CAMILA HOPPE ESPOZ", false],
-				["MANUELA ROYO LETELIER", false],
-				["AURORA GENOVEVA DELGADO VERGARA", false],
-				["YARELA NICOHL GOMEZ SANCHEZ", false]
+				["POLLYANA RIVERA BIGAS (IND-UDI)", false],
+				["PABLO ANTONIO TOLOZA FERNANDEZ (UDI)", true],
+				["JORGE ARANCIBIA REYES (IND-UDI)", false],
+				["ARTURO ZUÑIGA JORY (UDI)", true],
+				["MARCELA CUBILLOS SIGALL (IND-UDI)", false],
+				["CONSTANZA  HUBE PORTUS (UDI)", true],
+				["CLAUDIA MABEL CASTRO GUTIERREZ (IND-UDI)", false],
+				["CAROL BOWN SEPULVEDA (UDI)", true],
+				["RICARDO NEUMANN BERTIN (IND-UDI)", false],
+				["ALFREDO MORENO ECHEVERRIA (IND-UDI)", false],
+				["MARTIN ARRAU GARCIA-HUIDOBRO (UDI)", true],
+				["MARGARITA LETELIER CORTES (UDI)", true],
+				["EDUARDO ANDRES CRETTON REBOLLEDO (UDI)", true],
+				["FELIPE IGNACIO MENA VILLAR (UDI)", true],
+				["MARIA CECILIA UBILLA PEREZ (IND-UDI)", false],
+				["KATERINE MONTEALEGRE NAVARRO (UDI)", true],
+				["RODRIGO ALVAREZ ZENTENO (UDI)", true]
+			]
+		},
+    	'Vamos por Chile (RN)': {
+    		'seats': 15,
+    		'color': '#3b83bd', // colores['azul'],
+    		'names': [
+    			["ALVARO JOFRE CACERES (RN)", true],
+    			["ROBERTO VEGA CAMPUSANO (RN)", true],
+    			["RUGGERO COZZI (RN)", true],
+				["RAUL CELIS MONTT (RN)", true],
+				["TERESA MARINOVIC VIAL (IND-RN)", false],
+				["CRISTIAN MONCKEBERG BRUNER (RN)", true],
+				["BERNARDO FONTAINE TALAVERA (IND-RN)", false],
+				["MANUEL JOSE OSSANDON LIRA (IND-RN)", false],
+				["PATRICIA LABRA BESSERER (RN)", true],
+				["LUCIANO ERNESTO SILVA MORA (RN)", true],
+				["PAULINA VELOSO MUÑOZ (RN)", true],
+				["RUTH HURTADO OLAVE (IND-RN)", false],
+				["LUIS MAYOL BOUCHON (RN)", true],
+				["ANGELICA TEPPER KOLOSSA (IND-RN)", false],
+				["HARRY JURGENSEN CAESAR (RN)", true]
+			]
+		},
+		'Vamos por Chile (EVO)': {
+    		'seats': 5,
+    		'color': '#4f93ce', //colores['azul'],
+    		'names': [
+				["BERNARDO  DE LA MAZA BAÑADOS (IND-EVO)", false],
+				["HERNAN LARRAIN MATTE (EVO)", true],
+				["BARBARA REBOLLEDO AGUIRRE (IND-EVO)", false],
+				["ROCIO  CANTUARIAS RUBIO (IND-EVO)", false],
+				["GEOCONDA NAVARRETE ARRATIA (EVO)", true]
+			]
+		},
+    	'Apruebo Dignidad (PCCH)': {
+    		'seats': 7,
+    		'color': '#009754', //colores['verde-agua'],
+    		'names': [
+    			["CAROLINA ELIANA VIDELA OSORIO (PCCH)", true],
+				["HUGO HUMBERTO GUTIERREZ GALVEZ (PCCH)", true],
+				["ERICKA  PORTILLA BARRIOS (PCCH)", true],
+				["VALENTINA ANDREA MIRANDA ARCE (PCCH)", true],
+				["BARBARA SEPULVEDA HALES (PCCH)", true],
+				["MARCOS PATRICIO BARRAZA GOMEZ (PCCH)", true],
+				["VANESSA CAMILA HOPPE ESPOZ (IND-PCCH)", false]
+    		]
+    	},
+    	'Apruebo Dignidad (FREVS)': {
+    		'seats': 4,
+    		'color': '#00a25e',//colores['verde-agua'],
+    		'names': [
+    			["HERNAN JESUS VELASQUEZ NUÑEZ (FREVS)", true],
+    			["NICOLAS FERNANDO NUÑEZ GANGAS (FREVS)", true],
+    			["ROBERTO ANTONIO CELEDON FERNANDEZ (IND-FREVS)", false],
+				["PAOLA ALEJANDRA GRANDON GONZALEZ (FREVS)", true]
+    		]
+    	},
+    	'Apruebo Dignidad (RD)': {
+    		'seats': 9,
+    		'color': '#21c27b', //colores['verde-agua'],
+    		'names': [
+    			["MARIA JOSE OYARZUN SOLIS (RD)", true],
+    			["DANIEL RODRIGO STINGO CAMUS (IND-RD)", false],
+    			["TATIANA KARINA URRUTIA HERRERA (RD)", true],
+    			["FERNANDO ATRIA LEMAITRE (IND-RD)", false],
+				["GIOVANNA ANGELA ROA CADIN (RD)", true],
+				["BEATRIZ DE JESUS SANCHEZ MUÑOZ (IND-RD)", false],
+				["AMAYA PAULINA ALVEZ MARIN (RD)", true],
+				["AURORA GENOVEVA DELGADO VERGARA (IND-RD)", false],
+				["YARELA NICOHL GOMEZ SANCHEZ (IND-RD)", false]
+    		]
+    	},
+    	'Apruebo Dignidad (CS)': {
+    		'seats': 6,
+    		'color': '#00b771', //colores['verde-agua'],
+    		'names': [
+    			["JENIFFER VALERIA MELLA ESCOBAR (IND-CS)", false],
+				["MARIELA ANDREA SEREY JIMENEZ (IND-CS)", false],
+				["JAIME ANDRES BASSA MERCADO (IND-CS)", false],
+				["CONSTANZA GABRIELA SCHONHAUT SOTO (CS)", true],
+				["IGNACIO JAIME ACHURRA DIAZ (CS)", true],
+				["DAMARIS ABARCA GONZALEZ (IND-CS)", false]
+    		]
+    	},
+    	'Apruebo Dignidad (COM)': {
+    		'seats': 1,
+    		'color': '#33cd85',//colores['verde-agua'],
+    		'names': [
+    			["CAROLINA CYNTIA VILCHES FUENZALIDA (IND-COM)", false]
+    		]
+    	},
+    	'Apruebo Dignidad (IGUAL)': {
+    		'seats': 1,
+    		'color': '#42d88f',//colores['verde-agua'],
+    		'names': [
+				["MANUELA ROYO LETELIER (IND-IGUAL)", false]
     		]
     	},
     	'La Lista del Pueblo': {
     		'seats': 26,
     		'color': colores['rosado'],
     		'names': [
-				["DAYYANA GONZALEZ ARAYA", false],
-				["CONSTANZA ANDREA SAN JUAN STANDEN", false],
-				["IVANNA DANIELA OLIVARES MIRANDA", false],
-				["DANIEL ALEJANDRO BRAVO SILVA", false],
-				["LISETTE LORENA VERGARA RIQUELME", false],
-				["CRISTOBAL PATRICIO ANDRADE LEON", false],
-				["FRANCISCO JAVIER CAAMAÑO ROJAS", false],
-				["CAMILA IGNACIA ZARATE ZARATE", false],
-				["TANIA ISABEL MADRIAGA FLORES", false],
-				["MARCO ANTONIO ARELLANO ORTEGA", false],
-				["MARIA MAGDALENA RIVERA IRIBARREN", false],
-				["ALEJANDRA PIA PEREZ ESPINA", false],
-				["NATALIA ESTHER HENRIQUEZ CARREÑO", false],
-				["MANUEL MAURICIO WOLDARSKY GONZALEZ", false],
-				["GIOVANNA JAZMIN GRANDON CARO", false],
-				["INGRID FERNANDA VILLENA NARBONA", false],
-				["RODRIGO ERNESTO ROJAS VADE", false],
-				["LORETO CRISTINA VALLEJOS DAVILA", false],
-				["ELSA CAROLINA LABRAÑA PINO", false],
-				["FRANCISCA MARYCARMEN ARAUNA URRUTIA", false],
-				["FERNANDO SALINAS MANFREDINI", false],
-				["CESAR  URIBE ARAYA", false],
-				["ROSSANA LORETO VIDAL HERNANDEZ", false],
-				["HELMUTH JACOBO MARTINEZ LLANCAPAN", false],
-				["ADRIANA CAMILA AMPUERO BARRIENTOS", false],
-				["ELISA AMANDA GIUSTINIANOVICH CAMPOS", false]
+				["DAYYANA GONZALEZ ARAYA (IND)", false],
+				["CONSTANZA ANDREA SAN JUAN STANDEN (IND)", false],
+				["IVANNA DANIELA OLIVARES MIRANDA (IND)", false],
+				["DANIEL ALEJANDRO BRAVO SILVA (IND)", false],
+				["LISETTE LORENA VERGARA RIQUELME (IND)", false],
+				["CRISTOBAL PATRICIO ANDRADE LEON (IND)", false],
+				["CAMILA IGNACIA ZARATE ZARATE (IND)", false],
+				["TANIA ISABEL MADRIAGA FLORES (IND)", false],
+				["MARCO ANTONIO ARELLANO ORTEGA (IND)", false],
+				["MARIA MAGDALENA RIVERA IRIBARREN (IND)", false],
+				["ALEJANDRA PIA PEREZ ESPINA (IND)", false],
+				["NATALIA ESTHER HENRIQUEZ CARREÑO (IND)", false],
+				["MANUEL MAURICIO WOLDARSKY GONZALEZ (IND)", false],
+				["GIOVANNA JAZMIN GRANDON CARO (IND)", false],
+				["INGRID FERNANDA VILLENA NARBONA (IND)", false],
+				["RODRIGO ERNESTO ROJAS VADE (IND)", false],
+				["FRANCISCO JAVIER CAAMAÑO ROJAS (IND)", false],
+				["LORETO CRISTINA VALLEJOS DAVILA (IND)", false],
+				["ELSA CAROLINA LABRAÑA PINO (IND)", false],
+				["FRANCISCA MARYCARMEN ARAUNA URRUTIA (IND)", false],
+				["FERNANDO SALINAS MANFREDINI (IND)", false],
+				["CESAR  URIBE ARAYA (IND)", false],
+				["ROSSANA LORETO VIDAL HERNANDEZ (IND)", false],
+				["HELMUTH JACOBO MARTINEZ LLANCAPAN (IND)", false],
+				["ADRIANA CAMILA AMPUERO BARRIENTOS (IND)", false],
+				["ELISA AMANDA GIUSTINIANOVICH CAMPOS (IND)", false]
     		]
     	},
-    	'Lista del Apruebo': {
-    		'seats': 25,
-    		'color': colores['violeta'],
+    	'Lista del Apruebo (PL)': {
+    		'seats': 3,
+    		'color': '#a764a6',//colores['violeta'],
     		'names': [
-				["JORGE BRUNO ABARCA RIVEROS", false],
-				["MAXIMILIANO HURTADO ROCO", false],
-				["CARLOS CALVO MUÑOZ", false],
-				["CLAUDIO GOMEZ CASTRO", false],
-				["RENATO FABRIZIO GARIN GONZALEZ", false],
-				["AGUSTIN SQUELLA NARDUCCI", false],
-				["BESSY MIREYA DEL ROSARIO GALLARDO PRADO", false],
-				["PATRICIO  FERNANDEZ CHADWICK", false],
-				["CESAR VALENZUELA MAASS", false],
-				["JORGE BARADIT MORALES", false],
-				["MALUCHA PINTO SOLARI", false],
-				["MATIAS ORELLANA CUELLAR", false],
-				["ADRIANA CANCINO MENESES", false],
-				["CHRISTIAN VIERA ALVAREZ", false],
-				["RICARDO MONTERO ALLENDE", false],
-				["FELIPE HARBOE BASCUÑAN", false],
-				["ANDRES CRUZ CARRASCO", false],
-				["LUIS RAMON BARCELO AMADO", false],
-				["FUAD  CHAHIN VALENZUELA", false],
-				["EDUARDO GUILLERMO CASTILLO VIGOUROUX", false],
-				["RAMONA REYES PAINEQUEO", false],
-				["PEDRO MUÑOZ LEIVA", false],
-				["MARIO VARGAS VIDAL", false],
-				["JULIO ALVAREZ PINTO", false],
-				["TOMAS LAIBE SAEZ", false]
-    		]
-    	},
+				["JORGE BRUNO ABARCA RIVEROS (IND-PL)", false],
+				["AGUSTIN SQUELLA NARDUCCI (IND-PL)", false],
+				["PATRICIO  FERNANDEZ CHADWICK (IND-PL)", false]
+			]
+		},
+		'Lista del Apruebo (PS)': {
+    		'seats': 15,
+    		'color': '#985698', //colores['violeta'],
+    		'names': [
+				["MAXIMILIANO HURTADO ROCO (PS)", true],
+				["CARLOS CALVO MUÑOZ (IND-PS)", false],
+				["CLAUDIO GOMEZ CASTRO (IND-PS)", false],
+				["CESAR VALENZUELA MAASS (PS)", true],
+				["JORGE BARADIT MORALES (IND-PS)", false],
+				["MALUCHA PINTO SOLARI (PS)", true],
+				["MATIAS ORELLANA CUELLAR (PS)", true],
+				["ADRIANA CANCINO MENESES (IND-PS)", false],
+				["RICARDO MONTERO ALLENDE (PS)", true],
+				["ANDRES CRUZ CARRASCO (IND-PS)", false],
+				["RAMONA REYES PAINEQUEO (PS)", true],
+				["PEDRO MUÑOZ LEIVA (PS)", true],
+				["MARIO VARGAS VIDAL (PS)", true],
+				["JULIO ALVAREZ PINTO (PS)", true],
+				["TOMAS LAIBE SAEZ (PS)", true]
+			]
+		},
+		'Lista del Apruebo (PRO)': {
+    		'seats': 1,
+    		'color': '#9f5d9f', //colores['violeta'],
+    		'names': [
+				["BESSY MIREYA GALLARDO PRADO (IND-PRO)", false]
+			]
+		},
+		'Lista del Apruebo (PR)': {
+    		'seats': 1,
+    		'color': '#ae6bae',//colores['violeta'],
+    		'names': [
+				["RENATO FABRIZIO GARIN GONZALEZ (IND-PR)", false]
+			]
+		},
+		'Lista del Apruebo (PDC)': {
+    		'seats': 2,
+    		'color': '#7d487d', //colores['violeta'],
+    		'names': [
+				["CHRISTIAN VIERA ALVAREZ (IND-PDC)", false],
+				["FUAD  CHAHIN VALENZUELA (PDC)", true]
+			]
+		},
+		'Lista del Apruebo (PPD)': {
+    		'seats': 3,
+    		'color': '#824283', //colores['violeta'],
+    		'names': [
+				["FELIPE HARBOE BASCUÑAN (PPD)", true],
+				["LUIS RAMON BARCELO AMADO (IND-PPD)", false],
+				["EDUARDO GUILLERMO CASTILLO VIGOUROUX (PPD)", true]
+			]
+		},
     	'Independientes No Neutrales': {
     		'seats': 11,
     		'color': colores['azul-marino'],
     		'names': [
-				["GUILLERMO NICOLAS NAMOR KONG", false],
-				["MIGUEL ANGEL BOTTO SALINAS", false],
-				["PAULINA VALERIA VALENZUELA RIO", false],
-				["PATRICIA POLITZER KEREKES", false],
-				["BENITO JOSE BARANDA FERRAN", false],
-				["JUAN JOSE MARTIN BRAVO", false],
-				["CAROLINA ANDREA SEPULVEDA SEPULVEDA", false],
-				["TAMMY SOLANGE PUSTILNICK ARDITI", false],
-				["JAVIER FUCHSLOCHER BAEZA", false],
-				["LORENA DEL PILAR CESPEDES FERNANDEZ", false],
-				["GASPAR ROBERTO DOMINGUEZ DONOSO", false]
+				["GUILLERMO NICOLAS NAMOR KONG (IND)", false],
+				["MIGUEL ANGEL BOTTO SALINAS (IND)", false],
+				["PATRICIA POLITZER KEREKES (IND)", false],
+				["BENITO JOSE BARANDA FERRAN (IND)", false],
+				["JUAN JOSE MARTIN BRAVO (IND)", false],
+				["PAULINA VALERIA VALENZUELA RIO (IND)", false],
+				["CAROLINA ANDREA SEPULVEDA SEPULVEDA (IND)", false],
+				["TAMMY SOLANGE PUSTILNICK ARDITI (IND)", false],
+				["JAVIER FUCHSLOCHER BAEZA (IND)", false],
+				["LORENA DEL PILAR CESPEDES FERNANDEZ (IND)", false],
+				["GASPAR ROBERTO DOMINGUEZ DONOSO (IND)", false]
     		]
     	},
     	'Candidaturas Independientes': {
     		'seats': 11,
     		'color': colores['gris'],
     		'names': [
-				["ALEJANDRA ALICIA FLORES CARLOS", false],
-				["CRISTINA INES DORADOR ORTIZ", false],
-				["MARIA TRINIDAD CASTILLO BOILET", false],
-				["JANIS JAN DEL CARMEN MENESES PALMA", false],
-				["RODRIGO  LOGAN SOTO", false],
-				["ALONDRA CARRILLO VIDAL", false],
-				["ALVIN ANTONIO SALDAÑA MUÑOZ", false],
-				["GLORIA DEL TRANSITO ALVARADO JORQUERA", false],
-				["MARIA ELISA QUINTEROS CACERES", false],
-				["BASTIAN ESTEBAN LABBE SALAZAR", false],
-				["MAURICIO DAZA CARRASCO", false]
+				["ALEJANDRA ALICIA FLORES CARLOS (IND)", false],
+				["CRISTINA INES DORADOR ORTIZ (IND)", false],
+				["MARIA TRINIDAD CASTILLO BOILET (IND)", false],
+				["JANIS JAN DEL CARMEN MENESES PALMA (IND)", false],
+				["RODRIGO LOGAN SOTO (IND)", false],
+				["ALONDRA CARRILLO VIDAL (IND)", false],
+				["ALVIN ANTONIO SALDAÑA MUÑOZ (IND)", false],
+				["GLORIA DEL TRANSITO ALVARADO JORQUERA (IND)", false],
+				["MARIA ELISA QUINTEROS CACERES (IND)", false],
+				["BASTIAN ESTEBAN LABBE SALAZAR (IND)", false],
+				["MAURICIO DAZA CARRASCO (IND)", false]
     		]
     	},
-    	'Pueblos Indígenas': {
-    		'seats': 17,
-    		'color': colores['marron'],
+    	'Pueblos Indígenas (Mapuche)': {
+    		'seats': 7,
+    		'color': '#8a3f1c', //colores['marron'],
     		'names': [
-				["FRANCISCA LINCONAO HUIRCAPAN", false],
-				["NATIVIDAD LLANQUILEO PILQUIMAN", false],
-				["ADOLFO MILLABUR ÑANCUIL", false],
-				["ELISA LONCON ANTILEO", false],
-				["ROSA ELIZABETH CATRILEO ARIAS", false],
-				["VICTORINO ERNESTO ANTILEF ÑANCO", false],
-				["ALEXIS REINALDO CAIGUAN ANCAPAN", false],
-				["TIARE MAEVA CAROLINA AGUILERA HEY", false],
-				["FELIX RAMON GALLEGUILLOS AYMANI", false],
-				["ISABELLA BRUNILDA MAMANI MAMANI", false],
-				["LUIS ALBERTO JIMENEZ CACERES", false],
-				["WILFREDO MANUEL BACIAN DELGADO", false],
-				["ISABEL SELENA GODOY MONARDEZ", false],
-				["ERIC JOHANNY CHINGA FERREIRA", false],
-				["MARGARITA VARGAS LOPEZ", false],
-				["LIDIA GONZALEZ CALDERON", false],
-				["FERNANDO DEL CARMEN TIRADO SOTO", false]
+				["FRANCISCA LINCONAO HUIRCAPAN (Mapuche)", false],
+				["NATIVIDAD LLANQUILEO PILQUIMAN (Mapuche)", false],
+				["ADOLFO MILLABUR ÑANCUIL (Mapuche)", false],
+				["ELISA LONCON ANTILEO (Mapuche)", false],
+				["ROSA ELIZABETH CATRILEO ARIAS (Mapuche)", false],
+				["VICTORINO ERNESTO ANTILEF ÑANCO (Mapuche)", false],
+				["ALEXIS REINALDO CAIGUAN ANCAPAN (Mapuche)", false]
+    		]
+    	},
+    	'Pueblos Indígenas (Rapanui)': {
+    		'seats': 1,
+    		'color': '#914621', //colores['marron'],
+    		'names': [
+				["TIARE MAEVA CAROLINA AGUILERA HEY (Rapanui)", false]
+    		]
+    	},
+    	'Pueblos Indígenas (Atacameño)': {
+    		'seats': 1,
+    		'color': '#994c27', // colores['marron'],
+    		'names': [
+				["FELIX RAMON GALLEGUILLOS AYMANI (Atacameño)", false]
+    		]
+    	},
+    	'Pueblos Indígenas (Aimara)': {
+    		'seats': 2,
+    		'color': '#a0522d', // colores['marron'],
+    		'names': [
+				["ISABELLA BRUNILDA MAMANI MAMANI (Aimara)", false],
+				["LUIS ALBERTO JIMENEZ CACERES (Aimara)", false]
+    		]
+    	},
+    	'Pueblos Indígenas (Quechua)': {
+    		'seats': 1,
+    		'color': '#a75833', // colores['marron'],
+    		'names': [
+				["WILFREDO MANUEL BACIAN DELGADO (Quechua)", false]
+    		]
+    	},
+    	'Pueblos Indígenas (Colla)': {
+    		'seats': 1,
+    		'color': '#af5f39', // colores['marron'],
+    		'names': [
+				["ISABEL SELENA GODOY MONARDEZ (Colla)", false]
+    		]
+    	},
+    	'Pueblos Indígenas (Diaguita)': {
+    		'seats': 1,
+    		'color': '#b6653f', // colores['marron'],
+    		'names': [
+				["ERIC JOHANNY CHINGA FERREIRA (Diaguita)", false]
+    		]
+    	},
+    	'Pueblos Indígenas (Kawashkar)': {
+    		'seats': 1,
+    		'color': '#bf6d46', // colores['marron'],
+    		'names': [
+				["MARGARITA VARGAS LOPEZ (Kawashkar)", false]
+    		]
+    	},
+    	'Pueblos Indígenas (Yagán)': {
+    		'seats': 1,
+    		'color': '#c8744d', // colores['marron'],
+    		'names': [
+				["LIDIA GONZALEZ CALDERON (Yagán)", false]
+    		]
+    	},
+    	'Pueblos Indígenas (Chango)': {
+    		'seats': 1,
+    		'color': '#d17c54', // colores['marron'],
+    		'names': [
+				["FERNANDO DEL CARMEN TIRADO SOTO (Chango)", false]
     		]
     	}
     }	
     parliament_order = {
+    	'Pueblos Indígenas (Mapuche)': false, 
+    	'Pueblos Indígenas (Rapanui)': false, 
+    	'Pueblos Indígenas (Atacameño)': false, 
+    	'Pueblos Indígenas (Aimara)': false, 
+    	'Pueblos Indígenas (Quechua)': false, 
+    	'Pueblos Indígenas (Colla)': false, 
+    	'Pueblos Indígenas (Diaguita)': false, 
+    	'Pueblos Indígenas (Kawashkar)': false, 
+    	'Pueblos Indígenas (Yagán)': false, 
+    	'Pueblos Indígenas (Chango)': false, 
     	'Candidaturas Independientes': false,
-    	'Pueblos Indígenas': false, 
     	'La Lista del Pueblo': true, 
-    	'Apruebo Dignidad': true, 
-    	'Lista del Apruebo': true, 
+    	'Apruebo Dignidad (PCCH)': true, 
+    	'Apruebo Dignidad (FREVS)': true, 
+    	'Apruebo Dignidad (RD)': true, 
+    	'Apruebo Dignidad (CS)': true, 
+    	'Apruebo Dignidad (COM)': true, 
+    	'Apruebo Dignidad (IGUAL)': true, 
+    	'Lista del Apruebo (PR)': true, 
+    	'Lista del Apruebo (PL)': true, 
+    	'Lista del Apruebo (PRO)': true, 
+    	'Lista del Apruebo (PS)': true, 
+    	'Lista del Apruebo (PPD)': true, 
+    	'Lista del Apruebo (PDC)': true, 
     	'Independientes No Neutrales': true,
-    	'Vamos por Chile': true
+    	'Vamos por Chile (EVO)': true,
+    	'Vamos por Chile (RN)': true,
+    	'Vamos por Chile (UDI)': true
     }
 
 	legend.innerHTML = '';
@@ -1714,11 +1892,15 @@ function mostrarConvencionales() {
     	legend2.style.width = '850px';
     	legend2.style.maxWidth = '850px';
     	legend2.style.width = '360px';
-    	legend2.style.height = '215px';
+    	legend2.style.height = '250px';
     	//legend2.innerHTML = 'Color y transparencia depende del porcentaje de la lista más votada en el distrito.';
     	var div = document.createElement('div');
-    	div.appendChild(generateSVG(parliament, parliament_order, true));
+    	div.appendChild(generateSVG(parliament, parliament_order, true, "Convencional"));
     	legend2.appendChild(div);
+    	var span = document.createElement('span');
+    	span.id = 'lista-seat';
+    	span.innerHTML = '<br>';
+    	legend2.appendChild(span);
     	var span = document.createElement('span');
     	span.id = 'nombre-seat';
     	span.innerHTML = 'Muévete sobre los puntos...';
@@ -1730,7 +1912,7 @@ function mostrarConvencionales() {
     }
 
 	var table = document.createElement('table');
-	for (partido in parliament) {
+	for (partido in parl_listas) {
 		var tr = document.createElement('tr');
 		var td1 = document.createElement('td');
 		var td2 = document.createElement('td');
@@ -1738,12 +1920,12 @@ function mostrarConvencionales() {
 		var item = document.createElement('div');
 		var key = document.createElement('span');
 		key.className = 'legend-key';
-		key.style.backgroundColor = parliament[partido].color;
+		key.style.backgroundColor = parl_listas[partido].color;
 		item.appendChild(key);
 		td1.appendChild(item);
 
 		var value = document.createElement('span');
-		value.innerHTML = partido + ' (' + parliament[partido].seats + ')';
+		value.innerHTML = partido + ' (' + parl_listas[partido].seats + ')';
 		td2.appendChild(value);
 
 		tr.appendChild(td1);
@@ -2608,6 +2790,7 @@ var merge = function merge(arrays) {
 
 	return result;
 }
+
 function generatePoints(parliament, r0) {
 	var seatCount = seatSum(parliament);
 	var numberOfRings = calculateNumberOfRings(seatCount, r0);
@@ -2647,7 +2830,7 @@ function generatePoints(parliament, r0) {
 		for (var _i2 = 0; _i2 < parliament[party].seats; _i2++) {
 			ring = nextRing(points, ringProgress, parliament[party].ordered);
 			points[ring][ringProgress[ring]].fill = parliament[party].color;
-			points[ring][ringProgress[ring]].party = party;
+			points[ring][ringProgress[ring]].party = party.replace(/ /g,"-");
 			if (parliament[party].hasOwnProperty('names')) {
 				points[ring][ringProgress[ring]].name = parliament[party].names[_i2][0];
 				if (parliament[party].names[_i2][1]) {
@@ -2657,15 +2840,23 @@ function generatePoints(parliament, r0) {
 					newpoint.r = points[ring][ringProgress[ring]].r/2.8;
 					newpoint.fill = colores['negro'];
 					newpoint.name = parliament[party].names[_i2][0];
+					newpoint.party = party.replace(/ /g,"-");
 					blackDots.push(newpoint);
 				}
+			} else if (parliament[party].hasOwnProperty('dotted') && _i2<parliament[party].dotted) {
+				var newpoint = {};
+				newpoint.x = points[ring][ringProgress[ring]].x;
+				newpoint.y = points[ring][ringProgress[ring]].y;
+				newpoint.r = points[ring][ringProgress[ring]].r/2.8;
+				newpoint.fill = colores['negro'];
+				blackDots.push(newpoint);
 			}
 			ringProgress[ring]++;
 		}
 	}
 	return [merge(points), merge(blackDots)];
 }
-function generateSVG(_parliament, order, seatCount) {
+function generateSVG(_parliament, order, seatCount, type) {
 	var parliament = {};
 	for (party in order) {
 		parliament[party] = _parliament[party];
@@ -2681,7 +2872,8 @@ function generateSVG(_parliament, order, seatCount) {
 	var x = -radius - a / 2;
 	var y = -radius - a / 2;
     var boxWidth = 2 * radius + a;
-    var boxHeight = radius + a;
+    if (blackDots.length > 0) var boxHeight = radius + 2.5*a;
+    else var boxHeight = radius + a;
 
     var svgElem = document.createElementNS(xmlns, "svg");
     svgElem.setAttributeNS(null, "viewBox", x + " " + y + " " + boxWidth + " " + boxHeight);
@@ -2690,14 +2882,37 @@ function generateSVG(_parliament, order, seatCount) {
     svgElem.setAttributeNS(null, "baseProfile", "tiny");
     svgElem.setAttributeNS(null, "version", "1.2");
     
+    /*
+    var script = document.createElementNS(xmlns, "script");
+    script.setAttributeNS(null, "type", "text/ecmascript")
+    script.innerHTML = '<![CDATA[function change(evt){var svgobj=evt.getTarget(); svgobj.style.opacity=0.3;}]]>'
+    svgElem.appendChild(script);
+	*/
+
     for (index in points) {
     	var circle = document.createElementNS(xmlns,"circle");
+    	circle.setAttributeNS(null, "class", "parliament-seat "+points[index].party);
+    	circle.setAttributeNS(null, "onmousemove", "touchParliamentSeat(evt)");
+    	circle.setAttributeNS(null, "onmouseleave", "unTouchParliamentSeat(evt)");
     	circle.setAttributeNS(null, "cx", points[index].x);
     	circle.setAttributeNS(null, "cy", points[index].y);
     	circle.setAttributeNS(null, "r", points[index].r);
     	circle.setAttributeNS(null, "fill", points[index].fill);
-    	if (points[index].hasOwnProperty('name')) {
-    		circle.setAttributeNS(null, "data-name", points[index].name);
+    	circle.setAttributeNS(null, "data-name", points[index].name);
+    	circle.setAttributeNS(null, "data-party", points[index].party);
+    	svgElem.appendChild(circle);
+    }
+    for (index in blackDots) {
+    	var circle = document.createElementNS(xmlns,"circle");
+    	circle.setAttributeNS(null, "cx", blackDots[index].x);
+    	circle.setAttributeNS(null, "cy", blackDots[index].y);
+    	circle.setAttributeNS(null, "r", blackDots[index].r);
+    	circle.setAttributeNS(null, "fill", blackDots[index].fill);
+    	if (blackDots[index].hasOwnProperty('name')) {
+    		circle.setAttributeNS(null, "class", "parliament-seat "+blackDots[index].party);
+    		circle.setAttributeNS(null, "data-name", blackDots[index].name);
+    		circle.setAttributeNS(null, "data-party", blackDots[index].party);
+    		circle.setAttributeNS(null, "data-dotted", "yes");
 	    	circle.setAttributeNS(null, "onmousemove", "touchParliamentSeat(evt)");
 	    	circle.setAttributeNS(null, "onmouseleave", "unTouchParliamentSeat(evt)");
     	}
@@ -2713,9 +2928,49 @@ function generateSVG(_parliament, order, seatCount) {
     	text.setAttributeNS(null, "text-anchor", "middle");
     	svgElem.appendChild(text);
     }
+    if (blackDots.length > 0) {
+    	var circle = document.createElementNS(xmlns,"circle");
+    	circle.setAttributeNS(null, "cx", -4*a);
+    	circle.setAttributeNS(null, "cy", 1.5*a);
+    	circle.setAttributeNS(null, "r", points[0].r);
+    	circle.setAttributeNS(null, "fill", colores['suave']);
+    	svgElem.appendChild(circle);
+    	var circle = document.createElementNS(xmlns,"circle");
+    	circle.setAttributeNS(null, "cx", 2*a);
+    	circle.setAttributeNS(null, "cy", 1.5*a);
+    	circle.setAttributeNS(null, "r", points[0].r);
+    	circle.setAttributeNS(null, "fill", colores['suave']);
+    	svgElem.appendChild(circle);
+    	var circle = document.createElementNS(xmlns,"circle");
+    	circle.setAttributeNS(null, "cx", 2*a);
+    	circle.setAttributeNS(null, "cy", 1.5*a);
+    	circle.setAttributeNS(null, "r", points[0].r/2.8);
+    	circle.setAttributeNS(null, "fill", colores['negro']);
+    	svgElem.appendChild(circle);
+    	var text = document.createElementNS(xmlns,"text");
+    	if (type=='Convencional') {
+	    	text.innerHTML = 'INDEPENDIENTE';
+	    	text.setAttributeNS(null, "x", -3.5*a);
+	    	text.setAttributeNS(null, "y", 1.65*a);
+	    	text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
+	    	text.setAttributeNS(null, "font-size", a/1.8+"px");
+	    	text.setAttributeNS(null, "text-anchor", "start");
+	    	svgElem.appendChild(text);
+	    	var text = document.createElementNS(xmlns,"text");
+	    	text.innerHTML = 'AFILIADO A PARTIDO';
+	    	text.setAttributeNS(null, "x", 2.5*a);
+	    	text.setAttributeNS(null, "y", 1.65*a);
+	    	text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
+	    	text.setAttributeNS(null, "font-size", a/1.8+"px");
+	    	text.setAttributeNS(null, "text-anchor", "start");
+	    	svgElem.appendChild(text);
+    	}
+
+    }
 
    	return svgElem;
 }
+
 
 function getParliamentTable(parliament) {
 	var table = document.createElement('table');
