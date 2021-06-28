@@ -60,12 +60,12 @@
     			if (count==1) var escanos = count + " escaño";
     			else var escanos = count + " escaños";
 	    		var span = document.getElementById('lista-seat');
-	    		span.innerHTML = '<span style="font-weight:bold">'+party.replace(/-/g," ")+":</span> "+escanos+'<br>';
+	    		if (span) span.innerHTML = '<span style="font-weight:bold">'+party.replace(/-/g," ")+":</span> "+escanos+'<br>';
     		} else {
     			svgobj.style.opacity=0.3;	
     		}
     		var span = document.getElementById('nombre-seat');
-    		span.innerHTML = '<span>'+svgobj.dataset.name+'</span>';
+    		if (span) span.innerHTML = '<span>'+svgobj.dataset.name+'</span>';
     	}
     	function unTouchParliamentSeat(evt) {
     		var svgobj=evt.target; 
@@ -75,13 +75,13 @@
     			for (var i =0; i < els.length; i++) {
     				els[i].style.opacity=1;
 	    		var span = document.getElementById('lista-seat');
-	    		span.innerHTML = '<br>';
+	    		if (span) span.innerHTML = '<br>';
     			}
     		} else {
     			svgobj.style.opacity=1;	
     		}
     		var span = document.getElementById('nombre-seat');
-    		span.innerHTML = 'Muévete sobre los puntos...';
+    		if (span) span.innerHTML = 'Muévete sobre los puntos...';
     	}
     </script>
 </body>

@@ -1387,12 +1387,16 @@ map.on('mousemove', 'cores', function (e){
 
     if (screen.width>=992) {
     	legend2.style.display = 'block';
-    	legend2.innerHTML = 'Consejeros Regionales 2018-2022<br>'+ region;
-    	legend2.style.fontWeight = 'bold';
-    	legend2.style.textAlign = 'center';
+    	legend2.innerHTML = '<div style="font-weight:bold;text-align:center">Consejeros Regionales 2018-2022<br>'+ region+'</div>';
+    	//legend2.style.fontWeight = 'bold';
+    	//legend2.style.textAlign = 'center';
     	var div = document.createElement('div');
     	div.appendChild(generateSVG(region2cores[region][0], region2cores[region][1], true, "Cores"));
     	legend2.appendChild(div);
+    	var span = document.createElement('span');
+    	span.id = 'lista-seat';
+    	span.innerHTML = '<br>';
+    	legend2.appendChild(span);
     }
 });
 map.on('mouseleave', 'cores', function () {
@@ -2186,7 +2190,8 @@ function mostrarDiputados() {
     	legend2.style.height = '250px';
     	var div = document.createElement('div');
     	div.appendChild(generateSVG(parliament, parliament_order, true, "Diputados"));
-    	legend2.appendChild(div);var span = document.createElement('span');
+    	legend2.appendChild(div);
+    	var span = document.createElement('span');
     	span.id = 'lista-seat';
     	span.innerHTML = '<br>';
     	legend2.appendChild(span);
@@ -2385,7 +2390,7 @@ function mostrarSenadores() {
     	legend2.style.display = 'block';
     	legend2.style.maxWidth = '850px';
     	legend2.style.width = '360px';
-    	legend2.style.height = '300px';
+    	legend2.style.height = '305px';
     	var div = document.createElement('div');
     	div.appendChild(generateSVG(parliament, parliament_order, true, "Senado"));
     	legend2.appendChild(div);
@@ -2481,7 +2486,7 @@ function mostrarCORES() {
     	legend2.style.display = 'none';
     	legend2.style.maxWidth = '850px';
     	legend2.style.width = '360px';
-    	legend2.style.height = '250px';
+    	legend2.style.height = '270px';
     } else {
         legend.style.width = '295px';
         legend.style.maxWidth = '295px';
