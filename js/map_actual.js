@@ -2222,9 +2222,9 @@ function mostrarSenadores() {
 			'parties': [['UDI', 9], ['RN', 8], ['EVO', 2]]
 		},
 		'La Fuerza de la Mayoría': {
-			'seats': 16,
+			'seats': 15,
 			'color': colores['rojo-oscuro'],
-			'parties': [['PPD', 8], ['PS', 7], ['PRSD', 1]]
+			'parties': [['PPD', 8], ['PS', 7]]
 		},
 		'Convergencia Democrática': {
 			'seats': 5,
@@ -2237,9 +2237,9 @@ function mostrarSenadores() {
 			'parties': [['RD', 1]]
 		},
 		'Progresistas': {
-			'seats': 1,
+			'seats': 2,
 			'color': colores['rosado'],
-			'parties': [['PRO', 1]]
+			'parties': [['PRO', 2]]
 		},
 		'Candidatura Independiente': {
 			'seats': 1,
