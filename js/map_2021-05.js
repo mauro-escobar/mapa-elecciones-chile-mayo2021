@@ -1367,6 +1367,15 @@ function clean() {
 	document.getElementById('a-alcaldes').style.color = 'gray';
 	document.getElementById('a-concejales').style.color = 'gray';
 	document.getElementById('a-concejalesMH').style.color = 'gray';
+
+	legend.innerHTML = '';
+	legend2.innerHTML = '';
+	legend.style.height = 'fit-content';
+	legend.style.width = 'fit-content';
+	legend2.style.height = 'fit-content';
+	legend2.style.width = 'fit-content';
+	legend2.style.fontWeight = '';
+	legend2.style.textAlign = '';
 }
 
 
@@ -1374,7 +1383,6 @@ function mostrarDistritos() {
 	clean()
 	map.setLayoutProperty('distritos', 'visibility', 'visible');
 	document.getElementById('a-distritos').style.color = 'black';
-	legend.innerHTML = '';
 	legend.style.display = 'none';
 	legend2.style.display = 'none';
 };
@@ -1395,14 +1403,6 @@ function mostrarParticipacion() {
 
 	legend.style.display = 'block';
     if (screen.width>=992) {
-        legend.style.width = '320px';
-        legend.style.maxWidth = '320px';
-        legend.style.height = '80px';
-        legend2.style.display = 'block';
-        legend2.style.width = '850px';
-        legend2.style.maxWidth = '850px';
-        legend2.style.width = '850px';
-        legend2.style.height = '55px';
     	legend2.innerHTML = 'Zonas con mayor participación tienen un color más solido. '+
     					   'Al acercarse/alejarse se nota el cambio entre distritos y comunas.';
 
@@ -1425,11 +1425,7 @@ function mostrarParticipacion() {
     	}
     	table2.appendChild(tr);
     	legend2.appendChild(table2);
-    } else {
-        legend.style.maxWidth = '240px';
-        legend.style.height = '60px';
-    }
-
+    } 
 };
 
 
@@ -1443,16 +1439,6 @@ function mostrarGobernadores() {
 	legend.style.display = 'block';
 	legend2.style.display = 'none';
     legend.innerHTML = '<span style="font-weight:bold;">Goberadores Regionales 2021-2025</span>';
-
-    if (screen.width>=992) {
-    	legend.style.width = '260px';
-    	legend.style.maxWidth = '260px';
-    	legend.style.height = '135px';
-    } else {
-        legend.style.width = '185px';
-        legend.style.maxWidth = '185px';
-        legend.style.height = '110px';
-    }
 
 	var layers = ['Unidad Constituyente (10)', 'Frente Amplio (2)', 'Chile Vamos (1)', 
 	              'Ecologistas e Independientes (1)',  'Candidaturas Independientes (2)'];
@@ -1884,17 +1870,9 @@ function mostrarConvencionales() {
 	legend.innerHTML = '';
 	legend.style.display = 'block';
     if (screen.width>=992) {
-    	legend.style.width = '250px';
-    	legend.style.maxWidth = '250px';
-    	legend.style.height = '160px';
-    	legend2.innerHTML = '';
     	legend2.style.display = 'block';
-    	legend2.style.width = '850px';
-    	legend2.style.maxWidth = '850px';
-    	legend2.style.width = '360px';
-    	legend2.style.height = '255px';
-    	//legend2.innerHTML = 'Color y transparencia depende del porcentaje de la lista más votada en el distrito.';
     	var div = document.createElement('div');
+    	div.style.width = '360px';
     	div.appendChild(generateSVG(parliament, parliament_order, true, "Convencional"));
     	legend2.appendChild(div);
     	var span = document.createElement('span');
@@ -1905,10 +1883,8 @@ function mostrarConvencionales() {
     	span.id = 'nombre-seat';
     	span.innerHTML = 'Muévete sobre los puntos...';
     	legend2.appendChild(span);
-    } else {  
-        legend.style.width = '195px';
-        legend.style.maxWidth = '195px';
-        legend.style.height = '135px';  
+    } else {
+    	legend2.style.display = 'none';
     }
 
 	var table = document.createElement('table');
@@ -1933,6 +1909,8 @@ function mostrarConvencionales() {
 		table.appendChild(tr);
 	};
 	legend.appendChild(table);
+
+    
 };
 
 
@@ -1946,19 +1924,9 @@ function mostrarConvencionalesMH() {
 	legend.innerHTML = '';
 	legend.style.display = 'block';
     if (screen.width>=992) {
-    	legend.style.width = '270px';
-    	legend.style.maxWidth = '270px';
-    	legend.style.height = '250px';
     	legend2.style.display = 'block';
-    	legend2.style.maxWidth = '850px';
-    	legend2.style.width = '650px';
-    	legend2.style.height = '30px';
     	legend2.innerHTML = 'Acercarse para distinguir participación a nivel comunal.';
-    } else {
-        legend.style.width = '200px';
-        legend.style.maxWidth = '200px';
-        legend.style.height = '190px';        
-    }
+    } 
 
 	var layers = ['65% votación hacia mujeres', '60% votación hacia mujeres', '55% votación hacia mujeres', '50%',
 	              '55% votación hacia hombres', '60% votación hacia hombres', '65% votación hacia hombres'];
@@ -2082,24 +2050,12 @@ function mostrarAlcaldes() {
 		}
 	}
 
-
 	legend.style.display = 'block';
     legend.innerHTML = '<span style="font-weight:bold">Alcaldes 2021-2024</span>';
     if (screen.width>=992) {
-    	legend.style.width = '490px';
-    	legend.style.maxWidth = '490px';
-    	legend.style.height = '175px';
     	legend2.style.display = 'block';
-    	legend2.style.maxWidth = '850px';
-    	legend2.style.width = '650px';
-    	legend2.style.height = '30px';
     	legend2.innerHTML = 'Transparencia depende del porcentaje del candidato electo.';
-    } else {
-        legend.style.width = '270px';
-        legend.style.maxWidth = '270px';
-        legend.style.height = '150px';
-    }
-
+    } 
 	legend.appendChild(getParliamentTable(parliament));
 };
 
@@ -2113,15 +2069,6 @@ function mostrarConcejalesMH() {
 	legend.style.display = 'block';
     legend2.innerHTML = '';
     legend2.style.display = 'none';
-    if (screen.width>=992) {
-    	legend.style.width = '260px';
-    	legend.style.maxWidth = '260px';
-    	legend.style.height = '310px';
-    } else {
-        legend.style.width = '205px';
-        legend.style.maxWidth = '205px';
-        legend.style.height = '250px';
-    }
 
 	var layers = ['>65% votación hacia mujeres', '60% votación hacia mujeres', '55% votación hacia mujeres', '50%',
 	              '55% votación hacia hombres', '60% votación hacia hombres', '>65% votación hacia hombres'];
@@ -2260,9 +2207,6 @@ function mostrarConcejales() {
 
     if (screen.width>=992) {
         legend.style.display = 'block';
-    	legend.style.width = '460px';
-    	legend.style.maxWidth = '460px';
-    	legend.style.height = '415px';
 
         var layers2 = {
             'Chile Vamos': 'UDI (298), RN (377), EVO (61), PRI (36)', 
@@ -2288,7 +2232,6 @@ function mostrarConcejales() {
 	for (var layer in coloresConcL) {
 		if (layer == 'Chile Vamos' & screen.width>=992) {
 			var tr = document.createElement('tr');
-            tr.style.height = '26px';
 			var td1= document.createElement('td');
 			var td2= document.createElement('td');
 			td2.colSpan = '2';
@@ -2309,7 +2252,6 @@ function mostrarConcejales() {
 			table.appendChild(tr);
 		} else if (layer == 'Unidad por el Apruebo' & screen.width>=992) {
 			var tr = document.createElement('tr');
-            tr.style.height = '26px';
 			tr.style.borderTop = 'solid';
 			tr.style.borderWidth = '1px';
 			var td1= document.createElement('td');
@@ -2332,7 +2274,6 @@ function mostrarConcejales() {
 			table.appendChild(tr);
 		} else if (layer == 'Chile Digno Verde y Sob.' & screen.width>=992) {
 			var tr = document.createElement('tr');
-            tr.style.height = '26px';
 			tr.style.borderTop = 'solid';
 			tr.style.borderWidth = '1px';
 			var td1= document.createElement('td');
@@ -2358,7 +2299,6 @@ function mostrarConcejales() {
 		var layer2 = layers2[layer];
 		var color = coloresConcL[layer];
 		var tr = document.createElement('tr');
-            tr.style.height = '26px';
 		var td1 = document.createElement('td');
 		var td2 = document.createElement('td');
 		var td3 = document.createElement('td');
@@ -2396,9 +2336,6 @@ function mostrarConcejales() {
 
     if (screen.width>=992) {
     	legend2.style.display = 'block';
-    	legend2.style.height = '50px';
-    	legend2.style.maxWidth = '835px';
-    	legend2.style.width = '835px';
     	legend2.innerHTML = 'Fracción del concejo municipal (alcaldes y concejales) pertenecientes a las listas seleccionadas<br>';
     	var coloresLegend2 = ['rgb(255,0,0)', 'rgb(255,46,46)', 'rgb(255,57,57)', 'rgb(255,73,73)',
     	                      'rgb(255,93,93)', 'rgb(255,113,113)', 'rgb(255,139,139)', 'rgb(255,146,146)',

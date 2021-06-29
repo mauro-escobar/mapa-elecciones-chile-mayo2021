@@ -1391,6 +1391,7 @@ map.on('mousemove', 'cores', function (e){
     	//legend2.style.fontWeight = 'bold';
     	//legend2.style.textAlign = 'center';
     	var div = document.createElement('div');
+    	div.style.width = '360px';
     	div.appendChild(generateSVG(region2cores[region][0], region2cores[region][1], true, "Cores"));
     	legend2.appendChild(div);
     	var span = document.createElement('span');
@@ -1817,9 +1818,16 @@ function clean() {
 	document.getElementById('a-cores').style.color = 'gray';
 	document.getElementById('a-alcaldes').style.color = 'gray';
 	document.getElementById('a-concejales').style.color = 'gray';
-	legend2.innerHTML = '';
+
 	legend2.style.fontWeight = '';
 	legend2.style.textAlign = '';
+
+	legend.innerHTML = '';
+	legend2.innerHTML = '';
+	legend.style.height = 'fit-content';
+	legend.style.width = 'fit-content';
+	legend2.style.height = 'fit-content';
+	legend2.style.width = 'fit-content';
 }
 
 
@@ -2180,15 +2188,10 @@ function mostrarDiputados() {
 	legend.style.display = 'block';
     legend.innerHTML = '';
     if (screen.width>=992) {
-    	legend.style.width = '450px';
-    	legend.style.maxWidth = '450px';
-    	legend.style.height = '180px';
     	legend2.innerHTML = '<div style="text-align:center;text-size:1.3em"><strong>Cámara baja 2018-2022</strong></div>';
     	legend2.style.display = 'block';
-    	legend2.style.maxWidth = '850px';
-    	legend2.style.width = '360px';
-    	legend2.style.height = '250px';
     	var div = document.createElement('div');
+    	div.style.width = '360px';
     	div.appendChild(generateSVG(parliament, parliament_order, true, "Diputados"));
     	legend2.appendChild(div);
     	var span = document.createElement('span');
@@ -2199,11 +2202,7 @@ function mostrarDiputados() {
     	span.id = 'nombre-seat';
     	span.innerHTML = 'Muévete sobre los puntos...';
     	legend2.appendChild(span);
-    } else {
-        legend.style.width = '255px';
-        legend.style.maxWidth = '255px';
-        legend.style.height = '150px';
-    }
+    } 
 
 	legend.appendChild(getParliamentTable(parl_listas));
 };
@@ -2383,15 +2382,10 @@ function mostrarSenadores() {
 	legend.style.display = 'block';
     legend.innerHTML = '';
     if (screen.width>=992) {
-    	legend.style.width = '390px';
-    	legend.style.maxWidth = '390px';
-    	legend.style.height = '140px';
     	legend2.innerHTML = '<div style="text-align:center;text-size:1.3em"><strong>Cámara alta 2018-2022</strong></div>';
     	legend2.style.display = 'block';
-    	legend2.style.maxWidth = '850px';
-    	legend2.style.width = '360px';
-    	legend2.style.height = '305px';
     	var div = document.createElement('div');
+    	div.style.width = '360px';
     	div.appendChild(generateSVG(parliament, parliament_order, true, "Senado"));
     	legend2.appendChild(div);
     	var span = document.createElement('span');
@@ -2402,10 +2396,6 @@ function mostrarSenadores() {
     	span.id = 'nombre-seat';
     	span.innerHTML = 'Muévete sobre los puntos...';
     	legend2.appendChild(span);
-    } else {
-        legend.style.width = '240px';
-        legend.style.maxWidth = '240px';
-        legend.style.height = '120px';
     }
 
 	legend.appendChild(getParliamentTable(parl_listas));
@@ -2478,20 +2468,7 @@ function mostrarCORES() {
 
 
 	legend.style.display = 'block';
-    legend.innerHTML = '';
-    if (screen.width>=992) {
-    	legend.style.width = '560px';
-    	legend.style.maxWidth = '560px';
-    	legend.style.height = '240px';
-    	legend2.style.display = 'none';
-    	legend2.style.maxWidth = '850px';
-    	legend2.style.width = '360px';
-    	legend2.style.height = '270px';
-    } else {
-        legend.style.width = '295px';
-        legend.style.maxWidth = '295px';
-        legend.style.height = '205px';
-    }
+    legend2.style.display = 'none';
 
 	legend.appendChild(getParliamentTable(parliament));
 }
@@ -2505,16 +2482,6 @@ function mostrarGobernadores() {
 	legend.style.display = 'block';
 	legend2.style.display = 'none';
     legend.innerHTML = '<span style="font-weight:bold;">Goberadores Regionales 2021-2025</span>';
-
-    if (screen.width>=992) {
-    	legend.style.width = '260px';
-    	legend.style.maxWidth = '260px';
-    	legend.style.height = '135px';
-    } else {
-        legend.style.width = '185px';
-        legend.style.maxWidth = '185px';
-        legend.style.height = '110px';
-    }
 
 	var layers = ['Unidad Constituyente (10)', 'Frente Amplio (2)', 'Chile Vamos (1)', 
 	              'Ecologistas e Independientes (1)',  'Candidaturas Independientes (2)'];
@@ -2598,18 +2565,8 @@ function mostrarAlcaldes() {
 	legend.style.display = 'block';
     legend.innerHTML = '<span style="font-weight:bold">Alcaldes 2021-2024</span>';
     if (screen.width>=992) {
-    	legend.style.width = '490px';
-    	legend.style.maxWidth = '490px';
-    	legend.style.height = '175px';
     	legend2.style.display = 'block';
-    	legend2.style.maxWidth = '850px';
-    	legend2.style.width = '650px';
-    	legend2.style.height = '30px';
     	legend2.innerHTML = 'Transparencia depende del porcentaje del candidato electo.';
-    } else {
-        legend.style.width = '270px';
-        legend.style.maxWidth = '270px';
-        legend.style.height = '150px';
     }
 
 	legend.appendChild(getParliamentTable(parliament));
@@ -2627,9 +2584,6 @@ function mostrarConcejales() {
 
     if (screen.width>=992) {
         legend.style.display = 'block';
-    	legend.style.width = '460px';
-    	legend.style.maxWidth = '460px';
-    	legend.style.height = '415px';
 
         var layers2 = {
             'Chile Vamos': 'UDI (298), RN (377), EVO (61), PRI (36)', 
@@ -2764,9 +2718,6 @@ function mostrarConcejales() {
 
     if (screen.width>=992) {
     	legend2.style.display = 'block';
-    	legend2.style.height = '50px';
-    	legend2.style.maxWidth = '835px';
-    	legend2.style.width = '835px';
     	legend2.innerHTML = 'Fracción del concejo municipal (alcaldes y concejales) pertenecientes a las listas seleccionadas<br>';
     	var coloresLegend2 = ['rgb(255,0,0)', 'rgb(255,46,46)', 'rgb(255,57,57)', 'rgb(255,73,73)',
     	                      'rgb(255,93,93)', 'rgb(255,113,113)', 'rgb(255,139,139)', 'rgb(255,146,146)',
