@@ -1395,14 +1395,14 @@ function mostrarParticipacion() {
 
 	legend.style.display = 'block';
     if (screen.width>=992) {
-        legend.style.width = '300px';
-        legend.style.maxWidth = '300px';
-        legend.style.height = '70px';
+        legend.style.width = '320px';
+        legend.style.maxWidth = '320px';
+        legend.style.height = '80px';
         legend2.style.display = 'block';
         legend2.style.width = '850px';
         legend2.style.maxWidth = '850px';
         legend2.style.width = '850px';
-        legend2.style.height = '40px';
+        legend2.style.height = '55px';
     	legend2.innerHTML = 'Zonas con mayor participación tienen un color más solido. '+
     					   'Al acercarse/alejarse se nota el cambio entre distritos y comunas.';
 
@@ -1445,9 +1445,9 @@ function mostrarGobernadores() {
     legend.innerHTML = '<span style="font-weight:bold;">Goberadores Regionales 2021-2025</span>';
 
     if (screen.width>=992) {
-    	legend.style.width = '235px';
-    	legend.style.maxWidth = '235px';
-    	legend.style.height = '130px';
+    	legend.style.width = '260px';
+    	legend.style.maxWidth = '260px';
+    	legend.style.height = '135px';
     } else {
         legend.style.width = '185px';
         legend.style.maxWidth = '185px';
@@ -1519,7 +1519,7 @@ function mostrarConvencionales() {
     		'seats': 11,
     		'color': colores['gris']
     	},
-    	'Pueblos Indígenas (Mapuche)': {
+    	'Pueblos Indígenas': {
     		'seats': 17,
     		'color': colores['marron']
     	}
@@ -1884,15 +1884,15 @@ function mostrarConvencionales() {
 	legend.innerHTML = '';
 	legend.style.display = 'block';
     if (screen.width>=992) {
-    	legend.style.width = '240px';
-    	legend.style.maxWidth = '240px';
+    	legend.style.width = '250px';
+    	legend.style.maxWidth = '250px';
     	legend.style.height = '160px';
     	legend2.innerHTML = '';
     	legend2.style.display = 'block';
     	legend2.style.width = '850px';
     	legend2.style.maxWidth = '850px';
     	legend2.style.width = '360px';
-    	legend2.style.height = '250px';
+    	legend2.style.height = '255px';
     	//legend2.innerHTML = 'Color y transparencia depende del porcentaje de la lista más votada en el distrito.';
     	var div = document.createElement('div');
     	div.appendChild(generateSVG(parliament, parliament_order, true, "Convencional"));
@@ -1946,13 +1946,13 @@ function mostrarConvencionalesMH() {
 	legend.innerHTML = '';
 	legend.style.display = 'block';
     if (screen.width>=992) {
-    	legend.style.width = '250px';
-    	legend.style.maxWidth = '250px';
+    	legend.style.width = '270px';
+    	legend.style.maxWidth = '270px';
     	legend.style.height = '250px';
     	legend2.style.display = 'block';
     	legend2.style.maxWidth = '850px';
     	legend2.style.width = '650px';
-    	legend2.style.height = '18px';
+    	legend2.style.height = '30px';
     	legend2.innerHTML = 'Acercarse para distinguir participación a nivel comunal.';
     } else {
         legend.style.width = '200px';
@@ -2086,13 +2086,13 @@ function mostrarAlcaldes() {
 	legend.style.display = 'block';
     legend.innerHTML = '<span style="font-weight:bold">Alcaldes 2021-2024</span>';
     if (screen.width>=992) {
-    	legend.style.width = '470px';
-    	legend.style.maxWidth = '470px';
+    	legend.style.width = '490px';
+    	legend.style.maxWidth = '490px';
     	legend.style.height = '175px';
     	legend2.style.display = 'block';
     	legend2.style.maxWidth = '850px';
     	legend2.style.width = '650px';
-    	legend2.style.height = '18px';
+    	legend2.style.height = '30px';
     	legend2.innerHTML = 'Transparencia depende del porcentaje del candidato electo.';
     } else {
         legend.style.width = '270px';
@@ -2114,8 +2114,8 @@ function mostrarConcejalesMH() {
     legend2.innerHTML = '';
     legend2.style.display = 'none';
     if (screen.width>=992) {
-    	legend.style.width = '250px';
-    	legend.style.maxWidth = '250px';
+    	legend.style.width = '260px';
+    	legend.style.maxWidth = '260px';
     	legend.style.height = '310px';
     } else {
         legend.style.width = '205px';
@@ -2288,7 +2288,7 @@ function mostrarConcejales() {
 	for (var layer in coloresConcL) {
 		if (layer == 'Chile Vamos' & screen.width>=992) {
 			var tr = document.createElement('tr');
-            tr.style.height = '27px';
+            tr.style.height = '26px';
 			var td1= document.createElement('td');
 			var td2= document.createElement('td');
 			td2.colSpan = '2';
@@ -2297,6 +2297,7 @@ function mostrarConcejales() {
 			input.id = 'cb-vamos-por-chile';
 			input.style.height = '10px';
 			input.style.width = '10px';
+			input.style.margin = '3px';
 			var value = document.createElement('span');
 			var strong = document.createElement('strong');
 			strong.innerHTML = 'Vamos por Chile (la Derecha)';
@@ -2308,7 +2309,7 @@ function mostrarConcejales() {
 			table.appendChild(tr);
 		} else if (layer == 'Unidad por el Apruebo' & screen.width>=992) {
 			var tr = document.createElement('tr');
-            tr.style.height = '27px';
+            tr.style.height = '26px';
 			tr.style.borderTop = 'solid';
 			tr.style.borderWidth = '1px';
 			var td1= document.createElement('td');
@@ -2319,6 +2320,7 @@ function mostrarConcejales() {
 			input.id = 'cb-unidad-constituyente';
 			input.style.height = '10px';
 			input.style.width = '10px';
+			input.style.margin = '3px';
 			var value = document.createElement('span');
 			var strong = document.createElement('strong');
 			strong.innerHTML = 'Unidad Constituyente (la ex-Concertación)';
@@ -2330,7 +2332,7 @@ function mostrarConcejales() {
 			table.appendChild(tr);
 		} else if (layer == 'Chile Digno Verde y Sob.' & screen.width>=992) {
 			var tr = document.createElement('tr');
-            tr.style.height = '27px';
+            tr.style.height = '26px';
 			tr.style.borderTop = 'solid';
 			tr.style.borderWidth = '1px';
 			var td1= document.createElement('td');
@@ -2341,6 +2343,7 @@ function mostrarConcejales() {
 			input.id = 'cb-apruebo-dignidad';
 			input.style.height = '10px';
 			input.style.width = '10px';
+			input.style.margin = '3px';
 			var value = document.createElement('span');
 			var strong = document.createElement('strong');
 			strong.innerHTML = 'Apruebo Dignidad';
@@ -2355,7 +2358,7 @@ function mostrarConcejales() {
 		var layer2 = layers2[layer];
 		var color = coloresConcL[layer];
 		var tr = document.createElement('tr');
-            tr.style.height = '27px';
+            tr.style.height = '26px';
 		var td1 = document.createElement('td');
 		var td2 = document.createElement('td');
 		var td3 = document.createElement('td');
@@ -2369,6 +2372,7 @@ function mostrarConcejales() {
 		input.id = 'cb-'+shortNames[layer];
 		input.style.height = '10px';
 		input.style.width = '10px';
+		input.style.margin = '3px';
 		var key = document.createElement('span');
 		key.className = 'legend-key';
 		key.style.backgroundColor = color;
