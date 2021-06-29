@@ -58,6 +58,7 @@ a:hover {
     line-height: 18px;
     margin-bottom: 40px;
     font-size: 0.8em;
+    overflow: hidden;
   }
 
   .legend-key {
