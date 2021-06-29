@@ -2317,14 +2317,6 @@ function mostrarSenadores() {
 				["GIRARDI LAVIN GUIDO (PPD)", true]
 			]
 		},
-		'La Fuerza de la Mayoría (PRSD)': {
-			'seats': 1,
-			'color': '#bf2c17',//colores['rojo-oscuro'],
-			'dotted': 1,
-			'names': [
-				["GUILLIER ALVAREZ ALEJANDRO (IND-PRSD)", true],
-			]
-		},
 		'Convergencia Democrática': {
 			'seats': 5,
 			'color': colores['marron'],
@@ -2348,11 +2340,12 @@ function mostrarSenadores() {
 			]
 		},
 		'Progresistas': {
-			'seats': 1,
+			'seats': 2,
 			'color': colores['rosado'],
-			'parties': [['PRO', 1]],
-			'dotted': 1,
+			'parties': [['PRO', 2]],
+			'dotted': 2,
 			'names': [
+				["GUILLIER ALVAREZ ALEJANDRO (PRO)", true],
 				["NAVARRO BRAIN ALEJANDRO (PRO)", true]
 			]
 		},
@@ -2369,7 +2362,6 @@ function mostrarSenadores() {
     var parliament_order = {
     	'Frente Amplio': true, 
     	'La Fuerza de la Mayoría (PS)': true, 
-    	'La Fuerza de la Mayoría (PRSD)': true, 
     	'La Fuerza de la Mayoría (PPD)': true, 
     	'Progresistas': true, 
     	'Candidatura Independiente': true,
