@@ -51,6 +51,12 @@ function addSourceConvencionales(map) {
             'url': 'mapbox://mauro-escobar.63a30umw',
         }
     );
+    map.addSource('convencionales-comunas-data',
+    	{
+            'type': 'vector',
+            'url': 'mapbox://mauro-escobar.99d6jndi', //convencionales2021-05-comunas-1se2dx
+        }
+    );
 };
 
 function addSourceConvencionalesMarkers(map) {
@@ -189,8 +195,75 @@ function addLayerConvencionales(map) {
             	45, 1,
             ]
         },
+        'maxzoom': 6.3
     }, 'distritos-outline');
     map.setLayoutProperty('convencionales', 'visibility', 'none');	
+	map.addLayer({
+        'id': 'convencionales-comunas',
+        'type': 'fill',
+        'source': 'convencionales-comunas-data',
+        'source-layer': 'convencionales2021-05-comunas-1se2dx',
+        'filter': ['has', 'DISTRITO'],
+        'paint': {
+            'fill-color': [
+				'match',
+				['get', 'Conv1_Lis'],
+				'APRUEBO DIGNIDAD', colores['verde-agua'],
+				'ASAMBLEA CONSTITUYENTE ATACAMA', colores['rosado'],
+				'ASAMBLEA POPULAR CONSTITUYENTE (D20)', colores['gris'],
+				'ASAMBLEA POPULAR POR LA DIGNIDAD (D17)', colores['gris'],
+				'CANDIDATURA INDEPENDIENTE', colores['gris'],
+				'COORDINADORA SOCIAL DE MAGALLANES (D28)', colores['rosado'],
+				'CORRIENTES INDEPENDIENTES (D16)', colores['gris'],
+				'ELIGE LA LISTA DEL PUEBLO (D23)', colores['rosado'],
+				'FUERZA SOCIAL DE ÑUBLE, LA LISTA DEL PUEBLO (D19)', colores['rosado'],
+				'INDEPENDIENTES DE TARAPACA (D2)', colores['gris'],
+				'INDEPENDIENTES DE ÑUBLE POR LA NUEVA CONSTITUCION (D19)', colores['azul-marino'],
+				'INDEPENDIENTES DEL BIOBIO POR UNA NUEVA CONSTITUCION (D20)', colores['azul-marino'],
+				'INDEPENDIENTES DISTRITO 6 + LISTA DEL PUEBLO (D6)', colores['rosado'],
+				'INDEPENDIENTES NUEVA CONSTITUCION (D26)', colores['azul-marino'],
+				'INDEPENDIENTES POR LA NUEVA CONSTITUCION  (D10)', colores['azul-marino'],
+				'INDEPENDIENTES POR LA NUEVA CONSTITUCION (D14)', colores['azul-marino'],
+				'INDEPENDIENTES POR LA NUEVA CONSTITUCION (D23)', colores['azul-marino'],
+				'INDEPENDIENTES POR LA NUEVA CONSTITUCION (D4)', colores['azul-marino'],
+				'INDEPENDIENTES POR LA NUEVA CONSTITUCION (D6)', colores['azul-marino'],
+				'INDEPENDIENTES POR LA REGION DE COQUIMBO (D5)', colores['gris'],
+				'INDEPENDIENTES POR UNA NUEVA CONSTITUCION (D12)', colores['azul-marino'],
+				'INDEPENDIENTES POR UNA NUEVA CONSTITUCION (D21)', colores['azul-marino'],
+				'INSULARES E INDEPENDIENTES (D26)', colores['rosado'],
+				'LA LISTA DEL PUEBLO (D10)', colores['rosado'],
+				'LA LISTA DEL PUEBLO (D13)', colores['rosado'],
+				'LA LISTA DEL PUEBLO (D17)', colores['rosado'],
+				'LA LISTA DEL PUEBLO (D3)', colores['rosado'],
+				'LA LISTA DEL PUEBLO (D7)', colores['rosado'],
+				'LA LISTA DEL PUEBLO (D8)', colores['rosado'],
+				'LA LISTA DEL PUEBLO 100% INDEPENDIENTES (D15)', colores['rosado'],
+				'LA LISTA DEL PUEBLO DISTRITO 12 (D12)', colores['rosado'],
+				'LA LISTA DEL PUEBLO DISTRITO 14 (D14)', colores['rosado'],
+				'LA LISTA DEL PUEBLO DISTRITO 9 (D9)', colores['rosado'],
+				'LA LISTA DEL PUEBLO MAULE SUR (D18)', colores['rosado'],
+				'LA LISTA DEL PUEBLO(D20)', colores['rosado'],
+				'LISTA DEL APRUEBO', colores['violeta'],
+				'LISTA DEL PUEBLO - MOVIMIENTO TERRITORIAL CONSTITUYENTE (D5)', colores['rosado'],
+				'MOVIMIENTO INDEPENDIENTES DEL NORTE (D3)', colores['gris'],
+				'MOVIMIENTOS SOCIALES AUTONOMOS (D15)', colores['gris'],
+				'MOVIMIENTOS SOCIALES INDEPENDIENTES (D6)', colores['gris'],
+				'REGIONALISMO CIUDADANO INDEPENDIENTE (D28)', colores['gris'],
+				'VAMOS POR CHILE', colores['azul'],
+				'VOCES CONSTITUYENTES (D12)', colores['gris'],
+				colores['gris']
+			],
+            'fill-opacity': [
+            	'interpolate',
+            	['linear'],
+            	['get', 'Conv1_PctL'],
+            	10, 0.5,
+            	45, 1,
+            ]
+        },
+        'minzoom': 6.3
+    }, 'distritos-outline');
+    map.setLayoutProperty('convencionales-comunas', 'visibility', 'none');	
 
     map.addLayer({
         'id': 'convencionalesMH-distritos',
@@ -277,13 +350,14 @@ function popConvencionales(map) {
 			var paridad = e.features[0].properties[beg+'_Par'];
 			if (paridad=='*') {hayParidad = true;};
 			if (lista!=lista_ant) {
-				convencionales += '<tr><td colspan=3><span style="font-weight:bold">'+lista+'</span></td>';
+				if (screen.width>992) convencionales += '<tr><td colspan=3><span style="font-weight:bold">'+lista+'</span></td>';
+				else convencionales += '<tr><td colspan=2><span style="font-weight:bold">'+lista+'</span></td>';
 				convencionales += '</td><td style="padding-left:10px;text-align:right;font-weight:bold">'+perctL+'%</td></tr>';
 			};
 			convencionales += '<tr>';	
 			convencionales += '<td><span class="legend-key" style="background-color:'+coloresConvencionales[lista]+'"></span>';
 			convencionales += e.features[0].properties[beg+'_Nom'];
-			convencionales += '</td><td style="padding-left:10px;text-align:center">('+sexo+')</td>';
+			if (screen.width>992) convencionales += '</td><td style="padding-left:10px;text-align:center">('+sexo+')</td>';
 			convencionales += '</td><td style="padding-left:10px">'+partido+'</td>';
 			convencionales += '</td><td style="padding-left:10px;text-align:right">'+perct+'%</td>';
 			convencionales += '</td><td style="padding-left:10px;text-align:right">'+paridad+'</td>';
@@ -305,6 +379,57 @@ function popConvencionales(map) {
 			.addTo(map);
 	});
 	map.on('mouseleave', 'convencionales', function () {
+	    map.getCanvas().style.cursor = '';
+	    popup.remove();
+	});
+
+	map.on('mousemove', 'convencionales-comunas', function (e) {
+	    map.getCanvas().style.cursor = 'pointer';
+		var nconv = e.features[0].properties['NConv'];
+		var participacion = e.features[0].properties['Part'];
+		var convencionales = '<table style="border-collapse:collapse">';
+		var lista_ant = '';
+		var hayParidad = false;
+		for (i = 1; i <= nconv; i++) {
+			var beg = 'Conv'+i;
+			var lista = e.features[0].properties[beg+'_Lis'];
+			var partido = e.features[0].properties[beg+'_Ptd'];
+			var perct = e.features[0].properties[beg+'_Pct'];
+			var perctL = e.features[0].properties[beg+'_PctL'];
+			var sexo = e.features[0].properties[beg+'_Sex'];
+			var paridad = e.features[0].properties[beg+'_Par'];
+			if (paridad=='*') {hayParidad = true;};
+			if (lista!=lista_ant) {
+				if (screen.width>992) convencionales += '<tr><td colspan=3><span style="font-weight:bold">'+lista+'</span></td>';
+				else convencionales += '<tr><td colspan=2><span style="font-weight:bold">'+lista+'</span></td>';
+				convencionales += '</td><td style="padding-left:10px;text-align:right;font-weight:bold">'+perctL+'%</td></tr>';
+			};
+			convencionales += '<tr>';	
+			convencionales += '<td><span class="legend-key" style="background-color:'+coloresConvencionales[lista]+'"></span>';
+			convencionales += e.features[0].properties[beg+'_Nom'];
+			if (screen.width>992) convencionales += '</td><td style="padding-left:10px;text-align:center">('+sexo+')</td>';
+			convencionales += '</td><td style="padding-left:10px">'+partido+'</td>';
+			convencionales += '</td><td style="padding-left:10px;text-align:right">'+perct+'%</td>';
+			convencionales += '</td><td style="padding-left:10px;text-align:right">'+paridad+'</td>';
+			convencionales += '</tr>';
+			lista_ant = lista;
+		}
+		if (hayParidad) {
+			convencionales += '<tr><td colspan=5>*: Convencional elegido para respetar paridad.</td></tr>'
+		}
+		convencionales += '</table>';
+		convencionales += '<h5>Participación: '+participacion+'%</h5>';
+
+		var comuna = e.features[0].properties.NOM_COM;
+		var distrito = e.features[0].properties.DISTRITO;
+		var region = e.features[0].properties.REGION;
+		popup.setLngLat(e.lngLat)
+			.setHTML(
+				'<h4><span style="font-weight:bold">'+comuna+' - Distrito '+distrito+'</span><br>'+region+'</h4>'+convencionales
+				)
+			.addTo(map);
+	});
+	map.on('mouseleave', 'convencionales-comunas', function () {
 	    map.getCanvas().style.cursor = '';
 	    popup.remove();
 	});
@@ -453,6 +578,7 @@ function popParticipacionDistritos(map) {
 function mostrarConvencionales() {
 	clean();
 	map.setLayoutProperty('convencionales', 'visibility', 'visible');
+	map.setLayoutProperty('convencionales-comunas', 'visibility', 'visible');
     map.setLayoutProperty('convencionales-markers', 'visibility', 'visible');	
     map.setLayoutProperty('convencionales-lines', 'visibility', 'visible');	
     map.setLayoutProperty('markers-title', 'visibility', 'visible');	

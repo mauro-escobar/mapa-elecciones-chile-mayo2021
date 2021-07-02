@@ -82,6 +82,7 @@ function clean() {
 	map.setLayoutProperty('participacion-comunas', 'visibility', 'none');
 	map.setLayoutProperty('participacion-distritos', 'visibility', 'none');
 	map.setLayoutProperty('convencionales', 'visibility', 'none');
+	map.setLayoutProperty('convencionales-comunas', 'visibility', 'none');
     map.setLayoutProperty('convencionales-markers', 'visibility', 'none');	
     map.setLayoutProperty('convencionales-lines', 'visibility', 'none');	
     map.setLayoutProperty('markers-title', 'visibility', 'none');	
