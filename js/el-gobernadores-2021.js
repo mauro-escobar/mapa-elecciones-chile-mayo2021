@@ -10,6 +10,25 @@ var coloresGobernadores = {
 	'CANDIDATURA INDEPENDIENTE': colores['gris']
 };
 
+var gobernadoresElectos = {
+	'Región de Arica y Parinacota': 'JORGE DIAZ IBARRA',
+	'Región de Tarapacá': 'JOSE MIGUEL CARVAJAL GALLARDO',
+	'Región de Antofagasta': 'RICARDO HERIBERTO DIAZ CORTES',
+	'Región de Atacama': 'MIGUEL VARGAS CORREA',
+	'Región de Coquimbo': 'KRIST  NARANJO PEÑALOZA',
+	'Región de Valparaíso': 'RODRIGO MUNDACA CABRERA',
+	'Región Metropolitana de Santiago': 'CLAUDIO ORREGO LARRAIN',
+	"Región del Libertador Bernardo O'Higgins": 'PABLO SILVA AMAYA',
+	'Región del Maule': 'CRISTINA BRAVO CASTRO',
+	'Región de Ñuble': 'OSCAR CRISOSTOMO LLANOS',
+	'Región del Bío-Bío': 'RODRIGO DIAZ WORNER',
+	'Región de La Araucanía': 'LUCIANO RIVAS STEPKE',
+	'Región de Los Ríos': 'LUIS CUVERTINO GOMEZ',
+	'Región de Los Lagos': 'PATRICIO VALLESPIN LOPEZ',
+	'Región de Aysén del Gral. Ibañez del Campo': 'ANDREA MACIAS PALMA',
+	'Región de Magallanes y Antártica Chilena': 'JORGE FLIES AÑON'
+}
+
 function addSourceGobernadores(map) {
 	map.addSource('gobernadores-data',
     	{
@@ -233,16 +252,21 @@ function popGobernadoresComunas2v(map) {
 		var partido2 = e.features[0].properties['Gob2_2v_Ptd'];
 		var lista2 = e.features[0].properties['Gob2_2v_Lis'];	
 
+		var strong1 = '';
+		if (gobernadoresElectos[region]==nombre1) strong1 = 'font-weight:bold';
+		var strong2 = '';
+		if (gobernadoresElectos[region]==nombre2) strong2 = 'font-weight:bold';
+
 		popup.setLngLat(e.lngLat)
 			.setHTML(
 				'<h4><span style="font-weight:bold">'+comuna+'</span> ('+region+')</h4>'+
 				'<table>'+
 				'<tr><td colspan=3>'+lista1+' ('+partido1+')</td></tr>'+
 				'<tr><td><span class="legend-key" style="background-color:'+coloresGobernadores[lista1]+'"></span></td>'+
-				'<td><span>'+nombre1+'</span></td><td style="padding-left:15px">'+perct1+'%</td></tr>'+
+				'<td><span style="'+strong1+'">'+nombre1+'</span></td><td style="padding-left:15px">'+perct1+'%</td></tr>'+
 				'<tr><td colspan=3>'+lista2+' ('+partido2+')</td></tr>'+
 				'<tr><td><span class="legend-key" style="background-color:'+coloresGobernadores[lista2]+'"></span></td>'+
-				'<td><span>'+nombre2+'</span></td><td style="padding-left:15px">'+perct2+'%</td></tr>'+
+				'<td><span style="'+strong2+'">'+nombre2+'</span></td><td style="padding-left:15px">'+perct2+'%</td></tr>'+
 				'</table>'+
 				'<h5>Votos nulos: '+e.features[0].properties['Gob_nulos']+	
 				', Votos blancos: '+e.features[0].properties['Gob_blancos']+	
