@@ -402,15 +402,15 @@ function popConvencionales(map) {
 			if (lista!=lista_ant) {
 				if (screen.width>992) convencionales += '<tr><td colspan=3><span style="font-weight:bold">'+lista+'</span></td>';
 				else convencionales += '<tr><td colspan=2><span style="font-weight:bold">'+lista+'</span></td>';
-				convencionales += '</td><td style="padding-left:10px;text-align:right;font-weight:bold">'+perctL+'%</td></tr>';
+				convencionales += '<td style="padding-left:10px;text-align:right;font-weight:bold">'+perctL+'%</td></tr>';
 			};
 			convencionales += '<tr>';	
 			convencionales += '<td><span class="legend-key" style="background-color:'+coloresConvencionales[lista]+'"></span>';
 			convencionales += e.features[0].properties[beg+'_Nom'];
-			if (screen.width>992) convencionales += '</td><td style="padding-left:10px;text-align:center">('+sexo+')</td>';
+			if (screen.width>992) convencionales += '</td><td style="padding-left:10px;text-align:center">('+sexo+')';
 			convencionales += '</td><td style="padding-left:10px">'+partido+'</td>';
-			convencionales += '</td><td style="padding-left:10px;text-align:right">'+perct+'%</td>';
-			convencionales += '</td><td style="padding-left:10px;text-align:right">'+paridad+'</td>';
+			convencionales += '<td style="padding-left:10px;text-align:right">'+perct+'%</td>';
+			convencionales += '<td style="padding-left:10px;text-align:right">'+paridad+'</td>';
 			convencionales += '</tr>';
 			lista_ant = lista;
 		}

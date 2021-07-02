@@ -184,12 +184,7 @@ function addLayerGobernadoresComunas1v(map) {
     map.setLayerZoomRange('gobernadores', 0, 6.2);	
 };
 
-function popGobernadores(map,clicked) {
-	map.on('click', function (e) {
-		clicked = !clicked;
-		mostrarGobernadores(clicked);
-	});
-
+function popGobernadores(map) {
 	map.on('mousemove', 'gobernadores', function (e) {
 	    map.getCanvas().style.cursor = 'pointer';
 		var region = e.features[0].properties.REGION;
@@ -298,6 +293,11 @@ function popGobernadores(map,clicked) {
 };
 
 function popGobernadoresComunas2v(map) {
+	map.on('click', 'gobernadores-comunas-2v', function (e) {
+		map.setLayoutProperty('gobernadores-comunas-2v', 'visibility', 'none');
+    	map.setLayoutProperty('gobernadores-comunas-1v', 'visibility', 'visible');
+	});
+	
 	map.on('mousemove', 'gobernadores-comunas-2v', function (e) {
 	    map.getCanvas().style.cursor = 'pointer';
 		var region = e.features[0].properties.REGION;
@@ -341,6 +341,11 @@ function popGobernadoresComunas2v(map) {
 };
 
 function popGobernadoresComunas1v(map) {
+	map.on('click', 'gobernadores-comunas-1v', function (e) {
+		map.setLayoutProperty('gobernadores-comunas-2v', 'visibility', 'visible');
+    	map.setLayoutProperty('gobernadores-comunas-1v', 'visibility', 'none');
+	});
+
 	map.on('mousemove', 'gobernadores-comunas-1v', function (e) {
 	    map.getCanvas().style.cursor = 'pointer';
 		var region = e.features[0].properties.REGION;
@@ -388,19 +393,13 @@ function popGobernadoresComunas1v(map) {
 	});
 };
 
-function mostrarGobernadores(clicked) {
+function mostrarGobernadores() {
 	clean();
 	map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
     map.setLayoutProperty('gobernadores', 'visibility', 'visible');
     var mapLayer = map.getLayer('gobernadores-comunas-2v');
     if(typeof mapLayer !== 'undefined') {
-    	if (clicked) {
-    		map.setLayoutProperty('gobernadores-comunas-2v', 'visibility', 'visible');
-    		map.setLayoutProperty('gobernadores-comunas-1v', 'visibility', 'none');
-    	} else {
-    		map.setLayoutProperty('gobernadores-comunas-2v', 'visibility', 'none');
-    		map.setLayoutProperty('gobernadores-comunas-1v', 'visibility', 'visible');
-    	}
+    	map.setLayoutProperty('gobernadores-comunas-2v', 'visibility', 'visible');
     }
 
 	document.getElementById('a-gobernadores').style.color = 'black';
@@ -409,7 +408,7 @@ function mostrarGobernadores(clicked) {
 	if (screen.width>=992 && typeof mapLayer !== 'undefined') legend2.style.display = 'block';
 	else legend2.style.display = 'none';
     legend.innerHTML = '<span style="font-weight:bold;">Goberadores Regionales 2021-2025</span>';
-    legend2.innerHTML = 'Haz zoom para ver el resultado a nivel comunal.<br>Haz click en el mapa para cambiar entre primera y segunda vuelta.'
+    legend2.innerHTML = 'Haz zoom para ver el resultado a nivel comunal.<br>Haz click sobre el mapa para cambiar entre primera y segunda vuelta.'
 
 	var layers = ['Unidad Constituyente (10)', 'Frente Amplio (2)', 'Chile Vamos (1)', 
 	              'Ecologistas e Independientes (1)',  'Candidaturas Independientes (2)'];

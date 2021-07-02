@@ -62,13 +62,13 @@ var popup = new mapboxgl.Popup({
 	closeOnClick: false,
 	maxWidth: '600px'
 });
-var clicked = true;
+
 popDistritos(map);
 
 popParticipacionDistritos(map);
 popParticipacionMunicipales(map);
 
-popGobernadores(map,clicked);
+popGobernadores(map);
 popGobernadoresComunas2v(map);
 popGobernadoresComunas1v(map);
 
