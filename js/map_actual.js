@@ -56,7 +56,7 @@ var popup = new mapboxgl.Popup({
 
 var clicked = true;
 popCores(map,clicked);
-popGobernadores(map);
+popGobernadores(map,true);
 
 popDiputados(map);
 popSenadores(map);

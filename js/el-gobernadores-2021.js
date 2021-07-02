@@ -5,9 +5,18 @@ var coloresGobernadores = {
 	'UNIDOS POR LA DIGNIDAD': colores['marron'],
 	'FRENTE AMPLIO': colores['verde-agua'], 
 	'ECOLOGISTAS E INDEPENDIENTES': colores['verde'], 
+	'REGIONALISTAS VERDES': colores['verde2'],
 	'CHILE DIGNO VERDE Y SOBERANO': colores['rojo'],
 	'DIGNIDAD AHORA': colores['amarillo'],
-	'CANDIDATURA INDEPENDIENTE': colores['gris']
+	'CANDIDATURA INDEPENDIENTE': colores['gris'],
+	'PARTIDO DE TRABAJADORES REVOLUCIONARIOS': colores['rojo-oscuro'],
+	'POR DIGNIDAD REGIONAL': colores['amarillo'],
+	'IGUALDAD PARA CHILE': colores['negro'],
+	'HUMANICEMOS CHILE': colores['naranja'],
+	'UNION PATRIOTICA': colores['rojo-oscuro'],
+	'REPUBLICANOS': colores['azul-marino'],
+	'PARTIDO NACIONAL CIUDADANO': colores['azul-marino'],
+	'INDEPENDIENTES CRISTIANOS': colores['celeste']
 };
 
 var gobernadoresElectos = {
@@ -16,7 +25,7 @@ var gobernadoresElectos = {
 	'Región de Antofagasta': 'RICARDO HERIBERTO DIAZ CORTES',
 	'Región de Atacama': 'MIGUEL VARGAS CORREA',
 	'Región de Coquimbo': 'KRIST  NARANJO PEÑALOZA',
-	'Región de Valparaíso': 'RODRIGO MUNDACA CABRERA',
+	'Región de Valparaíso': 'RODRIGO EDUARDO ALEXIS MUNDACA CABRERA',
 	'Región Metropolitana de Santiago': 'CLAUDIO ORREGO LARRAIN',
 	"Región del Libertador Bernardo O'Higgins": 'PABLO SILVA AMAYA',
 	'Región del Maule': 'CRISTINA BRAVO CASTRO',
@@ -36,6 +45,14 @@ function addSourceGobernadores(map) {
             'url': 'mapbox://mauro-escobar.2jgcxezz',
         }
     );
+	map.addSource('gobernadores-comunas-1v-data',
+    	{
+            'type': 'vector',
+            'url': 'mapbox://mauro-escobar.9b59hlie',
+        }
+    );
+
+
 };
 function addSourceGobernadoresComunas2v(map) {
 	map.addSource('gobernadores-comunas-2v-data',
@@ -129,8 +146,50 @@ function addLayerGobernadoresComunas2v(map) {
     map.setLayoutProperty('gobernadores-comunas-2v', 'visibility', 'none');	
     map.setLayerZoomRange('gobernadores', 0, 6.2);	
 };
+function addLayerGobernadoresComunas1v(map) {
+	map.addLayer({
+        'id': 'gobernadores-comunas-1v',
+        'type': 'fill',
+        'source': 'gobernadores-comunas-1v-data',
+        'source-layer': 'gobernadores2021-05-comunas-1-0worxy',
+        'filter': ['has', 'Gob1_Lis'],
+        'paint': {
+            'fill-color': [
+            	'match', ['get', 'Gob1_Lis'],
+            	'CHILE VAMOS', colores['azul'], 
+				'UNIDAD CONSTITUYENTE', colores['violeta'],
+				'UNIDAD POR EL APRUEBO', colores['violeta'],
+				'UNIDOS POR LA DIGNIDAD', colores['marron'],
+				'FRENTE AMPLIO', colores['verde-agua'], 
+				'ECOLOGISTAS E INDEPENDIENTES', colores['verde'], 
+				'REGIONALISTAS VERDES', colores['verde2'],
+				'CHILE DIGNO VERDE Y SOBERANO', colores['rojo'],
+				'DIGNIDAD AHORA', colores['amarillo'],
+				'CANDIDATURA INDEPENDIENTE', colores['gris'],
+				'PARTIDO DE TRABAJADORES REVOLUCIONARIOS', colores['rojo-oscuro'],
+				'POR DIGNIDAD REGIONAL', colores['amarillo'],
+				'IGUALDAD PARA CHILE', colores['negro'],
+				'HUMANICEMOS CHILE', colores['naranja'],
+				'UNION PATRIOTICA', colores['rojo-oscuro'],
+				'REPUBLICANOS', colores['azul-marino'],
+				'PARTIDO NACIONAL CIUDADANO', colores['azul-marino'],
+				'INDEPENDIENTES CRISTIANOS', colores['celeste'],
+            	colores['gris']
+            ],
+            'fill-opacity': 0.8
+        },
+        'minzoom': 6.2
+    }, 'regiones-outline');
+    map.setLayoutProperty('gobernadores-comunas-2v', 'visibility', 'none');	
+    map.setLayerZoomRange('gobernadores', 0, 6.2);	
+};
 
-function popGobernadores(map) {
+function popGobernadores(map,clicked) {
+	map.on('click', function (e) {
+		clicked = !clicked;
+		mostrarGobernadores(clicked);
+	});
+
 	map.on('mousemove', 'gobernadores', function (e) {
 	    map.getCanvas().style.cursor = 'pointer';
 		var region = e.features[0].properties.REGION;
@@ -259,7 +318,7 @@ function popGobernadoresComunas2v(map) {
 
 		popup.setLngLat(e.lngLat)
 			.setHTML(
-				'<h4><span style="font-weight:bold">'+comuna+'</span> ('+region+')</h4>'+
+				'<h4><span style="font-weight:bold">'+comuna+'</span> ('+region+')<br>Segunda vuelta</h4>'+
 				'<table>'+
 				'<tr><td colspan=3>'+lista1+' ('+partido1+')</td></tr>'+
 				'<tr><td><span class="legend-key" style="background-color:'+coloresGobernadores[lista1]+'"></span></td>'+
@@ -273,10 +332,7 @@ function popGobernadoresComunas2v(map) {
 				'<br>Votos válidos: '+e.features[0].properties['Gob_validos']+
 				', Votos totales: '+e.features[0].properties['Gob_total']+'</h5>'			
 				)
-			.addTo(map); 
-
-
-	   
+			.addTo(map); 	   
 	});
 	map.on('mouseleave', 'gobernadores-comunas-2v', function () {
 	    map.getCanvas().style.cursor = '';
@@ -284,20 +340,76 @@ function popGobernadoresComunas2v(map) {
 	});
 };
 
-function mostrarGobernadores() {
+function popGobernadoresComunas1v(map) {
+	map.on('mousemove', 'gobernadores-comunas-1v', function (e) {
+	    map.getCanvas().style.cursor = 'pointer';
+		var region = e.features[0].properties.REGION;
+		var comuna = e.features[0].properties.NOM_COM;
+		var ncand = e.features[0].properties['NCand'];
+		var participacion = e.features[0].properties['Part'];
+
+		var candidatos = '<table style="border-collapse:collapse">';
+		var segundaVuelta = false;
+		for (i = 1; i <= ncand; i++) {
+			var beg = 'Gob'+i;
+			var lista = e.features[0].properties[beg+'_Lis'];
+			var partido = e.features[0].properties[beg+'_Ptd'];
+			var perct = e.features[0].properties[beg+'_Pct'];
+			var ast = e.features[0].properties[beg+'_Ast'];
+			var nombre = e.features[0].properties[beg+'_Nom'];
+			var strong = '';
+			if (gobernadoresElectos[region]==nombre) strong = ' style="font-weight:bold"';
+			if (ast=='**') {segundaVuelta = true;};
+			candidatos += '<tr><td colspan=3><span>'+lista+'</span></td></tr>';
+			
+			candidatos += '<tr>';	
+			candidatos += '<td><span class="legend-key" style="background-color:'+coloresGobernadores[lista]+'"></span>';
+			candidatos += '<span'+strong+'>'+nombre+'</span></td>';
+			candidatos += '<td style="padding-left:10px">'+partido+'</td>';
+			candidatos += '<td style="padding-left:10px;text-align:right">'+perct+'%</td>';
+			candidatos += '<td style="padding-left:10px;text-align:right">'+ast+'</td>';
+			candidatos += '</tr>';
+		}
+		if (segundaVuelta) {
+			candidatos += '<tr><td colspan=5>**: Avanzó a segunda vuelta.</td></tr>'
+		}
+		candidatos += '</table>';
+		candidatos += '<h5>Participación: '+participacion+'%</h5>';
+
+		popup.setLngLat(e.lngLat)
+			.setHTML(
+				'<h4><span style="font-weight:bold">'+comuna+'</span> ('+region+')<br>Primera vuelta</h4>'+candidatos			
+				)
+			.addTo(map); 	   
+	});
+	map.on('mouseleave', 'gobernadores-comunas-1v', function () {
+	    map.getCanvas().style.cursor = '';
+	    popup.remove();
+	});
+};
+
+function mostrarGobernadores(clicked) {
 	clean();
 	map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
     map.setLayoutProperty('gobernadores', 'visibility', 'visible');
     var mapLayer = map.getLayer('gobernadores-comunas-2v');
     if(typeof mapLayer !== 'undefined') {
-    	map.setLayoutProperty('gobernadores-comunas-2v', 'visibility', 'visible');
+    	if (clicked) {
+    		map.setLayoutProperty('gobernadores-comunas-2v', 'visibility', 'visible');
+    		map.setLayoutProperty('gobernadores-comunas-1v', 'visibility', 'none');
+    	} else {
+    		map.setLayoutProperty('gobernadores-comunas-2v', 'visibility', 'none');
+    		map.setLayoutProperty('gobernadores-comunas-1v', 'visibility', 'visible');
+    	}
     }
 
 	document.getElementById('a-gobernadores').style.color = 'black';
 
 	legend.style.display = 'block';
-	legend2.style.display = 'none';
+	if (screen.width>=992 && typeof mapLayer !== 'undefined') legend2.style.display = 'block';
+	else legend2.style.display = 'none';
     legend.innerHTML = '<span style="font-weight:bold;">Goberadores Regionales 2021-2025</span>';
+    legend2.innerHTML = 'Haz zoom para ver el resultado a nivel comunal.<br>Haz click en el mapa para cambiar entre primera y segunda vuelta.'
 
 	var layers = ['Unidad Constituyente (10)', 'Frente Amplio (2)', 'Chile Vamos (1)', 
 	              'Ecologistas e Independientes (1)',  'Candidaturas Independientes (2)'];

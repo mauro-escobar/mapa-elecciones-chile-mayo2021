@@ -44,6 +44,7 @@ map.on('load', function(){
 
     addLayerGobernadores(map);	
     addLayerGobernadoresComunas2v(map);
+    addLayerGobernadoresComunas1v(map)
 
     mostrarConvencionales();
 });
@@ -61,14 +62,15 @@ var popup = new mapboxgl.Popup({
 	closeOnClick: false,
 	maxWidth: '600px'
 });
-
+var clicked = true;
 popDistritos(map);
 
 popParticipacionDistritos(map);
 popParticipacionMunicipales(map);
 
-popGobernadores(map);
+popGobernadores(map,clicked);
 popGobernadoresComunas2v(map);
+popGobernadoresComunas1v(map);
 
 popConvencionales(map);
  		
@@ -97,6 +99,7 @@ function clean() {
 	map.setLayoutProperty('regiones-outline', 'visibility', 'none');
     map.setLayoutProperty('gobernadores', 'visibility', 'none');
     map.setLayoutProperty('gobernadores-comunas-2v', 'visibility', 'none');	
+    map.setLayoutProperty('gobernadores-comunas-1v', 'visibility', 'none');	
 
 	document.getElementById('a-distritos').style.color = 'gray';
 	document.getElementById('a-participacion').style.color = 'gray';
