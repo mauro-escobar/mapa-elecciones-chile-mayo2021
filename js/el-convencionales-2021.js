@@ -941,7 +941,7 @@ function mostrarConvencionales() {
     		]
     	}
     }	
-    parliament_order = {
+    var parliament_order = {
     	'Pueblos Indígenas (Mapuche)': false, 
     	'Pueblos Indígenas (Rapanui)': false, 
     	'Pueblos Indígenas (Atacameño)': false, 
@@ -970,7 +970,11 @@ function mostrarConvencionales() {
     	'Vamos por Chile (EVO)': true,
     	'Vamos por Chile (RN)': true,
     	'Vamos por Chile (UDI)': true
-    }
+    };
+    var directiva = [
+    	['Presidenta', "ELISA LONCON ANTILEO (Mapuche)"],
+    	['Vicepresidente', "JAIME ANDRES BASSA MERCADO (IND-CS)"]
+    ];
 
 	legend.innerHTML = '';
 	legend.style.display = 'block';
@@ -978,7 +982,7 @@ function mostrarConvencionales() {
     	legend2.style.display = 'block';
     	var div = document.createElement('div');
     	div.style.width = '360px';
-    	div.appendChild(generateSVG(parliament, parliament_order, true, "Convencional"));
+    	div.appendChild(generateSVG(parliament, parliament_order, true, "Convencional", directiva));
     	legend2.appendChild(div);
     	var span = document.createElement('span');
     	span.id = 'lista-seat';

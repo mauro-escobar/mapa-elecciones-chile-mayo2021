@@ -98,11 +98,10 @@ var merge = function merge(arrays) {
 
 	return result;
 }
-function generatePoints(parliament, r0) {
-	var seatCount = seatSum(parliament);
+function generatePoints(parliament, r0, directive) {
+	var seatCount = seatSum(parliament)-directive.length;
 	var numberOfRings = calculateNumberOfRings(seatCount, r0);
 	var seatDistance = calculateSeatDistance(seatCount, numberOfRings, r0);
-
 
 	var rings = [];
 	for (var i = 1; i <= numberOfRings; i++) {
@@ -131,49 +130,89 @@ function generatePoints(parliament, r0) {
 		}
 		points.push(ring);
 	}
+
 	var ringProgress = Array(points.length).fill(0);
 	var blackDots = [];
+
+	var mesa = {};
+	var mesaPoints = [];
+	for (var i = 0; i < directive.length; i++) {
+		mesa[directive[i][1]] = directive[i][0];
+		point = {x: (-directive.length/2.0+i+0.5)*seatDistance, y: 0, r: 0.4 * seatDistance};
+		mesaPoints.push(point);
+	}
+	var mesaProgress = 0;
+
+
 	for (var party in parliament) {
 		for (var _i2 = 0; _i2 < parliament[party].seats; _i2++) {
-			ring = nextRing(points, ringProgress, parliament[party].ordered);
-			points[ring][ringProgress[ring]].fill = parliament[party].color;
-			points[ring][ringProgress[ring]].party = party.replace(/ /g,"-");
-			if (parliament[party].hasOwnProperty('names')) {
-				points[ring][ringProgress[ring]].name = parliament[party].names[_i2][0];
-				if (parliament[party].names[_i2][1]) {
+			if (!Object.keys(mesa).includes(parliament[party].names[_i2][0])) {
+				ring = nextRing(points, ringProgress, parliament[party].ordered);
+				points[ring][ringProgress[ring]].fill = parliament[party].color;
+				points[ring][ringProgress[ring]].party = party.replace(/ /g,"-");
+				if (parliament[party].hasOwnProperty('names')) {
+					points[ring][ringProgress[ring]].name = parliament[party].names[_i2][0];
+					if (parliament[party].names[_i2][1]) {
+						var newpoint = {};
+						newpoint.x = points[ring][ringProgress[ring]].x;
+						newpoint.y = points[ring][ringProgress[ring]].y;
+						newpoint.r = points[ring][ringProgress[ring]].r/2.8;
+						newpoint.fill = colores['negro'];
+						newpoint.name = parliament[party].names[_i2][0];
+						newpoint.party = party.replace(/ /g,"-");
+						blackDots.push(newpoint);
+					}
+				} else if (parliament[party].hasOwnProperty('dotted') && _i2<parliament[party].dotted) {
 					var newpoint = {};
 					newpoint.x = points[ring][ringProgress[ring]].x;
 					newpoint.y = points[ring][ringProgress[ring]].y;
 					newpoint.r = points[ring][ringProgress[ring]].r/2.8;
 					newpoint.fill = colores['negro'];
-					newpoint.name = parliament[party].names[_i2][0];
-					newpoint.party = party.replace(/ /g,"-");
 					blackDots.push(newpoint);
 				}
-			} else if (parliament[party].hasOwnProperty('dotted') && _i2<parliament[party].dotted) {
-				var newpoint = {};
-				newpoint.x = points[ring][ringProgress[ring]].x;
-				newpoint.y = points[ring][ringProgress[ring]].y;
-				newpoint.r = points[ring][ringProgress[ring]].r/2.8;
-				newpoint.fill = colores['negro'];
-				blackDots.push(newpoint);
+				ringProgress[ring]++;
+			} else {
+				mesaPoints[mesaProgress].fill = parliament[party].color;
+				mesaPoints[mesaProgress].party = party.replace(/ /g,"-");
+				if (parliament[party].hasOwnProperty('names')) {
+					var name = parliament[party].names[_i2][0]
+					mesaPoints[mesaProgress].name = name + ' - ' + mesa[name];
+					if (parliament[party].names[_i2][1]) {
+						var newpoint = {};
+						newpoint.x = mesaPoints[mesaProgress].x;
+						newpoint.y = mesaPoints[mesaProgress].y;
+						newpoint.r = mesaPoints[mesaProgress].r/2.8;
+						newpoint.fill = colores['negro'];
+						newpoint.name = parliament[party].names[_i2][0];
+						newpoint.party = party.replace(/ /g,"-");
+						blackDots.push(newpoint);
+					}
+				} else if (parliament[party].hasOwnProperty('dotted') && _i2<parliament[party].dotted) {
+					var newpoint = {};
+					newpoint.x = mesaPoints[mesaProgress].x;
+					newpoint.y = mesaPoints[mesaProgress].y;
+					newpoint.r = mesaPoints[mesaProgress].r/2.8;
+					newpoint.fill = colores['negro'];
+					blackDots.push(newpoint);
+				}
+				mesaProgress++;
 			}
-			ringProgress[ring]++;
 		}
 	}
-	return [merge(points), merge(blackDots)];
+	return [merge(points), merge(blackDots), mesaPoints];
 }
 
-function generateSVG(_parliament, order, seatCount, type) {
+function generateSVG(_parliament, order, seatCount, type, directive=[]) {
 	var parliament = {};
 	for (party in order) {
 		parliament[party] = _parliament[party];
 		_parliament[party].ordered = order[party];
 	}
 	var radius = 20;
-	var ret = generatePoints(parliament, radius);
+	var ret = generatePoints(parliament, radius, directive);
 	var points = ret[0];
 	var blackDots = ret[1];
+	var mesaPoints = ret[2];
 	var a = points[0].r / 0.4;
 
 	var xmlns = "http://www.w3.org/2000/svg";
@@ -203,6 +242,19 @@ function generateSVG(_parliament, order, seatCount, type) {
     	circle.setAttributeNS(null, "data-party", points[index].party);
     	svgElem.appendChild(circle);
     }
+    for (index in mesaPoints) {
+    	var circle = document.createElementNS(xmlns,"circle");
+    	circle.setAttributeNS(null, "class", "parliament-seat "+mesaPoints[index].party);
+    	circle.setAttributeNS(null, "onmousemove", "touchParliamentSeat(evt)");
+    	circle.setAttributeNS(null, "onmouseleave", "unTouchParliamentSeat(evt)");
+    	circle.setAttributeNS(null, "cx", mesaPoints[index].x);
+    	circle.setAttributeNS(null, "cy", mesaPoints[index].y);
+    	circle.setAttributeNS(null, "r", mesaPoints[index].r);
+    	circle.setAttributeNS(null, "fill", mesaPoints[index].fill);
+    	circle.setAttributeNS(null, "data-name", mesaPoints[index].name);
+    	circle.setAttributeNS(null, "data-party", mesaPoints[index].party);
+    	svgElem.appendChild(circle);
+    }
     for (index in blackDots) {
     	var circle = document.createElementNS(xmlns,"circle");
     	circle.setAttributeNS(null, "cx", blackDots[index].x);
@@ -221,13 +273,18 @@ function generateSVG(_parliament, order, seatCount, type) {
     }
     if (seatCount) {
     	var text = document.createElementNS(xmlns,"text");
-    	text.innerHTML = points.length;
-    	text.setAttributeNS(null, "x", "0");
-    	text.setAttributeNS(null, "y", "0");
-    	text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
-    	text.setAttributeNS(null, "font-size", (0.25*radius)+"px");
-    	text.setAttributeNS(null, "text-anchor", "middle");
-    	svgElem.appendChild(text);
+    	text.innerHTML = points.length+mesaPoints.length;
+	    text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
+	    text.setAttributeNS(null, "text-anchor", "middle");
+	    text.setAttributeNS(null, "x", "0");
+    	if (directive.length==0) {
+	    	text.setAttributeNS(null, "y", "0");
+	    	text.setAttributeNS(null, "font-size", (0.25*radius)+"px");
+    	} else {
+	    	text.setAttributeNS(null, "y", -a*3/4);
+	    	text.setAttributeNS(null, "font-size", (0.2*radius)+"px");
+    	}
+	    svgElem.appendChild(text);
     }
     if (blackDots.length > 0) {
     	if (type=="Senado") {

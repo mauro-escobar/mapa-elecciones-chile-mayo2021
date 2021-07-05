@@ -574,6 +574,11 @@ function mostrarDiputados() {
     	'Acción Republicana (IND)': true,
     	'Acción Republicana (PLR)': true
     }
+    var directiva = [
+    	["1er Vicepdte.", "UNDURRAGA GAZITUA FRANCISCO (EVO)"],
+    	["Presidente", "PAULSEN KEHR DIEGO (RN)"],
+    	["2do Vicepdte.", "GONZALEZ TORRES RODRIGO (PPD)"]
+    ];
 
 	legend.style.display = 'block';
     legend.innerHTML = '';
@@ -582,7 +587,7 @@ function mostrarDiputados() {
     	legend2.style.display = 'block';
     	var div = document.createElement('div');
     	div.style.width = '360px';
-    	div.appendChild(generateSVG(parliament, parliament_order, true, "Diputados"));
+    	div.appendChild(generateSVG(parliament, parliament_order, true, "Diputados", directiva));
     	legend2.appendChild(div);
     	var span = document.createElement('span');
     	span.id = 'lista-seat';
@@ -760,6 +765,10 @@ function mostrarSenadores() {
     	'Chile Vamos (RN)': true,
     	'Chile Vamos (UDI)': true,
     }
+    var directiva = [
+    	["Presidenta", "PROVOSTE CAMPILLAY YASNA (PDC)"],
+    	["Vicepresidente", "PIZARRO SOTO JORGE (PDC)"]
+    ];
 
 	legend.style.display = 'block';
     legend.innerHTML = '';
@@ -768,7 +777,7 @@ function mostrarSenadores() {
     	legend2.style.display = 'block';
     	var div = document.createElement('div');
     	div.style.width = '360px';
-    	div.appendChild(generateSVG(parliament, parliament_order, true, "Senado"));
+    	div.appendChild(generateSVG(parliament, parliament_order, true, "Senado", directiva));
     	legend2.appendChild(div);
     	var span = document.createElement('span');
     	span.id = 'lista-seat';
