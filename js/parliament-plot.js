@@ -137,11 +137,10 @@ function generatePoints(parliament, r0, directive) {
 	var mesa = {};
 	var mesaPoints = [];
 	for (var i = 0; i < directive.length; i++) {
-		mesa[directive[i][1]] = directive[i][0];
+		mesa[directive[i][1]] = [i,directive[i][0]];
 		point = {x: (-directive.length/2.0+i+0.5)*seatDistance, y: 0, r: 0.4 * seatDistance};
 		mesaPoints.push(point);
 	}
-	var mesaProgress = 0;
 
 
 	for (var party in parliament) {
@@ -172,16 +171,16 @@ function generatePoints(parliament, r0, directive) {
 				}
 				ringProgress[ring]++;
 			} else {
-				mesaPoints[mesaProgress].fill = parliament[party].color;
-				mesaPoints[mesaProgress].party = party.replace(/ /g,"-");
+				var name = parliament[party].names[_i2][0]
+				mesaPoints[mesa[name][0]].fill = parliament[party].color;
+				mesaPoints[mesa[name][0]].party = party.replace(/ /g,"-");
 				if (parliament[party].hasOwnProperty('names')) {
-					var name = parliament[party].names[_i2][0]
-					mesaPoints[mesaProgress].name = name + ' - ' + mesa[name];
+					mesaPoints[mesa[name][0]].name = name + ' - ' + mesa[name][1];
 					if (parliament[party].names[_i2][1]) {
 						var newpoint = {};
-						newpoint.x = mesaPoints[mesaProgress].x;
-						newpoint.y = mesaPoints[mesaProgress].y;
-						newpoint.r = mesaPoints[mesaProgress].r/2.8;
+						newpoint.x = mesaPoints[mesa[name][0]].x;
+						newpoint.y = mesaPoints[mesa[name][0]].y;
+						newpoint.r = mesaPoints[mesa[name][0]].r/2.8;
 						newpoint.fill = colores['negro'];
 						newpoint.name = parliament[party].names[_i2][0];
 						newpoint.party = party.replace(/ /g,"-");
@@ -189,20 +188,28 @@ function generatePoints(parliament, r0, directive) {
 					}
 				} else if (parliament[party].hasOwnProperty('dotted') && _i2<parliament[party].dotted) {
 					var newpoint = {};
-					newpoint.x = mesaPoints[mesaProgress].x;
-					newpoint.y = mesaPoints[mesaProgress].y;
-					newpoint.r = mesaPoints[mesaProgress].r/2.8;
+					newpoint.x = mesaPoints[mesa[name][0]].x;
+					newpoint.y = mesaPoints[mesa[name][0]].y;
+					newpoint.r = mesaPoints[mesa[name][0]].r/2.8;
 					newpoint.fill = colores['negro'];
 					blackDots.push(newpoint);
 				}
-				mesaProgress++;
 			}
 		}
 	}
 	return [merge(points), merge(blackDots), mesaPoints];
 }
 
-function generateSVG(_parliament, order, seatCount, type, directive=[]) {
+function generateSVG(_parliament, order, seatCount, type, directive=[], groups={}) {
+	var name2groups = {};
+	for (var group in groups) {
+		for (var i = 0; i < groups[group].length; i++) {
+			var name = groups[group][i];
+			if (Object.keys(name2groups).includes(name)) name2groups[name] += " "+group.replace(/ /g,"-");
+			else name2groups[name] = " "+group.replace(/ /g,"-");
+		}
+	}
+
 	var parliament = {};
 	for (party in order) {
 		parliament[party] = _parliament[party];
@@ -231,7 +238,6 @@ function generateSVG(_parliament, order, seatCount, type, directive=[]) {
     
     for (index in points) {
     	var circle = document.createElementNS(xmlns,"circle");
-    	circle.setAttributeNS(null, "class", "parliament-seat "+points[index].party);
     	circle.setAttributeNS(null, "onmousemove", "touchParliamentSeat(evt)");
     	circle.setAttributeNS(null, "onmouseleave", "unTouchParliamentSeat(evt)");
     	circle.setAttributeNS(null, "cx", points[index].x);
@@ -240,11 +246,13 @@ function generateSVG(_parliament, order, seatCount, type, directive=[]) {
     	circle.setAttributeNS(null, "fill", points[index].fill);
     	circle.setAttributeNS(null, "data-name", points[index].name);
     	circle.setAttributeNS(null, "data-party", points[index].party);
+    	var cl = "parliament-seat "+points[index].party;
+    	if (Object.keys(name2groups).includes(points[index].name)) cl += name2groups[points[index].name];
+    	circle.setAttributeNS(null, "class", cl);
     	svgElem.appendChild(circle);
     }
     for (index in mesaPoints) {
     	var circle = document.createElementNS(xmlns,"circle");
-    	circle.setAttributeNS(null, "class", "parliament-seat "+mesaPoints[index].party);
     	circle.setAttributeNS(null, "onmousemove", "touchParliamentSeat(evt)");
     	circle.setAttributeNS(null, "onmouseleave", "unTouchParliamentSeat(evt)");
     	circle.setAttributeNS(null, "cx", mesaPoints[index].x);
@@ -253,7 +261,11 @@ function generateSVG(_parliament, order, seatCount, type, directive=[]) {
     	circle.setAttributeNS(null, "fill", mesaPoints[index].fill);
     	circle.setAttributeNS(null, "data-name", mesaPoints[index].name);
     	circle.setAttributeNS(null, "data-party", mesaPoints[index].party);
+    	var cl = "parliament-seat "+mesaPoints[index].party;
+    	if (Object.keys(name2groups).includes(mesaPoints[index].name)) cl += name2groups[mesaPoints[index].name];
+    	circle.setAttributeNS(null, "class", cl);
     	svgElem.appendChild(circle);
+
     }
     for (index in blackDots) {
     	var circle = document.createElementNS(xmlns,"circle");
@@ -262,12 +274,14 @@ function generateSVG(_parliament, order, seatCount, type, directive=[]) {
     	circle.setAttributeNS(null, "r", blackDots[index].r);
     	circle.setAttributeNS(null, "fill", blackDots[index].fill);
     	if (blackDots[index].hasOwnProperty('name')) {
-    		circle.setAttributeNS(null, "class", "parliament-seat "+blackDots[index].party);
     		circle.setAttributeNS(null, "data-name", blackDots[index].name);
     		circle.setAttributeNS(null, "data-party", blackDots[index].party);
     		circle.setAttributeNS(null, "data-dotted", "yes");
 	    	circle.setAttributeNS(null, "onmousemove", "touchParliamentSeat(evt)");
 	    	circle.setAttributeNS(null, "onmouseleave", "unTouchParliamentSeat(evt)");
+	    	var cl = "parliament-seat "+blackDots[index].party;
+	    	if (Object.keys(name2groups).includes(blackDots[index].name)) cl += name2groups[blackDots[index].name];
+	    	circle.setAttributeNS(null, "class", cl);
     	}
     	svgElem.appendChild(circle);
     }
@@ -284,6 +298,7 @@ function generateSVG(_parliament, order, seatCount, type, directive=[]) {
 	    	text.setAttributeNS(null, "y", -a*3/4);
 	    	text.setAttributeNS(null, "font-size", (0.2*radius)+"px");
     	}
+	    text.setAttributeNS(null, "class", "parliament-seat");
 	    svgElem.appendChild(text);
     }
     if (blackDots.length > 0) {
@@ -293,18 +308,21 @@ function generateSVG(_parliament, order, seatCount, type, directive=[]) {
 	    	circle.setAttributeNS(null, "cy", 1.5*a);
 	    	circle.setAttributeNS(null, "r", points[0].r);
 	    	circle.setAttributeNS(null, "fill", colores['suave']);
+	    	circle.setAttributeNS(null, "class", "parliament-seat");
 	    	svgElem.appendChild(circle);
 	    	var circle = document.createElementNS(xmlns,"circle");
 	    	circle.setAttributeNS(null, "cx", 1*a);
 	    	circle.setAttributeNS(null, "cy", 1.5*a);
 	    	circle.setAttributeNS(null, "r", points[0].r);
 	    	circle.setAttributeNS(null, "fill", colores['suave']);
+	    	circle.setAttributeNS(null, "class", "parliament-seat");
 	    	svgElem.appendChild(circle);
 	    	var circle = document.createElementNS(xmlns,"circle");
 	    	circle.setAttributeNS(null, "cx", 1*a);
 	    	circle.setAttributeNS(null, "cy", 1.5*a);
 	    	circle.setAttributeNS(null, "r", points[0].r/2.8);
 	    	circle.setAttributeNS(null, "fill", colores['negro']);
+	    	circle.setAttributeNS(null, "class", "parliament-seat");
 	    	svgElem.appendChild(circle);
 	    	var text = document.createElementNS(xmlns,"text");
 	    	text.innerHTML = '2018-2026';
@@ -313,6 +331,7 @@ function generateSVG(_parliament, order, seatCount, type, directive=[]) {
 	    	text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
 	    	text.setAttributeNS(null, "font-size", a/2.2+"px");
 	    	text.setAttributeNS(null, "text-anchor", "start");
+	    	text.setAttributeNS(null, "class", "parliament-seat");
 	    	svgElem.appendChild(text);
 	    	var text = document.createElementNS(xmlns,"text");
 	    	text.innerHTML = '2014-2022';
@@ -321,6 +340,7 @@ function generateSVG(_parliament, order, seatCount, type, directive=[]) {
 	    	text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
 	    	text.setAttributeNS(null, "font-size", a/2.2+"px");
 	    	text.setAttributeNS(null, "text-anchor", "start");
+	    	text.setAttributeNS(null, "class", "parliament-seat");
 	    	svgElem.appendChild(text);
     	} else if (type=='Convencional') {
     		var circle = document.createElementNS(xmlns,"circle");
@@ -328,34 +348,39 @@ function generateSVG(_parliament, order, seatCount, type, directive=[]) {
 	    	circle.setAttributeNS(null, "cy", 1.5*a);
 	    	circle.setAttributeNS(null, "r", points[0].r);
 	    	circle.setAttributeNS(null, "fill", colores['suave']);
+	    	circle.setAttributeNS(null, "class", "parliament-seat");
 	    	svgElem.appendChild(circle);
 	    	var circle = document.createElementNS(xmlns,"circle");
 	    	circle.setAttributeNS(null, "cx", 2*a);
 	    	circle.setAttributeNS(null, "cy", 1.5*a);
 	    	circle.setAttributeNS(null, "r", points[0].r);
 	    	circle.setAttributeNS(null, "fill", colores['suave']);
+	    	circle.setAttributeNS(null, "class", "parliament-seat");
 	    	svgElem.appendChild(circle);
 	    	var circle = document.createElementNS(xmlns,"circle");
 	    	circle.setAttributeNS(null, "cx", 2*a);
 	    	circle.setAttributeNS(null, "cy", 1.5*a);
 	    	circle.setAttributeNS(null, "r", points[0].r/2.8);
 	    	circle.setAttributeNS(null, "fill", colores['negro']);
+	    	circle.setAttributeNS(null, "class", "parliament-seat");
 	    	svgElem.appendChild(circle);
     		var text = document.createElementNS(xmlns,"text");
 	    	text.innerHTML = 'INDEPENDIENTE';
 	    	text.setAttributeNS(null, "x", -3.5*a);
-	    	text.setAttributeNS(null, "y", 1.65*a);
+	    	text.setAttributeNS(null, "y", 1.7*a);
 	    	text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
 	    	text.setAttributeNS(null, "font-size", a/1.8+"px");
 	    	text.setAttributeNS(null, "text-anchor", "start");
+	    	text.setAttributeNS(null, "class", "parliament-seat");
 	    	svgElem.appendChild(text);
 	    	var text = document.createElementNS(xmlns,"text");
 	    	text.innerHTML = 'AFILIADO A PARTIDO';
 	    	text.setAttributeNS(null, "x", 2.5*a);
-	    	text.setAttributeNS(null, "y", 1.65*a);
+	    	text.setAttributeNS(null, "y", 1.7*a);
 	    	text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
 	    	text.setAttributeNS(null, "font-size", a/1.8+"px");
 	    	text.setAttributeNS(null, "text-anchor", "start");
+	    	text.setAttributeNS(null, "class", "parliament-seat");
 	    	svgElem.appendChild(text);
     	}
     }
@@ -400,5 +425,3 @@ function getParliamentTable(parliament) {
 
 	return table;
 }
-
-

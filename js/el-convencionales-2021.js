@@ -74,11 +74,11 @@ function addLayerConvencionalesMarkers(map) {
 		'source': 'markers-constituyentes',
 		'source-layer': 'markers-constituyentes-7op8qa',
 		'type': 'circle',
-		'filter': ['has', 'lista'],
+		'filter': ['has', 'LISTA'],
 		'paint' : {
 			'circle-color': [
 				'match',
-				['get', 'lista'],
+				['get', 'LISTA'],
 				'APRUEBO DIGNIDAD', colores['verde-agua'],
 				'ASAMBLEA CONSTITUYENTE ATACAMA', colores['rosado'],
 				'INDEPENDIENTES POR LA NUEVA CONSTITUCION (D4)', colores['azul-marino'],
@@ -436,8 +436,8 @@ function popConvencionales(map) {
 
 	map.on('mousemove', 'convencionales-markers', function (e) {
 	    map.getCanvas().style.cursor = 'pointer';
-		var lista = e.features[0].properties.lista;
-		var nombre = e.features[0].properties.nombre;
+		var lista = e.features[0].properties.LISTA;
+		var nombre = e.features[0].properties.NOMBRE;
 		popup.setLngLat(e.lngLat)
 			.setHTML(
 				'<h4><span style="font-weight:bold">'+nombre+'</span></h4>'+
@@ -610,7 +610,7 @@ function mostrarConvencionales() {
     		'seats': 11,
     		'color': colores['gris']
     	},
-    	'Pueblos Indígenas': {
+    	'Pueblos Originarios': {
     		'seats': 17,
     		'color': colores['marron']
     	}
@@ -646,7 +646,7 @@ function mostrarConvencionales() {
     		'names': [
     			["ALVARO JOFRE CACERES (RN)", true],
     			["ROBERTO VEGA CAMPUSANO (RN)", true],
-    			["RUGGERO COZZI (RN)", true],
+    			["RUGGERO COZZI ELZO (RN)", true],
 				["RAUL CELIS MONTT (RN)", true],
 				["TERESA MARINOVIC VIAL (IND-RN)", false],
 				["CRISTIAN MONCKEBERG BRUNER (RN)", true],
@@ -863,7 +863,7 @@ function mostrarConvencionales() {
 				["MAURICIO DAZA CARRASCO (IND)", false]
     		]
     	},
-    	'Pueblos Indígenas (Mapuche)': {
+    	'Pueblos Originarios (Mapuche)': {
     		'seats': 7,
     		'color': '#8a3f1c', //colores['marron'],
     		'names': [
@@ -876,21 +876,21 @@ function mostrarConvencionales() {
 				["ALEXIS REINALDO CAIGUAN ANCAPAN (Mapuche)", false]
     		]
     	},
-    	'Pueblos Indígenas (Rapanui)': {
+    	'Pueblos Originarios (Rapanui)': {
     		'seats': 1,
     		'color': '#914621', //colores['marron'],
     		'names': [
 				["TIARE MAEVA CAROLINA AGUILERA HEY (Rapanui)", false]
     		]
     	},
-    	'Pueblos Indígenas (Atacameño)': {
+    	'Pueblos Originarios (Atacameño)': {
     		'seats': 1,
     		'color': '#994c27', // colores['marron'],
     		'names': [
 				["FELIX RAMON GALLEGUILLOS AYMANI (Atacameño)", false]
     		]
     	},
-    	'Pueblos Indígenas (Aimara)': {
+    	'Pueblos Originarios (Aimara)': {
     		'seats': 2,
     		'color': '#a0522d', // colores['marron'],
     		'names': [
@@ -898,42 +898,42 @@ function mostrarConvencionales() {
 				["LUIS ALBERTO JIMENEZ CACERES (Aimara)", false]
     		]
     	},
-    	'Pueblos Indígenas (Quechua)': {
+    	'Pueblos Originarios (Quechua)': {
     		'seats': 1,
     		'color': '#a75833', // colores['marron'],
     		'names': [
 				["WILFREDO MANUEL BACIAN DELGADO (Quechua)", false]
     		]
     	},
-    	'Pueblos Indígenas (Colla)': {
+    	'Pueblos Originarios (Colla)': {
     		'seats': 1,
     		'color': '#af5f39', // colores['marron'],
     		'names': [
 				["ISABEL SELENA GODOY MONARDEZ (Colla)", false]
     		]
     	},
-    	'Pueblos Indígenas (Diaguita)': {
+    	'Pueblos Originarios (Diaguita)': {
     		'seats': 1,
     		'color': '#b6653f', // colores['marron'],
     		'names': [
 				["ERIC JOHANNY CHINGA FERREIRA (Diaguita)", false]
     		]
     	},
-    	'Pueblos Indígenas (Kawashkar)': {
+    	'Pueblos Originarios (Kawashkar)': {
     		'seats': 1,
     		'color': '#bf6d46', // colores['marron'],
     		'names': [
 				["MARGARITA VARGAS LOPEZ (Kawashkar)", false]
     		]
     	},
-    	'Pueblos Indígenas (Yagán)': {
+    	'Pueblos Originarios (Yagán)': {
     		'seats': 1,
     		'color': '#c8744d', // colores['marron'],
     		'names': [
 				["LIDIA GONZALEZ CALDERON (Yagán)", false]
     		]
     	},
-    	'Pueblos Indígenas (Chango)': {
+    	'Pueblos Originarios (Chango)': {
     		'seats': 1,
     		'color': '#d17c54', // colores['marron'],
     		'names': [
@@ -942,16 +942,16 @@ function mostrarConvencionales() {
     	}
     }	
     var parliament_order = {
-    	'Pueblos Indígenas (Mapuche)': false, 
-    	'Pueblos Indígenas (Rapanui)': false, 
-    	'Pueblos Indígenas (Atacameño)': false, 
-    	'Pueblos Indígenas (Aimara)': false, 
-    	'Pueblos Indígenas (Quechua)': false, 
-    	'Pueblos Indígenas (Colla)': false, 
-    	'Pueblos Indígenas (Diaguita)': false, 
-    	'Pueblos Indígenas (Kawashkar)': false, 
-    	'Pueblos Indígenas (Yagán)': false, 
-    	'Pueblos Indígenas (Chango)': false, 
+    	'Pueblos Originarios (Mapuche)': false, 
+    	'Pueblos Originarios (Rapanui)': false, 
+    	'Pueblos Originarios (Atacameño)': false, 
+    	'Pueblos Originarios (Aimara)': false, 
+    	'Pueblos Originarios (Quechua)': false, 
+    	'Pueblos Originarios (Colla)': false, 
+    	'Pueblos Originarios (Diaguita)': false, 
+    	'Pueblos Originarios (Kawashkar)': false, 
+    	'Pueblos Originarios (Yagán)': false, 
+    	'Pueblos Originarios (Chango)': false, 
     	'Candidaturas Independientes': false,
     	'La Lista del Pueblo': true, 
     	'Apruebo Dignidad (PCCH)': true, 
@@ -975,6 +975,427 @@ function mostrarConvencionales() {
     	['Presidenta', "ELISA LONCON ANTILEO (Mapuche)"],
     	['Vicepresidente', "JAIME ANDRES BASSA MERCADO (IND-CS)"]
     ];
+    var grupos = {
+    	"Chile Vamos": [
+    		"POLLYANA RIVERA BIGAS (IND-UDI)",
+			"PABLO ANTONIO TOLOZA FERNANDEZ (UDI)", 
+			"JORGE ARANCIBIA REYES (IND-UDI)",
+			"ARTURO ZUÑIGA JORY (UDI)", 
+			"MARCELA CUBILLOS SIGALL (IND-UDI)",
+			"CONSTANZA  HUBE PORTUS (UDI)", 
+			"CLAUDIA MABEL CASTRO GUTIERREZ (IND-UDI)",
+			"CAROL BOWN SEPULVEDA (UDI)", 
+			"RICARDO NEUMANN BERTIN (IND-UDI)",
+			"ALFREDO MORENO ECHEVERRIA (IND-UDI)",
+			"MARTIN ARRAU GARCIA-HUIDOBRO (UDI)", 
+			"MARGARITA LETELIER CORTES (UDI)", 
+			"EDUARDO ANDRES CRETTON REBOLLEDO (UDI)", 
+			"FELIPE IGNACIO MENA VILLAR (UDI)", 
+			"MARIA CECILIA UBILLA PEREZ (IND-UDI)",
+			"KATERINE MONTEALEGRE NAVARRO (UDI)", 
+			"RODRIGO ALVAREZ ZENTENO (UDI)",
+			"ALVARO JOFRE CACERES (RN)", 
+			"ROBERTO VEGA CAMPUSANO (RN)", 
+			"RUGGERO COZZI ELZO (RN)", 
+			"RAUL CELIS MONTT (RN)", 
+			"TERESA MARINOVIC VIAL (IND-RN)",
+			"CRISTIAN MONCKEBERG BRUNER (RN)", 
+			"BERNARDO FONTAINE TALAVERA (IND-RN)",
+			"MANUEL JOSE OSSANDON LIRA (IND-RN)",
+			"PATRICIA LABRA BESSERER (RN)", 
+			"LUCIANO ERNESTO SILVA MORA (RN)", 
+			"PAULINA VELOSO MUÑOZ (RN)", 
+			"RUTH HURTADO OLAVE (IND-RN)",
+			"LUIS MAYOL BOUCHON (RN)", 
+			"ANGELICA TEPPER KOLOSSA (IND-RN)",
+			"HARRY JURGENSEN CAESAR (RN)",
+			"BERNARDO  DE LA MAZA BAÑADOS (IND-EVO)",
+			"HERNAN LARRAIN MATTE (EVO)", 
+			"BARBARA REBOLLEDO AGUIRRE (IND-EVO)",
+			"ROCIO  CANTUARIAS RUBIO (IND-EVO)",
+			"GEOCONDA NAVARRETE ARRATIA (EVO)"
+    	],
+    	"Frente Amplio": [
+    		"MARIA JOSE OYARZUN SOLIS (RD)", 
+			"DANIEL RODRIGO STINGO CAMUS (IND-RD)", 
+			"TATIANA KARINA URRUTIA HERRERA (RD)", 
+			"FERNANDO ATRIA LEMAITRE (IND-RD)", 
+			"GIOVANNA ANGELA ROA CADIN (RD)", 
+			"BEATRIZ DE JESUS SANCHEZ MUÑOZ (IND-RD)", 
+			"AMAYA PAULINA ALVEZ MARIN (RD)", 
+			"AURORA GENOVEVA DELGADO VERGARA (IND-RD)", 
+			"YARELA NICOHL GOMEZ SANCHEZ (IND-RD)", 
+			"JENIFFER VALERIA MELLA ESCOBAR (IND-CS)", 
+			"MARIELA ANDREA SEREY JIMENEZ (IND-CS)", 
+			"JAIME ANDRES BASSA MERCADO (IND-CS) - Vicepresidente", 
+			"CONSTANZA GABRIELA SCHONHAUT SOTO (CS)", 
+			"IGNACIO JAIME ACHURRA DIAZ (CS)", 
+			"DAMARIS ABARCA GONZALEZ (IND-CS)", 
+			"CAROLINA CYNTIA VILCHES FUENZALIDA (IND-COM)"
+    	],
+    	"Unidad Constituyente": [
+    		"MAXIMILIANO HURTADO ROCO (PS)", 
+			"CARLOS CALVO MUÑOZ (IND-PS)", 
+			"CLAUDIO GOMEZ CASTRO (IND-PS)", 
+			"CESAR VALENZUELA MAASS (PS)", 
+			"JORGE BARADIT MORALES (IND-PS)", 
+			"MALUCHA PINTO SOLARI (PS)", 
+			"MATIAS ORELLANA CUELLAR (PS)", 
+			"ADRIANA CANCINO MENESES (IND-PS)", 
+			"RICARDO MONTERO ALLENDE (PS)", 
+			"ANDRES CRUZ CARRASCO (IND-PS)", 
+			"RAMONA REYES PAINEQUEO (PS)", 
+			"PEDRO MUÑOZ LEIVA (PS)", 
+			"MARIO VARGAS VIDAL (PS)", 
+			"JULIO ALVAREZ PINTO (PS)", 
+			"TOMAS LAIBE SAEZ (PS)", 
+			"BESSY MIREYA GALLARDO PRADO (IND-PRO)", 
+			"RENATO FABRIZIO GARIN GONZALEZ (IND-PR)", 
+			"CHRISTIAN VIERA ALVAREZ (IND-PDC)", 
+			"FUAD  CHAHIN VALENZUELA (PDC)", 
+			"FELIPE HARBOE BASCUÑAN (PPD)", 
+			"LUIS RAMON BARCELO AMADO (IND-PPD)", 
+			"EDUARDO GUILLERMO CASTILLO VIGOUROUX (PPD)"
+    	],
+    	"Nuevo Trato": [
+    		"JORGE BRUNO ABARCA RIVEROS (IND-PL)", 
+			"AGUSTIN SQUELLA NARDUCCI (IND-PL)", 
+			"PATRICIO  FERNANDEZ CHADWICK (IND-PL)"
+    	],
+    	"Norte Constituyente": [
+    		"JORGE BRUNO ABARCA RIVEROS (IND-PL)",
+    		"ALEJANDRA ALICIA FLORES CARLOS (IND)",
+    		"CRISTINA INES DORADOR ORTIZ (IND)",
+    		"CONSTANZA ANDREA SAN JUAN STANDEN (IND)",
+    		"IVANNA DANIELA OLIVARES MIRANDA (IND)",
+    		"DANIEL ALEJANDRO BRAVO SILVA (IND)",
+    		"ISABELLA BRUNILDA MAMANI MAMANI (Aimara)",
+			"LUIS ALBERTO JIMENEZ CACERES (Aimara)",
+			"ERIC JOHANNY CHINGA FERREIRA (Diaguita)",
+			"WILFREDO MANUEL BACIAN DELGADO (Quechua)",
+			"FERNANDO DEL CARMEN TIRADO SOTO (Chango)"
+    	],
+    	"Pueblos Originarios": [
+    		"FRANCISCA LINCONAO HUIRCAPAN (Mapuche)", 
+			"NATIVIDAD LLANQUILEO PILQUIMAN (Mapuche)", 
+			"ADOLFO MILLABUR ÑANCUIL (Mapuche)", 
+			"ELISA LONCON ANTILEO (Mapuche) - Presidenta", 
+			"ROSA ELIZABETH CATRILEO ARIAS (Mapuche)", 
+			"VICTORINO ERNESTO ANTILEF ÑANCO (Mapuche)", 
+			"ALEXIS REINALDO CAIGUAN ANCAPAN (Mapuche)", 
+			"TIARE MAEVA CAROLINA AGUILERA HEY (Rapanui)", 
+			"FELIX RAMON GALLEGUILLOS AYMANI (Atacameño)", 
+			"ISABELLA BRUNILDA MAMANI MAMANI (Aimara)", 
+			"LUIS ALBERTO JIMENEZ CACERES (Aimara)", 
+			"WILFREDO MANUEL BACIAN DELGADO (Quechua)", 
+			"ISABEL SELENA GODOY MONARDEZ (Colla)", 
+			"ERIC JOHANNY CHINGA FERREIRA (Diaguita)", 
+			"MARGARITA VARGAS LOPEZ (Kawashkar)", 
+			"LIDIA GONZALEZ CALDERON (Yagán)", 
+			"FERNANDO DEL CARMEN TIRADO SOTO (Chango)"
+    	],
+    	"Independientes": [
+    			"POLLYANA RIVERA BIGAS (IND-UDI)",
+				"JORGE ARANCIBIA REYES (IND-UDI)",
+				"MARCELA CUBILLOS SIGALL (IND-UDI)",
+				"CLAUDIA MABEL CASTRO GUTIERREZ (IND-UDI)",
+				"RICARDO NEUMANN BERTIN (IND-UDI)",
+				"ALFREDO MORENO ECHEVERRIA (IND-UDI)",
+				"MARIA CECILIA UBILLA PEREZ (IND-UDI)",
+				"TERESA MARINOVIC VIAL (IND-RN)",
+				"BERNARDO FONTAINE TALAVERA (IND-RN)",
+				"MANUEL JOSE OSSANDON LIRA (IND-RN)",
+				"RUTH HURTADO OLAVE (IND-RN)",
+				"ANGELICA TEPPER KOLOSSA (IND-RN)",
+				"BERNARDO  DE LA MAZA BAÑADOS (IND-EVO)",
+				"BARBARA REBOLLEDO AGUIRRE (IND-EVO)",
+				"ROCIO  CANTUARIAS RUBIO (IND-EVO)",
+				"VANESSA CAMILA HOPPE ESPOZ (IND-PCCH)",
+    			"ROBERTO ANTONIO CELEDON FERNANDEZ (IND-FREVS)",
+				"DANIEL RODRIGO STINGO CAMUS (IND-RD)",
+    			"FERNANDO ATRIA LEMAITRE (IND-RD)",
+				"BEATRIZ DE JESUS SANCHEZ MUÑOZ (IND-RD)",
+				"AURORA GENOVEVA DELGADO VERGARA (IND-RD)",
+				"YARELA NICOHL GOMEZ SANCHEZ (IND-RD)",
+    			"JENIFFER VALERIA MELLA ESCOBAR (IND-CS)",
+				"MARIELA ANDREA SEREY JIMENEZ (IND-CS)",
+				"JAIME ANDRES BASSA MERCADO (IND-CS) - Vicepresidente",
+				"DAMARIS ABARCA GONZALEZ (IND-CS)",
+    			"CAROLINA CYNTIA VILCHES FUENZALIDA (IND-COM)",
+    			"MANUELA ROYO LETELIER (IND-IGUAL)",
+    			"DAYYANA GONZALEZ ARAYA (IND)",
+				"CONSTANZA ANDREA SAN JUAN STANDEN (IND)",
+				"IVANNA DANIELA OLIVARES MIRANDA (IND)",
+				"DANIEL ALEJANDRO BRAVO SILVA (IND)",
+				"LISETTE LORENA VERGARA RIQUELME (IND)",
+				"CRISTOBAL PATRICIO ANDRADE LEON (IND)",
+				"CAMILA IGNACIA ZARATE ZARATE (IND)",
+				"TANIA ISABEL MADRIAGA FLORES (IND)",
+				"MARCO ANTONIO ARELLANO ORTEGA (IND)",
+				"MARIA MAGDALENA RIVERA IRIBARREN (IND)",
+				"ALEJANDRA PIA PEREZ ESPINA (IND)",
+				"NATALIA ESTHER HENRIQUEZ CARREÑO (IND)",
+				"MANUEL MAURICIO WOLDARSKY GONZALEZ (IND)",
+				"GIOVANNA JAZMIN GRANDON CARO (IND)",
+				"INGRID FERNANDA VILLENA NARBONA (IND)",
+				"RODRIGO ERNESTO ROJAS VADE (IND)",
+				"FRANCISCO JAVIER CAAMAÑO ROJAS (IND)",
+				"LORETO CRISTINA VALLEJOS DAVILA (IND)",
+				"ELSA CAROLINA LABRAÑA PINO (IND)",
+				"FRANCISCA MARYCARMEN ARAUNA URRUTIA (IND)",
+				"FERNANDO SALINAS MANFREDINI (IND)",
+				"CESAR  URIBE ARAYA (IND)",
+				"ROSSANA LORETO VIDAL HERNANDEZ (IND)",
+				"HELMUTH JACOBO MARTINEZ LLANCAPAN (IND)",
+				"ADRIANA CAMILA AMPUERO BARRIENTOS (IND)",
+				"ELISA AMANDA GIUSTINIANOVICH CAMPOS (IND)",
+    			"JORGE BRUNO ABARCA RIVEROS (IND-PL)",
+				"AGUSTIN SQUELLA NARDUCCI (IND-PL)",
+				"PATRICIO  FERNANDEZ CHADWICK (IND-PL)",
+				"CARLOS CALVO MUÑOZ (IND-PS)",
+				"CLAUDIO GOMEZ CASTRO (IND-PS)",
+				"JORGE BARADIT MORALES (IND-PS)",
+				"ADRIANA CANCINO MENESES (IND-PS)",
+				"ANDRES CRUZ CARRASCO (IND-PS)",
+				"BESSY MIREYA GALLARDO PRADO (IND-PRO)",
+				"RENATO FABRIZIO GARIN GONZALEZ (IND-PR)",
+				"CHRISTIAN VIERA ALVAREZ (IND-PDC)",
+				"LUIS RAMON BARCELO AMADO (IND-PPD)",
+				"GUILLERMO NICOLAS NAMOR KONG (IND)",
+				"MIGUEL ANGEL BOTTO SALINAS (IND)",
+				"PATRICIA POLITZER KEREKES (IND)",
+				"BENITO JOSE BARANDA FERRAN (IND)",
+				"JUAN JOSE MARTIN BRAVO (IND)",
+				"PAULINA VALERIA VALENZUELA RIO (IND)",
+				"CAROLINA ANDREA SEPULVEDA SEPULVEDA (IND)",
+				"TAMMY SOLANGE PUSTILNICK ARDITI (IND)",
+				"JAVIER FUCHSLOCHER BAEZA (IND)",
+				"LORENA DEL PILAR CESPEDES FERNANDEZ (IND)",
+				"GASPAR ROBERTO DOMINGUEZ DONOSO (IND)",
+    			"ALEJANDRA ALICIA FLORES CARLOS (IND)",
+				"CRISTINA INES DORADOR ORTIZ (IND)",
+				"MARIA TRINIDAD CASTILLO BOILET (IND)",
+				"JANIS JAN DEL CARMEN MENESES PALMA (IND)",
+				"RODRIGO LOGAN SOTO (IND)",
+				"ALONDRA CARRILLO VIDAL (IND)",
+				"ALVIN ANTONIO SALDAÑA MUÑOZ (IND)",
+				"GLORIA DEL TRANSITO ALVARADO JORQUERA (IND)",
+				"MARIA ELISA QUINTEROS CACERES (IND)",
+				"BASTIAN ESTEBAN LABBE SALAZAR (IND)",
+				"MAURICIO DAZA CARRASCO (IND)",
+    			"FRANCISCA LINCONAO HUIRCAPAN (Mapuche)",
+				"NATIVIDAD LLANQUILEO PILQUIMAN (Mapuche)",
+				"ADOLFO MILLABUR ÑANCUIL (Mapuche)",
+				"ELISA LONCON ANTILEO (Mapuche) - Presidenta",
+				"ROSA ELIZABETH CATRILEO ARIAS (Mapuche)",
+				"VICTORINO ERNESTO ANTILEF ÑANCO (Mapuche)",
+				"ALEXIS REINALDO CAIGUAN ANCAPAN (Mapuche)",
+    			"TIARE MAEVA CAROLINA AGUILERA HEY (Rapanui)",
+    			"FELIX RAMON GALLEGUILLOS AYMANI (Atacameño)",
+    			"ISABELLA BRUNILDA MAMANI MAMANI (Aimara)",
+				"LUIS ALBERTO JIMENEZ CACERES (Aimara)",
+    			"WILFREDO MANUEL BACIAN DELGADO (Quechua)",
+    			"ISABEL SELENA GODOY MONARDEZ (Colla)",
+    			"ERIC JOHANNY CHINGA FERREIRA (Diaguita)",
+    			"MARGARITA VARGAS LOPEZ (Kawashkar)",
+    			"LIDIA GONZALEZ CALDERON (Yagán)",
+    			"FERNANDO DEL CARMEN TIRADO SOTO (Chango)"
+    	],
+    	"D1": [
+    		"JORGE BRUNO ABARCA RIVEROS (IND-PL)",
+    		"CAROLINA ELIANA VIDELA OSORIO (PCCH)",
+    		"POLLYANA RIVERA BIGAS (IND-UDI)"
+    	],
+    	"D2": [
+    		"HUGO HUMBERTO GUTIERREZ GALVEZ (PCCH)",
+    		"ALVARO JOFRE CACERES (RN)",
+    		"ALEJANDRA ALICIA FLORES CARLOS (IND)"
+    	],
+    	"D3": [
+    		"CRISTINA INES DORADOR ORTIZ (IND)",
+    		"DAYYANA GONZALEZ ARAYA (IND)",
+    		"HERNAN JESUS VELASQUEZ NUÑEZ (FREVS)",
+    		"PABLO ANTONIO TOLOZA FERNANDEZ (UDI)"
+    	],
+    	"D4": [
+    		"CONSTANZA ANDREA SAN JUAN STANDEN (IND)",
+    		"ERICKA  PORTILLA BARRIOS (PCCH)",
+    		"GUILLERMO NICOLAS NAMOR KONG (IND)",
+    		"MAXIMILIANO HURTADO ROCO (PS)"
+    	],
+    	"D5": [
+    		"IVANNA DANIELA OLIVARES MIRANDA (IND)",
+    		"DANIEL ALEJANDRO BRAVO SILVA (IND)",
+    		"JENIFFER VALERIA MELLA ESCOBAR (IND-CS)",
+    		"CARLOS CALVO MUÑOZ (IND-PS)",
+    		"ROBERTO VEGA CAMPUSANO (RN)",
+    		"MARIA TRINIDAD CASTILLO BOILET (IND)"
+    	],
+    	"D6": [
+    		"CAROLINA CYNTIA VILCHES FUENZALIDA (IND-COM)",
+    		"MARIELA ANDREA SEREY JIMENEZ (IND-CS)",
+    		"LISETTE LORENA VERGARA RIQUELME (IND)",
+    		"CRISTOBAL PATRICIO ANDRADE LEON (IND)",
+    		"RUGGERO COZZI ELZO (RN)",
+    		"CLAUDIO GOMEZ CASTRO (IND-PS)", 
+    		"JANIS JAN DEL CARMEN MENESES PALMA (IND)",
+    		"MIGUEL ANGEL BOTTO SALINAS (IND)"
+    	],
+    	"D7": [
+    		"JAIME ANDRES BASSA MERCADO (IND-CS) - Vicepresidente",
+    		"MARIA JOSE OYARZUN SOLIS (RD)", 
+    		"JORGE ARANCIBIA REYES (IND-UDI)",
+    		"RAUL CELIS MONTT (RN)", 
+    		"CAMILA IGNACIA ZARATE ZARATE (IND)",
+    		"TANIA ISABEL MADRIAGA FLORES (IND)",
+    		"AGUSTIN SQUELLA NARDUCCI (IND-PL)"
+    	],
+    	"D8": [
+    		"DANIEL RODRIGO STINGO CAMUS (IND-RD)", 
+    		"VALENTINA ANDREA MIRANDA ARCE (PCCH)",
+			"TATIANA KARINA URRUTIA HERRERA (RD)", 
+			"MARCO ANTONIO ARELLANO ORTEGA (IND)",
+			"MARIA MAGDALENA RIVERA IRIBARREN (IND)",
+			"BERNARDO  DE LA MAZA BAÑADOS (IND-EVO)",
+			"BESSY MIREYA GALLARDO PRADO (IND-PRO)"
+    	],
+    	"D9": [
+    		"ALEJANDRA PIA PEREZ ESPINA (IND)",
+    		"NATALIA ESTHER HENRIQUEZ CARREÑO (IND)",
+    		"BARBARA SEPULVEDA HALES (PCCH)",
+    		"ARTURO ZUÑIGA JORY (UDI)", 
+    		"RODRIGO LOGAN SOTO (IND)",
+    		"CESAR VALENZUELA MAASS (PS)", 
+    	],
+    	"D10": [
+    		"FERNANDO ATRIA LEMAITRE (IND-RD)",
+    		"GIOVANNA ANGELA ROA CADIN (RD)",
+    		"TERESA MARINOVIC VIAL (IND-RN)",
+			"CRISTIAN MONCKEBERG BRUNER (RN)", 
+			"JORGE BARADIT MORALES (IND-PS)", 
+			"PATRICIA POLITZER KEREKES (IND)",
+			"MANUEL MAURICIO WOLDARSKY GONZALEZ (IND)"
+    	],
+    	"D11": [
+    		"MARCELA CUBILLOS SIGALL (IND-UDI)",
+			"CONSTANZA  HUBE PORTUS (UDI)", 
+			"HERNAN LARRAIN MATTE (EVO)", 
+			"BERNARDO FONTAINE TALAVERA (IND-RN)",
+			"PATRICIO  FERNANDEZ CHADWICK (IND-PL)",
+			"CONSTANZA GABRIELA SCHONHAUT SOTO (CS)"
+    	],
+    	"D12": [
+    		"BENITO JOSE BARANDA FERRAN (IND)", 
+    		"JUAN JOSE MARTIN BRAVO (IND)",
+    		"GIOVANNA JAZMIN GRANDON CARO (IND)",
+    		"MANUEL JOSE OSSANDON LIRA (IND-RN)",
+    		"BEATRIZ DE JESUS SANCHEZ MUÑOZ (IND-RD)", 
+    		"ALONDRA CARRILLO VIDAL (IND)"
+    	],
+    	"D13": [
+    		"INGRID FERNANDA VILLENA NARBONA (IND)", 
+    		"RODRIGO ERNESTO ROJAS VADE (IND)", 
+    		"MALUCHA PINTO SOLARI (PS)", 
+    		"MARCOS PATRICIO BARRAZA GOMEZ (PCCH)",
+    	],
+    	"D14": [
+    		"IGNACIO JAIME ACHURRA DIAZ (CS)",
+    		"FRANCISCO JAVIER CAAMAÑO ROJAS (IND)",
+    		"RENATO FABRIZIO GARIN GONZALEZ (IND-PR)",
+    		"CLAUDIA MABEL CASTRO GUTIERREZ (IND-UDI)",
+    		"PAULINA VALERIA VALENZUELA RIO (IND)"
+    	],
+    	"D15": [
+    		"LORETO CRISTINA VALLEJOS DAVILA (IND)",
+    		"CAROL BOWN SEPULVEDA (UDI)",
+    		"MATIAS ORELLANA CUELLAR (PS)", 
+    		"ALVIN ANTONIO SALDAÑA MUÑOZ (IND)",
+    		"DAMARIS ABARCA GONZALEZ (IND-CS)"
+    	],
+    	"D16": [
+    		"RICARDO NEUMANN BERTIN (IND-UDI)",
+    		"NICOLAS FERNANDO NUÑEZ GANGAS (FREVS)",
+    		"ADRIANA CANCINO MENESES (IND-PS)", 
+    		"GLORIA DEL TRANSITO ALVARADO JORQUERA (IND)"
+    	],
+    	"D17": [
+    		"BARBARA REBOLLEDO AGUIRRE (IND-EVO)",
+			"ALFREDO MORENO ECHEVERRIA (IND-UDI)",
+			"ROBERTO ANTONIO CELEDON FERNANDEZ (IND-FREVS)",
+			"PAOLA ALEJANDRA GRANDON GONZALEZ (FREVS)",
+			"MARIA ELISA QUINTEROS CACERES (IND)",
+			"CHRISTIAN VIERA ALVAREZ (IND-PDC)", 
+			"ELSA CAROLINA LABRAÑA PINO (IND)"
+    	],
+    	"D18": [
+    		"FRANCISCA MARYCARMEN ARAUNA URRUTIA (IND)",
+			"FERNANDO SALINAS MANFREDINI (IND)",
+			"PATRICIA LABRA BESSERER (RN)", 
+			"RICARDO MONTERO ALLENDE (PS)"
+    	],
+    	"D19": [
+    		"MARTIN ARRAU GARCIA-HUIDOBRO (UDI)", 
+			"MARGARITA LETELIER CORTES (UDI)", 
+			"CESAR  URIBE ARAYA (IND)",
+			"FELIPE HARBOE BASCUÑAN (PPD)",
+			"CAROLINA ANDREA SEPULVEDA SEPULVEDA (IND)"
+    	],
+    	"D20": [ 
+    		"ROCIO  CANTUARIAS RUBIO (IND-EVO)",
+    		"LUCIANO ERNESTO SILVA MORA (RN)",
+    		"AMAYA PAULINA ALVEZ MARIN (RD)",
+    		"ANDRES CRUZ CARRASCO (IND-PS)",
+    		"TAMMY SOLANGE PUSTILNICK ARDITI (IND)", 
+    		"BASTIAN ESTEBAN LABBE SALAZAR (IND)",
+    		"ROSSANA LORETO VIDAL HERNANDEZ (IND)",
+    	],
+    	"D21": [
+    		"PAULINA VELOSO MUÑOZ (RN)", 
+    		"VANESSA CAMILA HOPPE ESPOZ (IND-PCCH)",
+    		"JAVIER FUCHSLOCHER BAEZA (IND)",
+    		"LUIS RAMON BARCELO AMADO (IND-PPD)"
+    	],
+    	"D22": [
+    		"EDUARDO ANDRES CRETTON REBOLLEDO (UDI)",
+    		"RUTH HURTADO OLAVE (IND-RN)", 
+    		"FUAD  CHAHIN VALENZUELA (PDC)"
+    	],
+    	"D23": [
+    		"LUIS MAYOL BOUCHON (RN)", 
+			"ANGELICA TEPPER KOLOSSA (IND-RN)",
+			"HELMUTH JACOBO MARTINEZ LLANCAPAN (IND)",
+			"EDUARDO GUILLERMO CASTILLO VIGOUROUX (PPD)",
+			"LORENA DEL PILAR CESPEDES FERNANDEZ (IND)",
+			"MANUELA ROYO LETELIER (IND-IGUAL)"
+    	],
+    	"D24": [
+    		"RAMONA REYES PAINEQUEO (PS)",
+    		"PEDRO MUÑOZ LEIVA (PS)",
+    		"FELIPE IGNACIO MENA VILLAR (UDI)", 
+			"AURORA GENOVEVA DELGADO VERGARA (IND-RD)"
+    	],
+    	"D25": [
+    		"HARRY JURGENSEN CAESAR (RN)",
+			"MARIA CECILIA UBILLA PEREZ (IND-UDI)",
+			"MARIO VARGAS VIDAL (PS)"
+    	],
+    	"D26": [
+    		"JULIO ALVAREZ PINTO (PS)",
+    		"KATERINE MONTEALEGRE NAVARRO (UDI)", 
+			"ADRIANA CAMILA AMPUERO BARRIENTOS (IND)",
+			"GASPAR ROBERTO DOMINGUEZ DONOSO (IND)"
+    	],
+    	"D27": [
+    		"TOMAS LAIBE SAEZ (PS)", 
+			"GEOCONDA NAVARRETE ARRATIA (EVO)",
+			"YARELA NICOHL GOMEZ SANCHEZ (IND-RD)"
+    	],
+    	"D28": [
+    		"MAURICIO DAZA CARRASCO (IND)",
+    		"RODRIGO ALVAREZ ZENTENO (UDI)",
+			"ELISA AMANDA GIUSTINIANOVICH CAMPOS (IND)"
+    	]
+    };
 
 	legend.innerHTML = '';
 	legend.style.display = 'block';
@@ -982,7 +1403,7 @@ function mostrarConvencionales() {
     	legend2.style.display = 'block';
     	var div = document.createElement('div');
     	div.style.width = '360px';
-    	div.appendChild(generateSVG(parliament, parliament_order, true, "Convencional", directiva));
+    	div.appendChild(generateSVG(parliament, parliament_order, true, "Convencional", directiva, grupos));
     	legend2.appendChild(div);
     	var span = document.createElement('span');
     	span.id = 'lista-seat';
@@ -992,6 +1413,30 @@ function mostrarConvencionales() {
     	span.id = 'nombre-seat';
     	span.innerHTML = 'Muévete sobre los puntos...';
     	legend2.appendChild(span);
+    	var div = document.createElement('div');
+    	div.style.width = "360px";
+    	div.style.marginTop = "5px";
+    	div.style.borderTop = 'solid';
+		div.style.borderWidth = '1px';
+    	div.style.textAlign = 'center';
+    	var span = document.createElement('span');
+    	span.innerHTML = 'O haz click sobre uno de los grupos';
+    	div.appendChild(span);
+    		for (grupo in grupos) {
+    			var span = document.createElement('span');
+    			if (grupo=="D1") span.innerHTML = '<br>Distritos · ';
+    			else span.innerHTML = ' · ';
+    			div.appendChild(span);
+    			var a = document.createElement('a');
+    			a.onclick = clickGroup;
+    			var span = document.createElement('span');
+    			span.innerHTML = grupo;
+    			span.style.fontWeight = 'bold';
+    			span.className = "grupo"
+    			a.appendChild(span);
+    			div.appendChild(a);
+    		}
+    	legend2.appendChild(div);
     } else {
     	legend2.style.display = 'none';
     }

@@ -274,3 +274,86 @@ function popDistritos(map) {
 	    popup.remove();
 	});
 };
+
+var selectedGroup = false;
+var groupSelected = "";
+
+function touchParliamentSeat(evt) {
+    var svgobj=evt.target; 
+    if (!selectedGroup) {
+        var indep = ['Fuera-de-Pacto','Candidaturas-Independientes'];
+        if (svgobj.dataset.hasOwnProperty("party") && !indep.includes(svgobj.dataset.party)) {
+            var party = svgobj.dataset.party;   
+            var els = document.getElementsByClassName(party);
+            var count = els.length;
+            for (var i = 0; i < els.length; i++) {
+                if (els[i].dataset.hasOwnProperty("dotted")) count--;
+            }
+            if (count==1) var escanos = count + " escaño";
+            else var escanos = count + " escaños";
+            var span = document.getElementById('lista-seat');
+            if (span) span.innerHTML = '<span style="font-weight:bold">'+party.replace(/-/g," ")+":</span> "+escanos+'<br>';
+
+            var els = document.getElementsByClassName("parliament-seat");
+            for (var i = 0; i < els.length; i++) {
+                if (!els[i].classList.contains(party)) els[i].style.opacity=0.2;
+            }
+        } else {
+            var els = document.getElementsByClassName("parliament-seat");
+            for (var i =0; i < els.length; i++) els[i].style.opacity = 0.2;
+            svgobj.style.opacity = 1;   
+        }
+    }   
+    var span = document.getElementById('nombre-seat');
+    if (span) span.innerHTML = '<span>'+svgobj.dataset.name+'</span>';
+}
+function unTouchParliamentSeat(evt) {
+    if (!selectedGroup) {
+        var els = document.getElementsByClassName("parliament-seat");
+        for (var i =0; i < els.length; i++) els[i].style.opacity = 1;
+        var span = document.getElementById('lista-seat');
+        if (span) span.innerHTML = '<br>';
+    }
+    var span = document.getElementById('nombre-seat');
+    if (span) {
+        if (!selectedGroup) span.innerHTML = 'Muévete sobre los puntos...';
+        else span.innerHTML = '<br>';
+    }
+}
+
+function clickGroup(evt) {
+    var obj = evt.target;
+    var cl = obj.innerHTML.replace(/ /g,"-");
+    if (!selectedGroup || groupSelected!=cl) {
+        selectedGroup = true;
+        groupSelected = cl;
+        var span = document.getElementById('nombre-seat');
+        if (span) span.innerHTML = '<br>';
+    } else {
+        selectedGroup = false;
+        groupSelected = "";
+        var span = document.getElementById('nombre-seat');
+        if (span) span.innerHTML = 'Muévete sobre los puntos...';
+    }
+    if (selectedGroup) {
+        var els = document.getElementsByClassName("grupo");
+        for (var i = 0; i < els.length; i++) els[i].style.opacity = 0.2;
+        obj.style.opacity = 1;
+        var els = document.getElementsByClassName("parliament-seat");
+        var count = 0;
+        for (var i = 0; i < els.length; i++) {
+            if (els[i].classList.contains(cl)) els[i].style.opacity=1;
+            if (!els[i].classList.contains(cl)) els[i].style.opacity=0.2;
+            else if (!els[i].dataset.hasOwnProperty("dotted")) count++;
+        }
+        var span = document.getElementById('lista-seat');
+        if (span) span.innerHTML = '<span style="font-weight:bold">'+cl.replace(/-/g," ")+":</span> "+count+' escaños<br>';
+    } else {
+        var els = document.getElementsByClassName("grupo");
+        for (var i = 0; i < els.length; i++) els[i].style.opacity = 1;
+        var els = document.getElementsByClassName("parliament-seat");
+        for (var i = 0; i < els.length; i++) els[i].style.opacity=1;
+        var span = document.getElementById('lista-seat');
+        if (span) span.innerHTML = '<br>';
+    }
+}
