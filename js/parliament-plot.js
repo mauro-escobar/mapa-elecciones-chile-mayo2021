@@ -240,6 +240,7 @@ function generateSVG(_parliament, order, seatCount, type, directive=[], groups={
     	var circle = document.createElementNS(xmlns,"circle");
     	circle.setAttributeNS(null, "onmousemove", "touchParliamentSeat(evt)");
     	circle.setAttributeNS(null, "onmouseleave", "unTouchParliamentSeat(evt)");
+    	circle.setAttributeNS(null, "onclick", "clickParliamentSeat(evt)");
     	circle.setAttributeNS(null, "cx", points[index].x);
     	circle.setAttributeNS(null, "cy", points[index].y);
     	circle.setAttributeNS(null, "r", points[index].r);
@@ -255,6 +256,7 @@ function generateSVG(_parliament, order, seatCount, type, directive=[], groups={
     	var circle = document.createElementNS(xmlns,"circle");
     	circle.setAttributeNS(null, "onmousemove", "touchParliamentSeat(evt)");
     	circle.setAttributeNS(null, "onmouseleave", "unTouchParliamentSeat(evt)");
+    	circle.setAttributeNS(null, "onclick", "clickParliamentSeat(evt)");
     	circle.setAttributeNS(null, "cx", mesaPoints[index].x);
     	circle.setAttributeNS(null, "cy", mesaPoints[index].y);
     	circle.setAttributeNS(null, "r", mesaPoints[index].r);
@@ -279,6 +281,7 @@ function generateSVG(_parliament, order, seatCount, type, directive=[], groups={
     		circle.setAttributeNS(null, "data-dotted", "yes");
 	    	circle.setAttributeNS(null, "onmousemove", "touchParliamentSeat(evt)");
 	    	circle.setAttributeNS(null, "onmouseleave", "unTouchParliamentSeat(evt)");
+    		circle.setAttributeNS(null, "onclick", "clickParliamentSeat(evt)");
 	    	var cl = "parliament-seat "+blackDots[index].party;
 	    	if (Object.keys(name2groups).includes(blackDots[index].name)) cl += name2groups[blackDots[index].name];
 	    	circle.setAttributeNS(null, "class", cl);
