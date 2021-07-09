@@ -1111,6 +1111,51 @@ function mostrarConvencionales() {
 			"LIDIA GONZALEZ CALDERON (Yagán)", 
 			"FERNANDO DEL CARMEN TIRADO SOTO (Chango)"
     	],
+    	"Vocería de los Pueblos": [
+    		"FRANCISCA LINCONAO HUIRCAPAN (Mapuche)",
+    		"ELISA LONCON ANTILEO (Mapuche) - Presidenta", 
+			"NATIVIDAD LLANQUILEO PILQUIMAN (Mapuche)", 
+			"ROSA ELIZABETH CATRILEO ARIAS (Mapuche)", 
+			"VICTORINO ERNESTO ANTILEF ÑANCO (Mapuche)", 
+			"ADOLFO MILLABUR ÑANCUIL (Mapuche)", 
+			"ALEXIS REINALDO CAIGUAN ANCAPAN (Mapuche)", 
+			"FELIX RAMON GALLEGUILLOS AYMANI (Atacameño)", 
+			"ISABELLA BRUNILDA MAMANI MAMANI (Aimara)", 
+			"FERNANDO DEL CARMEN TIRADO SOTO (Chango)",
+			"ERIC JOHANNY CHINGA FERREIRA (Diaguita)", 
+			"WILFREDO MANUEL BACIAN DELGADO (Quechua)", 
+			"ISABEL SELENA GODOY MONARDEZ (Colla)", 
+			"LUIS ALBERTO JIMENEZ CACERES (Aimara)", 
+			"ALEJANDRA ALICIA FLORES CARLOS (IND)",
+			"CRISTINA INES DORADOR ORTIZ (IND)",
+    		"CONSTANZA ANDREA SAN JUAN STANDEN (IND)",
+    		"IVANNA DANIELA OLIVARES MIRANDA (IND)",
+    		"DANIEL ALEJANDRO BRAVO SILVA (IND)",
+    		"JANIS JAN DEL CARMEN MENESES PALMA (IND)",
+    		"LISETTE LORENA VERGARA RIQUELME (IND)",
+    		"CAROLINA CYNTIA VILCHES FUENZALIDA (IND-COM)",
+    		"MARIELA ANDREA SEREY JIMENEZ (IND-CS)",
+    		"CRISTOBAL PATRICIO ANDRADE LEON (IND)",
+    		"CAMILA IGNACIA ZARATE ZARATE (IND)",
+    		"MARCO ANTONIO ARELLANO ORTEGA (IND)",
+			"ALONDRA CARRILLO VIDAL (IND)",
+			"FRANCISCO JAVIER CAAMAÑO ROJAS (IND)",
+    		"LORETO CRISTINA VALLEJOS DAVILA (IND)",
+    		"ALVIN ANTONIO SALDAÑA MUÑOZ (IND)",
+    		"ELSA CAROLINA LABRAÑA PINO (IND)",
+    		"MARIA ELISA QUINTEROS CACERES (IND)",
+    		"FRANCISCA MARYCARMEN ARAUNA URRUTIA (IND)",
+			"FERNANDO SALINAS MANFREDINI (IND)",
+			"CESAR  URIBE ARAYA (IND)",
+			"BASTIAN ESTEBAN LABBE SALAZAR (IND)",
+    		"VANESSA CAMILA HOPPE ESPOZ (IND-PCCH)",
+    		"MANUELA ROYO LETELIER (IND-IGUAL)",
+    		"ADRIANA CAMILA AMPUERO BARRIENTOS (IND)",
+			"YARELA NICOHL GOMEZ SANCHEZ (IND-RD)",
+			"ELISA AMANDA GIUSTINIANOVICH CAMPOS (IND)",
+			"GLORIA DEL TRANSITO ALVARADO JORQUERA (IND)",
+			"AURORA GENOVEVA DELGADO VERGARA (IND-RD)"
+    	],
     	"Independientes": [
 			"POLLYANA RIVERA BIGAS (IND-UDI)",
 			"JORGE ARANCIBIA REYES (IND-UDI)",
@@ -1457,7 +1502,7 @@ function mostrarConvencionales() {
     if (screen.width>=992) {
     	legend2.style.display = 'block';
     	var div = document.createElement('div');
-    	div.style.width = '360px';
+    	div.style.width = '380px';
     	div.appendChild(generateSVG(parliament, parliament_order, true, "Convencional", directiva, grupos));
     	legend2.appendChild(div);
     	var span = document.createElement('span');
@@ -1469,7 +1514,7 @@ function mostrarConvencionales() {
     	span.innerHTML = 'Muévete sobre los puntos...';
     	legend2.appendChild(span);
     	var div = document.createElement('div');
-    	div.style.width = "360px";
+    	div.style.width = "380px";
     	div.style.marginTop = "5px";
     	div.style.borderTop = 'solid';
 		div.style.borderWidth = '1px';
