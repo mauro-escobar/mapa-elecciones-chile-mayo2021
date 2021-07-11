@@ -332,6 +332,27 @@ function addLayerParticipacionDistritos(map) {
     map.setLayoutProperty('participacion-distritos', 'visibility', 'none');	
 };
 
+function clickDistrito(map) {
+	map.on('click', 'convencionales', function (e) {
+		var distrito = e.features[0].properties.DISTRITO;
+		paintGroup('D'+distrito);
+
+		var els = document.getElementsByClassName("grupo");
+	    for (var i = 0; i < els.length; i++) {
+	    	if (els[i].innerHTML=='D'+distrito) els[i].style.opacity = 1;
+	    }
+	});
+	map.on('click', 'convencionales-comunas', function (e) {
+		var distrito = e.features[0].properties.DISTRITO;
+		paintGroup('D'+distrito);
+
+		var els = document.getElementsByClassName("grupo");
+	    for (var i = 0; i < els.length; i++) {
+	    	if (els[i].innerHTML=='D'+distrito) els[i].style.opacity = 1;
+	    }
+	});
+}
+
 function popConvencionales(map) {
 	map.on('mousemove', 'convencionales', function (e) {
 	    map.getCanvas().style.cursor = 'pointer';

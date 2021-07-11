@@ -73,6 +73,7 @@ popGobernadoresComunas2v(map);
 popGobernadoresComunas1v(map);
 
 popConvencionales(map);
+clickDistrito(map);
  		
 popAlcaldes(map);	            
 popConcejales(map);

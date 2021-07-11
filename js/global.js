@@ -380,10 +380,17 @@ function clickParliamentSeat(evt) {
 }
 
 function clickGroup(evt) {
-    seatClicked =  false;
-    groupClicked = "";
     var obj = evt.target;
     var cl = obj.innerHTML.replace(/ /g,"-");
+    paintGroup(cl)
+    if (selectedGroup) {
+        obj.style.opacity = 1;
+    }  
+}
+
+function paintGroup(cl) {
+    seatClicked =  false;
+    groupClicked = "";
     if (!selectedGroup || groupSelected!=cl) {
         selectedGroup = true;
         groupSelected = cl;
@@ -398,7 +405,6 @@ function clickGroup(evt) {
     if (selectedGroup) {
         var els = document.getElementsByClassName("grupo");
         for (var i = 0; i < els.length; i++) els[i].style.opacity = 0.2;
-        obj.style.opacity = 1;
         var els = document.getElementsByClassName("parliament-seat");
         var count = 0;
         for (var i = 0; i < els.length; i++) {
