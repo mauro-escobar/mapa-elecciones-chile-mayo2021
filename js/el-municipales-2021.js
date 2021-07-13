@@ -209,7 +209,6 @@ function addLayerAlcaldes(map) {
         'filter': ['all', 
         			['has', 'Part_TD'],
         			['!=', ['get', 'NOM_COM'], 'Papudo'],
-        			['!=', ['get', 'NOM_COM'], 'San Ramón'],
         			['!=', ['get', 'NOM_COM'], 'Florida'],
         			['!=', ['get', 'NOM_COM'], 'Copiapó']
         		  ],
@@ -244,7 +243,6 @@ function addLayerAlcaldes(map) {
         			['has', 'Part_TD'],
         			['any',
         				['==', ['get', 'NOM_COM'], 'Papudo'],
-	        			['==', ['get', 'NOM_COM'], 'San Ramón'],
 	        			['==', ['get', 'NOM_COM'], 'Florida'],
 	        			['==', ['get', 'NOM_COM'], 'Copiapó']
         			]
