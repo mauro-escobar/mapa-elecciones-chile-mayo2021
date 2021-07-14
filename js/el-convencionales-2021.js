@@ -993,8 +993,8 @@ function mostrarConvencionales() {
     	'Vamos por Chile (UDI)': true
     };
     var directiva = [
-    	['Presidenta', "ELISA LONCON ANTILEO (Mapuche)"],
-    	['Vicepresidente', "JAIME ANDRES BASSA MERCADO (IND-CS)"]
+    	['Presidenta', "ELISA LONCON ANTILEO (Mapuche)", 0, 0],
+    	['Vicepresidente', "JAIME ANDRES BASSA MERCADO (IND-CS)", 0, 1]
     ];
     var grupos = {
     	"Chile Vamos": [

@@ -575,9 +575,9 @@ function mostrarDiputados() {
     	'Acción Republicana (PLR)': true
     }
     var directiva = [
-    	["1er Vicepdte.", "UNDURRAGA GAZITUA FRANCISCO (EVO)"],
-    	["Presidente", "PAULSEN KEHR DIEGO (RN)"],
-    	["2do Vicepdte.", "GONZALEZ TORRES RODRIGO (PPD)"]
+    	["1er Vicepdte.", "UNDURRAGA GAZITUA FRANCISCO (EVO)", 0, 0],
+    	["Presidente", "PAULSEN KEHR DIEGO (RN)", 0, 1],
+    	["2do Vicepdte.", "GONZALEZ TORRES RODRIGO (PPD)", 0, 2]
     ];
 
 	legend.style.display = 'block';
@@ -766,8 +766,8 @@ function mostrarSenadores() {
     	'Chile Vamos (UDI)': true,
     }
     var directiva = [
-    	["Presidenta", "PROVOSTE CAMPILLAY YASNA (PDC)"],
-    	["Vicepresidente", "PIZARRO SOTO JORGE (PDC)"]
+    	["Presidenta", "PROVOSTE CAMPILLAY YASNA (PDC)", 0, 0],
+    	["Vicepresidente", "PIZARRO SOTO JORGE (PDC)", 0, 1]
     ];
 
 	legend.style.display = 'block';

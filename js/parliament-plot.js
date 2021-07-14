@@ -136,9 +136,19 @@ function generatePoints(parliament, r0, directive) {
 
 	var mesa = {};
 	var mesaPoints = [];
+	var maxRow = {};
+	var row;
 	for (var i = 0; i < directive.length; i++) {
+		row = directive[i][2];
+		if(!Object.keys(maxRow).includes(""+row)) maxRow[row] = 0;
+		maxRow[row] += 1;
+	}
+	
+	for (var i = 0; i < directive.length; i++) {
+		var row = directive[i][2];
+		var col = directive[i][3];
 		mesa[directive[i][1]] = [i,directive[i][0]];
-		point = {x: (-directive.length/2.0+i+0.5)*seatDistance, y: 0, r: 0.4 * seatDistance};
+		point = {x: (-maxRow[row]/2.0+col+0.5)*seatDistance, y: -seatDistance*row, r: 0.4 * seatDistance};
 		mesaPoints.push(point);
 	}
 
@@ -221,6 +231,14 @@ function generateSVG(_parliament, order, seatCount, type, directive=[], groups={
 	var blackDots = ret[1];
 	var mesaPoints = ret[2];
 	var a = points[0].r / 0.4;
+	
+	var maxRow = {};
+	var row;
+	for (var i = 0; i < directive.length; i++) {
+		row = directive[i][2];
+		if(!Object.keys(maxRow).includes(""+row)) maxRow[row] = 1;
+		maxRow[row] += 1;
+	}
 
 	var xmlns = "http://www.w3.org/2000/svg";
 	var x = -radius - a / 2;
@@ -294,14 +312,9 @@ function generateSVG(_parliament, order, seatCount, type, directive=[], groups={
 	    text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
 	    text.setAttributeNS(null, "text-anchor", "middle");
 	    text.setAttributeNS(null, "x", "0");
-    	if (directive.length==0) {
-	    	text.setAttributeNS(null, "y", "0");
-	    	text.setAttributeNS(null, "font-size", (0.25*radius)+"px");
-    	} else {
-	    	text.setAttributeNS(null, "y", -a*3/4);
-	    	text.setAttributeNS(null, "font-size", (0.2*radius)+"px");
-    	}
-	    text.setAttributeNS(null, "class", "parliament-seat");
+		text.setAttributeNS(null, "y", -a*4/5*Object.keys(maxRow).length);
+    	text.setAttributeNS(null, "font-size", ((0.25-0.05*Object.keys(maxRow).length)*radius)+"px");
+    	text.setAttributeNS(null, "class", "parliament-seat");
 	    svgElem.appendChild(text);
     }
     if (blackDots.length > 0) {
