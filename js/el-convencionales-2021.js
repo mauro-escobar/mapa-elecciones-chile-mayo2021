@@ -1048,11 +1048,24 @@ function mostrarConvencionales() {
 			"YARELA NICOHL GOMEZ SANCHEZ (IND-RD)", 
 			"JENIFFER VALERIA MELLA ESCOBAR (IND-CS)", 
 			"MARIELA ANDREA SEREY JIMENEZ (IND-CS)", 
-			"JAIME ANDRES BASSA MERCADO (IND-CS) - Vicepresidente", 
+			"JAIME ANDRES BASSA MERCADO (IND-CS)", 
 			"CONSTANZA GABRIELA SCHONHAUT SOTO (CS)", 
 			"IGNACIO JAIME ACHURRA DIAZ (CS)", 
 			"DAMARIS ABARCA GONZALEZ (IND-CS)", 
 			"CAROLINA CYNTIA VILCHES FUENZALIDA (IND-COM)"
+    	],
+    	"Chile Digno": [
+			"CAROLINA ELIANA VIDELA OSORIO (PCCH)",
+			"HUGO HUMBERTO GUTIERREZ GALVEZ (PCCH)",
+			"ERICKA  PORTILLA BARRIOS (PCCH)",
+			"VALENTINA ANDREA MIRANDA ARCE (PCCH)",
+			"BARBARA SEPULVEDA HALES (PCCH)",
+			"MARCOS PATRICIO BARRAZA GOMEZ (PCCH)",
+			"VANESSA CAMILA HOPPE ESPOZ (IND-PCCH)",
+			"HERNAN JESUS VELASQUEZ NUÑEZ (FREVS)",
+			"NICOLAS FERNANDO NUÑEZ GANGAS (FREVS)",
+			"ROBERTO ANTONIO CELEDON FERNANDEZ (IND-FREVS)",
+			"PAOLA ALEJANDRA GRANDON GONZALEZ (FREVS)"
     	],
     	"Unidad Constituyente": [
     		"MAXIMILIANO HURTADO ROCO (PS)", 
@@ -1117,7 +1130,7 @@ function mostrarConvencionales() {
     		"FRANCISCA LINCONAO HUIRCAPAN (Mapuche)", 
 			"NATIVIDAD LLANQUILEO PILQUIMAN (Mapuche)", 
 			"ADOLFO MILLABUR ÑANCUIL (Mapuche)", 
-			"ELISA LONCON ANTILEO (Mapuche) - Presidenta", 
+			"ELISA LONCON ANTILEO (Mapuche)", 
 			"ROSA ELIZABETH CATRILEO ARIAS (Mapuche)", 
 			"VICTORINO ERNESTO ANTILEF ÑANCO (Mapuche)", 
 			"ALEXIS REINALDO CAIGUAN ANCAPAN (Mapuche)", 
@@ -1134,7 +1147,7 @@ function mostrarConvencionales() {
     	],
     	"Vocería de los Pueblos": [
     		"FRANCISCA LINCONAO HUIRCAPAN (Mapuche)",
-    		"ELISA LONCON ANTILEO (Mapuche) - Presidenta", 
+    		"ELISA LONCON ANTILEO (Mapuche)", 
 			"NATIVIDAD LLANQUILEO PILQUIMAN (Mapuche)", 
 			"ROSA ELIZABETH CATRILEO ARIAS (Mapuche)", 
 			"VICTORINO ERNESTO ANTILEF ÑANCO (Mapuche)", 
@@ -1202,7 +1215,7 @@ function mostrarConvencionales() {
 			"YARELA NICOHL GOMEZ SANCHEZ (IND-RD)",
 			"JENIFFER VALERIA MELLA ESCOBAR (IND-CS)",
 			"MARIELA ANDREA SEREY JIMENEZ (IND-CS)",
-			"JAIME ANDRES BASSA MERCADO (IND-CS) - Vicepresidente",
+			"JAIME ANDRES BASSA MERCADO (IND-CS)",
 			"DAMARIS ABARCA GONZALEZ (IND-CS)",
 			"CAROLINA CYNTIA VILCHES FUENZALIDA (IND-COM)",
 			"MANUELA ROYO LETELIER (IND-IGUAL)",
@@ -1269,7 +1282,7 @@ function mostrarConvencionales() {
 			"FRANCISCA LINCONAO HUIRCAPAN (Mapuche)",
 			"NATIVIDAD LLANQUILEO PILQUIMAN (Mapuche)",
 			"ADOLFO MILLABUR ÑANCUIL (Mapuche)",
-			"ELISA LONCON ANTILEO (Mapuche) - Presidenta",
+			"ELISA LONCON ANTILEO (Mapuche)",
 			"ROSA ELIZABETH CATRILEO ARIAS (Mapuche)",
 			"VICTORINO ERNESTO ANTILEF ÑANCO (Mapuche)",
 			"ALEXIS REINALDO CAIGUAN ANCAPAN (Mapuche)",
@@ -1363,7 +1376,7 @@ function mostrarConvencionales() {
     		"MIGUEL ANGEL BOTTO SALINAS (IND)"
     	],
     	"D7": [
-    		"JAIME ANDRES BASSA MERCADO (IND-CS) - Vicepresidente",
+    		"JAIME ANDRES BASSA MERCADO (IND-CS)",
     		"MARIA JOSE OYARZUN SOLIS (RD)", 
     		"JORGE ARANCIBIA REYES (IND-UDI)",
     		"RAUL CELIS MONTT (RN)", 
@@ -1541,7 +1554,7 @@ function mostrarConvencionales() {
 		div.style.borderWidth = '1px';
     	div.style.textAlign = 'center';
     	var span = document.createElement('span');
-    	span.innerHTML = 'O haz click sobre uno de los grupos';
+    	span.innerHTML = 'O haz click sobre uno de los grupos<br>';
     	div.appendChild(span);
     		for (grupo in grupos) {
     			var span = document.createElement('span');
@@ -1551,6 +1564,7 @@ function mostrarConvencionales() {
     			var a = document.createElement('a');
     			a.onclick = clickGroup;
     			var span = document.createElement('span');
+    			span.id = 'span-'+grupo.replace(/ /g,"-");
     			span.innerHTML = grupo;
     			span.style.fontWeight = 'bold';
     			span.className = "grupo"

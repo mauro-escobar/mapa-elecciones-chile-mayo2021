@@ -307,9 +307,21 @@ function touchParliamentSeat(evt) {
         }
     }   
     var span = document.getElementById('nombre-seat');
-    if (span) span.innerHTML = '<span>'+svgobj.dataset.name+'</span>';
+    if (span) {
+        var name = svgobj.dataset.name;
+        if (svgobj.dataset.hasOwnProperty("role")) name += ' - '+svgobj.dataset.role;
+        span.innerHTML = '<span>'+name+'</span>';  
+    } 
+    for (var i=0; i < svgobj.classList.length; i++) {
+        var cl = svgobj.classList[i];
+        if (true) {
+            var span = document.getElementById('span-'+cl);
+            if (span) span.style.color = svgobj.dataset.color;
+        }
+    }
 }
 function unTouchParliamentSeat(evt) {
+    var svgobj=evt.target; 
     if (!selectedGroup && !seatClicked) {
         var els = document.getElementsByClassName("parliament-seat");
         for (var i =0; i < els.length; i++) els[i].style.opacity = 1;
@@ -320,6 +332,13 @@ function unTouchParliamentSeat(evt) {
     if (span) {
         if (!selectedGroup) span.innerHTML = 'Muévete sobre los puntos...';
         else span.innerHTML = '<br>';
+    }
+    for (var i=0; i < svgobj.classList.length; i++) {
+        var cl = svgobj.classList[i];
+        if (true) {
+            var span = document.getElementById('span-'+cl);
+            if (span) span.style.color = colores['negro'];
+        }
     }
 }
 function clickParliamentSeat(evt) {
@@ -363,7 +382,11 @@ function clickParliamentSeat(evt) {
             svgobj.style.opacity = 1;   
         }
         var span = document.getElementById('nombre-seat');
-        if (span) span.innerHTML = '<span>'+svgobj.dataset.name+'</span>';
+        if (span) {
+            var name = svgobj.dataset.name;
+            if (svgobj.dataset.hasOwnProperty("role")) name += ' - '+svgobj.dataset.role;
+            span.innerHTML = '<span>'+name+'</span>';  
+        } 
     } else {
         seatClicked = false;
         groupClicked = "";

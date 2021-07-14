@@ -158,6 +158,7 @@ function generatePoints(parliament, r0, directive) {
 			if (!Object.keys(mesa).includes(parliament[party].names[_i2][0])) {
 				ring = nextRing(points, ringProgress, parliament[party].ordered);
 				points[ring][ringProgress[ring]].fill = parliament[party].color;
+				points[ring][ringProgress[ring]].color = parliament[party].color;
 				points[ring][ringProgress[ring]].party = party.replace(/ /g,"-");
 				if (parliament[party].hasOwnProperty('names')) {
 					points[ring][ringProgress[ring]].name = parliament[party].names[_i2][0];
@@ -167,6 +168,7 @@ function generatePoints(parliament, r0, directive) {
 						newpoint.y = points[ring][ringProgress[ring]].y;
 						newpoint.r = points[ring][ringProgress[ring]].r/2.8;
 						newpoint.fill = colores['negro'];
+						newpoint.color = parliament[party].color;
 						newpoint.name = parliament[party].names[_i2][0];
 						newpoint.party = party.replace(/ /g,"-");
 						blackDots.push(newpoint);
@@ -177,21 +179,25 @@ function generatePoints(parliament, r0, directive) {
 					newpoint.y = points[ring][ringProgress[ring]].y;
 					newpoint.r = points[ring][ringProgress[ring]].r/2.8;
 					newpoint.fill = colores['negro'];
+					newpoint.color = parliament[party].color;
 					blackDots.push(newpoint);
 				}
 				ringProgress[ring]++;
 			} else {
 				var name = parliament[party].names[_i2][0]
 				mesaPoints[mesa[name][0]].fill = parliament[party].color;
+				mesaPoints[mesa[name][0]].color = parliament[party].color;
 				mesaPoints[mesa[name][0]].party = party.replace(/ /g,"-");
 				if (parliament[party].hasOwnProperty('names')) {
-					mesaPoints[mesa[name][0]].name = name + ' - ' + mesa[name][1];
+					mesaPoints[mesa[name][0]].name = name;
+					mesaPoints[mesa[name][0]].role = mesa[name][1]
 					if (parliament[party].names[_i2][1]) {
 						var newpoint = {};
 						newpoint.x = mesaPoints[mesa[name][0]].x;
 						newpoint.y = mesaPoints[mesa[name][0]].y;
 						newpoint.r = mesaPoints[mesa[name][0]].r/2.8;
 						newpoint.fill = colores['negro'];
+						newpoint.color = parliament[party].color;
 						newpoint.name = parliament[party].names[_i2][0];
 						newpoint.party = party.replace(/ /g,"-");
 						blackDots.push(newpoint);
@@ -202,6 +208,7 @@ function generatePoints(parliament, r0, directive) {
 					newpoint.y = mesaPoints[mesa[name][0]].y;
 					newpoint.r = mesaPoints[mesa[name][0]].r/2.8;
 					newpoint.fill = colores['negro'];
+					newpoint.color = parliament[party].color;
 					blackDots.push(newpoint);
 				}
 			}
@@ -265,6 +272,7 @@ function generateSVG(_parliament, order, seatCount, type, directive=[], groups={
     	circle.setAttributeNS(null, "fill", points[index].fill);
     	circle.setAttributeNS(null, "data-name", points[index].name);
     	circle.setAttributeNS(null, "data-party", points[index].party);
+    	circle.setAttributeNS(null, "data-color", points[index].color);
     	var cl = "parliament-seat "+points[index].party;
     	if (Object.keys(name2groups).includes(points[index].name)) cl += name2groups[points[index].name];
     	circle.setAttributeNS(null, "class", cl);
@@ -280,7 +288,9 @@ function generateSVG(_parliament, order, seatCount, type, directive=[], groups={
     	circle.setAttributeNS(null, "r", mesaPoints[index].r);
     	circle.setAttributeNS(null, "fill", mesaPoints[index].fill);
     	circle.setAttributeNS(null, "data-name", mesaPoints[index].name);
+    	circle.setAttributeNS(null, "data-role", mesaPoints[index].role);
     	circle.setAttributeNS(null, "data-party", mesaPoints[index].party);
+    	circle.setAttributeNS(null, "data-color", mesaPoints[index].color);
     	var cl = "parliament-seat "+mesaPoints[index].party;
     	if (Object.keys(name2groups).includes(mesaPoints[index].name)) cl += name2groups[mesaPoints[index].name];
     	circle.setAttributeNS(null, "class", cl);
@@ -296,6 +306,7 @@ function generateSVG(_parliament, order, seatCount, type, directive=[], groups={
     	if (blackDots[index].hasOwnProperty('name')) {
     		circle.setAttributeNS(null, "data-name", blackDots[index].name);
     		circle.setAttributeNS(null, "data-party", blackDots[index].party);
+    		circle.setAttributeNS(null, "data-color", blackDots[index].color);
     		circle.setAttributeNS(null, "data-dotted", "yes");
 	    	circle.setAttributeNS(null, "onmousemove", "touchParliamentSeat(evt)");
 	    	circle.setAttributeNS(null, "onmouseleave", "unTouchParliamentSeat(evt)");
