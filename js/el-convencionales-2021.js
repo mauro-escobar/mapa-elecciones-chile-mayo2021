@@ -1539,6 +1539,32 @@ function mostrarConvencionales() {
     if (screen.width>=992) {
     	legend2.style.display = 'block';
     	var div = document.createElement('div');
+    	var span = document.createElement('span');
+    	span.innerHTML = "Busca un convencional: "
+    	div.appendChild(span);
+    	var input = document.createElement('input');
+    	input.id = "search-convencional";
+    	input.type = "text";
+    	input.addEventListener("keyup", function () {
+    		var start = this.selectionStart; 
+			var end = this.selectionEnd;
+			this.value = this.value.toUpperCase();
+			this.setSelectionRange(start, end);
+			showSearch(this.value);
+    	});
+    	input.style.marginLeft = '5px';
+    	div.appendChild(input);
+    	var button = document.createElement('button');
+    	button.type = "button";
+    	button.innerHTML = "Borrar";
+    	button.addEventListener("click", function () {
+    		document.getElementById("search-convencional").value = "";
+    		showSearch("");
+    	})
+    	div.appendChild(button);
+    	div.style.marginBottom = "5px";
+    	legend2.appendChild(div);
+    	var div = document.createElement('div');
     	div.style.width = '380px';
     	div.appendChild(generateSVG(parliament, parliament_order, true, "Convencional", directiva, grupos));
     	legend2.appendChild(div);

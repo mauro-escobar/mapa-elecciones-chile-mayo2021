@@ -93,7 +93,6 @@ function clean() {
 	map.setLayoutProperty('convencionalesMH-distritos', 'visibility', 'none');
 	map.setLayoutProperty('convencionalesMH-comunas', 'visibility', 'none');
 	map.setLayoutProperty('alcaldes', 'visibility', 'none');
-	map.setLayoutProperty('alcaldes-pendientes', 'visibility', 'none');
 	map.setLayoutProperty('concejales', 'visibility', 'none');
 	map.setLayoutProperty('comunas-outline', 'visibility', 'none');
 	map.setLayoutProperty('comunas-outline-zoom', 'visibility', 'none');

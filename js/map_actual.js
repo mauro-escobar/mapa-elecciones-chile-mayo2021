@@ -75,7 +75,6 @@ function clean() {
     map.setLayoutProperty('senadores-periodo-a', 'visibility', 'none');	
     map.setLayoutProperty('sen-markers', 'visibility', 'none');	
 	map.setLayoutProperty('alcaldes', 'visibility', 'none');
-	map.setLayoutProperty('alcaldes-pendientes', 'visibility', 'none');
 	map.setLayoutProperty('concejales', 'visibility', 'none');
 	map.setLayoutProperty('comunas-outline', 'visibility', 'none');
 	map.setLayoutProperty('comunas-outline-zoom', 'visibility', 'none');

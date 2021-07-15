@@ -31,7 +31,7 @@ function capitalize(words) {
 };
 
 bearing = 90;
-center = [-71.5,-27];
+center = [-71.9,-27];
 if (screen.width<=992) {
     bearing = 0;
     center = [-70.66,-33.45];
@@ -277,6 +277,7 @@ function popDistritos(map) {
 
 var selectedGroup = false;
 var seatClicked = false;
+var searching = false;
 var groupClicked = "";
 var groupSelected = "";
 var nameClicked = "";
@@ -286,7 +287,7 @@ function touchParliamentSeatEvt(evt) {
     touchParliamentSeat(svgobj,true);
 }
 function touchParliamentSeat(svgobj, paintParty=false) {
-    if (!selectedGroup && !seatClicked) {
+    if (!selectedGroup && !seatClicked && !searching) {
         var indep = ['Fuera-de-Pacto','Candidaturas-Independientes'];
         if (paintParty && svgobj.dataset.hasOwnProperty("party") && !indep.includes(svgobj.dataset.party)) {
             var color = colores['negro'];
@@ -341,13 +342,13 @@ function unTouchParliamentSeatEvt(evt) {
     unTouchParliamentSeat();
 }
 function unTouchParliamentSeat() {
-    if (!selectedGroup && !seatClicked) {
-        var els = document.getElementsByClassName("parliament-seat");
-        for (var i =0; i < els.length; i++) els[i].style.opacity = 1;
-        var span = document.getElementById('lista-seat');
-        if (span) span.innerHTML = '<br>';
-    }
-    if (!selectedGroup) {
+    if (!selectedGroup && !searching) {
+        if (!seatClicked){
+            var els = document.getElementsByClassName("parliament-seat");
+            for (var i =0; i < els.length; i++) els[i].style.opacity = 1;
+            var span = document.getElementById('lista-seat');
+            if (span) span.innerHTML = '<br>';
+        }
         var els = document.getElementsByClassName("grupo");
         for (var i = 0; i < els.length; i++) {
             els[i].style.opacity = 1;
@@ -425,6 +426,7 @@ function clickParliamentSeat(evt) {
         if (span) span.innerHTML = 'Muévete sobre los puntos...';
 
     }
+    document.getElementById('search-convencional').value = "";
 }
 
 function clickGroup(evt) {
@@ -433,7 +435,8 @@ function clickGroup(evt) {
     paintGroup(cl)
     if (selectedGroup) {
         obj.style.opacity = 1;
-    }  
+    }
+    document.getElementById('search-convencional').value = "";
 }
 
 function paintGroup(cl) {
@@ -474,4 +477,20 @@ function paintGroup(cl) {
         var span = document.getElementById('lista-seat');
         if (span) span.innerHTML = '<br>';
     }
+}
+
+function showSearch(name) {
+    if (name=="") {
+        searching = false;
+        var els = document.getElementsByClassName("parliament-seat");
+        for (var i = 0; i < els.length; i++) els[i].style.opacity = 1;
+    } else {
+        searching = true;
+        var els = document.getElementsByClassName("parliament-seat");
+        for (var i = 0; i < els.length; i++) {
+            if (els[i].dataset.hasOwnProperty("name") && els[i].dataset.name.includes(name)) els[i].style.opacity = 1;
+            else els[i].style.opacity = 0.2;
+        }
+    }
+
 }
