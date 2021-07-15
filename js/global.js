@@ -279,6 +279,7 @@ var selectedGroup = false;
 var seatClicked = false;
 var groupClicked = "";
 var groupSelected = "";
+var nameClicked = "";
 
 function touchParliamentSeatEvt(evt) {
     var svgobj=evt.target; 
@@ -369,11 +370,12 @@ function clickParliamentSeat(evt) {
     var color = colores['negro'];
     if (svgobj.dataset.hasOwnProperty("color")) color = svgobj.dataset.color;
 
-    if (!seatClicked || party!=groupClicked || indep.includes(party)) { 
+    if (!seatClicked || party!=groupClicked || (indep.includes(party) && nameClicked!=svgobj.dataset.name)) { 
         seatClicked = true;
         selectedGroup = false;
         groupSelected = "";
         groupClicked = party;
+        nameClicked = svgobj.dataset.name;
         var els = document.getElementsByClassName("grupo");
         for (var i = 0; i < els.length; i++) els[i].style.opacity = 1;
         var els = document.getElementsByClassName("parliament-seat");
@@ -412,6 +414,7 @@ function clickParliamentSeat(evt) {
     } else {
         seatClicked = false;
         groupClicked = "";
+        nameClicked = "";
         var els = document.getElementsByClassName("grupo");
         for (var i = 0; i < els.length; i++) els[i].style.opacity = 1;
         var els = document.getElementsByClassName("parliament-seat");
