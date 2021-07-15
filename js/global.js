@@ -288,6 +288,8 @@ function touchParliamentSeat(svgobj, paintParty=false) {
     if (!selectedGroup && !seatClicked) {
         var indep = ['Fuera-de-Pacto','Candidaturas-Independientes'];
         if (paintParty && svgobj.dataset.hasOwnProperty("party") && !indep.includes(svgobj.dataset.party)) {
+            var color = colores['negro'];
+            if (svgobj.dataset.hasOwnProperty("color")) color = svgobj.dataset.color;
             var party = svgobj.dataset.party;   
             var els = document.getElementsByClassName(party);
             var count = els.length;
@@ -297,7 +299,7 @@ function touchParliamentSeat(svgobj, paintParty=false) {
             if (count==1) var escanos = count + " escaño";
             else var escanos = count + " escaños";
             var span = document.getElementById('lista-seat');
-            if (span) span.innerHTML = '<span style="font-weight:bold">'+party.replace(/-/g," ")+":</span> "+escanos+'<br>';
+            if (span) span.innerHTML = '<span style="font-weight:bold;color:'+color+'">'+party.replace(/-/g," ")+":</span> "+escanos+'<br>';
 
             var els = document.getElementsByClassName("parliament-seat");
             for (var i = 0; i < els.length; i++) {
@@ -313,6 +315,18 @@ function touchParliamentSeat(svgobj, paintParty=false) {
             for (var i =0; i < els.length; i++) els[i].style.opacity = 0.2;
             svgobj.style.opacity = 1;   
         }
+        var els = document.getElementsByClassName("grupo");
+        for (var i = 0; i < els.length; i++) els[i].style.opacity = 0.2;
+        for (var i=0; i < svgobj.classList.length; i++) {
+            var cl = svgobj.classList[i];
+            if (true) {
+                var span = document.getElementById('span-'+cl);
+                if (span) {
+                    span.style.color = svgobj.dataset.color;
+                    span.style.opacity = 1;
+                }
+            }
+        }
     }   
     var span = document.getElementById('nombre-seat');
     if (span) {
@@ -320,18 +334,6 @@ function touchParliamentSeat(svgobj, paintParty=false) {
         if (svgobj.dataset.hasOwnProperty("role")) name += ' - '+svgobj.dataset.role;
         span.innerHTML = '<span>'+name+'</span>';  
     } 
-    var els = document.getElementsByClassName("grupo");
-    for (var i = 0; i < els.length; i++) els[i].style.opacity = 0.2;
-    for (var i=0; i < svgobj.classList.length; i++) {
-        var cl = svgobj.classList[i];
-        if (true) {
-            var span = document.getElementById('span-'+cl);
-            if (span) {
-                span.style.color = svgobj.dataset.color;
-                span.style.opacity = 1;
-            }
-        }
-    }
 }
 
 function unTouchParliamentSeatEvt(evt) {
@@ -344,15 +346,17 @@ function unTouchParliamentSeat() {
         var span = document.getElementById('lista-seat');
         if (span) span.innerHTML = '<br>';
     }
+    if (!selectedGroup) {
+        var els = document.getElementsByClassName("grupo");
+        for (var i = 0; i < els.length; i++) {
+            els[i].style.opacity = 1;
+            els[i].style.color = colores['negro'];  
+        }
+    }
     var span = document.getElementById('nombre-seat');
     if (span) {
         if (!selectedGroup) span.innerHTML = 'Muévete sobre los puntos...';
         else span.innerHTML = '<br>';
-    }
-    var els = document.getElementsByClassName("grupo");
-    for (var i = 0; i < els.length; i++) {
-        els[i].style.opacity = 1;
-        els[i].style.color = colores['negro'];  
     }
 }
 
@@ -362,6 +366,8 @@ function clickParliamentSeat(evt) {
     var indep = ['Fuera-de-Pacto','Candidaturas-Independientes', ''];
     var party = "";
     if (svgobj.dataset.hasOwnProperty("party")) party = svgobj.dataset.party;
+    var color = colores['negro'];
+    if (svgobj.dataset.hasOwnProperty("color")) color = svgobj.dataset.color;
 
     if (!seatClicked || party!=groupClicked || indep.includes(party)) { 
         seatClicked = true;
@@ -386,7 +392,7 @@ function clickParliamentSeat(evt) {
             if (count==1) var escanos = count + " escaño";
             else var escanos = count + " escaños";
             var span = document.getElementById('lista-seat');
-            if (span) span.innerHTML = '<span style="font-weight:bold">'+party.replace(/-/g," ")+":</span> "+escanos+'<br>';
+            if (span) span.innerHTML = '<span style="font-weight:bold;color:'+color+'">'+party.replace(/-/g," ")+":</span> "+escanos+'<br>';
 
             var els = document.getElementsByClassName("parliament-seat");
             for (var i = 0; i < els.length; i++) {
