@@ -113,16 +113,7 @@ function addLayerConvencionalesMarkers(map) {
 				'MOVIMIENTO INDEPENDIENTES DEL NORTE (D3)', colores['gris'],
 				'REGIONALISMO CIUDADANO INDEPENDIENTE (D28)', colores['gris'],
 				'VAMOS POR CHILE', colores['azul'],
-				'PUEBLO MAPUCHE', colores['marron'],
-				'PUEBLO RAPANUI', colores['marron'],
-				'PUEBLO ATACAMEÑO', colores['marron'],
-				'PUEBLO AIMARA', colores['marron'],
-				'PUEBLO QUECHUA', colores['marron'],
-				'PUEBLO COLLA', colores['marron'],
-				'PUEBLO KAWASHKAR', colores['marron'],
-				'PUEBLO DIAGUITA', colores['marron'],
-				'PUEBLO YAGAN', colores['marron'],
-				'PUEBLO CHANGO', colores['marron'],
+				'PUEBLOS ORIGINARIOS', colores['marron'],
 				colores['gris']
 			],
 			'circle-radius': [
@@ -331,6 +322,18 @@ function addLayerParticipacionDistritos(map) {
     }, 'distritos-outline');
     map.setLayoutProperty('participacion-distritos', 'visibility', 'none');	
 };
+
+function touchConvencional(map) {
+	map.on('mousemove','convencionales-markers', function (e) {
+		map.getCanvas().style.cursor = 'pointer';
+		var name = e.features[0].properties['NOMBRE'].replace(/ /g,"-");
+		var els = document.getElementsByClassName(name);
+		if (els.length>0) touchParliamentSeat(els[0]);
+	});
+	map.on('mouseleave','convencionales-markers', function () {
+		unTouchParliamentSeat();
+	})
+}
 
 function clickDistrito(map) {
 	map.on('click', 'convencionales', function (e) {

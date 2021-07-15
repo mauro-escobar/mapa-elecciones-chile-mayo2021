@@ -74,6 +74,7 @@ popGobernadoresComunas1v(map);
 
 popConvencionales(map);
 clickDistrito(map);
+touchConvencional(map);
  		
 popAlcaldes(map);	            
 popConcejales(map);

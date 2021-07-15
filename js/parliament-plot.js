@@ -263,8 +263,8 @@ function generateSVG(_parliament, order, seatCount, type, directive=[], groups={
     
     for (index in points) {
     	var circle = document.createElementNS(xmlns,"circle");
-    	circle.setAttributeNS(null, "onmousemove", "touchParliamentSeat(evt)");
-    	circle.setAttributeNS(null, "onmouseleave", "unTouchParliamentSeat(evt)");
+    	circle.setAttributeNS(null, "onmousemove", "touchParliamentSeatEvt(evt)");
+    	circle.setAttributeNS(null, "onmouseleave", "unTouchParliamentSeatEvt(evt)");
     	circle.setAttributeNS(null, "onclick", "clickParliamentSeat(evt)");
     	circle.setAttributeNS(null, "cx", points[index].x);
     	circle.setAttributeNS(null, "cy", points[index].y);
@@ -273,15 +273,15 @@ function generateSVG(_parliament, order, seatCount, type, directive=[], groups={
     	circle.setAttributeNS(null, "data-name", points[index].name);
     	circle.setAttributeNS(null, "data-party", points[index].party);
     	circle.setAttributeNS(null, "data-color", points[index].color);
-    	var cl = "parliament-seat "+points[index].party;
+    	var cl = "parliament-seat "+points[index].name.replace(/ /g,"-")+" "+points[index].party;
     	if (Object.keys(name2groups).includes(points[index].name)) cl += name2groups[points[index].name];
     	circle.setAttributeNS(null, "class", cl);
     	svgElem.appendChild(circle);
     }
     for (index in mesaPoints) {
     	var circle = document.createElementNS(xmlns,"circle");
-    	circle.setAttributeNS(null, "onmousemove", "touchParliamentSeat(evt)");
-    	circle.setAttributeNS(null, "onmouseleave", "unTouchParliamentSeat(evt)");
+    	circle.setAttributeNS(null, "onmousemove", "touchParliamentSeatEvt(evt)");
+    	circle.setAttributeNS(null, "onmouseleave", "unTouchParliamentSeatEvt(evt)");
     	circle.setAttributeNS(null, "onclick", "clickParliamentSeat(evt)");
     	circle.setAttributeNS(null, "cx", mesaPoints[index].x);
     	circle.setAttributeNS(null, "cy", mesaPoints[index].y);
@@ -291,7 +291,7 @@ function generateSVG(_parliament, order, seatCount, type, directive=[], groups={
     	circle.setAttributeNS(null, "data-role", mesaPoints[index].role);
     	circle.setAttributeNS(null, "data-party", mesaPoints[index].party);
     	circle.setAttributeNS(null, "data-color", mesaPoints[index].color);
-    	var cl = "parliament-seat "+mesaPoints[index].party;
+    	var cl = "parliament-seat "+mesaPoints[index].name.replace(/ /g,"-")+" "+mesaPoints[index].party;
     	if (Object.keys(name2groups).includes(mesaPoints[index].name)) cl += name2groups[mesaPoints[index].name];
     	circle.setAttributeNS(null, "class", cl);
     	svgElem.appendChild(circle);
@@ -308,10 +308,10 @@ function generateSVG(_parliament, order, seatCount, type, directive=[], groups={
     		circle.setAttributeNS(null, "data-party", blackDots[index].party);
     		circle.setAttributeNS(null, "data-color", blackDots[index].color);
     		circle.setAttributeNS(null, "data-dotted", "yes");
-	    	circle.setAttributeNS(null, "onmousemove", "touchParliamentSeat(evt)");
-	    	circle.setAttributeNS(null, "onmouseleave", "unTouchParliamentSeat(evt)");
+	    	circle.setAttributeNS(null, "onmousemove", "touchParliamentSeatEvt(evt)");
+	    	circle.setAttributeNS(null, "onmouseleave", "unTouchParliamentSeatEvt(evt)");
     		circle.setAttributeNS(null, "onclick", "clickParliamentSeat(evt)");
-	    	var cl = "parliament-seat "+blackDots[index].party;
+	    	var cl = "parliament-seat "+blackDots[index].name.replace(/ /g,"-")+" "+blackDots[index].party;
 	    	if (Object.keys(name2groups).includes(blackDots[index].name)) cl += name2groups[blackDots[index].name];
 	    	circle.setAttributeNS(null, "class", cl);
     	}

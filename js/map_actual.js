@@ -35,6 +35,8 @@ map.on('load', function(){
 
 	addLayerDiputados(map);
 	addLayerSenadores(map);
+	touchDiputado(map);
+	touchSenador(map);
 
     addLayerAlcaldes(map);
     addLayerConcejales(map);

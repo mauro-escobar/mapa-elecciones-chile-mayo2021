@@ -280,11 +280,14 @@ var seatClicked = false;
 var groupClicked = "";
 var groupSelected = "";
 
-function touchParliamentSeat(evt) {
+function touchParliamentSeatEvt(evt) {
     var svgobj=evt.target; 
+    touchParliamentSeat(svgobj,true);
+}
+function touchParliamentSeat(svgobj, paintParty=false) {
     if (!selectedGroup && !seatClicked) {
         var indep = ['Fuera-de-Pacto','Candidaturas-Independientes'];
-        if (svgobj.dataset.hasOwnProperty("party") && !indep.includes(svgobj.dataset.party)) {
+        if (paintParty && svgobj.dataset.hasOwnProperty("party") && !indep.includes(svgobj.dataset.party)) {
             var party = svgobj.dataset.party;   
             var els = document.getElementsByClassName(party);
             var count = els.length;
@@ -300,6 +303,11 @@ function touchParliamentSeat(evt) {
             for (var i = 0; i < els.length; i++) {
                 if (!els[i].classList.contains(party)) els[i].style.opacity=0.2;
             }
+        } else if (svgobj.dataset.hasOwnProperty("name")) {
+            var els = document.getElementsByClassName("parliament-seat");
+            for (var i =0; i < els.length; i++) els[i].style.opacity = 0.2;
+            var els = document.getElementsByClassName(svgobj.dataset.name.replace(/ /g,"-"));
+            for (var i =0; i < els.length; i++) els[i].style.opacity = 1;
         } else {
             var els = document.getElementsByClassName("parliament-seat");
             for (var i =0; i < els.length; i++) els[i].style.opacity = 0.2;
@@ -312,16 +320,24 @@ function touchParliamentSeat(evt) {
         if (svgobj.dataset.hasOwnProperty("role")) name += ' - '+svgobj.dataset.role;
         span.innerHTML = '<span>'+name+'</span>';  
     } 
+    var els = document.getElementsByClassName("grupo");
+    for (var i = 0; i < els.length; i++) els[i].style.opacity = 0.2;
     for (var i=0; i < svgobj.classList.length; i++) {
         var cl = svgobj.classList[i];
         if (true) {
             var span = document.getElementById('span-'+cl);
-            if (span) span.style.color = svgobj.dataset.color;
+            if (span) {
+                span.style.color = svgobj.dataset.color;
+                span.style.opacity = 1;
+            }
         }
     }
 }
-function unTouchParliamentSeat(evt) {
-    var svgobj=evt.target; 
+
+function unTouchParliamentSeatEvt(evt) {
+    unTouchParliamentSeat();
+}
+function unTouchParliamentSeat() {
     if (!selectedGroup && !seatClicked) {
         var els = document.getElementsByClassName("parliament-seat");
         for (var i =0; i < els.length; i++) els[i].style.opacity = 1;
@@ -333,14 +349,14 @@ function unTouchParliamentSeat(evt) {
         if (!selectedGroup) span.innerHTML = 'Muévete sobre los puntos...';
         else span.innerHTML = '<br>';
     }
-    for (var i=0; i < svgobj.classList.length; i++) {
-        var cl = svgobj.classList[i];
-        if (true) {
-            var span = document.getElementById('span-'+cl);
-            if (span) span.style.color = colores['negro'];
-        }
+    var els = document.getElementsByClassName("grupo");
+    for (var i = 0; i < els.length; i++) {
+        els[i].style.opacity = 1;
+        els[i].style.color = colores['negro'];  
     }
 }
+
+
 function clickParliamentSeat(evt) {
     var svgobj=evt.target;
     var indep = ['Fuera-de-Pacto','Candidaturas-Independientes', ''];
@@ -393,7 +409,7 @@ function clickParliamentSeat(evt) {
         var els = document.getElementsByClassName("grupo");
         for (var i = 0; i < els.length; i++) els[i].style.opacity = 1;
         var els = document.getElementsByClassName("parliament-seat");
-        for (var i = 0; i < els.length; i++) els[i].style.opacity=1;
+        for (var i = 0; i < els.length; i++) els[i].style.opacity = 1;
         var span = document.getElementById('lista-seat');
         if (span) span.innerHTML = '<br>';
         var span = document.getElementById('nombre-seat');

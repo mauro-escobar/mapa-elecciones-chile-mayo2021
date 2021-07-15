@@ -988,3 +988,30 @@ function popSenadores(map) {
 	    popup.remove();
 	});
 }
+
+function touchDiputado(map) {
+	map.on('mousemove','dip-markers', function (e) {
+		map.getCanvas().style.cursor = 'pointer';
+		var name = e.features[0].properties['NOMBRE'].replace(/ /g,"-");
+		var partido = e.features[0].properties.PARTIDO;
+		
+		var els = document.getElementsByClassName(name+'-('+partido+')');
+		if (els.length>0) touchParliamentSeat(els[0]);
+	});
+	map.on('mouseleave','dip-markers', function () {
+		unTouchParliamentSeat();
+	})
+}
+function touchSenador(map) {
+	map.on('mousemove','sen-markers', function (e) {
+		map.getCanvas().style.cursor = 'pointer';
+		var name = e.features[0].properties['NOMBRE'].replace(/ /g,"-");
+		var partido = e.features[0].properties.PARTIDO;
+
+		var els = document.getElementsByClassName(name+'-('+partido+')');
+		if (els.length>0) touchParliamentSeat(els[0]);
+	});
+	map.on('mouseleave','sen-markers', function () {
+		unTouchParliamentSeat();
+	})
+}
