@@ -207,10 +207,7 @@ function addLayerAlcaldes(map) {
         'source': 'municipales-data',
         'source-layer': 'municipales2021-05-7cl0n6',
         'filter': ['all', 
-        			['has', 'Part_TD'],
-        			['!=', ['get', 'NOM_COM'], 'Papudo'],
-        			['!=', ['get', 'NOM_COM'], 'Florida'],
-        			['!=', ['get', 'NOM_COM'], 'Copiapó']
+        			['has', 'Part_TD']
         		  ],
         'paint': {
             'fill-color': [
@@ -234,25 +231,6 @@ function addLayerAlcaldes(map) {
         },
     }, 'comunas-outline');
     map.setLayoutProperty('alcaldes', 'visibility', 'none');		
-    map.addLayer({
-        'id': 'alcaldes-pendientes',
-        'type': 'fill',
-        'source': 'municipales-data',
-        'source-layer': 'municipales2021-05-7cl0n6',
-        'filter': ['all', 
-        			['has', 'Part_TD'],
-        			['any',
-        				['==', ['get', 'NOM_COM'], 'Papudo'],
-	        			['==', ['get', 'NOM_COM'], 'Florida'],
-	        			['==', ['get', 'NOM_COM'], 'Copiapó']
-        			]
-        		  ],
-        'paint': {
-            'fill-color': colores['blanco'],
-            'fill-opacity': 1
-        },
-    }, 'comunas-outline');
-    map.setLayoutProperty('alcaldes-pendientes', 'visibility', 'none');	
 };
 
 function addLayerConcejales(map) {
