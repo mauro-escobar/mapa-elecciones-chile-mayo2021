@@ -1545,6 +1545,7 @@ function mostrarConvencionales() {
     	var input = document.createElement('input');
     	input.id = "search-convencional";
     	input.type = "text";
+    	input.size = 15;
     	input.addEventListener("keyup", function () {
     		var start = this.selectionStart; 
 			var end = this.selectionEnd;
@@ -1553,6 +1554,7 @@ function mostrarConvencionales() {
 			showSearch(this.value);
     	});
     	input.style.marginLeft = '5px';
+    	div.style.textAlign = 'center';
     	div.appendChild(input);
     	var button = document.createElement('button');
     	button.type = "button";

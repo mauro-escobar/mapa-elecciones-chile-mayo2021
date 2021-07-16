@@ -492,5 +492,4 @@ function showSearch(name) {
             else els[i].style.opacity = 0.2;
         }
     }
-
 }
