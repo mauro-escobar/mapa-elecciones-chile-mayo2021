@@ -1109,7 +1109,8 @@ function mostrarConvencionales() {
 			"PEDRO MUÑOZ LEIVA (PS)",
 			"MARIO VARGAS VIDAL (PS)",
 			"JULIO ALVAREZ PINTO (PS)",
-			"TOMAS LAIBE SAEZ (PS)"
+			"TOMAS LAIBE SAEZ (PS)",
+			"MARIA TRINIDAD CASTILLO BOILET (IND)"
     	],
     	"Nuevo Trato": [
     		"JORGE BRUNO ABARCA RIVEROS (IND-PL)", 
