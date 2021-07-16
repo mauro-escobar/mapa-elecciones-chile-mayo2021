@@ -282,6 +282,10 @@ var groupClicked = "";
 var groupSelected = "";
 var nameClicked = "";
 
+function cleanSeat() {
+    // body...
+}
+
 function touchParliamentSeatEvt(evt) {
     var svgobj=evt.target; 
     touchParliamentSeat(svgobj,true);
@@ -364,6 +368,7 @@ function unTouchParliamentSeat() {
 
 
 function clickParliamentSeat(evt) {
+    searching = false;
     var svgobj=evt.target;
     var indep = ['Fuera-de-Pacto','Candidaturas-Independientes', ''];
     var party = "";
@@ -480,6 +485,18 @@ function paintGroup(cl) {
 }
 
 function showSearch(name) {
+    selectedGroup = false;
+    seatClicked = false;
+    groupClicked = "";
+    groupSelected = "";
+    nameClicked = "";
+    var span = document.getElementById('lista-seat');
+    if (span) span.innerHTML = '<br>';
+    var els = document.getElementsByClassName("grupo");
+    for (var i = 0; i < els.length; i++) {
+        els[i].style.opacity = 1;
+        els[i].style.color = colores['negro'];
+    }
     if (name=="") {
         searching = false;
         var els = document.getElementsByClassName("parliament-seat");
