@@ -167,7 +167,7 @@ function generatePoints(parliament, r0, directive) {
 						newpoint.x = points[ring][ringProgress[ring]].x;
 						newpoint.y = points[ring][ringProgress[ring]].y;
 						newpoint.r = points[ring][ringProgress[ring]].r/2.8;
-						newpoint.fill = colores['negro'];
+						newpoint.fill = constrastColor(parliament[party].color);
 						newpoint.color = parliament[party].color;
 						newpoint.name = parliament[party].names[_i2][0];
 						newpoint.party = party.replace(/ /g,"-");
@@ -178,7 +178,7 @@ function generatePoints(parliament, r0, directive) {
 					newpoint.x = points[ring][ringProgress[ring]].x;
 					newpoint.y = points[ring][ringProgress[ring]].y;
 					newpoint.r = points[ring][ringProgress[ring]].r/2.8;
-					newpoint.fill = colores['negro'];
+					newpoint.fill = constrastColor(parliament[party].color);
 					newpoint.color = parliament[party].color;
 					blackDots.push(newpoint);
 				}
@@ -196,7 +196,7 @@ function generatePoints(parliament, r0, directive) {
 						newpoint.x = mesaPoints[mesa[name][0]].x;
 						newpoint.y = mesaPoints[mesa[name][0]].y;
 						newpoint.r = mesaPoints[mesa[name][0]].r/2.8;
-						newpoint.fill = colores['negro'];
+						newpoint.fill = constrastColor(parliament[party].color);
 						newpoint.color = parliament[party].color;
 						newpoint.name = parliament[party].names[_i2][0];
 						newpoint.party = party.replace(/ /g,"-");
@@ -207,7 +207,7 @@ function generatePoints(parliament, r0, directive) {
 					newpoint.x = mesaPoints[mesa[name][0]].x;
 					newpoint.y = mesaPoints[mesa[name][0]].y;
 					newpoint.r = mesaPoints[mesa[name][0]].r/2.8;
-					newpoint.fill = colores['negro'];
+					newpoint.fill = constrastColor(parliament[party].color);
 					newpoint.color = parliament[party].color;
 					blackDots.push(newpoint);
 				}
@@ -348,7 +348,7 @@ function generateSVG(_parliament, order, seatCount, type, directive=[], groups={
 	    	circle.setAttributeNS(null, "cx", 1*a);
 	    	circle.setAttributeNS(null, "cy", 1.5*a);
 	    	circle.setAttributeNS(null, "r", points[0].r/2.8);
-	    	circle.setAttributeNS(null, "fill", colores['negro']);
+	    	circle.setAttributeNS(null, "fill", constrastColor(colores['suave']));
 	    	circle.setAttributeNS(null, "class", "parliament-seat");
 	    	svgElem.appendChild(circle);
 	    	var text = document.createElementNS(xmlns,"text");
@@ -388,7 +388,7 @@ function generateSVG(_parliament, order, seatCount, type, directive=[], groups={
 	    	circle.setAttributeNS(null, "cx", 2*a);
 	    	circle.setAttributeNS(null, "cy", 1.5*a);
 	    	circle.setAttributeNS(null, "r", points[0].r/2.8);
-	    	circle.setAttributeNS(null, "fill", colores['negro']);
+	    	circle.setAttributeNS(null, "fill", constrastColor(colores['suave']));
 	    	circle.setAttributeNS(null, "class", "parliament-seat");
 	    	svgElem.appendChild(circle);
     		var text = document.createElementNS(xmlns,"text");

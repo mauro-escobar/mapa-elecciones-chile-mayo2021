@@ -172,7 +172,7 @@ function addLayerSenadoresMarkers(map) {
 			'circle-color': [
 				'match',
 				['get', 'PERIODO'],
-				'2014-2022', colores['negro'],
+				'2014-2022', constrastColor(colores['negro']),
 				[
 					'match',
 					['get', 'LISTA'],
