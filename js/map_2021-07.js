@@ -129,6 +129,14 @@ function mostrarParticipacionComunas() {
 					   '<tr><td></td><td>Total Electores</td><td style="padding-left:20px;text-align:right">14.693.433</td></tr>'+
 					   '<tr><td></td><td>Votantes</td><td style="padding-left:20px;text-align:right">3.143.006</td></tr>'+
 					   '</table>';
+
+	var div = document.createElement('div');
+	var span = document.createElement('span');
+	div.style.marginTop = '20px';
+	span.style.fontSize = '0.9em';
+	span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
+	div.appendChild(span);
+	legend.appendChild(div);
 	legend.style.display = 'block';
 };
 function mostrarParticipacionDistritos() {
@@ -148,6 +156,14 @@ function mostrarParticipacionDistritos() {
 					   '<tr><td></td><td>Total Electores</td><td style="padding-left:20px;text-align:right">14.693.433</td></tr>'+
 					   '<tr><td></td><td>Votantes</td><td style="padding-left:20px;text-align:right">3.143.006</td></tr>'+
 					   '</table>';
+
+	var div = document.createElement('div');
+	var span = document.createElement('span');
+	div.style.marginTop = '20px';
+	span.style.fontSize = '0.9em';
+	span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
+	div.appendChild(span);
+	legend.appendChild(div);
 	legend.style.display = 'block';
 };
 function mostrarParticipacionRegiones() {
@@ -167,6 +183,14 @@ function mostrarParticipacionRegiones() {
 					   '<tr><td></td><td>Total Electores</td><td style="padding-left:20px;text-align:right">14.693.433</td></tr>'+
 					   '<tr><td></td><td>Votantes</td><td style="padding-left:20px;text-align:right">3.143.006</td></tr>'+
 					   '</table>';
+
+	var div = document.createElement('div');
+	var span = document.createElement('span');
+	div.style.marginTop = '20px';
+	span.style.fontSize = '0.9em';
+	span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
+	div.appendChild(span);
+	legend.appendChild(div);
 	legend.style.display = 'block';
 };
 
@@ -194,6 +218,13 @@ function mostrarComparacionComunas() {
         '<tr><td style="font-style:italic">Total votación</td><td style="text-align:right;padding-left:20px">3.143.006</td></tr>'+
         '</table>';
 
+	var div = document.createElement('div');
+	var span = document.createElement('span');
+	div.style.marginTop = '20px';
+	span.style.fontSize = '0.9em';
+	span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
+	div.appendChild(span);
+	legend.appendChild(div);
     legend.style.display = 'block';
 }
 function mostrarComparacionDistritos() {
@@ -218,6 +249,13 @@ function mostrarComparacionDistritos() {
         '<tr><td style="font-style:italic">Total votación</td><td style="text-align:right;padding-left:20px">3.143.006</td></tr>'+
         '</table>';
 
+	var div = document.createElement('div');
+	var span = document.createElement('span');
+	div.style.marginTop = '20px';
+	span.style.fontSize = '0.9em';
+	span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
+	div.appendChild(span);
+	legend.appendChild(div);
     legend.style.display = 'block';
 }
 function mostrarComparacionRegiones() {
@@ -242,6 +280,14 @@ function mostrarComparacionRegiones() {
         '<tr><td style="font-style:italic">Total votación</td><td style="text-align:right;padding-left:20px">3.143.006</td></tr>'+
         '</table>';
 
+	var div = document.createElement('div');
+	var span = document.createElement('span');
+	div.style.marginTop = '20px';
+	span.style.fontSize = '0.9em';
+	span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
+	div.appendChild(span);
+	legend.appendChild(div);
+
     legend.style.display = 'block';
 }
 
@@ -263,6 +309,14 @@ function mostrarAprueboDignidadComunas() {
         '<tr><td><span class="legend-key" style="background-color:'+colores['rojo-oscuro']+'"></span>Daniel Jadue (PC)</td><td style="text-align:right;padding-left:20px">692.862</td><td style="text-align:right;padding-left:20px">39,57%</td></tr>'+
         '</table>';
 
+	var div = document.createElement('div');
+	var span = document.createElement('span');
+	div.style.marginTop = '20px';
+	span.style.fontSize = '0.9em';
+	span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
+	div.appendChild(span);
+	legend.appendChild(div);
+
     legend.style.display = 'block';
 }
 function mostrarAprueboDignidadDistritos() {
@@ -283,6 +337,14 @@ function mostrarAprueboDignidadDistritos() {
         '<tr><td><span class="legend-key" style="background-color:'+colores['rojo-oscuro']+'"></span>Daniel Jadue (PC)</td><td style="text-align:right;padding-left:20px">692.862</td><td style="text-align:right;padding-left:20px">39,57%</td></tr>'+
         '</table>';
 
+	var div = document.createElement('div');
+	var span = document.createElement('span');
+	div.style.marginTop = '20px';
+	span.style.fontSize = '0.9em';
+	span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
+	div.appendChild(span);
+	legend.appendChild(div);
+
     legend.style.display = 'block';
 }
 function mostrarAprueboDignidadRegiones() {
@@ -302,6 +364,14 @@ function mostrarAprueboDignidadRegiones() {
         '<tr><td><span class="legend-key" style="background-color:'+colores['verde-agua']+'"></span>Gabriel Boric (CS)</td><td style="text-align:right;padding-left:20px">1.058.027</td><td style="text-align:right;padding-left:20px">60,43%</td></tr>'+
         '<tr><td><span class="legend-key" style="background-color:'+colores['rojo-oscuro']+'"></span>Daniel Jadue (PC)</td><td style="text-align:right;padding-left:20px">692.862</td><td style="text-align:right;padding-left:20px">39,57%</td></tr>'+
         '</table>';
+
+	var div = document.createElement('div');
+	var span = document.createElement('span');
+	div.style.marginTop = '20px';
+	span.style.fontSize = '0.9em';
+	span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
+	div.appendChild(span);
+	legend.appendChild(div);
 
     legend.style.display = 'block';
 }
@@ -327,6 +397,14 @@ function mostrarChileVamosComunas() {
         '<tr><td><span class="legend-key" style="background-color:'+colores['celeste']+'"></span>Mario Desbordes (RN)</td><td style="text-align:right;padding-left:20px">131.674</td><td style="text-align:right;padding-left:20px">9,80%</td></tr>'+
         '</table>';
 
+	var div = document.createElement('div');
+	var span = document.createElement('span');
+	div.style.marginTop = '20px';
+	span.style.fontSize = '0.9em';
+	span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
+	div.appendChild(span);
+	legend.appendChild(div);
+
     legend.style.display = 'block';
 }
 function mostrarChileVamosDistritos() {
@@ -349,6 +427,14 @@ function mostrarChileVamosDistritos() {
         '<tr><td><span class="legend-key" style="background-color:'+colores['celeste']+'"></span>Mario Desbordes (RN)</td><td style="text-align:right;padding-left:20px">131.674</td><td style="text-align:right;padding-left:20px">9,80%</td></tr>'+
         '</table>';
 
+	var div = document.createElement('div');
+	var span = document.createElement('span');
+	div.style.marginTop = '20px';
+	span.style.fontSize = '0.9em';
+	span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
+	div.appendChild(span);
+	legend.appendChild(div);
+
     legend.style.display = 'block';
 }
 function mostrarChileVamosRegiones() {
@@ -370,6 +456,14 @@ function mostrarChileVamosRegiones() {
         '<tr><td><span class="legend-key" style="background-color:#86BC25"></span>Ignacio Briones (EVO)</td><td style="text-align:right;padding-left:20px">131.957</td><td style="text-align:right;padding-left:20px">9,82%</td></tr>'+
         '<tr><td><span class="legend-key" style="background-color:'+colores['celeste']+'"></span>Mario Desbordes (RN)</td><td style="text-align:right;padding-left:20px">131.674</td><td style="text-align:right;padding-left:20px">9,80%</td></tr>'+
         '</table>';
+
+	var div = document.createElement('div');
+	var span = document.createElement('span');
+	div.style.marginTop = '20px';
+	span.style.fontSize = '0.9em';
+	span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
+	div.appendChild(span);
+	legend.appendChild(div);
 
     legend.style.display = 'block';
 }
