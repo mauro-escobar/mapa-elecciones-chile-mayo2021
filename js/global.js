@@ -18,7 +18,12 @@ var colores = {
 	'suave': '#f8ca92', 
 	'negro': '#000000',
 	'rosado': '#e6007e',
-	'celeste': '#00aae4'
+	'celeste': '#00aae4',
+    'tab:red': '#d62728',
+    'tab:blue': '#1f77b4',
+    'tab:orange': '#ff7f0e',
+    'tab:green': '#2ca02c',
+    'tab:purple': '#9467bd' 
 };
 
 function capitalize(words) {
@@ -31,7 +36,7 @@ function capitalize(words) {
 };
 
 bearing = 90;
-center = [-71.9,-27];
+center = [-71.5,-27];
 if (screen.width<=992) {
     bearing = 0;
     center = [-70.66,-33.45];
@@ -125,6 +130,21 @@ function addLayerNombreRegiones(map) {
     map.setLayoutProperty('nombre-regiones', 'visibility', 'none');	
 };
 
+function addLayerZonaIndeterminada(map) {
+    map.addLayer({
+        'id': 'zona-indeterminada',
+        'type': 'fill',
+        'source': 'comunas-data',
+        'source-layer': 'chile-comunas-53oe57',
+        'filter': ['==', ['get', 'NOM_COM'], 'Zona sin demarcar'],
+        'paint': {
+            'fill-color': colores['blanco'],
+            'fill-outline-color': '#ffffff',
+            'fill-opacity': 0.5,
+        },
+    }, 'nombre-regiones');
+};
+
 function addLayerRegionesOutline(map) {
 	map.addLayer({
         'id': 'regiones-outline',
@@ -140,21 +160,6 @@ function addLayerRegionesOutline(map) {
         },
     }, 'zona-indeterminada');
     map.setLayoutProperty('regiones-outline', 'visibility', 'none');
-};
-
-function addLayerZonaIndeterminada(map) {
-	map.addLayer({
-    	'id': 'zona-indeterminada',
-    	'type': 'fill',
-    	'source': 'comunas-data',
-        'source-layer': 'chile-comunas-53oe57',
-        'filter': ['==', ['get', 'NOM_COM'], 'Zona sin demarcar'],
-        'paint': {
-        	'fill-color': colores['blanco'],
-        	'fill-outline-color': '#ffffff',
-        	'fill-opacity': 0.5,
-        },
-    }, 'nombre-regiones');
 };
 
 function addLayerComunasOutline(map) {
@@ -202,6 +207,7 @@ function addLayerDistritosOutline(map) {
             'line-width': 0.5
         }
     }, 'zona-indeterminada');
+    map.setLayoutProperty('distritos-outline', 'visibility', 'none');
 };
 
 function addLayerDistritosFill(map) {

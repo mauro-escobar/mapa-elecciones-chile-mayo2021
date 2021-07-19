@@ -46,6 +46,8 @@ map.on('load', function(){
     addLayerGobernadoresComunas2v(map);
     addLayerGobernadoresComunas1v(map)
 
+    
+    map.flyTo({center: [-71.9,-27]});
     mostrarConvencionales();
 });
 

@@ -12,7 +12,7 @@
 	</script>
 
     <meta charset='utf-8' />
-    <title>Mapa político actual</title>
+    <title>Elecciones Chile 05/2021</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.css' rel='stylesheet' />
@@ -22,23 +22,25 @@
 
 <body>
 	<div id='menu'>
-		<span id="menu-title" >Mapa Político de Chile </span>
+		<span id="menu-title" >Elecciones Chile 2021 | 15 y 16 de mayo </span>
 		<div class="container dropdown" onclick="desplegarMenu(this)">
 			&#9660;
 			<div class="dropdown-content">
-				<a class="a-dropdown" href="index.html">Primarias 2021</a>
-				<a class="a-dropdown" href="2021-05.html">Elecciones mayo/2021</a>
+				<a class="a-dropdown" href="index.html">Primarias 2021</a><br>
+				<a class="a-dropdown" href="actual.html">Mapa político actual</a>
 			</div>
 		</div>
 		<span id="menu-author" class="desktop">(by <a href="https://mauro-escobar.github.io" target="_blank" style="margin-left:0px;">Mauro Escobar</a>)</span>
 		<span class="mobile"><br></span>
 		<span class="desktop" style="margin-left:50px"></span>
-		<a class="a-menu" id="a-diputados" onClick="mostrarDiputados()" style="color:black">Cámara baja</a><span class="mobile sep">|</span>
-		<a class="a-menu" id="a-senadores" onClick="mostrarSenadores()">Cámara alta</a><span class="mobile sep">|</span>
+		<a class="a-menu" id="a-distritos" onClick="mostrarDistritos()" style="color:black">Distritos</a><span class="mobile sep">|</span>
+		<a class="a-menu"  id="a-participacion" onClick="mostrarParticipacion()">Participación</a><span class="mobile sep">|</span>
+		<a class="a-menu"  id="a-convencionales" onClick="mostrarConvencionales()">Convencionales</a>
+		<a class="a-menu"  id="a-convencionalesMH" onClick="mostrarConvencionalesMH()" style="margin-left:2px">(Votos M/H)</a><span class="mobile sep">|</span>
 		<a class="a-menu"  id="a-gobernadores" onClick="mostrarGobernadores()">Gobernadores</a><span class="mobile sep">|</span>
-		<a class="a-menu"  id="a-cores" onClick="mostrarCORES()">CORES</a><span class="mobile sep">|</span>
 		<a class="a-menu"  id="a-alcaldes" onClick="mostrarAlcaldes()">Alcaldes</a><span class="mobile sep">|</span>
 		<a class="a-menu"  id="a-concejales" onClick="mostrarConcejales()">Concejales</a>
+		<a class="a-menu"  id="a-concejalesMH" onClick="mostrarConcejalesMH()" style="margin-left:2px">(Votos M/H)</a>
 	</div>
     <div id='map'></div>
     <div class='map-overlay' id='legend' style='display:none'></div>
@@ -46,10 +48,9 @@
     <script type='text/javascript' src="js/global.js"></script>
     <script type='text/javascript' src="js/parliament-plot.js"></script>
     <script type='text/javascript' src="js/el-municipales-2021.js"></script>
-    <script type='text/javascript' src="js/el-parlamentarias-2017.js"></script>
     <script type='text/javascript' src="js/el-gobernadores-2021.js"></script>
-    <script type='text/javascript' src="js/el-cores-2017.js"></script>
-    <script type='text/javascript' src="js/map_actual.js"></script>
+    <script type='text/javascript' src="js/el-convencionales-2021.js"></script>
+    <script type='text/javascript' src="js/map_2021-05.js"></script>
     <script>
     	function desplegarMenu(x) {
     		x.classList.toggle("change");
