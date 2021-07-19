@@ -600,6 +600,14 @@ function mostrarDiputados() {
     } 
 
 	legend.appendChild(getParliamentTable(parl_listas));
+
+	var div = document.createElement('div');
+	var span = document.createElement('span');
+	div.style.marginTop = '20px';
+	span.style.fontSize = '0.9em';
+	span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
+	div.appendChild(span);
+	legend.appendChild(div);
 };
 
 function mostrarSenadores() {
@@ -790,6 +798,14 @@ function mostrarSenadores() {
     }
 
 	legend.appendChild(getParliamentTable(parl_listas));
+
+	var div = document.createElement('div');
+	var span = document.createElement('span');
+	div.style.marginTop = '20px';
+	span.style.fontSize = '0.9em';
+	span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
+	div.appendChild(span);
+	legend.appendChild(div);
 };
 
 function popDiputados(map) {

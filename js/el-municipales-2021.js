@@ -514,6 +514,14 @@ function mostrarAlcaldes() {
     }
 
 	legend.appendChild(getParliamentTable(parliament));
+
+	var div = document.createElement('div');
+	var span = document.createElement('span');
+	div.style.marginTop = '20px';
+	span.style.fontSize = '0.9em';
+	span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
+	div.appendChild(span);
+	legend.appendChild(div);
 };
 
 function mostrarConcejales() {
@@ -658,6 +666,14 @@ function mostrarConcejales() {
 		table.appendChild(tr);
 	};
 	legend.appendChild(table);
+
+	var div = document.createElement('div');
+	var span = document.createElement('span');
+	div.style.marginTop = '20px';
+	span.style.fontSize = '0.9em';
+	span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
+	div.appendChild(span);
+	legend.appendChild(div);
 
     if (screen.width>=992) {
     	legend2.style.display = 'block';
@@ -1087,4 +1103,12 @@ function mostrarConcejalesMH() {
 	table.appendChild(tr);
 
 	legend.appendChild(table);
+
+	var div = document.createElement('div');
+	var span = document.createElement('span');
+	div.style.marginTop = '20px';
+	span.style.fontSize = '0.9em';
+	span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
+	div.appendChild(span);
+	legend.appendChild(div);
 };
