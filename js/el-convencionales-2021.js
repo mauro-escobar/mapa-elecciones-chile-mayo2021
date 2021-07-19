@@ -1194,7 +1194,7 @@ function mostrarConvencionales() {
 			"GLORIA DEL TRANSITO ALVARADO JORQUERA (IND)",
 			"AURORA GENOVEVA DELGADO VERGARA (IND-RD)"
     	],
-    	"Reglamento Feminista": [
+    	/*"Reglamento Feminista": [
     		"CAROLINA ELIANA VIDELA OSORIO (PCCH)",
     		"BESSY MIREYA GALLARDO PRADO (IND-PRO)",
     		"BARBARA SEPULVEDA HALES (PCCH)",
@@ -1231,7 +1231,7 @@ function mostrarConvencionales() {
     		"JENIFFER VALERIA MELLA ESCOBAR (IND-CS)",
     		//"VALENTINA ANDREA MIRANDA ARCE (PCCH)",
     		"MARIELA ANDREA SEREY JIMENEZ (IND-CS)"
-    	],
+    	],*/
     	"Presupuesto": [
     		"GLORIA DEL TRANSITO ALVARADO JORQUERA (IND)",
     		"MARTIN ARRAU GARCIA-HUIDOBRO (UDI)", 
