@@ -46,7 +46,8 @@ map.on('load', function(){
     addLayerGobernadoresComunas2v(map);
     addLayerGobernadoresComunas1v(map)
 
-	if (screen.width>992) map.flyTo({center: [-71.9,-27]});
+    
+    map.flyTo({center: [-71.9,-27]});
     mostrarConvencionales();
 });
 
@@ -102,15 +103,6 @@ function clean() {
     map.setLayoutProperty('gobernadores', 'visibility', 'none');
     map.setLayoutProperty('gobernadores-comunas-2v', 'visibility', 'none');	
     map.setLayoutProperty('gobernadores-comunas-1v', 'visibility', 'none');	
-
-	document.getElementById('a-distritos').style.color = 'gray';
-	document.getElementById('a-participacion').style.color = 'gray';
-	document.getElementById('a-gobernadores').style.color = 'gray';
-	document.getElementById('a-convencionales').style.color = 'gray';
-	document.getElementById('a-convencionalesMH').style.color = 'gray';
-	document.getElementById('a-alcaldes').style.color = 'gray';
-	document.getElementById('a-concejales').style.color = 'gray';
-	document.getElementById('a-concejalesMH').style.color = 'gray';
 
 	legend.innerHTML = '';
 	legend2.innerHTML = '';

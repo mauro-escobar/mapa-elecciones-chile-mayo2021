@@ -453,8 +453,6 @@ function paintGroup(cl) {
     cleanPainted();
     seatClicked =  false;
     groupClicked = "";
-    var els = document.getElementsByClassName("coordinators");
-    for (var i = 0; i < els.length; i++) els[i].style.opacity=0;
     if (!selectedGroup || groupSelected!=cl) {
         selectedGroup = true;
         groupSelected = cl;

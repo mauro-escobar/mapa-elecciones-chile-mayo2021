@@ -255,7 +255,7 @@ function addLayerConvencionales(map) {
         'minzoom': 6.3
     }, 'distritos-outline');
     map.setLayoutProperty('convencionales-comunas', 'visibility', 'none');	
-   
+
     map.addLayer({
         'id': 'convencionalesMH-distritos',
         'type': 'fill',
@@ -607,7 +607,8 @@ function mostrarConvencionales() {
     map.setLayoutProperty('convencionales-lines', 'visibility', 'visible');	
     map.setLayoutProperty('markers-title', 'visibility', 'visible');	
 	map.setLayoutProperty('distritos-outline', 'visibility', 'visible');
-	document.getElementById('a-convencionales').style.color = 'black';
+	var el = document.getElementById('a-convencionales');
+	if (el) el.style.color = 'black';
 
 	var parl_listas = { 
 		'Vamos por Chile': {
