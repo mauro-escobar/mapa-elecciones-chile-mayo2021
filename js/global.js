@@ -288,8 +288,13 @@ var groupClicked = "";
 var groupSelected = "";
 var nameClicked = "";
 
-function cleanSeat() {
-    // body...
+function cleanPainted() {
+    var els = document.getElementsByClassName("grupo");
+    for (var i = 0; i < els.length; i++) els[i].style.opacity = 1;
+    var els = document.getElementsByClassName("parliament-seat");
+    for (var i = 0; i < els.length; i++) els[i].style.opacity=1;
+    var els = document.getElementsByClassName("coordinators");
+    for (var i = 0; i < els.length; i++) els[i].style.opacity=0;
 }
 
 function touchParliamentSeatEvt(evt) {
@@ -374,6 +379,8 @@ function unTouchParliamentSeat() {
 
 
 function clickParliamentSeat(evt) {
+    cleanPainted();
+
     searching = false;
     var svgobj=evt.target;
     var indep = ['Fuera-de-Pacto','Candidaturas-Independientes', ''];
@@ -388,10 +395,6 @@ function clickParliamentSeat(evt) {
         groupSelected = "";
         groupClicked = party;
         nameClicked = svgobj.dataset.name;
-        var els = document.getElementsByClassName("grupo");
-        for (var i = 0; i < els.length; i++) els[i].style.opacity = 1;
-        var els = document.getElementsByClassName("parliament-seat");
-        for (var i = 0; i < els.length; i++) els[i].style.opacity=1;
         var span = document.getElementById('lista-seat');
         if (span) span.innerHTML = '<br>';
         
@@ -427,10 +430,6 @@ function clickParliamentSeat(evt) {
         seatClicked = false;
         groupClicked = "";
         nameClicked = "";
-        var els = document.getElementsByClassName("grupo");
-        for (var i = 0; i < els.length; i++) els[i].style.opacity = 1;
-        var els = document.getElementsByClassName("parliament-seat");
-        for (var i = 0; i < els.length; i++) els[i].style.opacity = 1;
         var span = document.getElementById('lista-seat');
         if (span) span.innerHTML = '<br>';
         var span = document.getElementById('nombre-seat');
@@ -441,9 +440,11 @@ function clickParliamentSeat(evt) {
 }
 
 function clickGroup(evt) {
+    cleanPainted();
+
     var obj = evt.target;
     var cl = obj.innerHTML.replace(/ /g,"-");
-    paintGroup(cl)
+    paintGroup(cl);
     if (selectedGroup) {
         obj.style.opacity = 1;
     }
@@ -453,6 +454,8 @@ function clickGroup(evt) {
 function paintGroup(cl) {
     seatClicked =  false;
     groupClicked = "";
+    var els = document.getElementsByClassName("coordinators");
+    for (var i = 0; i < els.length; i++) els[i].style.opacity=0;
     if (!selectedGroup || groupSelected!=cl) {
         selectedGroup = true;
         groupSelected = cl;
@@ -474,23 +477,32 @@ function paintGroup(cl) {
             if (!els[i].classList.contains(cl)) els[i].style.opacity=0.2;
             else if (!els[i].dataset.hasOwnProperty("dotted")) count++;
         }
+        var addLegend = false;
+        var els = document.getElementsByClassName("coordinators");
+        for (var i = 0; i < els.length; i++) {
+            if (els[i].classList.contains(cl)) {
+                els[i].style.opacity=1;
+                addLegend = true;
+            }
+        }
+        if (addLegend) {
+            var els = document.getElementsByClassName("parliament-legend");
+            for (var i = 0; i < els.length; i++) {
+                if (els[i].classList.contains('coordinators')) els[i].style.opacity=1;
+                else els[i].style.opacity=0;
+            }   
+        }
         var span = document.getElementById('lista-seat');
         if (span) span.innerHTML = '<span style="font-weight:bold">'+cl.replace(/-/g," ")+":</span> "+count+' escaños<br>';
-
-        //if (["D1", "D2", "D3", "D4", "D5"].includes(groupSelected)) map.flyTo({center: [-71.5, -27]});
-        //if (["D6", "D7", "D8", "D9", "D10", "D11", "D12", "D13", "D14", "D15", "D16", "D17", "D18", "D19", "D20", "D21", "D22", "D23"].includes(groupSelected)) map.flyTo({center: [-72, -33.05]});
-        //if (["D24", "D25", "D26", "D27", "D28"].includes(groupSelected)) map.flyTo({center: [-75.04, -46.04]});
     } else {
-        var els = document.getElementsByClassName("grupo");
-        for (var i = 0; i < els.length; i++) els[i].style.opacity = 1;
-        var els = document.getElementsByClassName("parliament-seat");
-        for (var i = 0; i < els.length; i++) els[i].style.opacity=1;
         var span = document.getElementById('lista-seat');
         if (span) span.innerHTML = '<br>';
     }
 }
 
 function showSearch(name) {
+    cleanPainted();
+
     selectedGroup = false;
     seatClicked = false;
     groupClicked = "";

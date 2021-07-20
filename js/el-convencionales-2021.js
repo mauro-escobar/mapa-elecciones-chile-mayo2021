@@ -255,7 +255,7 @@ function addLayerConvencionales(map) {
         'minzoom': 6.3
     }, 'distritos-outline');
     map.setLayoutProperty('convencionales-comunas', 'visibility', 'none');	
-
+   
     map.addLayer({
         'id': 'convencionalesMH-distritos',
         'type': 'fill',
@@ -999,6 +999,12 @@ function mostrarConvencionales() {
     	['Presidenta', "ELISA LONCON ANTILEO (Mapuche)", 0, 0],
     	['Vicepresidente', "JAIME ANDRES BASSA MERCADO (IND-CS)", 0, 1]
     ];
+    var coordinadores = {
+    	"MARIA ELISA QUINTEROS CACERES (IND)": ["Ética", colores['rojo-oscuro']],
+    	"MARCOS PATRICIO BARRAZA GOMEZ (PCCH)": ["Ética", colores['rojo-oscuro']],
+    	"GLORIA DEL TRANSITO ALVARADO JORQUERA (IND)": ["Presupuesto", colores['rojo-oscuro']],
+    	"CESAR VALENZUELA MAASS (PS)": ["Presupuesto", colores['rojo-oscuro']]
+    };
     var grupos = {
     	"Pueblos Originarios": [
     		"FRANCISCA LINCONAO HUIRCAPAN (Mapuche)", 
@@ -1955,7 +1961,7 @@ function mostrarConvencionales() {
     	legend2.appendChild(div);
     	var div = document.createElement('div');
     	div.style.width = '380px';
-    	div.appendChild(generateSVG(parliament, parliament_order, true, "Convencional", directiva, grupos));
+    	div.appendChild(generateSVG(parliament, parliament_order, true, "Convencional", directiva, grupos, coordinadores));
     	legend2.appendChild(div);
     	var span = document.createElement('span');
     	span.id = 'lista-seat';
