@@ -47,7 +47,8 @@ map.on('load', function(){
     addLayerGobernadoresComunas1v(map)
 
     
-    map.flyTo({center: [-71.9,-27]});
+    if (screen.width>992) map.flyTo({center: [-71.9,-27]});
+    else document.getElementById('map').style.top = '30px';
     mostrarConvencionales();
 });
 

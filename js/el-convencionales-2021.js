@@ -1930,75 +1930,75 @@ function mostrarConvencionales() {
 
 	legend.innerHTML = '';
 	legend.style.display = 'block';
+	var div = document.createElement('div');
+	var span = document.createElement('span');
+	span.innerHTML = "Busca un convencional: "
+	div.appendChild(span);
+	var input = document.createElement('input');
+	input.id = "search-convencional";
+	input.type = "text";
+	input.size = 15;
+	input.addEventListener("keyup", function () {
+		var start = this.selectionStart; 
+		var end = this.selectionEnd;
+		this.value = this.value.toUpperCase();
+		this.setSelectionRange(start, end);
+		showSearch(this.value);
+	});
+	input.style.marginLeft = '5px';
+	div.style.textAlign = 'center';
+	div.appendChild(input);
+	var button = document.createElement('button');
+	button.type = "button";
+	button.innerHTML = "Borrar";
+	button.addEventListener("click", function () {
+		document.getElementById("search-convencional").value = "";
+		showSearch("");
+	})
+	div.appendChild(button);
+	div.style.marginBottom = "5px";
+	legend2.appendChild(div);
+	var div = document.createElement('div');
+	div.style.width = '380px';
+	div.appendChild(generateSVG(parliament, parliament_order, true, "Convencional", directiva, grupos, coordinadores));
+	legend2.appendChild(div);
+	var span = document.createElement('span');
+	span.id = 'lista-seat';
+	span.innerHTML = '<br>';
+	legend2.appendChild(span);
+	var span = document.createElement('span');
+	span.id = 'nombre-seat';
+	span.innerHTML = 'Muévete sobre los puntos...';
+	legend2.appendChild(span);
+	var div = document.createElement('div');
+	div.style.width = "380px";
+	div.style.marginTop = "5px";
+	div.style.borderTop = 'solid';
+	div.style.borderWidth = '1px';
+	div.style.textAlign = 'center';
+	var span = document.createElement('span');
+	span.innerHTML = 'O haz click sobre uno de los grupos<br>';
+	div.appendChild(span);
+		for (grupo in grupos) {
+			var span = document.createElement('span');
+			if (grupo=="Presupuesto") span.innerHTML = '<br>Comisiones · ';
+			else if (grupo=="D1") span.innerHTML = '<br>Distritos · ';
+			else if (grupo=="Mujeres") span.innerHTML = '<br>Otros · ';
+			else span.innerHTML = ' · ';
+			div.appendChild(span);
+			var a = document.createElement('a');
+			a.onclick = clickGroup;
+			var span = document.createElement('span');
+			span.id = 'span-'+grupo.replace(/ /g,"-");
+			span.innerHTML = grupo;
+			span.style.fontWeight = 'bold';
+			span.className = "grupo"
+			a.appendChild(span);
+			div.appendChild(a);
+		}
+	legend2.appendChild(div);
     if (screen.width>=992) {
     	legend2.style.display = 'block';
-    	var div = document.createElement('div');
-    	var span = document.createElement('span');
-    	span.innerHTML = "Busca un convencional: "
-    	div.appendChild(span);
-    	var input = document.createElement('input');
-    	input.id = "search-convencional";
-    	input.type = "text";
-    	input.size = 15;
-    	input.addEventListener("keyup", function () {
-    		var start = this.selectionStart; 
-			var end = this.selectionEnd;
-			this.value = this.value.toUpperCase();
-			this.setSelectionRange(start, end);
-			showSearch(this.value);
-    	});
-    	input.style.marginLeft = '5px';
-    	div.style.textAlign = 'center';
-    	div.appendChild(input);
-    	var button = document.createElement('button');
-    	button.type = "button";
-    	button.innerHTML = "Borrar";
-    	button.addEventListener("click", function () {
-    		document.getElementById("search-convencional").value = "";
-    		showSearch("");
-    	})
-    	div.appendChild(button);
-    	div.style.marginBottom = "5px";
-    	legend2.appendChild(div);
-    	var div = document.createElement('div');
-    	div.style.width = '380px';
-    	div.appendChild(generateSVG(parliament, parliament_order, true, "Convencional", directiva, grupos, coordinadores));
-    	legend2.appendChild(div);
-    	var span = document.createElement('span');
-    	span.id = 'lista-seat';
-    	span.innerHTML = '<br>';
-    	legend2.appendChild(span);
-    	var span = document.createElement('span');
-    	span.id = 'nombre-seat';
-    	span.innerHTML = 'Muévete sobre los puntos...';
-    	legend2.appendChild(span);
-    	var div = document.createElement('div');
-    	div.style.width = "380px";
-    	div.style.marginTop = "5px";
-    	div.style.borderTop = 'solid';
-		div.style.borderWidth = '1px';
-    	div.style.textAlign = 'center';
-    	var span = document.createElement('span');
-    	span.innerHTML = 'O haz click sobre uno de los grupos<br>';
-    	div.appendChild(span);
-    		for (grupo in grupos) {
-    			var span = document.createElement('span');
-    			if (grupo=="Presupuesto") span.innerHTML = '<br>Comisiones · ';
-    			else if (grupo=="D1") span.innerHTML = '<br>Distritos · ';
-    			else if (grupo=="Mujeres") span.innerHTML = '<br>Otros · ';
-    			else span.innerHTML = ' · ';
-    			div.appendChild(span);
-    			var a = document.createElement('a');
-    			a.onclick = clickGroup;
-    			var span = document.createElement('span');
-    			span.id = 'span-'+grupo.replace(/ /g,"-");
-    			span.innerHTML = grupo;
-    			span.style.fontWeight = 'bold';
-    			span.className = "grupo"
-    			a.appendChild(span);
-    			div.appendChild(a);
-    		}
-    	legend2.appendChild(div);
     } else {
     	legend2.style.display = 'none';
     }
