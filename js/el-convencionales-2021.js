@@ -138,7 +138,7 @@ function addLayerConvencionalesMarkers(map) {
 		}
     }, 'convencionales-markers');
     map.setLayoutProperty('convencionales-lines', 'visibility', 'none');	
-        map.addLayer({
+    map.addLayer({
     	'id':'markers-title',
 		'source': 'markers-constituyentes',
 		'source-layer': 'markers-constituyentes-7op8qa',

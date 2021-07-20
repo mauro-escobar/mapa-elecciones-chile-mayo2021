@@ -17,6 +17,12 @@ function addSourcePrimarias(map) {
             'url': 'mapbox://mauro-escobar.9p2oz59w',
         }
     );
+    map.addSource('primarias-exterior-data',
+        {
+            'type': 'vector',
+            'url': 'mapbox://mauro-escobar.d19ihwzl',
+        }
+    );
 };
 
 function addLayerParticipacion(map) {
@@ -74,6 +80,43 @@ function addLayerParticipacion(map) {
         }
     }, 'regiones-outline');
     map.setLayoutProperty('participacion-regiones', 'visibility', 'none'); 
+    map.addLayer({
+        'id': 'participacion-exterior',
+        'source': 'primarias-exterior-data',
+        'source-layer': 'primarias2021-exterior-3nyvho',
+        'type': 'circle',
+        'filter': ['has', 'partic'],
+        'paint' : {
+            'circle-color': [
+                'interpolate',
+                ['linear'],
+                ['get', 'partic'],
+                0, '#ffffff',
+                60, '#964B00',
+            ],
+            'circle-radius': [
+                'interpolate',
+                ['linear'], ['zoom'],
+                6, 6,
+                10, 15
+            ],
+            'circle-stroke-color': colores['gris'],
+            'circle-stroke-width': 0.5
+        }
+    });
+    map.setLayoutProperty('participacion-exterior', 'visibility', 'none'); 
+    map.addLayer({
+        'id':'exterior-title',
+        'source': 'primarias-exterior-data',
+        'source-layer': 'primarias2021-exterior-3nyvho',
+        'type': 'symbol',
+        'filter': ['has', 'title'],
+        'layout' : {
+            'text-field': ['get', 'title'],
+            'text-size': 12,
+            'text-rotate': 90-bearing
+        }
+    });
 };
 
 function addLayerComparacion(map) {
@@ -134,6 +177,37 @@ function addLayerComparacion(map) {
         },
     }, 'regiones-outline');
     map.setLayoutProperty('comparacion-regiones', 'visibility', 'none');
+    map.addLayer({
+        'id': 'comparacion-exterior',
+        'source': 'primarias-exterior-data',
+        'source-layer': 'primarias2021-exterior-3nyvho',
+        'type': 'circle',
+        'filter': ['has', 'partic'],
+        'paint': {
+            'circle-color': [
+                'case',
+                    ['==', ['+', ['get', 'vot_AD'], ['get', 'vot_CV']], 0], colores['blanco'],
+                    [
+                        'interpolate',
+                        ['linear'],
+                        ['get', 'pct_AD'],
+                        10, colores['tab:blue'],
+                        50, colores['blanco'],
+                        90, colores['tab:red']
+                    ]
+            ],
+            'circle-opacity': 0.9,
+            'circle-radius': [
+                'interpolate',
+                ['linear'], ['zoom'],
+                6, 6,
+                10, 15
+            ],
+            'circle-stroke-color': colores['gris'],
+            'circle-stroke-width': 0.5
+        },
+    }, 'regiones-outline');
+    map.setLayoutProperty('comparacion-exterior', 'visibility', 'none');
 };
 
 function addLayerChileVamos(map) {
@@ -215,6 +289,62 @@ function addLayerChileVamos(map) {
         },
     }, 'regiones-outline');
     map.setLayoutProperty('chile-vamos-regiones', 'visibility', 'none');
+    map.addLayer({
+        'id': 'chile-vamos-exterior',
+        'source': 'primarias-exterior-data',
+        'source-layer': 'primarias2021-exterior-3nyvho',
+        'type': 'circle',
+        'filter': ['has', 'partic'],
+        'paint' : {
+            'circle-color': [
+                'case',
+                    ['==', ['+', ['get', 'vot_Sichel'], ['get', 'vot_Lavin'], ['get', 'vot_Briones'], ['get', 'vot_Desbordes']], 0], colores['blanco'],
+                    ['>=', ['get', 'vot_Sichel'], ['max', ['get', 'vot_Lavin'], ['get', 'vot_Briones'], ['get', 'vot_Desbordes']]], 
+                        [
+                            'interpolate',
+                            ['linear'],
+                            ['get', 'pct_Sichel'],
+                            20, colores['blanco'],
+                            55, colores['amarillo']
+                        ],
+                    ['>=', ['get', 'vot_Briones'], ['max', ['get', 'vot_Lavin'], ['get', 'vot_Sichel'], ['get', 'vot_Desbordes']]], 
+                        [
+                            'interpolate',
+                            ['linear'],
+                            ['get', 'pct_Briones'],
+                            20, colores['blanco'],
+                            55, '#86BC25'
+                        ],
+                    ['>=', ['get', 'vot_Lavin'], ['max', ['get', 'vot_Sichel'], ['get', 'vot_Briones'], ['get', 'vot_Desbordes']]], 
+                        [
+                            'interpolate',
+                            ['linear'],
+                            ['get', 'pct_Lavin'],
+                            20, colores['blanco'],
+                            55, colores['azul-marino']
+                        ],
+                    ['>=', ['get', 'vot_Desbordes'], ['max', ['get', 'vot_Lavin'], ['get', 'vot_Briones'], ['get', 'vot_Sichel']]], 
+                        [
+                            'interpolate',
+                            ['linear'],
+                            ['get', 'pct_Desbordes'],
+                            20, colores['blanco'],
+                            55, colores['celeste']
+                        ],
+                    colores['gris-claro']
+            ],
+            'circle-opacity': 1,
+            'circle-radius': [
+                'interpolate',
+                ['linear'], ['zoom'],
+                6, 6,
+                10, 15
+            ],
+            'circle-stroke-color': colores['gris'],
+            'circle-stroke-width': 0.5
+        }
+    });
+    map.setLayoutProperty('chile-vamos-exterior', 'visibility', 'none'); 
 };
 
 function addLayerAprueboDignidad(map) {
@@ -287,6 +417,37 @@ function addLayerAprueboDignidad(map) {
         },
     }, 'regiones-outline');
     map.setLayoutProperty('apruebo-dignidad-regiones', 'visibility', 'none');
+    map.addLayer({
+        'id': 'apruebo-dignidad-exterior',
+        'source': 'primarias-exterior-data',
+        'source-layer': 'primarias2021-exterior-3nyvho',
+        'type': 'circle',
+        'filter': ['has', 'partic'],
+        'paint' : {
+            'circle-color': [
+                'case',
+                    ['==', ['+', ['get', 'vot_Boric'], ['get', 'vot_Jadue']], 0], colores['blanco'],
+                    [
+                        'interpolate',
+                        ['linear'],
+                        ['get', 'pct_Boric'],
+                        30, colores['rojo-oscuro'],
+                        50, colores['blanco'],
+                        70, colores['verde-agua']
+                    ]
+            ],
+            'circle-opacity': 1,
+            'circle-radius': [
+                'interpolate',
+                ['linear'], ['zoom'],
+                6, 6,
+                10, 15
+            ],
+            'circle-stroke-color': colores['gris'],
+            'circle-stroke-width': 0.5
+        }
+    });
+    map.setLayoutProperty('apruebo-dignidad-exterior', 'visibility', 'none'); 
 };
 
 function popParticipacion(map) {
@@ -347,6 +508,25 @@ function popParticipacion(map) {
             .addTo(map);
     });
     map.on('mouseleave', 'participacion-regiones', function () {
+        map.getCanvas().style.cursor = '';
+        popup.remove();
+    });
+    map.on('mousemove', 'participacion-exterior', function (e) {
+        map.getCanvas().style.cursor = 'pointer';
+        var pais = e.features[0].properties.Pais;
+        var part = e.features[0].properties.partic;
+        var totel = e.features[0].properties.tot_el;
+        var vot = e.features[0].properties.vot_tot;
+        popup.setLngLat(e.lngLat)
+            .setHTML(
+                '<h4><span style="font-weight:bold">'+pais+'</span></h4>'+
+                '<table><tr><td>Participación:</td><td style="text-align:right;padding-left:20px">'+part+'%</td></tr>'+
+                '<tr><td>Total Electores:</td><td style="text-align:right;padding-left:20px">'+totel+'</td></tr>'+
+                '<tr><td>Votantes:</td><td style="text-align:right;padding-left:20px">'+vot+'</td></tr></table>'            
+                )
+            .addTo(map);
+    });
+    map.on('mouseleave', 'participacion-exterior', function () {
         map.getCanvas().style.cursor = '';
         popup.remove();
     });
@@ -434,6 +614,32 @@ function popComparacion(map) {
         map.getCanvas().style.cursor = '';
         popup.remove();
     });
+    map.on('mousemove', 'comparacion-exterior', function (e) {
+        map.getCanvas().style.cursor = 'pointer';
+        var pais = e.features[0].properties.Pais;
+        var vot_CV = e.features[0].properties.vot_CV;
+        var vot_AD = e.features[0].properties.vot_AD;
+        var pct_CV = e.features[0].properties.pct_CV;
+        var pct_AD = e.features[0].properties.pct_AD;
+        popup.setLngLat(e.lngLat)
+            .setHTML(
+                '<h4><span style="font-weight:bold">'+pais+'</span></h4>'+
+                '<table style="border-collapse:collapse">'+
+                '<tr><td style="font-weight:bold">Lista</td><td style="text-align:right;font-weight:bold">Votos</td><td style="text-align:right;font-weight:bold">%</td></tr>'+
+                '<tr><td><span class="legend-key" style="background-color:'+colores['tab:blue']+'"></span>Chile Vamos</td><td style="text-align:right;padding-left:20px">'+vot_CV+'</td><td style="text-align:right;padding-left:20px">'+pct_CV+'%</td></tr>'+
+                '<tr><td><span class="legend-key" style="background-color:'+colores['tab:red']+'"></span>Apruebo Dignidad</td><td style="text-align:right;padding-left:20px">'+vot_AD+'</td><td style="text-align:right;padding-left:20px">'+pct_AD+'%</td></tr>'+
+                '<tr style="border-top:solid;border-width:1px"><td style="font-style:italic">Votos válidos</td><td style="text-align:right;padding-left:20px">'+e.features[0].properties.vot_val+'</td></tr>'+
+                '<tr><td style="font-style:italic">Votos nulos</td><td style="text-align:right;padding-left:20px">'+e.features[0].properties.vot_nul+'</td></tr>'+
+                '<tr><td style="font-style:italic">Votos blancos</td><td style="text-align:right;padding-left:20px">'+e.features[0].properties.vot_blc+'</td></tr>'+
+                '<tr><td style="font-style:italic">Total votación</td><td style="text-align:right;padding-left:20px">'+e.features[0].properties.vot_tot+'</td></tr>'+
+                '</table>'            
+                )
+            .addTo(map);
+    });
+    map.on('mouseleave', 'comparacion-exterior', function () {
+        map.getCanvas().style.cursor = '';
+        popup.remove();
+    });
 };
 
 function popAprueboDignidad(map) {
@@ -503,6 +709,28 @@ function popAprueboDignidad(map) {
             .addTo(map);
     });
     map.on('mouseleave', 'apruebo-dignidad-regiones', function () {
+        map.getCanvas().style.cursor = '';
+        popup.remove();
+    });
+    map.on('mousemove', 'apruebo-dignidad-exterior', function (e) {
+        map.getCanvas().style.cursor = 'pointer';
+        var pais = e.features[0].properties.Pais;
+        var vot_Boric = e.features[0].properties.vot_Boric;
+        var vot_Jadue = e.features[0].properties.vot_Jadue;
+        var pct_Boric = e.features[0].properties.pct_Boric;
+        var pct_Jadue = e.features[0].properties.pct_Jadue;
+        popup.setLngLat(e.lngLat)
+            .setHTML(
+                '<h4><span style="font-weight:bold">'+pais+'</span></h4>'+
+                '<table style="border-collapse:collapse">'+
+                '<tr><td style="font-weight:bold">Lista</td><td style="text-align:right;font-weight:bold">Votos</td><td style="text-align:right;font-weight:bold">%</td></tr>'+
+                '<tr><td><span class="legend-key" style="background-color:'+colores['verde-agua']+'"></span>Gabriel Boric (CS)</td><td style="text-align:right;padding-left:20px">'+vot_Boric+'</td><td style="text-align:right;padding-left:20px">'+pct_Boric+'%</td></tr>'+
+                '<tr><td><span class="legend-key" style="background-color:'+colores['rojo-oscuro']+'"></span>Daniel Jadue (PC)</td><td style="text-align:right;padding-left:20px">'+vot_Jadue+'</td><td style="text-align:right;padding-left:20px">'+pct_Jadue+'%</td></tr>'+
+                '</table>'            
+                )
+            .addTo(map);
+    });
+    map.on('mouseleave', 'apruebo-dignidad-exterior', function () {
         map.getCanvas().style.cursor = '';
         popup.remove();
     });
@@ -593,6 +821,34 @@ function popChileVamos(map) {
             .addTo(map);
     });
     map.on('mouseleave', 'chile-vamos-regiones', function () {
+        map.getCanvas().style.cursor = '';
+        popup.remove();
+    });
+    map.on('mousemove', 'chile-vamos-exterior', function (e) {
+        map.getCanvas().style.cursor = 'pointer';
+        var pais = e.features[0].properties.Pais;
+        var vot_Sichel = e.features[0].properties.vot_Sichel;
+        var pct_Sichel = e.features[0].properties.pct_Sichel;
+        var vot_Lavin = e.features[0].properties.vot_Lavin;
+        var pct_Lavin = e.features[0].properties.pct_Lavin;
+        var vot_Briones = e.features[0].properties.vot_Briones;
+        var pct_Briones = e.features[0].properties.pct_Briones;
+        var vot_Desbordes = e.features[0].properties.vot_Desbordes;
+        var pct_Desbordes = e.features[0].properties.pct_Desbordes;
+        popup.setLngLat(e.lngLat)
+            .setHTML(
+                '<h4><span style="font-weight:bold">'+pais+'</span></h4>'+
+                '<table style="border-collapse:collapse">'+
+                '<tr><td style="font-weight:bold">Lista</td><td style="text-align:right;font-weight:bold">Votos</td><td style="text-align:right;font-weight:bold">%</td></tr>'+
+                '<tr><td><span class="legend-key" style="background-color:'+colores['amarillo']+'"></span>Sebastián Sichel (IND)</td><td style="text-align:right;padding-left:20px">'+vot_Sichel+'</td><td style="text-align:right;padding-left:20px">'+pct_Sichel+'%</td></tr>'+
+                '<tr><td><span class="legend-key" style="background-color:'+colores['azul-marino']+'"></span>Joaquín Lavin (UDI)</td><td style="text-align:right;padding-left:20px">'+vot_Lavin+'</td><td style="text-align:right;padding-left:20px">'+pct_Lavin+'%</td></tr>'+
+                '<tr><td><span class="legend-key" style="background-color:#86BC25"></span>Ignacio Briones (EVO)</td><td style="text-align:right;padding-left:20px">'+vot_Briones+'</td><td style="text-align:right;padding-left:20px">'+pct_Briones+'%</td></tr>'+
+                '<tr><td><span class="legend-key" style="background-color:'+colores['celeste']+'"></span>Mario Desbordes (RN)</td><td style="text-align:right;padding-left:20px">'+vot_Desbordes+'</td><td style="text-align:right;padding-left:20px">'+pct_Desbordes+'%</td></tr>'+
+                '</table>'            
+                )
+            .addTo(map);
+    });
+    map.on('mouseleave', 'chile-vamos-exterior', function () {
         map.getCanvas().style.cursor = '';
         popup.remove();
     });

@@ -36,7 +36,7 @@ map.on('load', function(){
 
 map.on('rotate', function () {
 	map.setLayoutProperty(
-		'markers-title',
+		'exterior-title',
 		'text-rotate',
 		90-map.getBearing()
 	)
@@ -58,15 +58,19 @@ function clean() {
 	map.setLayoutProperty('participacion-comunas', 'visibility', 'none');
 	map.setLayoutProperty('participacion-distritos', 'visibility', 'none');
 	map.setLayoutProperty('participacion-regiones', 'visibility', 'none');
+	map.setLayoutProperty('participacion-exterior', 'visibility', 'none');
     map.setLayoutProperty('comparacion-comunas', 'visibility', 'none');
     map.setLayoutProperty('comparacion-distritos', 'visibility', 'none');
     map.setLayoutProperty('comparacion-regiones', 'visibility', 'none');
+    map.setLayoutProperty('comparacion-exterior', 'visibility', 'none');
 	map.setLayoutProperty('apruebo-dignidad-comunas', 'visibility', 'none');
 	map.setLayoutProperty('apruebo-dignidad-distritos', 'visibility', 'none');
 	map.setLayoutProperty('apruebo-dignidad-regiones', 'visibility', 'none');
+    map.setLayoutProperty('apruebo-dignidad-exterior', 'visibility', 'none'); 
 	map.setLayoutProperty('chile-vamos-comunas', 'visibility', 'none');
 	map.setLayoutProperty('chile-vamos-distritos', 'visibility', 'none');
 	map.setLayoutProperty('chile-vamos-regiones', 'visibility', 'none');
+    map.setLayoutProperty('chile-vamos-exterior', 'visibility', 'none'); 
     map.setLayoutProperty('regiones-outline', 'visibility', 'none');
 
 	document.getElementById('a-participacion').style.color = 'gray';
@@ -115,6 +119,7 @@ function clean() {
 function mostrarParticipacionComunas() {
 	clean();
 	map.setLayoutProperty('participacion-comunas', 'visibility', 'visible');
+	map.setLayoutProperty('participacion-exterior', 'visibility', 'visible');
     map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
 	document.getElementById('a-participacion').style.color = 'black';
 
@@ -142,6 +147,7 @@ function mostrarParticipacionComunas() {
 function mostrarParticipacionDistritos() {
 	clean();
 	map.setLayoutProperty('participacion-distritos', 'visibility', 'visible');
+	map.setLayoutProperty('participacion-exterior', 'visibility', 'visible');
     map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
 	document.getElementById('a-participacion').style.color = 'black';
 
@@ -169,6 +175,7 @@ function mostrarParticipacionDistritos() {
 function mostrarParticipacionRegiones() {
 	clean();
 	map.setLayoutProperty('participacion-regiones', 'visibility', 'visible');
+	map.setLayoutProperty('participacion-exterior', 'visibility', 'visible');
     map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
 	document.getElementById('a-participacion').style.color = 'black';
 
@@ -199,6 +206,7 @@ function mostrarParticipacionRegiones() {
 function mostrarComparacionComunas() {
 	clean();
 	map.setLayoutProperty('comparacion-comunas', 'visibility', 'visible');
+	map.setLayoutProperty('comparacion-exterior', 'visibility', 'visible');
     map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
 	document.getElementById('a-comparacion').style.color = 'black';
 
@@ -230,6 +238,7 @@ function mostrarComparacionComunas() {
 function mostrarComparacionDistritos() {
 	clean();
 	map.setLayoutProperty('comparacion-distritos', 'visibility', 'visible');
+	map.setLayoutProperty('comparacion-exterior', 'visibility', 'visible');
     map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
 	document.getElementById('a-comparacion').style.color = 'black';
 
@@ -261,6 +270,7 @@ function mostrarComparacionDistritos() {
 function mostrarComparacionRegiones() {
 	clean();
 	map.setLayoutProperty('comparacion-regiones', 'visibility', 'visible');
+	map.setLayoutProperty('comparacion-exterior', 'visibility', 'visible');
     map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
 	document.getElementById('a-comparacion').style.color = 'black';
 
@@ -294,6 +304,7 @@ function mostrarComparacionRegiones() {
 function mostrarAprueboDignidadComunas() {
 	clean();
 	map.setLayoutProperty('apruebo-dignidad-comunas', 'visibility', 'visible');
+    map.setLayoutProperty('apruebo-dignidad-exterior', 'visibility', 'visible'); 
     map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
 	document.getElementById('a-apruebo-dignidad').style.color = 'black';
 
@@ -322,6 +333,7 @@ function mostrarAprueboDignidadComunas() {
 function mostrarAprueboDignidadDistritos() {
 	clean();
 	map.setLayoutProperty('apruebo-dignidad-distritos', 'visibility', 'visible');
+    map.setLayoutProperty('apruebo-dignidad-exterior', 'visibility', 'visible'); 
     map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
 	document.getElementById('a-apruebo-dignidad').style.color = 'black';
 
@@ -350,6 +362,7 @@ function mostrarAprueboDignidadDistritos() {
 function mostrarAprueboDignidadRegiones() {
 	clean();
 	map.setLayoutProperty('apruebo-dignidad-regiones', 'visibility', 'visible');
+    map.setLayoutProperty('apruebo-dignidad-exterior', 'visibility', 'visible'); 
     map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
 	document.getElementById('a-apruebo-dignidad').style.color = 'black';
 
@@ -380,6 +393,7 @@ function mostrarAprueboDignidadRegiones() {
 function mostrarChileVamosComunas() {
 	clean();
 	map.setLayoutProperty('chile-vamos-comunas', 'visibility', 'visible');
+    map.setLayoutProperty('chile-vamos-exterior', 'visibility', 'visible'); 
     map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
 	document.getElementById('a-chile-vamos').style.color = 'black';
 
@@ -410,6 +424,7 @@ function mostrarChileVamosComunas() {
 function mostrarChileVamosDistritos() {
 	clean();
 	map.setLayoutProperty('chile-vamos-distritos', 'visibility', 'visible');
+    map.setLayoutProperty('chile-vamos-exterior', 'visibility', 'visible'); 
     map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
 	document.getElementById('a-chile-vamos').style.color = 'black';
 
@@ -440,6 +455,7 @@ function mostrarChileVamosDistritos() {
 function mostrarChileVamosRegiones() {
 	clean();
 	map.setLayoutProperty('chile-vamos-regiones', 'visibility', 'visible');
+    map.setLayoutProperty('chile-vamos-exterior', 'visibility', 'visible'); 
     map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
 	document.getElementById('a-chile-vamos').style.color = 'black';
 
