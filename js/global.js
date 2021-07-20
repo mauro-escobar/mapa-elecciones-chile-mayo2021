@@ -440,8 +440,6 @@ function clickParliamentSeat(evt) {
 }
 
 function clickGroup(evt) {
-    cleanPainted();
-
     var obj = evt.target;
     var cl = obj.innerHTML.replace(/ /g,"-");
     paintGroup(cl);
@@ -452,6 +450,7 @@ function clickGroup(evt) {
 }
 
 function paintGroup(cl) {
+    cleanPainted();
     seatClicked =  false;
     groupClicked = "";
     var els = document.getElementsByClassName("coordinators");
