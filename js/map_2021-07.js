@@ -879,6 +879,89 @@ function mostrarChileVamosDistritos() {
 	legend.appendChild(div);
 
     legend.style.display = 'block';
+	if (screen.width>=992) {
+    	var pctLegend2 = ['20%', '30%', '40%', '50%'];
+    	var table2 = document.createElement('table');
+    	table2.style.borderCollapse = 'collapse';	
+    	var tr = document.createElement('tr');
+    	var td = document.createElement('td');
+    	td.innerHTML = 'Sebastián Sichel';
+    	td.style.textAlign = 'right';
+    	td.style.paddingRight = '10px';
+    	tr.appendChild(td);
+    	for (var i = 0; i < pctLegend2.length; i++) {
+    		var td = document.createElement('td');
+    		td.style.fontSize = '0.8em';
+    		td.style.textAlign = 'left';
+    		var color = linearComibationHEX(linearComibationHEX(colores['blanco'],colores['amarillo'],0.95),colores['amarillo'], (1-1/8)-1/4*i);
+    		td.style.backgroundColor = color
+    		td.style.color = constrastColor(color, 5);
+    		td.innerHTML = pctLegend2[i];
+    		td.width = '45px';
+    		td.height = '15px';
+    		tr.appendChild(td);
+    	}
+    	table2.appendChild(tr);	
+    	var tr = document.createElement('tr');
+    	var td = document.createElement('td');
+    	td.innerHTML = 'Joaquín Lavín';
+    	td.style.textAlign = 'right';
+    	td.style.paddingRight = '10px';
+    	tr.appendChild(td);
+    	for (var i = 0; i < pctLegend2.length; i++) {
+    		var td = document.createElement('td');
+    		td.style.fontSize = '0.8em';
+    		td.style.textAlign = 'left';
+    		var color = linearComibationHEX(linearComibationHEX(colores['blanco'],colores['azul-marino'],0.95),colores['azul-marino'], (1-1/8)-1/4*i);
+    		td.style.backgroundColor = color;
+    		td.style.color = constrastColor(color, 5);
+    		td.innerHTML = pctLegend2[i];
+    		td.width = '45px';
+    		td.height = '15px';
+    		tr.appendChild(td);
+    	}
+    	table2.appendChild(tr);
+    	var tr = document.createElement('tr');
+    	var td = document.createElement('td');
+    	td.innerHTML = 'Ignacio Briones';
+    	td.style.textAlign = 'right';
+    	td.style.paddingRight = '10px';
+    	tr.appendChild(td);
+    	for (var i = 0; i < pctLegend2.length; i++) {
+    		var td = document.createElement('td');
+    		td.style.fontSize = '0.8em';
+    		td.style.textAlign = 'left';
+    		var color = linearComibationHEX(linearComibationHEX(colores['blanco'],'#86BC25',0.95),'#86BC25', (1-1/8)-1/4*i);
+    		td.style.backgroundColor = color;
+    		td.style.color = constrastColor(color, 5);
+    		td.innerHTML = pctLegend2[i];
+    		td.width = '45px';
+    		td.height = '15px';
+    		tr.appendChild(td);
+    	}
+    	table2.appendChild(tr);
+    	var tr = document.createElement('tr');
+    	var td = document.createElement('td');
+    	td.innerHTML = 'Mario Desbordes';
+    	td.style.textAlign = 'right';
+    	td.style.paddingRight = '10px';
+    	tr.appendChild(td);
+    	for (var i = 0; i < pctLegend2.length; i++) {
+    		var td = document.createElement('td');
+    		td.style.fontSize = '0.8em';
+    		td.style.textAlign = 'left';
+    		var color = linearComibationHEX(linearComibationHEX(colores['blanco'],colores['celeste'],0.95),colores['celeste'], (1-1/8)-1/4*i);
+    		td.style.backgroundColor = color;
+    		td.style.color = constrastColor(color, 5);
+    		td.innerHTML = pctLegend2[i];
+    		td.width = '45px';
+    		td.height = '15px';
+    		tr.appendChild(td);
+    	}
+    	table2.appendChild(tr);
+    	legend2.appendChild(table2);
+    	legend2.style.display = 'block';
+    } 
 }
 function mostrarChileVamosRegiones() {
 	clean();
@@ -910,6 +993,89 @@ function mostrarChileVamosRegiones() {
 	legend.appendChild(div);
 
     legend.style.display = 'block';
+	if (screen.width>=992) {
+    	var pctLegend2 = ['20%', '30%', '40%', '50%'];
+    	var table2 = document.createElement('table');
+    	table2.style.borderCollapse = 'collapse';	
+    	var tr = document.createElement('tr');
+    	var td = document.createElement('td');
+    	td.innerHTML = 'Sebastián Sichel';
+    	td.style.textAlign = 'right';
+    	td.style.paddingRight = '10px';
+    	tr.appendChild(td);
+    	for (var i = 0; i < pctLegend2.length; i++) {
+    		var td = document.createElement('td');
+    		td.style.fontSize = '0.8em';
+    		td.style.textAlign = 'left';
+    		var color = linearComibationHEX(linearComibationHEX(colores['blanco'],colores['amarillo'],0.95),colores['amarillo'], (1-1/8)-1/4*i);
+    		td.style.backgroundColor = color
+    		td.style.color = constrastColor(color, 5);
+    		td.innerHTML = pctLegend2[i];
+    		td.width = '45px';
+    		td.height = '15px';
+    		tr.appendChild(td);
+    	}
+    	table2.appendChild(tr);	
+    	var tr = document.createElement('tr');
+    	var td = document.createElement('td');
+    	td.innerHTML = 'Joaquín Lavín';
+    	td.style.textAlign = 'right';
+    	td.style.paddingRight = '10px';
+    	tr.appendChild(td);
+    	for (var i = 0; i < pctLegend2.length; i++) {
+    		var td = document.createElement('td');
+    		td.style.fontSize = '0.8em';
+    		td.style.textAlign = 'left';
+    		var color = linearComibationHEX(linearComibationHEX(colores['blanco'],colores['azul-marino'],0.95),colores['azul-marino'], (1-1/8)-1/4*i);
+    		td.style.backgroundColor = color;
+    		td.style.color = constrastColor(color, 5);
+    		td.innerHTML = pctLegend2[i];
+    		td.width = '45px';
+    		td.height = '15px';
+    		tr.appendChild(td);
+    	}
+    	table2.appendChild(tr);
+    	var tr = document.createElement('tr');
+    	var td = document.createElement('td');
+    	td.innerHTML = 'Ignacio Briones';
+    	td.style.textAlign = 'right';
+    	td.style.paddingRight = '10px';
+    	tr.appendChild(td);
+    	for (var i = 0; i < pctLegend2.length; i++) {
+    		var td = document.createElement('td');
+    		td.style.fontSize = '0.8em';
+    		td.style.textAlign = 'left';
+    		var color = linearComibationHEX(linearComibationHEX(colores['blanco'],'#86BC25',0.95),'#86BC25', (1-1/8)-1/4*i);
+    		td.style.backgroundColor = color;
+    		td.style.color = constrastColor(color, 5);
+    		td.innerHTML = pctLegend2[i];
+    		td.width = '45px';
+    		td.height = '15px';
+    		tr.appendChild(td);
+    	}
+    	table2.appendChild(tr);
+    	var tr = document.createElement('tr');
+    	var td = document.createElement('td');
+    	td.innerHTML = 'Mario Desbordes';
+    	td.style.textAlign = 'right';
+    	td.style.paddingRight = '10px';
+    	tr.appendChild(td);
+    	for (var i = 0; i < pctLegend2.length; i++) {
+    		var td = document.createElement('td');
+    		td.style.fontSize = '0.8em';
+    		td.style.textAlign = 'left';
+    		var color = linearComibationHEX(linearComibationHEX(colores['blanco'],colores['celeste'],0.95),colores['celeste'], (1-1/8)-1/4*i);
+    		td.style.backgroundColor = color;
+    		td.style.color = constrastColor(color, 5);
+    		td.innerHTML = pctLegend2[i];
+    		td.width = '45px';
+    		td.height = '15px';
+    		tr.appendChild(td);
+    	}
+    	table2.appendChild(tr);
+    	legend2.appendChild(table2);
+    	legend2.style.display = 'block';
+    } 
 }
 
 
