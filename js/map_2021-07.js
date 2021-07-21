@@ -143,6 +143,27 @@ function mostrarParticipacionComunas() {
 	div.appendChild(span);
 	legend.appendChild(div);
 	legend.style.display = 'block';
+	if (screen.width>=992) {
+    	var pctLegend2 = ['0%', '10%', '20%', '30%', '40%', '50%'];
+    	var table2 = document.createElement('table');
+    	table2.style.borderCollapse = 'collapse';	
+    	var tr = document.createElement('tr');
+    	for (var i = 0; i < pctLegend2.length; i++) {
+    		var td = document.createElement('td');
+    		td.style.fontSize = '0.8em';
+    		td.style.textAlign = 'left';
+    		var color = linearComibationHEX(linearComibationHEX(colores['blanco'],colores['marron'],0.95),colores['marron'], (1-1/12)-1/6*i);
+    		td.style.backgroundColor = color;
+    		td.style.color = constrastColor(color, 10);
+    		td.innerHTML = pctLegend2[i];
+    		td.width = '45px';
+    		td.height = '15px';
+    		tr.appendChild(td);
+    	}
+    	table2.appendChild(tr);
+    	legend2.appendChild(table2);
+    	legend2.style.display = 'block';
+    } 
 };
 function mostrarParticipacionDistritos() {
 	clean();
@@ -171,6 +192,27 @@ function mostrarParticipacionDistritos() {
 	div.appendChild(span);
 	legend.appendChild(div);
 	legend.style.display = 'block';
+	if (screen.width>=992) {
+    	var pctLegend2 = ['0%', '10%', '20%', '30%', '40%', '50%'];
+    	var table2 = document.createElement('table');
+    	table2.style.borderCollapse = 'collapse';	
+    	var tr = document.createElement('tr');
+    	for (var i = 0; i < pctLegend2.length; i++) {
+    		var td = document.createElement('td');
+    		td.style.fontSize = '0.8em';
+    		td.style.textAlign = 'left';
+    		var color = linearComibationHEX(linearComibationHEX(colores['blanco'],colores['marron'],0.95),colores['marron'], (1-1/12)-1/6*i);
+    		td.style.backgroundColor = color;
+    		td.style.color = constrastColor(color, 10);
+    		td.innerHTML = pctLegend2[i];
+    		td.width = '45px';
+    		td.height = '15px';
+    		tr.appendChild(td);
+    	}
+    	table2.appendChild(tr);
+    	legend2.appendChild(table2);
+    	legend2.style.display = 'block';
+    } 
 };
 function mostrarParticipacionRegiones() {
 	clean();
@@ -199,6 +241,27 @@ function mostrarParticipacionRegiones() {
 	div.appendChild(span);
 	legend.appendChild(div);
 	legend.style.display = 'block';
+	if (screen.width>=992) {
+    	var pctLegend2 = ['0%', '10%', '20%', '30%', '40%', '50%'];
+    	var table2 = document.createElement('table');
+    	table2.style.borderCollapse = 'collapse';	
+    	var tr = document.createElement('tr');
+    	for (var i = 0; i < pctLegend2.length; i++) {
+    		var td = document.createElement('td');
+    		td.style.fontSize = '0.8em';
+    		td.style.textAlign = 'left';
+    		var color = linearComibationHEX(linearComibationHEX(colores['blanco'],colores['marron'],0.95),colores['marron'], (1-1/12)-1/6*i);
+    		td.style.backgroundColor = color;
+    		td.style.color = constrastColor(color, 10);
+    		td.innerHTML = pctLegend2[i];
+    		td.width = '45px';
+    		td.height = '15px';
+    		tr.appendChild(td);
+    	}
+    	table2.appendChild(tr);
+    	legend2.appendChild(table2);
+    	legend2.style.display = 'block';
+    } 
 };
 
 
@@ -234,6 +297,53 @@ function mostrarComparacionComunas() {
 	div.appendChild(span);
 	legend.appendChild(div);
     legend.style.display = 'block';
+    if (screen.width>=992) {
+    	var pctLegend2 = ['50%', '60%', '70%', '80%'];
+    	var table2 = document.createElement('table');
+    	table2.style.borderCollapse = 'collapse';	
+    	var tr = document.createElement('tr');
+    	var td = document.createElement('td');
+    	td.innerHTML = 'Chile Vamos';
+    	td.style.textAlign = 'right';
+    	td.style.paddingRight = '10px';
+    	tr.appendChild(td);
+    	for (var i = 0; i < pctLegend2.length; i++) {
+    		var td = document.createElement('td');
+    		td.style.fontSize = '0.8em';
+    		td.style.textAlign = 'left';
+    		var color = linearComibationHEX(colores['blanco'], colores['tab:blue'], 0.875-0.25*i);
+    		td.style.backgroundColor = color;
+    		td.style.color = constrastColor(color, 10);
+    		td.style.opacity = 0.9;
+    		td.innerHTML = pctLegend2[i];
+    		td.width = '45px';
+    		td.height = '15px';
+    		tr.appendChild(td);
+    	}
+    	table2.appendChild(tr);
+    	var tr = document.createElement('tr');
+    	var td = document.createElement('td');
+    	td.innerHTML = 'Apruebo Dignidad';
+    	td.style.paddingRight = '10px';
+    	td.style.textAlign = 'right';
+    	tr.appendChild(td);
+    	for (var i = 0; i < pctLegend2.length; i++) {
+    		var td = document.createElement('td');
+    		td.style.fontSize = '0.8em';
+    		td.style.textAlign = 'left';
+    		var color = linearComibationHEX(colores['blanco'], colores['tab:red'], 0.875-0.25*i);
+    		td.style.backgroundColor = color;
+    		td.style.color = constrastColor(color, 10);
+    		td.style.opacity = 0.9;
+    		td.innerHTML = pctLegend2[i];
+    		td.width = '45px';
+    		td.height = '15px';
+    		tr.appendChild(td);
+    	}
+    	table2.appendChild(tr);
+    	legend2.appendChild(table2);
+    	legend2.style.display = 'block';
+    } 
 }
 function mostrarComparacionDistritos() {
 	clean();
@@ -265,7 +375,54 @@ function mostrarComparacionDistritos() {
 	span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
 	div.appendChild(span);
 	legend.appendChild(div);
-    legend.style.display = 'block';
+    legend.style.display = 'block';    
+    if (screen.width>=992) {
+    	var pctLegend2 = ['50%', '60%', '70%', '80%'];
+    	var table2 = document.createElement('table');
+    	table2.style.borderCollapse = 'collapse';	
+    	var tr = document.createElement('tr');
+    	var td = document.createElement('td');
+    	td.innerHTML = 'Chile Vamos';
+    	td.style.textAlign = 'right';
+    	td.style.paddingRight = '10px';
+    	tr.appendChild(td);
+    	for (var i = 0; i < pctLegend2.length; i++) {
+    		var td = document.createElement('td');
+    		td.style.fontSize = '0.8em';
+    		td.style.textAlign = 'left';
+    		var color = linearComibationHEX(colores['blanco'], colores['tab:blue'], 0.875-0.25*i);
+    		td.style.backgroundColor = color;
+    		td.style.color = constrastColor(color, 10);
+    		td.style.opacity = 0.9;
+    		td.innerHTML = pctLegend2[i];
+    		td.width = '45px';
+    		td.height = '15px';
+    		tr.appendChild(td);
+    	}
+    	table2.appendChild(tr);
+    	var tr = document.createElement('tr');
+    	var td = document.createElement('td');
+    	td.innerHTML = 'Apruebo Dignidad';
+    	td.style.paddingRight = '10px';
+    	td.style.textAlign = 'right';
+    	tr.appendChild(td);
+    	for (var i = 0; i < pctLegend2.length; i++) {
+    		var td = document.createElement('td');
+    		td.style.fontSize = '0.8em';
+    		td.style.textAlign = 'left';
+    		var color = linearComibationHEX(colores['blanco'], colores['tab:red'], 0.875-0.25*i);
+    		td.style.backgroundColor = color;
+    		td.style.color = constrastColor(color, 10);
+    		td.style.opacity = 0.9;
+    		td.innerHTML = pctLegend2[i];
+    		td.width = '45px';
+    		td.height = '15px';
+    		tr.appendChild(td);
+    	}
+    	table2.appendChild(tr);
+    	legend2.appendChild(table2);
+    	legend2.style.display = 'block';
+    } 
 }
 function mostrarComparacionRegiones() {
 	clean();
@@ -299,6 +456,53 @@ function mostrarComparacionRegiones() {
 	legend.appendChild(div);
 
     legend.style.display = 'block';
+    if (screen.width>=992) {
+    	var pctLegend2 = ['50%', '60%', '70%', '80%'];
+    	var table2 = document.createElement('table');
+    	table2.style.borderCollapse = 'collapse';	
+    	var tr = document.createElement('tr');
+    	var td = document.createElement('td');
+    	td.innerHTML = 'Chile Vamos';
+    	td.style.textAlign = 'right';
+    	td.style.paddingRight = '10px';
+    	tr.appendChild(td);
+    	for (var i = 0; i < pctLegend2.length; i++) {
+    		var td = document.createElement('td');
+    		td.style.fontSize = '0.8em';
+    		td.style.textAlign = 'left';
+    		var color = linearComibationHEX(colores['blanco'], colores['tab:blue'], 0.875-0.25*i);
+    		td.style.backgroundColor = color;
+    		td.style.color = constrastColor(color, 10);
+    		td.style.opacity = 0.9;
+    		td.innerHTML = pctLegend2[i];
+    		td.width = '45px';
+    		td.height = '15px';
+    		tr.appendChild(td);
+    	}
+    	table2.appendChild(tr);
+    	var tr = document.createElement('tr');
+    	var td = document.createElement('td');
+    	td.innerHTML = 'Apruebo Dignidad';
+    	td.style.paddingRight = '10px';
+    	td.style.textAlign = 'right';
+    	tr.appendChild(td);
+    	for (var i = 0; i < pctLegend2.length; i++) {
+    		var td = document.createElement('td');
+    		td.style.fontSize = '0.8em';
+    		td.style.textAlign = 'left';
+    		var color = linearComibationHEX(colores['blanco'], colores['tab:red'], 0.875-0.25*i);
+    		td.style.backgroundColor = color;
+    		td.style.color = constrastColor(color, 10);
+    		td.style.opacity = 0.9;
+    		td.innerHTML = pctLegend2[i];
+    		td.width = '45px';
+    		td.height = '15px';
+    		tr.appendChild(td);
+    	}
+    	table2.appendChild(tr);
+    	legend2.appendChild(table2);
+    	legend2.style.display = 'block';
+    } 
 }
 
 function mostrarAprueboDignidadComunas() {
@@ -329,6 +533,53 @@ function mostrarAprueboDignidadComunas() {
 	legend.appendChild(div);
 
     legend.style.display = 'block';
+    if (screen.width>=992) {
+    	var pctLegend2 = ['50%', '60%', '70%', '80%'];
+    	var table2 = document.createElement('table');
+    	table2.style.borderCollapse = 'collapse';	
+    	var tr = document.createElement('tr');
+    	var td = document.createElement('td');
+    	td.innerHTML = 'Gabriel Boric';
+    	td.style.textAlign = 'right';
+    	td.style.paddingRight = '10px';
+    	tr.appendChild(td);
+    	for (var i = 0; i < pctLegend2.length; i++) {
+    		var td = document.createElement('td');
+    		td.style.fontSize = '0.8em';
+    		td.style.textAlign = 'left';
+    		var color = linearComibationHEX(colores['blanco'], colores['verde-agua'], 0.875-0.25*i);
+    		td.style.backgroundColor = color;
+    		td.style.color = constrastColor(color, 5);
+    		td.style.opacity = 0.9;
+    		td.innerHTML = pctLegend2[i];
+    		td.width = '45px';
+    		td.height = '15px';
+    		tr.appendChild(td);
+    	}
+    	table2.appendChild(tr);
+    	var tr = document.createElement('tr');
+    	var td = document.createElement('td');
+    	td.innerHTML = 'Daniel Jadue';
+    	td.style.paddingRight = '10px';
+    	td.style.textAlign = 'right';
+    	tr.appendChild(td);
+    	for (var i = 0; i < pctLegend2.length; i++) {
+    		var td = document.createElement('td');
+    		td.style.fontSize = '0.8em';
+    		td.style.textAlign = 'left';
+    		td.style.opacity = 0.9;
+    		var color = linearComibationHEX(colores['blanco'], colores['rojo-oscuro'], 0.875-0.25*i);
+    		td.style.backgroundColor = color;
+    		td.style.color = constrastColor(color, 5);
+    		td.innerHTML = pctLegend2[i];
+    		td.width = '45px';
+    		td.height = '15px';
+    		tr.appendChild(td);
+    	}
+    	table2.appendChild(tr);
+    	legend2.appendChild(table2);
+    	legend2.style.display = 'block';
+    } 
 }
 function mostrarAprueboDignidadDistritos() {
 	clean();
@@ -358,6 +609,53 @@ function mostrarAprueboDignidadDistritos() {
 	legend.appendChild(div);
 
     legend.style.display = 'block';
+    if (screen.width>=992) {
+    	var pctLegend2 = ['50%', '60%', '70%', '80%'];
+    	var table2 = document.createElement('table');
+    	table2.style.borderCollapse = 'collapse';	
+    	var tr = document.createElement('tr');
+    	var td = document.createElement('td');
+    	td.innerHTML = 'Gabriel Boric';
+    	td.style.textAlign = 'right';
+    	td.style.paddingRight = '10px';
+    	tr.appendChild(td);
+    	for (var i = 0; i < pctLegend2.length; i++) {
+    		var td = document.createElement('td');
+    		td.style.fontSize = '0.8em';
+    		td.style.textAlign = 'left';
+    		var color = linearComibationHEX(colores['blanco'], colores['verde-agua'], 0.875-0.25*i);
+    		td.style.backgroundColor = color;
+    		td.style.color = constrastColor(color, 5);
+    		td.style.opacity = 0.9;
+    		td.innerHTML = pctLegend2[i];
+    		td.width = '45px';
+    		td.height = '15px';
+    		tr.appendChild(td);
+    	}
+    	table2.appendChild(tr);
+    	var tr = document.createElement('tr');
+    	var td = document.createElement('td');
+    	td.innerHTML = 'Daniel Jadue';
+    	td.style.paddingRight = '10px';
+    	td.style.textAlign = 'right';
+    	tr.appendChild(td);
+    	for (var i = 0; i < pctLegend2.length; i++) {
+    		var td = document.createElement('td');
+    		td.style.fontSize = '0.8em';
+    		td.style.textAlign = 'left';
+    		td.style.opacity = 0.9;
+    		var color = linearComibationHEX(colores['blanco'], colores['rojo-oscuro'], 0.875-0.25*i);
+    		td.style.backgroundColor = color;
+    		td.style.color = constrastColor(color, 5);
+    		td.innerHTML = pctLegend2[i];
+    		td.width = '45px';
+    		td.height = '15px';
+    		tr.appendChild(td);
+    	}
+    	table2.appendChild(tr);
+    	legend2.appendChild(table2);
+    	legend2.style.display = 'block';
+    } 
 }
 function mostrarAprueboDignidadRegiones() {
 	clean();
@@ -387,6 +685,53 @@ function mostrarAprueboDignidadRegiones() {
 	legend.appendChild(div);
 
     legend.style.display = 'block';
+    if (screen.width>=992) {
+    	var pctLegend2 = ['50%', '60%', '70%', '80%'];
+    	var table2 = document.createElement('table');
+    	table2.style.borderCollapse = 'collapse';	
+    	var tr = document.createElement('tr');
+    	var td = document.createElement('td');
+    	td.innerHTML = 'Gabriel Boric';
+    	td.style.textAlign = 'right';
+    	td.style.paddingRight = '10px';
+    	tr.appendChild(td);
+    	for (var i = 0; i < pctLegend2.length; i++) {
+    		var td = document.createElement('td');
+    		td.style.fontSize = '0.8em';
+    		td.style.textAlign = 'left';
+    		var color = linearComibationHEX(colores['blanco'], colores['verde-agua'], 0.875-0.25*i);
+    		td.style.backgroundColor = color;
+    		td.style.color = constrastColor(color, 5);
+    		td.style.opacity = 0.9;
+    		td.innerHTML = pctLegend2[i];
+    		td.width = '45px';
+    		td.height = '15px';
+    		tr.appendChild(td);
+    	}
+    	table2.appendChild(tr);
+    	var tr = document.createElement('tr');
+    	var td = document.createElement('td');
+    	td.innerHTML = 'Daniel Jadue';
+    	td.style.paddingRight = '10px';
+    	td.style.textAlign = 'right';
+    	tr.appendChild(td);
+    	for (var i = 0; i < pctLegend2.length; i++) {
+    		var td = document.createElement('td');
+    		td.style.fontSize = '0.8em';
+    		td.style.textAlign = 'left';
+    		td.style.opacity = 0.9;
+    		var color = linearComibationHEX(colores['blanco'], colores['rojo-oscuro'], 0.875-0.25*i);
+    		td.style.backgroundColor = color;
+    		td.style.color = constrastColor(color, 5);
+    		td.innerHTML = pctLegend2[i];
+    		td.width = '45px';
+    		td.height = '15px';
+    		tr.appendChild(td);
+    	}
+    	table2.appendChild(tr);
+    	legend2.appendChild(table2);
+    	legend2.style.display = 'block';
+    } 
 }
 
 
@@ -420,6 +765,89 @@ function mostrarChileVamosComunas() {
 	legend.appendChild(div);
 
     legend.style.display = 'block';
+	if (screen.width>=992) {
+    	var pctLegend2 = ['20%', '30%', '40%', '50%'];
+    	var table2 = document.createElement('table');
+    	table2.style.borderCollapse = 'collapse';	
+    	var tr = document.createElement('tr');
+    	var td = document.createElement('td');
+    	td.innerHTML = 'Sebastián Sichel';
+    	td.style.textAlign = 'right';
+    	td.style.paddingRight = '10px';
+    	tr.appendChild(td);
+    	for (var i = 0; i < pctLegend2.length; i++) {
+    		var td = document.createElement('td');
+    		td.style.fontSize = '0.8em';
+    		td.style.textAlign = 'left';
+    		var color = linearComibationHEX(linearComibationHEX(colores['blanco'],colores['amarillo'],0.95),colores['amarillo'], (1-1/8)-1/4*i);
+    		td.style.backgroundColor = color
+    		td.style.color = constrastColor(color, 5);
+    		td.innerHTML = pctLegend2[i];
+    		td.width = '45px';
+    		td.height = '15px';
+    		tr.appendChild(td);
+    	}
+    	table2.appendChild(tr);	
+    	var tr = document.createElement('tr');
+    	var td = document.createElement('td');
+    	td.innerHTML = 'Joaquín Lavín';
+    	td.style.textAlign = 'right';
+    	td.style.paddingRight = '10px';
+    	tr.appendChild(td);
+    	for (var i = 0; i < pctLegend2.length; i++) {
+    		var td = document.createElement('td');
+    		td.style.fontSize = '0.8em';
+    		td.style.textAlign = 'left';
+    		var color = linearComibationHEX(linearComibationHEX(colores['blanco'],colores['azul-marino'],0.95),colores['azul-marino'], (1-1/8)-1/4*i);
+    		td.style.backgroundColor = color;
+    		td.style.color = constrastColor(color, 5);
+    		td.innerHTML = pctLegend2[i];
+    		td.width = '45px';
+    		td.height = '15px';
+    		tr.appendChild(td);
+    	}
+    	table2.appendChild(tr);
+    	var tr = document.createElement('tr');
+    	var td = document.createElement('td');
+    	td.innerHTML = 'Ignacio Briones';
+    	td.style.textAlign = 'right';
+    	td.style.paddingRight = '10px';
+    	tr.appendChild(td);
+    	for (var i = 0; i < pctLegend2.length; i++) {
+    		var td = document.createElement('td');
+    		td.style.fontSize = '0.8em';
+    		td.style.textAlign = 'left';
+    		var color = linearComibationHEX(linearComibationHEX(colores['blanco'],'#86BC25',0.95),'#86BC25', (1-1/8)-1/4*i);
+    		td.style.backgroundColor = color;
+    		td.style.color = constrastColor(color, 5);
+    		td.innerHTML = pctLegend2[i];
+    		td.width = '45px';
+    		td.height = '15px';
+    		tr.appendChild(td);
+    	}
+    	table2.appendChild(tr);
+    	var tr = document.createElement('tr');
+    	var td = document.createElement('td');
+    	td.innerHTML = 'Mario Desbordes';
+    	td.style.textAlign = 'right';
+    	td.style.paddingRight = '10px';
+    	tr.appendChild(td);
+    	for (var i = 0; i < pctLegend2.length; i++) {
+    		var td = document.createElement('td');
+    		td.style.fontSize = '0.8em';
+    		td.style.textAlign = 'left';
+    		var color = linearComibationHEX(linearComibationHEX(colores['blanco'],colores['celeste'],0.95),colores['celeste'], (1-1/8)-1/4*i);
+    		td.style.backgroundColor = color;
+    		td.style.color = constrastColor(color, 5);
+    		td.innerHTML = pctLegend2[i];
+    		td.width = '45px';
+    		td.height = '15px';
+    		tr.appendChild(td);
+    	}
+    	table2.appendChild(tr);
+    	legend2.appendChild(table2);
+    	legend2.style.display = 'block';
+    } 
 }
 function mostrarChileVamosDistritos() {
 	clean();

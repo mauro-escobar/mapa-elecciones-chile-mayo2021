@@ -527,7 +527,7 @@ function showSearch(name) {
 }
 
 
-function constrastColor(hex) {
+function constrastColor(hex, factor=20) {
     if (hex.indexOf('#') === 0) {
         hex = hex.slice(1);
     }
@@ -546,6 +546,54 @@ function constrastColor(hex) {
 
     var contrastRatio = (L1 + 0.05) / 0.05;
 
-    if (contrastRatio > 20) return '#000000';
+    if (contrastRatio > factor) return '#000000';
     else return '#FFFFFF';
+}
+
+function linearComibationHEX(hex1, hex2, factor) {
+    if (hex1.indexOf('#') === 0) {
+        hex1 = hex1.slice(1);
+    }
+    // convert 3-digit hex1 to 6-digits.
+    if (hex1.length === 3) {
+        hex1 = hex1[0] + hex1[0] + hex1[1] + hex1[1] + hex1[2] + hex1[2];
+    }
+    if (hex1.length !== 6) {
+        throw new Error('Invalid HEX color.');
+    }
+    // obtain rgb
+    var r1 = parseInt(hex1.slice(0, 2), 16),
+        g1 = parseInt(hex1.slice(2, 4), 16),
+        b1 = parseInt(hex1.slice(4, 6), 16);
+
+
+    if (hex2.indexOf('#') === 0) {
+        hex2 = hex2.slice(1);
+    }
+    // convert 3-digit hex2 to 6-digits.
+    if (hex2.length === 3) {
+        hex2 = hex2[0] + hex2[0] + hex2[1] + hex2[1] + hex2[2] + hex2[2];
+    }
+    if (hex2.length !== 6) {
+        throw new Error('Invalid HEX color.');
+    }
+    // obtain rgb
+    var r2 = parseInt(hex2.slice(0, 2), 16),
+        g2 = parseInt(hex2.slice(2, 4), 16),
+        b2 = parseInt(hex2.slice(4, 6), 16);
+
+    var color = rgbToHex(Math.round(r1*factor+r2*(1.-factor)),
+                         Math.round(g1*factor+g2*(1.-factor)),
+                         Math.round(b1*factor+b2*(1.-factor)));
+
+    return color;
+}
+
+function componentToHex(c) {
+  var hex = c.toString(16);
+  return hex.length == 1 ? "0" + hex : hex;
+}
+
+function rgbToHex(r, g, b) {
+  return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
 }

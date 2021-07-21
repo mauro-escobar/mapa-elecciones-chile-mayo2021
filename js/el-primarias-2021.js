@@ -33,7 +33,7 @@ function addLayerParticipacion(map) {
         'source-layer': 'primarias2021-comunas-clgyz6',
         'filter': ['has', 'partic'],
         'paint': {
-            'fill-color': '#964B00',
+            'fill-color': colores['marron'],
             'fill-opacity': [
                 'interpolate',
                 ['linear'],
@@ -51,7 +51,7 @@ function addLayerParticipacion(map) {
         'source-layer': 'primarias2021-distritos-2o8kqn',
         'filter': ['has', 'partic'],
         'paint': {
-            'fill-color': '#964B00',
+            'fill-color': colores['marron'],
             'fill-opacity': [
                 'interpolate',
                 ['linear'],
@@ -69,7 +69,7 @@ function addLayerParticipacion(map) {
         'source-layer': 'primarias2021-regiones-2642ju',
         'filter': ['has', 'partic'],
         'paint': {
-            'fill-color': '#964B00',
+            'fill-color': colores['marron'],
             'fill-opacity': [
                 'interpolate',
                 ['linear'],
@@ -92,7 +92,7 @@ function addLayerParticipacion(map) {
                 ['linear'],
                 ['get', 'partic'],
                 0, '#ffffff',
-                60, '#964B00',
+                60, colores['marron'],
             ],
             'circle-radius': [
                 'interpolate',
