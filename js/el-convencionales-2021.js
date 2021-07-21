@@ -1005,9 +1005,8 @@ function mostrarConvencionales() {
     	"MARCOS PATRICIO BARRAZA GOMEZ (PCCH)": ["Ética", colores['rojo-oscuro']],
     	"GLORIA DEL TRANSITO ALVARADO JORQUERA (IND)": ["Presupuesto", colores['rojo-oscuro']],
     	"CESAR VALENZUELA MAASS (PS)": ["Presupuesto", colores['rojo-oscuro']],
-    	"DANIEL ALEJANDRO BRAVO SILVA (IND)": ["Reglamento", colores['rojo-oscuro']],
+    	"DANIEL ALEJANDRO BRAVO SILVA (IND)": ["Reglamento", colores['negro']],
     	"AMAYA PAULINA ALVEZ MARIN (RD)": ["Reglamento", colores['rojo-oscuro']]
-			
     };
     var grupos = {
     	"Pueblos Originarios": [
