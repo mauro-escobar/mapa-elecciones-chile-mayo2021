@@ -179,7 +179,6 @@ function addLayerComunasOutline(map) {
 };
 
 function addLayerComunasFill(map) {
-    
     map.addLayer({
         'id': 'comunas',
         'type': 'fill',
@@ -225,7 +224,20 @@ function addLayerDistritosOutline(map) {
     }, 'zona-indeterminada');
     map.setLayoutProperty('distritos-outline', 'visibility', 'none');
 };
-
+function addLayerDistritosFillGray(map) {
+    map.addLayer({
+        'id': 'distritos-gris',
+        'type': 'fill',
+        'source': 'distritos-data',
+        'source-layer': 'chile-distritos-9h2qej',
+        'filter': ['has', 'DISTRITO'],
+        'paint': {
+            'fill-color': colores['gris'],
+            'fill-opacity': 0.2
+        },
+    }, 'zona-indeterminada');
+    map.setLayoutProperty('distritos-gris', 'visibility', 'none'); 
+}
 function addLayerDistritosFill(map) {
     map.addLayer({
         'id': 'distritos',
