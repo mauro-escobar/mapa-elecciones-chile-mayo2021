@@ -80,6 +80,7 @@ function clean() {
 	map.setLayoutProperty('chile-vamos-regiones', 'visibility', 'none');
     map.setLayoutProperty('chile-vamos-exterior', 'visibility', 'none'); 
     map.setLayoutProperty('regiones-outline', 'visibility', 'none');
+	map.setLayoutProperty('comunas', 'visibility', 'none');
 
 	document.getElementById('a-participacion').style.color = 'gray';
 	document.getElementById('a-comparacion').style.color = 'gray';
@@ -774,6 +775,7 @@ function mostrarAprueboDignidadComunas() {
 		map.setLayoutProperty('apruebo-dignidad-comunas-center', 'visibility', 'visible');
     	map.setLayoutProperty('apruebo-dignidad-exterior-center', 'visibility', 'visible');	
 	}
+	map.setLayoutProperty('comunas', 'visibility', 'visible');
     map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
 	document.getElementById('a-apruebo-dignidad').style.color = 'black';
 
