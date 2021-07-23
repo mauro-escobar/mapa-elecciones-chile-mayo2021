@@ -23,6 +23,12 @@ function addSourcePrimarias(map) {
             'url': 'mapbox://mauro-escobar.d19ihwzl',
         }
     );
+    map.addSource('primarias-comunas-center-data',
+        {
+            'type': 'vector',
+            'url': 'mapbox://mauro-escobar.4ghce6st',
+        }
+    );
 };
 
 function addLayerParticipacion(map) {
@@ -44,6 +50,22 @@ function addLayerParticipacion(map) {
         }
     }, 'regiones-outline');
     map.setLayoutProperty('participacion-comunas', 'visibility', 'none'); 
+    map.addLayer({
+        'id': 'participacion-comunas-center',
+        'source': 'primarias-comunas-center-data',
+        'source-layer': 'primarias2021-comunas-center-81eb9z',
+        'type': 'circle',
+        'filter': ['has', 'partic'],
+        'paint': {
+            'circle-color': colores['marron'],
+            'circle-opacity': 0.35,
+            'circle-stroke-opacity': 1,
+            'circle-radius': ['*', 0.1, ['^', ['get', 'vot_tot'], 0.55]],
+            'circle-stroke-color': colores['marron'],
+            'circle-stroke-width': 0.5
+        },
+    }, 'comunas-outline');
+    map.setLayoutProperty('participacion-comunas-center', 'visibility', 'none');
     map.addLayer({
         'id': 'participacion-distritos',
         'type': 'fill',
@@ -117,6 +139,22 @@ function addLayerParticipacion(map) {
             'text-rotate': 90-bearing
         }
     });
+    map.addLayer({
+        'id': 'participacion-exterior-center',
+        'source': 'primarias-exterior-data',
+        'source-layer': 'primarias2021-exterior-3nyvho',
+        'type': 'circle',
+        'filter': ['has', 'partic'],
+        'paint': {
+            'circle-color': colores['marron'],
+            'circle-opacity': 0.35,
+            'circle-stroke-opacity': 1,
+            'circle-radius': ['*', 0.1, ['^', ['get', 'vot_tot'], 0.55]],
+            'circle-stroke-color': colores['marron'],
+            'circle-stroke-width': 0.5
+        },
+    }, 'regiones-outline');
+    map.setLayoutProperty('participacion-exterior-center', 'visibility', 'none');
 };
 
 function addLayerComparacion(map) {
@@ -139,6 +177,32 @@ function addLayerComparacion(map) {
         },
     }, 'regiones-outline');
     map.setLayoutProperty('comparacion-comunas', 'visibility', 'none');
+    map.addLayer({
+        'id': 'comparacion-comunas-center',
+        'source': 'primarias-comunas-center-data',
+        'source-layer': 'primarias2021-comunas-center-81eb9z',
+        'type': 'circle',
+        'filter': ['has', 'partic'],
+        'paint': {
+            'circle-color': [
+                'case',
+                    ['<', ['get', 'pct_AD'], ['get', 'pct_CV']], colores['tab:blue'],
+                    ['>', ['get', 'pct_AD'], ['get', 'pct_CV']], colores['tab:red'],
+                    colores['blanco']
+            ],
+            'circle-opacity': 0.35,
+            'circle-radius': ['*', 0.1, ['^', ['abs', ['-', ['get', 'vot_AD'], ['get', 'vot_CV']]], 0.55]],
+            'circle-stroke-color': [
+                'case',
+                    ['<', ['get', 'pct_AD'], ['get', 'pct_CV']], colores['tab:blue'],
+                    ['>', ['get', 'pct_AD'], ['get', 'pct_CV']], colores['tab:red'],
+                    colores['blanco']
+            ],
+            'circle-stroke-opacity': 1,
+            'circle-stroke-width': 0.5
+        },
+    }, 'comunas-outline');
+    map.setLayoutProperty('comparacion-comunas-center', 'visibility', 'none');
     map.addLayer({
         'id': 'comparacion-distritos',
         'type': 'fill',
@@ -208,6 +272,32 @@ function addLayerComparacion(map) {
         },
     }, 'regiones-outline');
     map.setLayoutProperty('comparacion-exterior', 'visibility', 'none');
+    map.addLayer({
+        'id': 'comparacion-exterior-center',
+        'source': 'primarias-exterior-data',
+        'source-layer': 'primarias2021-exterior-3nyvho',
+        'type': 'circle',
+        'filter': ['has', 'partic'],
+        'paint': {
+            'circle-color': [
+                'case',
+                    ['<', ['get', 'pct_AD'], ['get', 'pct_CV']], colores['tab:blue'],
+                    ['>', ['get', 'pct_AD'], ['get', 'pct_CV']], colores['tab:red'],
+                    colores['blanco']
+            ],
+            'circle-opacity': 0.35,
+            'circle-radius': ['*', 0.1, ['^', ['abs', ['-', ['get', 'vot_AD'], ['get', 'vot_CV']]], 0.55]],
+            'circle-stroke-color': [
+                'case',
+                    ['<', ['get', 'pct_AD'], ['get', 'pct_CV']], colores['tab:blue'],
+                    ['>', ['get', 'pct_AD'], ['get', 'pct_CV']], colores['tab:red'],
+                    colores['blanco']
+            ],
+            'circle-stroke-opacity': 1,
+            'circle-stroke-width': 0.5
+        },
+    }, 'regiones-outline');
+    map.setLayoutProperty('comparacion-exterior-center', 'visibility', 'none');
 };
 
 function addLayerChileVamos(map) {
@@ -372,6 +462,32 @@ function addLayerAprueboDignidad(map) {
     }, 'regiones-outline');
     map.setLayoutProperty('apruebo-dignidad-comunas', 'visibility', 'none');
     map.addLayer({
+        'id': 'apruebo-dignidad-comunas-center',
+        'source': 'primarias-comunas-center-data',
+        'source-layer': 'primarias2021-comunas-center-81eb9z',
+        'type': 'circle',
+        'filter': ['has', 'partic'],
+        'paint': {
+            'circle-color': [
+                'case',
+                    ['<', ['get', 'pct_Boric'], ['get', 'pct_Jadue']], colores['rojo-oscuro'],
+                    ['>', ['get', 'pct_Boric'], ['get', 'pct_Jadue']], colores['verde-agua'],
+                    colores['blanco']
+            ],
+            'circle-opacity': 0.35,
+            'circle-stroke-opacity': 1,
+            'circle-radius': ['*', 0.1, ['^', ['abs', ['-', ['get', 'vot_Boric'], ['get', 'vot_Jadue']]], 0.55]],
+            'circle-stroke-color': [
+                'case',
+                    ['<', ['get', 'pct_Boric'], ['get', 'pct_Jadue']], colores['rojo-oscuro'],
+                    ['>', ['get', 'pct_Boric'], ['get', 'pct_Jadue']], colores['verde-agua'],
+                    colores['blanco']
+            ],
+            'circle-stroke-width': 0.5
+        },
+    }, 'comunas-outline');
+    map.setLayoutProperty('apruebo-dignidad-comunas-center', 'visibility', 'none');
+    map.addLayer({
         'id': 'apruebo-dignidad-distritos',
         'type': 'fill',
         'source': 'primarias-distritos-data',
@@ -448,6 +564,32 @@ function addLayerAprueboDignidad(map) {
         }
     });
     map.setLayoutProperty('apruebo-dignidad-exterior', 'visibility', 'none'); 
+    map.addLayer({
+        'id': 'apruebo-dignidad-exterior-center',
+        'source': 'primarias-exterior-data',
+        'source-layer': 'primarias2021-exterior-3nyvho',
+        'type': 'circle',
+        'filter': ['has', 'partic'],
+        'paint': {
+            'circle-color': [
+                'case',
+                    ['<', ['get', 'pct_Boric'], ['get', 'pct_Jadue']], colores['rojo-oscuro'],
+                    ['>', ['get', 'pct_Boric'], ['get', 'pct_Jadue']], colores['verde-agua'],
+                    colores['blanco']
+            ],
+            'circle-opacity': 0.35,
+            'circle-stroke-opacity': 1,
+            'circle-radius': ['*', 0.1, ['^', ['abs', ['-', ['get', 'vot_Boric'], ['get', 'vot_Jadue']]], 0.55]],
+            'circle-stroke-color': [
+                'case',
+                    ['<', ['get', 'pct_Boric'], ['get', 'pct_Jadue']], colores['rojo-oscuro'],
+                    ['>', ['get', 'pct_Boric'], ['get', 'pct_Jadue']], colores['verde-agua'],
+                    colores['blanco']
+            ],
+            'circle-stroke-width': 0.5
+        },
+    }, 'regiones-outline');
+    map.setLayoutProperty('apruebo-dignidad-exterior-center', 'visibility', 'none');
 };
 
 function popParticipacion(map) {
@@ -469,6 +611,27 @@ function popParticipacion(map) {
             .addTo(map);
     });
     map.on('mouseleave', 'participacion-comunas', function () {
+        map.getCanvas().style.cursor = '';
+        popup.remove();
+    });
+    map.on('mousemove', 'participacion-comunas-center', function (e) {
+        map.getCanvas().style.cursor = 'pointer';
+        var comuna = e.features[0].properties.NOM_COM;
+        var distrito = e.features[0].properties.DISTRITO;
+        var region = e.features[0].properties.REGION;
+        var part = e.features[0].properties.partic;
+        var totel = e.features[0].properties.tot_el;
+        var vot = e.features[0].properties.vot_tot;
+        popup.setLngLat(e.lngLat)
+            .setHTML(
+                '<h4><span style="font-weight:bold">'+comuna+'</span> (Distrito '+distrito+')<br>'+region+'</h4>'+
+                '<table><tr><td>Participación:</td><td style="text-align:right;padding-left:20px">'+part+'%</td></tr>'+
+                '<tr><td>Total Electores:</td><td style="text-align:right;padding-left:20px">'+totel+'</td></tr>'+
+                '<tr><td>Votantes:</td><td style="text-align:right;padding-left:20px">'+vot+'</td></tr></table>'            
+                )
+            .addTo(map);
+    });
+    map.on('mouseleave', 'participacion-comunas-center', function () {
         map.getCanvas().style.cursor = '';
         popup.remove();
     });
@@ -530,9 +693,32 @@ function popParticipacion(map) {
         map.getCanvas().style.cursor = '';
         popup.remove();
     });
+    map.on('mousemove', 'participacion-exterior-center', function (e) {
+        map.getCanvas().style.cursor = 'pointer';
+        var pais = e.features[0].properties.Pais;
+        var part = e.features[0].properties.partic;
+        var totel = e.features[0].properties.tot_el;
+        var vot = e.features[0].properties.vot_tot;
+        popup.setLngLat(e.lngLat)
+            .setHTML(
+                '<h4><span style="font-weight:bold">'+pais+'</span></h4>'+
+                '<table><tr><td>Participación:</td><td style="text-align:right;padding-left:20px">'+part+'%</td></tr>'+
+                '<tr><td>Total Electores:</td><td style="text-align:right;padding-left:20px">'+totel+'</td></tr>'+
+                '<tr><td>Votantes:</td><td style="text-align:right;padding-left:20px">'+vot+'</td></tr></table>'            
+                )
+            .addTo(map);
+    });
+    map.on('mouseleave', 'participacion-exterior-center', function () {
+        map.getCanvas().style.cursor = '';
+        popup.remove();
+    });
 };
 
 function popComparacion(map) {
+    map.on('click', 'comunas', function (e) {
+        console.log(e.lngLat.wrap());
+    });
+
     map.on('mousemove', 'comparacion-comunas', function (e) {
         map.getCanvas().style.cursor = 'pointer';
         var comuna = e.features[0].properties.NOM_COM;
@@ -558,6 +744,34 @@ function popComparacion(map) {
             .addTo(map);
     });
     map.on('mouseleave', 'comparacion-comunas', function () {
+        map.getCanvas().style.cursor = '';
+        popup.remove();
+    });
+    map.on('mousemove', 'comparacion-comunas-center', function (e) {
+        map.getCanvas().style.cursor = 'pointer';
+        var comuna = e.features[0].properties.NOM_COM;
+        var distrito = e.features[0].properties.DISTRITO;
+        var region = e.features[0].properties.REGION;
+        var vot_CV = e.features[0].properties.vot_CV;
+        var vot_AD = e.features[0].properties.vot_AD;
+        var pct_CV = e.features[0].properties.pct_CV;
+        var pct_AD = e.features[0].properties.pct_AD;
+        popup.setLngLat(e.lngLat)
+            .setHTML(
+                '<h4><span style="font-weight:bold">'+comuna+'</span> (Distrito '+distrito+')<br>'+region+'</h4>'+
+                '<table style="border-collapse:collapse">'+
+                '<tr><td style="font-weight:bold">Lista</td><td style="text-align:right;font-weight:bold">Votos</td><td style="text-align:right;font-weight:bold">%</td></tr>'+
+                '<tr><td><span class="legend-key" style="background-color:'+colores['tab:blue']+'"></span>Chile Vamos</td><td style="text-align:right;padding-left:20px">'+vot_CV+'</td><td style="text-align:right;padding-left:20px">'+pct_CV+'%</td></tr>'+
+                '<tr><td><span class="legend-key" style="background-color:'+colores['tab:red']+'"></span>Apruebo Dignidad</td><td style="text-align:right;padding-left:20px">'+vot_AD+'</td><td style="text-align:right;padding-left:20px">'+pct_AD+'%</td></tr>'+
+                '<tr style="border-top:solid;border-width:1px"><td style="font-style:italic">Votos válidos</td><td style="text-align:right;padding-left:20px">'+e.features[0].properties.vot_val+'</td></tr>'+
+                '<tr><td style="font-style:italic">Votos nulos</td><td style="text-align:right;padding-left:20px">'+e.features[0].properties.vot_nul+'</td></tr>'+
+                '<tr><td style="font-style:italic">Votos blancos</td><td style="text-align:right;padding-left:20px">'+e.features[0].properties.vot_blc+'</td></tr>'+
+                '<tr><td style="font-style:italic">Total votación</td><td style="text-align:right;padding-left:20px">'+e.features[0].properties.vot_tot+'</td></tr>'+
+                '</table>'            
+                )
+            .addTo(map);
+    });
+    map.on('mouseleave', 'comparacion-comunas-center', function () {
         map.getCanvas().style.cursor = '';
         popup.remove();
     });
@@ -640,6 +854,32 @@ function popComparacion(map) {
         map.getCanvas().style.cursor = '';
         popup.remove();
     });
+    map.on('mousemove', 'comparacion-exterior-center', function (e) {
+        map.getCanvas().style.cursor = 'pointer';
+        var pais = e.features[0].properties.Pais;
+        var vot_CV = e.features[0].properties.vot_CV;
+        var vot_AD = e.features[0].properties.vot_AD;
+        var pct_CV = e.features[0].properties.pct_CV;
+        var pct_AD = e.features[0].properties.pct_AD;
+        popup.setLngLat(e.lngLat)
+            .setHTML(
+                '<h4><span style="font-weight:bold">'+pais+'</span></h4>'+
+                '<table style="border-collapse:collapse">'+
+                '<tr><td style="font-weight:bold">Lista</td><td style="text-align:right;font-weight:bold">Votos</td><td style="text-align:right;font-weight:bold">%</td></tr>'+
+                '<tr><td><span class="legend-key" style="background-color:'+colores['tab:blue']+'"></span>Chile Vamos</td><td style="text-align:right;padding-left:20px">'+vot_CV+'</td><td style="text-align:right;padding-left:20px">'+pct_CV+'%</td></tr>'+
+                '<tr><td><span class="legend-key" style="background-color:'+colores['tab:red']+'"></span>Apruebo Dignidad</td><td style="text-align:right;padding-left:20px">'+vot_AD+'</td><td style="text-align:right;padding-left:20px">'+pct_AD+'%</td></tr>'+
+                '<tr style="border-top:solid;border-width:1px"><td style="font-style:italic">Votos válidos</td><td style="text-align:right;padding-left:20px">'+e.features[0].properties.vot_val+'</td></tr>'+
+                '<tr><td style="font-style:italic">Votos nulos</td><td style="text-align:right;padding-left:20px">'+e.features[0].properties.vot_nul+'</td></tr>'+
+                '<tr><td style="font-style:italic">Votos blancos</td><td style="text-align:right;padding-left:20px">'+e.features[0].properties.vot_blc+'</td></tr>'+
+                '<tr><td style="font-style:italic">Total votación</td><td style="text-align:right;padding-left:20px">'+e.features[0].properties.vot_tot+'</td></tr>'+
+                '</table>'            
+                )
+            .addTo(map);
+    });
+    map.on('mouseleave', 'comparacion-exterior-center', function () {
+        map.getCanvas().style.cursor = '';
+        popup.remove();
+    });
 };
 
 function popAprueboDignidad(map) {
@@ -664,6 +904,30 @@ function popAprueboDignidad(map) {
             .addTo(map);
     });
     map.on('mouseleave', 'apruebo-dignidad-comunas', function () {
+        map.getCanvas().style.cursor = '';
+        popup.remove();
+    });
+    map.on('mousemove', 'apruebo-dignidad-comunas-center', function (e) {
+        map.getCanvas().style.cursor = 'pointer';
+        var comuna = e.features[0].properties.NOM_COM;
+        var distrito = e.features[0].properties.DISTRITO;
+        var region = e.features[0].properties.REGION;
+        var vot_Boric = e.features[0].properties.vot_Boric;
+        var vot_Jadue = e.features[0].properties.vot_Jadue;
+        var pct_Boric = e.features[0].properties.pct_Boric;
+        var pct_Jadue = e.features[0].properties.pct_Jadue;
+        popup.setLngLat(e.lngLat)
+            .setHTML(
+                '<h4><span style="font-weight:bold">'+comuna+'</span> (Distrito '+distrito+')<br>'+region+'</h4>'+
+                '<table style="border-collapse:collapse">'+
+                '<tr><td style="font-weight:bold">Lista</td><td style="text-align:right;font-weight:bold">Votos</td><td style="text-align:right;font-weight:bold">%</td></tr>'+
+                '<tr><td><span class="legend-key" style="background-color:'+colores['verde-agua']+'"></span>Gabriel Boric (CS)</td><td style="text-align:right;padding-left:20px">'+vot_Boric+'</td><td style="text-align:right;padding-left:20px">'+pct_Boric+'%</td></tr>'+
+                '<tr><td><span class="legend-key" style="background-color:'+colores['rojo-oscuro']+'"></span>Daniel Jadue (PC)</td><td style="text-align:right;padding-left:20px">'+vot_Jadue+'</td><td style="text-align:right;padding-left:20px">'+pct_Jadue+'%</td></tr>'+
+                '</table>'            
+                )
+            .addTo(map);
+    });
+    map.on('mouseleave', 'apruebo-dignidad-comunas-center', function () {
         map.getCanvas().style.cursor = '';
         popup.remove();
     });
@@ -731,6 +995,28 @@ function popAprueboDignidad(map) {
             .addTo(map);
     });
     map.on('mouseleave', 'apruebo-dignidad-exterior', function () {
+        map.getCanvas().style.cursor = '';
+        popup.remove();
+    });
+    map.on('mousemove', 'apruebo-dignidad-exterior-center', function (e) {
+        map.getCanvas().style.cursor = 'pointer';
+        var pais = e.features[0].properties.Pais;
+        var vot_Boric = e.features[0].properties.vot_Boric;
+        var vot_Jadue = e.features[0].properties.vot_Jadue;
+        var pct_Boric = e.features[0].properties.pct_Boric;
+        var pct_Jadue = e.features[0].properties.pct_Jadue;
+        popup.setLngLat(e.lngLat)
+            .setHTML(
+                '<h4><span style="font-weight:bold">'+pais+'</span></h4>'+
+                '<table style="border-collapse:collapse">'+
+                '<tr><td style="font-weight:bold">Lista</td><td style="text-align:right;font-weight:bold">Votos</td><td style="text-align:right;font-weight:bold">%</td></tr>'+
+                '<tr><td><span class="legend-key" style="background-color:'+colores['verde-agua']+'"></span>Gabriel Boric (CS)</td><td style="text-align:right;padding-left:20px">'+vot_Boric+'</td><td style="text-align:right;padding-left:20px">'+pct_Boric+'%</td></tr>'+
+                '<tr><td><span class="legend-key" style="background-color:'+colores['rojo-oscuro']+'"></span>Daniel Jadue (PC)</td><td style="text-align:right;padding-left:20px">'+vot_Jadue+'</td><td style="text-align:right;padding-left:20px">'+pct_Jadue+'%</td></tr>'+
+                '</table>'            
+                )
+            .addTo(map);
+    });
+    map.on('mouseleave', 'apruebo-dignidad-exterior-center', function () {
         map.getCanvas().style.cursor = '';
         popup.remove();
     });

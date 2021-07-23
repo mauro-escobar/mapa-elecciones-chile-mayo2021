@@ -178,6 +178,22 @@ function addLayerComunasOutline(map) {
     map.setLayoutProperty('comunas-outline', 'visibility', 'none');	
 };
 
+function addLayerComunasFill(map) {
+    
+    map.addLayer({
+        'id': 'comunas',
+        'type': 'fill',
+        'source': 'comunas-data',
+        'source-layer': 'chile-comunas-53oe57',
+        'filter': ['!=', ['get', 'NOM_COM'], 'Zona sin demarcar'],
+        'paint': {
+            'fill-color': colores['gris'],
+            'fill-opacity': 0.1
+        },
+    }, 'zona-indeterminada');
+    map.setLayoutProperty('comunas', 'visibility', 'none'); 
+}
+
 function addLayerComunasOutlineZoom(map) {
 	map.addLayer({
         'id': 'comunas-outline-zoom',
