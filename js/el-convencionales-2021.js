@@ -40,6 +40,8 @@ var coloresConvencionales = {
 	'MOVIMIENTOS SOCIALES AUTONOMOS (D15)': colores['gris'],
 	'MOVIMIENTOS SOCIALES INDEPENDIENTES (D6)': colores['gris'],
 	'REGIONALISMO CIUDADANO INDEPENDIENTE (D28)': colores['gris'],
+	'CANDIDATURA INDEPENDIENTE (ex LISTA DEL PUEBLO)': colores['gris'],
+	'COORDINADORA SOCIAL DE MAGALLANES (ex LISTA DEL PUEBLO)': colores['gris'],
 	'VAMOS POR CHILE': colores['azul'],
 	'VOCES CONSTITUYENTES (D12)': colores['gris'],
 };
@@ -762,7 +764,7 @@ function mostrarConvencionales() {
     		]
     	},
     	'La Lista del Pueblo': {
-    		'seats': 26,
+    		'seats': 24,
     		'color': colores['rosado'],
     		'names': [
 				["DAYYANA GONZALEZ ARAYA (IND)", false],
@@ -782,15 +784,13 @@ function mostrarConvencionales() {
 				["INGRID FERNANDA VILLENA NARBONA (IND)", false],
 				["RODRIGO ERNESTO ROJAS VADE (IND)", false],
 				["FRANCISCO JAVIER CAAMAÑO ROJAS (IND)", false],
-				["LORETO CRISTINA VALLEJOS DAVILA (IND)", false],
 				["ELSA CAROLINA LABRAÑA PINO (IND)", false],
 				["FRANCISCA MARYCARMEN ARAUNA URRUTIA (IND)", false],
 				["FERNANDO SALINAS MANFREDINI (IND)", false],
 				["CESAR  URIBE ARAYA (IND)", false],
 				["ROSSANA LORETO VIDAL HERNANDEZ (IND)", false],
 				["HELMUTH JACOBO MARTINEZ LLANCAPAN (IND)", false],
-				["ADRIANA CAMILA AMPUERO BARRIENTOS (IND)", false],
-				["ELISA AMANDA GIUSTINIANOVICH CAMPOS (IND)", false]
+				["ADRIANA CAMILA AMPUERO BARRIENTOS (IND)", false]
     		]
     	},
     	'Lista del Apruebo (PL)': {
@@ -872,7 +872,7 @@ function mostrarConvencionales() {
     		]
     	},
     	'Candidaturas Independientes': {
-    		'seats': 11,
+    		'seats': 13,
     		'color': colores['gris'],
     		'names': [
 				["ALEJANDRA ALICIA FLORES CARLOS (IND)", false],
@@ -885,7 +885,9 @@ function mostrarConvencionales() {
 				["GLORIA DEL TRANSITO ALVARADO JORQUERA (IND)", false],
 				["MARIA ELISA QUINTEROS CACERES (IND)", false],
 				["BASTIAN ESTEBAN LABBE SALAZAR (IND)", false],
-				["MAURICIO DAZA CARRASCO (IND)", false]
+				["MAURICIO DAZA CARRASCO (IND)", false],
+				["LORETO CRISTINA VALLEJOS DAVILA (IND)", false],
+				["ELISA AMANDA GIUSTINIANOVICH CAMPOS (IND)", false]
     		]
     	},
     	'Pueblos Originarios (Mapuche)': {

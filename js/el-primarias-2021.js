@@ -1147,6 +1147,7 @@ function popComparacion(map) {
         popup.remove();
     });
     map.on('mousemove', 'comparacion-regiones-center', function (e) {
+        console.log(e.features[0].id);
         map.getCanvas().style.cursor = 'pointer';
         var region = e.features[0].properties.REGION;
         var vot_CV = e.features[0].properties.vot_CV;
