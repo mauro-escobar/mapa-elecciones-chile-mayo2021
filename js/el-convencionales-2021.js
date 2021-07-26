@@ -784,11 +784,11 @@ function mostrarConvencionales() {
 				["INGRID FERNANDA VILLENA NARBONA (IND)", false],
 				["RODRIGO ERNESTO ROJAS VADE (IND)", false],
 				["FRANCISCO JAVIER CAAMAÑO ROJAS (IND)", false],
+				["LORETO CRISTINA VALLEJOS DAVILA (IND)", false],
 				["ELSA CAROLINA LABRAÑA PINO (IND)", false],
 				["FRANCISCA MARYCARMEN ARAUNA URRUTIA (IND)", false],
 				["FERNANDO SALINAS MANFREDINI (IND)", false],
 				["CESAR  URIBE ARAYA (IND)", false],
-				["ROSSANA LORETO VIDAL HERNANDEZ (IND)", false],
 				["HELMUTH JACOBO MARTINEZ LLANCAPAN (IND)", false],
 				["ADRIANA CAMILA AMPUERO BARRIENTOS (IND)", false]
     		]
@@ -886,7 +886,7 @@ function mostrarConvencionales() {
 				["MARIA ELISA QUINTEROS CACERES (IND)", false],
 				["BASTIAN ESTEBAN LABBE SALAZAR (IND)", false],
 				["MAURICIO DAZA CARRASCO (IND)", false],
-				["LORETO CRISTINA VALLEJOS DAVILA (IND)", false],
+				["ROSSANA LORETO VIDAL HERNANDEZ (IND)", false],
 				["ELISA AMANDA GIUSTINIANOVICH CAMPOS (IND)", false]
     		]
     	},
