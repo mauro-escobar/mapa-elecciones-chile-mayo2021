@@ -1238,7 +1238,7 @@ function mostrarCORES() {
   var span = document.createElement('span');
   div.style.marginTop = '20px';
   span.style.fontSize = '0.9em';
-  span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
+  span.innerHTML = '© <a class="link-mauro" href="https://mauro-escobar.github.io" target="_blank">Mauro Escobar</a> 2021<br>Datos obtenidos de servelelecciones.cl';
   div.appendChild(span);
   legend.appendChild(div);
 }

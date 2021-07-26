@@ -1,5 +1,6 @@
 
 var proporcion = true;
+var tipo = "comunas";
 map.on('load', function(){
 	var layers = map.getStyle().layers;
     var firstSymbolId;
@@ -132,9 +133,14 @@ function clean() {
 }
 
 
-
+function mostrarParticipacion(tipo="comunas") {
+	if (tipo=="comunas") mostrarParticipacionComunas();
+	else if (tipo=="distritos") mostrarParticipacionDistritos();
+	else mostrarParticipacionRegiones();
+}
 function mostrarParticipacionComunas() {
 	clean();
+	tipo = "comunas";
 	if (proporcion) {
 		map.setLayoutProperty('participacion-comunas', 'visibility', 'visible');
 		map.setLayoutProperty('participacion-exterior', 'visibility', 'visible');
@@ -162,7 +168,7 @@ function mostrarParticipacionComunas() {
 	var span = document.createElement('span');
 	div.style.marginTop = '20px';
 	span.style.fontSize = '0.9em';
-	span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
+	span.innerHTML = '© <a class="link-mauro" href="https://mauro-escobar.github.io" target="_blank">Mauro Escobar</a> 2021<br>Datos obtenidos de servelelecciones.cl';
 	div.appendChild(span);
 	legend.appendChild(div);
 	legend.style.display = 'block';
@@ -307,9 +313,10 @@ function mostrarParticipacionComunas() {
     	}
     	legend2.style.display = 'block';
     } 
-};
+}
 function mostrarParticipacionDistritos() {
 	clean();
+	tipo = "distritos";
 	if (proporcion) {
 		map.setLayoutProperty('participacion-distritos', 'visibility', 'visible');
 		map.setLayoutProperty('participacion-exterior', 'visibility', 'visible');
@@ -337,7 +344,7 @@ function mostrarParticipacionDistritos() {
 	var span = document.createElement('span');
 	div.style.marginTop = '20px';
 	span.style.fontSize = '0.9em';
-	span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
+	span.innerHTML = '© <a class="link-mauro" href="https://mauro-escobar.github.io" target="_blank">Mauro Escobar</a> 2021<br>Datos obtenidos de servelelecciones.cl';
 	div.appendChild(span);
 	legend.appendChild(div);
 	legend.style.display = 'block';
@@ -482,9 +489,10 @@ function mostrarParticipacionDistritos() {
     	}
     	legend2.style.display = 'block';
     } 
-};
+}
 function mostrarParticipacionRegiones() {
 	clean();
+	tipo = "regiones";
 	map.setLayoutProperty('participacion-regiones', 'visibility', 'visible');
 	map.setLayoutProperty('participacion-exterior', 'visibility', 'visible');
     map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
@@ -506,7 +514,7 @@ function mostrarParticipacionRegiones() {
 	var span = document.createElement('span');
 	div.style.marginTop = '20px';
 	span.style.fontSize = '0.9em';
-	span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
+	span.innerHTML = '© <a class="link-mauro" href="https://mauro-escobar.github.io" target="_blank">Mauro Escobar</a> 2021<br>Datos obtenidos de servelelecciones.cl';
 	div.appendChild(span);
 	legend.appendChild(div);
 	legend.style.display = 'block';
@@ -531,11 +539,16 @@ function mostrarParticipacionRegiones() {
     	legend2.appendChild(table2);
     	legend2.style.display = 'block';
     } 
-};
+}
 
-
+function mostrarComparacion(tipo="comunas") {
+	if (tipo=="comunas") mostrarComparacionComunas();
+	else if (tipo=="distritos") mostrarComparacionDistritos();
+	else mostrarComparacionRegiones();
+}
 function mostrarComparacionComunas() {
 	clean();
+	tipo = "comunas";
 	if (proporcion) {
 		map.setLayoutProperty('comparacion-comunas', 'visibility', 'visible');	
 		map.setLayoutProperty('comparacion-exterior', 'visibility', 'visible');
@@ -567,7 +580,7 @@ function mostrarComparacionComunas() {
 	var span = document.createElement('span');
 	div.style.marginTop = '20px';
 	span.style.fontSize = '0.9em';
-	span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
+	span.innerHTML = '© <a class="link-mauro" href="https://mauro-escobar.github.io" target="_blank">Mauro Escobar</a> 2021<br>Datos obtenidos de servelelecciones.cl';
 	div.appendChild(span);
 	legend.appendChild(div);
     legend.style.display = 'block';
@@ -742,6 +755,7 @@ function mostrarComparacionComunas() {
 }
 function mostrarComparacionDistritos() {
 	clean();
+	tipo = "distritos";
 	if (proporcion) {
 		map.setLayoutProperty('comparacion-distritos', 'visibility', 'visible');	
 		map.setLayoutProperty('comparacion-exterior', 'visibility', 'visible');
@@ -773,7 +787,7 @@ function mostrarComparacionDistritos() {
 	var span = document.createElement('span');
 	div.style.marginTop = '20px';
 	span.style.fontSize = '0.9em';
-	span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
+	span.innerHTML = '© <a class="link-mauro" href="https://mauro-escobar.github.io" target="_blank">Mauro Escobar</a> 2021<br>Datos obtenidos de servelelecciones.cl';
 	div.appendChild(span);
 	legend.appendChild(div);
     legend.style.display = 'block';
@@ -948,6 +962,7 @@ function mostrarComparacionDistritos() {
 }
 function mostrarComparacionRegiones() {
 	clean();
+	tipo = "regiones";
 	map.setLayoutProperty('comparacion-regiones', 'visibility', 'visible');
 	map.setLayoutProperty('comparacion-exterior', 'visibility', 'visible');
     map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
@@ -973,7 +988,7 @@ function mostrarComparacionRegiones() {
 	var span = document.createElement('span');
 	div.style.marginTop = '20px';
 	span.style.fontSize = '0.9em';
-	span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
+	span.innerHTML = '© <a class="link-mauro" href="https://mauro-escobar.github.io" target="_blank">Mauro Escobar</a> 2021<br>Datos obtenidos de servelelecciones.cl';
 	div.appendChild(span);
 	legend.appendChild(div);
 
@@ -1027,8 +1042,15 @@ function mostrarComparacionRegiones() {
     } 
 }
 
+
+function mostrarAprueboDignidad(tipo="comunas") {
+	if (tipo=="comunas") mostrarAprueboDignidadComunas();
+	else if (tipo=="distritos") mostrarAprueboDignidadDistritos();
+	else mostrarAprueboDignidadRegiones();
+}
 function mostrarAprueboDignidadComunas() {
 	clean();
+	tipo = "comunas";
 	if (proporcion) {
 		map.setLayoutProperty('apruebo-dignidad-comunas', 'visibility', 'visible');
 		map.setLayoutProperty('apruebo-dignidad-exterior', 'visibility', 'visible');
@@ -1056,7 +1078,7 @@ function mostrarAprueboDignidadComunas() {
 	var span = document.createElement('span');
 	div.style.marginTop = '20px';
 	span.style.fontSize = '0.9em';
-	span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
+	span.innerHTML = '© <a class="link-mauro" href="https://mauro-escobar.github.io" target="_blank">Mauro Escobar</a> 2021<br>Datos obtenidos de servelelecciones.cl';
 	div.appendChild(span);
 	legend.appendChild(div);
 
@@ -1215,6 +1237,7 @@ function mostrarAprueboDignidadComunas() {
 }
 function mostrarAprueboDignidadDistritos() {
 	clean();
+	tipo = "distritos";
 	if (proporcion) {
 		map.setLayoutProperty('apruebo-dignidad-distritos', 'visibility', 'visible');
 	    map.setLayoutProperty('apruebo-dignidad-exterior', 'visibility', 'visible'); 
@@ -1242,7 +1265,7 @@ function mostrarAprueboDignidadDistritos() {
 	var span = document.createElement('span');
 	div.style.marginTop = '20px';
 	span.style.fontSize = '0.9em';
-	span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
+	span.innerHTML = '© <a class="link-mauro" href="https://mauro-escobar.github.io" target="_blank">Mauro Escobar</a> 2021<br>Datos obtenidos de servelelecciones.cl';
 	div.appendChild(span);
 	legend.appendChild(div);
 
@@ -1417,6 +1440,7 @@ function mostrarAprueboDignidadDistritos() {
 }
 function mostrarAprueboDignidadRegiones() {
 	clean();
+	tipo = "regiones";
 	map.setLayoutProperty('apruebo-dignidad-regiones', 'visibility', 'visible');
     map.setLayoutProperty('apruebo-dignidad-exterior', 'visibility', 'visible'); 
     map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
@@ -1438,7 +1462,7 @@ function mostrarAprueboDignidadRegiones() {
 	var span = document.createElement('span');
 	div.style.marginTop = '20px';
 	span.style.fontSize = '0.9em';
-	span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
+	span.innerHTML = '© <a class="link-mauro" href="https://mauro-escobar.github.io" target="_blank">Mauro Escobar</a> 2021<br>Datos obtenidos de servelelecciones.cl';
 	div.appendChild(span);
 	legend.appendChild(div);
 
@@ -1492,9 +1516,14 @@ function mostrarAprueboDignidadRegiones() {
     } 
 }
 
-
+function mostrarChileVamos(tipo="comunas") {
+	if (tipo=="comunas") mostrarChileVamosComunas();
+	else if (tipo=="distritos") mostrarChileVamosDistritos();
+	else mostrarChileVamosRegiones();
+}
 function mostrarChileVamosComunas() {
 	clean();
+	tipo = "comunas";
 	if (proporcion) {
 		map.setLayoutProperty('chile-vamos-comunas', 'visibility', 'visible');
 		map.setLayoutProperty('chile-vamos-exterior', 'visibility', 'visible');
@@ -1524,7 +1553,7 @@ function mostrarChileVamosComunas() {
 	var span = document.createElement('span');
 	div.style.marginTop = '20px';
 	span.style.fontSize = '0.9em';
-	span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
+	span.innerHTML = '© <a class="link-mauro" href="https://mauro-escobar.github.io" target="_blank">Mauro Escobar</a> 2021<br>Datos obtenidos de servelelecciones.cl';
 	div.appendChild(span);
 	legend.appendChild(div);
 
@@ -1719,7 +1748,7 @@ function mostrarChileVamosComunas() {
 }
 function mostrarChileVamosDistritos() {
 	clean();
-	clean();
+	tipo = "distritos";
 	if (proporcion) {
 		map.setLayoutProperty('chile-vamos-distritos', 'visibility', 'visible');
 	    map.setLayoutProperty('chile-vamos-exterior', 'visibility', 'visible'); 
@@ -1749,7 +1778,7 @@ function mostrarChileVamosDistritos() {
 	var span = document.createElement('span');
 	div.style.marginTop = '20px';
 	span.style.fontSize = '0.9em';
-	span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
+	span.innerHTML = '© <a class="link-mauro" href="https://mauro-escobar.github.io" target="_blank">Mauro Escobar</a> 2021<br>Datos obtenidos de servelelecciones.cl';
 	div.appendChild(span);
 	legend.appendChild(div);
 
@@ -1960,6 +1989,7 @@ function mostrarChileVamosDistritos() {
 }
 function mostrarChileVamosRegiones() {
 	clean();
+	tipo = "regiones";
 	map.setLayoutProperty('chile-vamos-regiones', 'visibility', 'visible');
     map.setLayoutProperty('chile-vamos-exterior', 'visibility', 'visible'); 
     map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
@@ -1983,7 +2013,7 @@ function mostrarChileVamosRegiones() {
 	var span = document.createElement('span');
 	div.style.marginTop = '20px';
 	span.style.fontSize = '0.9em';
-	span.innerHTML = '© Mauro Escobar 2021<br>Datos obtenidos de servelelecciones.cl';
+	span.innerHTML = '© <a class="link-mauro" href="https://mauro-escobar.github.io" target="_blank">Mauro Escobar</a> 2021<br>Datos obtenidos de servelelecciones.cl';
 	div.appendChild(span);
 	legend.appendChild(div);
 

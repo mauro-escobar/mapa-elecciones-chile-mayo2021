@@ -7,6 +7,26 @@ a:hover {
 	cursor:pointer;
 }
 
+.link-mauro:link {
+  color: black;
+  text-decoration: underline;
+}
+.link-mauro:visited {
+  color: black;
+  text-decoration: underline;
+}
+
+.link-mauro:hover {
+  color: gray;
+  text-decoration: underline;
+}
+
+.link-mauro:active {
+  color: black;
+  text-decoration: underline;
+}
+
+
 .a-dropdown {
   font-family: Arial, Helvetica, sans-serif;
   color: gray;
