@@ -1,5 +1,6 @@
 
 var proporcion = true;
+var mostrar = "comparacion";
 var tipo = "comunas";
 map.on('load', function(){
 	var layers = map.getStyle().layers;
@@ -21,7 +22,8 @@ map.on('load', function(){
     addLayerNombreRegiones(map);
     addLayerZonaIndeterminada(map);
     addLayerRegionesOutline(map);	
-    addLayerComunasOutline(map);	
+    addLayerRegionesFillGray(map);
+	addLayerComunasOutline(map);	
     addLayerComunasOutlineZoom(map);
     addLayerComunasFill(map);	
     addLayerDistritosOutline(map);
@@ -33,6 +35,8 @@ map.on('load', function(){
 	addLayerChileVamos(map);
 
 	map.setPaintProperty('regiones-outline', 'line-color', colores['gris']);
+	map.setPaintProperty('distritos-outline', 'line-color', colores['gris']);
+	map.setPaintProperty('distritos-outline', 'line-width', 0.1);
 	map.setPaintProperty('comunas-outline', 'line-color', colores['gris']);
 	
 	mostrarComparacionComunas();
@@ -64,6 +68,7 @@ function clean() {
 	map.setLayoutProperty('participacion-distritos', 'visibility', 'none');
 	map.setLayoutProperty('participacion-distritos-center', 'visibility', 'none');
 	map.setLayoutProperty('participacion-regiones', 'visibility', 'none');
+	map.setLayoutProperty('participacion-regiones-center', 'visibility', 'none');
 	map.setLayoutProperty('participacion-exterior', 'visibility', 'none');
 	map.setLayoutProperty('participacion-exterior-center', 'visibility', 'none');
     map.setLayoutProperty('comparacion-comunas', 'visibility', 'none');
@@ -71,6 +76,7 @@ function clean() {
     map.setLayoutProperty('comparacion-distritos', 'visibility', 'none');
     map.setLayoutProperty('comparacion-distritos-center', 'visibility', 'none');
     map.setLayoutProperty('comparacion-regiones', 'visibility', 'none');
+    map.setLayoutProperty('comparacion-regiones-center', 'visibility', 'none');
     map.setLayoutProperty('comparacion-exterior', 'visibility', 'none');
     map.setLayoutProperty('comparacion-exterior-center', 'visibility', 'none');
 	map.setLayoutProperty('apruebo-dignidad-comunas', 'visibility', 'none');
@@ -78,6 +84,7 @@ function clean() {
 	map.setLayoutProperty('apruebo-dignidad-distritos', 'visibility', 'none');
 	map.setLayoutProperty('apruebo-dignidad-distritos-center', 'visibility', 'none');
 	map.setLayoutProperty('apruebo-dignidad-regiones', 'visibility', 'none');
+	map.setLayoutProperty('apruebo-dignidad-regiones-center', 'visibility', 'none');
     map.setLayoutProperty('apruebo-dignidad-exterior', 'visibility', 'none'); 
     map.setLayoutProperty('apruebo-dignidad-exterior-center', 'visibility', 'none'); 
 	map.setLayoutProperty('chile-vamos-comunas', 'visibility', 'none');
@@ -85,9 +92,12 @@ function clean() {
 	map.setLayoutProperty('chile-vamos-distritos', 'visibility', 'none');
 	map.setLayoutProperty('chile-vamos-distritos-center', 'visibility', 'none');
 	map.setLayoutProperty('chile-vamos-regiones', 'visibility', 'none');
+	map.setLayoutProperty('chile-vamos-regiones-center', 'visibility', 'none');
     map.setLayoutProperty('chile-vamos-exterior', 'visibility', 'none'); 
     map.setLayoutProperty('chile-vamos-exterior-center', 'visibility', 'none'); 
+    map.setLayoutProperty('distritos-outline', 'visibility', 'none');
     map.setLayoutProperty('regiones-outline', 'visibility', 'none');
+	map.setLayoutProperty('regiones-gris', 'visibility', 'none'); 
 	map.setLayoutProperty('comunas', 'visibility', 'none');
 	map.setLayoutProperty('distritos-gris', 'visibility', 'none'); 
 
@@ -132,8 +142,24 @@ function clean() {
 	legend2.style.textAlign = '';
 }
 
+function mostrarMapa(mostrar, tipo) {
+	if (mostrar=='participacion') mostrarParticipacion(tipo);
+	else if (mostrar=='comparacion') mostrarComparacion(tipo);
+	else if (mostrar=='apruebo-dignidad') mostrarAprueboDignidad(tipo);
+	else if (mostrar=='chile-vamos') mostrarChileVamos(tipo);
+
+	if (proporcion) {
+		document.getElementById('link-proporcion').style.backgroundColor = 'lightblue';
+		document.getElementById('link-ventaja').style.backgroundColor = 'white';
+	} else {
+		document.getElementById('link-proporcion').style.backgroundColor = 'white';
+		document.getElementById('link-ventaja').style.backgroundColor = 'lightblue';
+	}
+}
+
 
 function mostrarParticipacion(tipo="comunas") {
+	mostrar = "participacion";
 	if (tipo=="comunas") mostrarParticipacionComunas();
 	else if (tipo=="distritos") mostrarParticipacionDistritos();
 	else mostrarParticipacionRegiones();
@@ -320,12 +346,13 @@ function mostrarParticipacionDistritos() {
 	if (proporcion) {
 		map.setLayoutProperty('participacion-distritos', 'visibility', 'visible');
 		map.setLayoutProperty('participacion-exterior', 'visibility', 'visible');
+    	map.setLayoutProperty('distritos-outline', 'visibility', 'none');
 	} else {
 		map.setLayoutProperty('participacion-distritos-center', 'visibility', 'visible');
 		map.setLayoutProperty('participacion-exterior-center', 'visibility', 'visible');	
+    	map.setLayoutProperty('distritos-gris', 'visibility', 'visible'); 
 	}
     map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
-    map.setLayoutProperty('distritos-gris', 'visibility', 'visible'); 
 	document.getElementById('a-participacion').style.color = 'black';
 
 	var els = document.getElementsByClassName('participacion');
@@ -493,8 +520,14 @@ function mostrarParticipacionDistritos() {
 function mostrarParticipacionRegiones() {
 	clean();
 	tipo = "regiones";
-	map.setLayoutProperty('participacion-regiones', 'visibility', 'visible');
-	map.setLayoutProperty('participacion-exterior', 'visibility', 'visible');
+	if (proporcion) {
+		map.setLayoutProperty('participacion-regiones', 'visibility', 'visible');
+		map.setLayoutProperty('participacion-exterior', 'visibility', 'visible');
+	} else {
+		map.setLayoutProperty('participacion-regiones-center', 'visibility', 'visible');
+		map.setLayoutProperty('participacion-exterior-center', 'visibility', 'visible');	
+    	map.setLayoutProperty('regiones-gris', 'visibility', 'visible'); 
+	}
     map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
 	document.getElementById('a-participacion').style.color = 'black';
 
@@ -519,29 +552,150 @@ function mostrarParticipacionRegiones() {
 	legend.appendChild(div);
 	legend.style.display = 'block';
 	if (screen.width>=992) {
-    	var pctLegend2 = ['0%', '10%', '20%', '30%', '40%', '50%'];
-    	var table2 = document.createElement('table');
-    	table2.style.borderCollapse = 'collapse';	
-    	var tr = document.createElement('tr');
-    	for (var i = 0; i < pctLegend2.length; i++) {
-    		var td = document.createElement('td');
-    		td.style.fontSize = '0.8em';
-    		td.style.textAlign = 'left';
-    		var color = linearComibationHEX(linearComibationHEX(colores['blanco'],colores['marron'],0.95),colores['marron'], (1-1/12)-1/6*i);
-    		td.style.backgroundColor = color;
-    		td.style.color = constrastColor(color, 10);
-    		td.innerHTML = pctLegend2[i];
-    		td.width = '45px';
-    		td.height = '15px';
-    		tr.appendChild(td);
+    	var div = document.createElement('div');
+    	var span = document.createElement('a');
+    	span.innerHTML = 'Porcentaje de participación';
+    	span.onclick = function() {
+    		proporcion = true;
+    		mostrarParticipacionRegiones();
     	}
-    	table2.appendChild(tr);
-    	legend2.appendChild(table2);
+    	span.style.margin = '3px';
+    	span.style.border = '1px solid black';
+    	span.style.borderRadius = '5px 5px 5px';
+    	span.style.padding = '3px';
+    	if (proporcion) span.style.backgroundColor = linearComibationHEX(colores['gris'],colores['blanco'],0.4);
+    	div.appendChild(span);
+    	var span = document.createElement('a');
+    	span.innerHTML = 'Cantidad de votos';
+    	span.onclick = function() {
+    		proporcion = false;
+    		mostrarParticipacionRegiones();
+    	}
+    	span.style.margin = '3px';
+    	span.style.border = '1px solid black';
+    	span.style.borderRadius = '5px 5px 5px';
+    	span.style.padding = '3px';
+    	if (!proporcion) span.style.backgroundColor = linearComibationHEX(colores['gris'],colores['blanco'],0.4);
+    	div.appendChild(span);
+    	legend2.appendChild(div);
+
+    	if (proporcion) {    	
+	    	var pctLegend2 = ['0%', '10%', '20%', '30%', '40%', '50%'];
+	    	var table2 = document.createElement('table');
+	    	table2.style.marginTop = '10px';
+	    	table2.style.borderCollapse = 'collapse';	
+	    	var tr = document.createElement('tr');
+	    	for (var i = 0; i < pctLegend2.length; i++) {
+	    		var td = document.createElement('td');
+	    		td.style.fontSize = '0.8em';
+	    		td.style.textAlign = 'left';
+	    		var color = linearComibationHEX(linearComibationHEX(colores['blanco'],colores['marron'],0.95),colores['marron'], (1-1/12)-1/6*i);
+	    		td.style.backgroundColor = color;
+	    		td.style.color = constrastColor(color, 10);
+	    		td.innerHTML = pctLegend2[i];
+	    		td.width = '45px';
+	    		td.height = '15px';
+	    		tr.appendChild(td);
+	    	}
+	    	table2.appendChild(tr);
+	    	legend2.appendChild(table2);
+	    } else {
+			var xmlns = "http://www.w3.org/2000/svg";
+    		var svgElem = document.createElementNS(xmlns, "svg");
+		    svgElem.setAttributeNS(null, "viewBox", "-40 -55 230 90");
+			svgElem.setAttributeNS(null, "width", "230px");
+		    svgElem.setAttributeNS(null, "height", "90px");
+		    svgElem.setAttributeNS(null, "version", "1.2");
+
+
+	    	var circle = document.createElementNS(xmlns,"circle");
+	    	circle.setAttributeNS(null, "cx", -25);
+	    	circle.setAttributeNS(null, "cy", -5);
+	    	circle.setAttributeNS(null, "r", 0.1*(10**0.55)+'px');
+	    	circle.setAttributeNS(null, "fill", colores['marron']);
+	    	circle.setAttributeNS(null, "opacity", 0.4);
+	    	svgElem.appendChild(circle);
+	    	var text = document.createElementNS(xmlns,"text");
+	    	text.innerHTML = '10';
+		    text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
+		    text.setAttributeNS(null, "text-anchor", "middle");
+		    text.setAttributeNS(null, "x", -25);
+			text.setAttributeNS(null, "y", 10);
+	    	text.setAttributeNS(null, "font-size", "12px");
+		    svgElem.appendChild(text);
+
+	    	var circle = document.createElementNS(xmlns,"circle");
+	    	circle.setAttributeNS(null, "cx", 0);
+	    	circle.setAttributeNS(null, "cy", -5);
+	    	circle.setAttributeNS(null, "r", 0.1*(100**0.55)+'px');
+	    	circle.setAttributeNS(null, "fill", colores['marron']);
+	    	circle.setAttributeNS(null, "opacity", 0.4);
+	    	svgElem.appendChild(circle);
+	    	var text = document.createElementNS(xmlns,"text");
+	    	text.innerHTML = '100';
+		    text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
+		    text.setAttributeNS(null, "text-anchor", "middle");
+		    text.setAttributeNS(null, "x", 0);
+			text.setAttributeNS(null, "y", 10);
+	    	text.setAttributeNS(null, "font-size", "12px");
+		    svgElem.appendChild(text);
+
+	    	var circle = document.createElementNS(xmlns,"circle");
+	    	circle.setAttributeNS(null, "cx", 35);
+	    	circle.setAttributeNS(null, "cy", -5);
+	    	circle.setAttributeNS(null, "r", 0.1*(1000**0.55)+'px');
+	    	circle.setAttributeNS(null, "fill", colores['marron']);
+	    	circle.setAttributeNS(null, "opacity", 0.4);
+	    	svgElem.appendChild(circle);
+	    	var text = document.createElementNS(xmlns,"text");
+	    	text.innerHTML = '1.000';
+		    text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
+		    text.setAttributeNS(null, "text-anchor", "middle");
+		    text.setAttributeNS(null, "x", 35);
+			text.setAttributeNS(null, "y", 10);
+	    	text.setAttributeNS(null, "font-size", "12px");
+		    svgElem.appendChild(text);
+
+	    	var circle = document.createElementNS(xmlns,"circle");
+	    	circle.setAttributeNS(null, "cx", 75);
+	    	circle.setAttributeNS(null, "cy", -5);
+	    	circle.setAttributeNS(null, "r", 0.1*(10000**0.55)+'px');
+	    	circle.setAttributeNS(null, "fill", colores['marron']);
+	    	circle.setAttributeNS(null, "opacity", 0.4);
+	    	svgElem.appendChild(circle);
+	    	var text = document.createElementNS(xmlns,"text");
+	    	text.innerHTML = '10.000';
+		    text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
+		    text.setAttributeNS(null, "text-anchor", "middle");
+		    text.setAttributeNS(null, "x", 75);
+			text.setAttributeNS(null, "y", 10);
+	    	text.setAttributeNS(null, "font-size", "12px");
+		    svgElem.appendChild(text);
+
+	    	var circle = document.createElementNS(xmlns,"circle");
+	    	circle.setAttributeNS(null, "cx", 135);
+	    	circle.setAttributeNS(null, "cy", -5);
+	    	circle.setAttributeNS(null, "r", 0.1*(50000**0.55)+'px');
+	    	circle.setAttributeNS(null, "fill", colores['marron']);
+	    	circle.setAttributeNS(null, "opacity", 0.4);
+	    	svgElem.appendChild(circle);
+	    	var text = document.createElementNS(xmlns,"text");
+	    	text.innerHTML = '50.000';
+		    text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
+		    text.setAttributeNS(null, "text-anchor", "middle");
+		    text.setAttributeNS(null, "x", 135);
+			text.setAttributeNS(null, "y", 10);
+	    	text.setAttributeNS(null, "font-size", "12px");
+		    svgElem.appendChild(text);
+
+		    legend2.appendChild(svgElem);
+    	}
     	legend2.style.display = 'block';
     } 
 }
 
 function mostrarComparacion(tipo="comunas") {
+	mostrar = "comparacion";
 	if (tipo=="comunas") mostrarComparacionComunas();
 	else if (tipo=="distritos") mostrarComparacionDistritos();
 	else mostrarComparacionRegiones();
@@ -759,12 +913,13 @@ function mostrarComparacionDistritos() {
 	if (proporcion) {
 		map.setLayoutProperty('comparacion-distritos', 'visibility', 'visible');	
 		map.setLayoutProperty('comparacion-exterior', 'visibility', 'visible');
+    	map.setLayoutProperty('distritos-outline', 'visibility', 'visible'); 
 	} else {
 		map.setLayoutProperty('comparacion-distritos-center', 'visibility', 'visible');
     	map.setLayoutProperty('comparacion-exterior-center', 'visibility', 'visible');	
+    	map.setLayoutProperty('distritos-gris', 'visibility', 'visible'); 
 	}
     map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
-    map.setLayoutProperty('distritos-gris', 'visibility', 'visible'); 
 	document.getElementById('a-comparacion').style.color = 'black';
 
 	var els = document.getElementsByClassName('comparacion');
@@ -963,8 +1118,14 @@ function mostrarComparacionDistritos() {
 function mostrarComparacionRegiones() {
 	clean();
 	tipo = "regiones";
-	map.setLayoutProperty('comparacion-regiones', 'visibility', 'visible');
-	map.setLayoutProperty('comparacion-exterior', 'visibility', 'visible');
+	if (proporcion) {
+		map.setLayoutProperty('comparacion-regiones', 'visibility', 'visible');
+		map.setLayoutProperty('comparacion-exterior', 'visibility', 'visible');
+	} else {
+		map.setLayoutProperty('comparacion-regiones-center', 'visibility', 'visible');
+		map.setLayoutProperty('comparacion-exterior-center', 'visibility', 'visible');	
+    	map.setLayoutProperty('regiones-gris', 'visibility', 'visible'); 
+	}
     map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
 	document.getElementById('a-comparacion').style.color = 'black';
 
@@ -994,56 +1155,178 @@ function mostrarComparacionRegiones() {
 
     legend.style.display = 'block';
     if (screen.width>=992) {
-    	var pctLegend2 = ['50%', '60%', '70%', '80%'];
-    	var table2 = document.createElement('table');
-    	table2.style.borderCollapse = 'collapse';	
-    	var tr = document.createElement('tr');
-    	var td = document.createElement('td');
-    	td.innerHTML = 'Chile Vamos';
-    	td.style.textAlign = 'right';
-    	td.style.paddingRight = '10px';
-    	tr.appendChild(td);
-    	for (var i = 0; i < pctLegend2.length; i++) {
-    		var td = document.createElement('td');
-    		td.style.fontSize = '0.8em';
-    		td.style.textAlign = 'left';
-    		var color = linearComibationHEX(colores['blanco'], colores['tab:blue'], 0.875-0.25*i);
-    		td.style.backgroundColor = color;
-    		td.style.color = constrastColor(color, 10);
-    		td.style.opacity = 0.9;
-    		td.innerHTML = pctLegend2[i];
-    		td.width = '45px';
-    		td.height = '15px';
-    		tr.appendChild(td);
+    	var div = document.createElement('div');
+    	var span = document.createElement('a');
+    	span.innerHTML = 'Proporción de votos';
+    	span.onclick = function() {
+    		proporcion = true;
+    		mostrarComparacionRegiones();
     	}
-    	table2.appendChild(tr);
-    	var tr = document.createElement('tr');
-    	var td = document.createElement('td');
-    	td.innerHTML = 'Apruebo Dignidad';
-    	td.style.paddingRight = '10px';
-    	td.style.textAlign = 'right';
-    	tr.appendChild(td);
-    	for (var i = 0; i < pctLegend2.length; i++) {
-    		var td = document.createElement('td');
-    		td.style.fontSize = '0.8em';
-    		td.style.textAlign = 'left';
-    		var color = linearComibationHEX(colores['blanco'], colores['tab:red'], 0.875-0.25*i);
-    		td.style.backgroundColor = color;
-    		td.style.color = constrastColor(color, 10);
-    		td.style.opacity = 0.9;
-    		td.innerHTML = pctLegend2[i];
-    		td.width = '45px';
-    		td.height = '15px';
-    		tr.appendChild(td);
+    	span.style.margin = '3px';
+    	span.style.border = '1px solid black';
+    	span.style.borderRadius = '5px 5px 5px';
+    	span.style.padding = '3px';
+    	if (proporcion) span.style.backgroundColor = linearComibationHEX(colores['gris'],colores['blanco'],0.4);
+    	div.appendChild(span);
+    	var span = document.createElement('a');
+    	span.innerHTML = 'Tamaño de la ventaja';
+    	span.onclick = function() {
+    		proporcion = false;
+    		mostrarComparacionRegiones();
     	}
-    	table2.appendChild(tr);
-    	legend2.appendChild(table2);
+    	span.style.margin = '3px';
+    	span.style.border = '1px solid black';
+    	span.style.borderRadius = '5px 5px 5px';
+    	span.style.padding = '3px';
+    	if (!proporcion) span.style.backgroundColor = linearComibationHEX(colores['gris'],colores['blanco'],0.4);
+    	div.appendChild(span);
+    	legend2.appendChild(div);
+
+    	if (proporcion) {
+    		var pctLegend2 = ['50%', '60%', '70%', '80%'];
+	    	var table2 = document.createElement('table');
+	    	table2.style.marginTop = '10px';
+	    	table2.style.borderCollapse = 'collapse';	
+	    	var tr = document.createElement('tr');
+	    	var td = document.createElement('td');
+	    	td.innerHTML = 'Chile Vamos';
+	    	td.style.textAlign = 'right';
+	    	td.style.paddingRight = '10px';
+	    	tr.appendChild(td);
+	    	for (var i = 0; i < pctLegend2.length; i++) {
+	    		var td = document.createElement('td');
+	    		td.style.fontSize = '0.8em';
+	    		td.style.textAlign = 'left';
+	    		var color = linearComibationHEX(colores['blanco'], colores['tab:blue'], 0.875-0.25*i);
+	    		td.style.backgroundColor = color;
+	    		td.style.color = constrastColor(color, 10);
+	    		td.style.opacity = 0.9;
+	    		td.innerHTML = pctLegend2[i];
+	    		td.width = '45px';
+	    		td.height = '15px';
+	    		tr.appendChild(td);
+	    	}
+	    	table2.appendChild(tr);
+	    	var tr = document.createElement('tr');
+	    	var td = document.createElement('td');
+	    	td.innerHTML = 'Apruebo Dignidad';
+	    	td.style.paddingRight = '10px';
+	    	td.style.textAlign = 'right';
+	    	tr.appendChild(td);
+	    	for (var i = 0; i < pctLegend2.length; i++) {
+	    		var td = document.createElement('td');
+	    		td.style.fontSize = '0.8em';
+	    		td.style.textAlign = 'left';
+	    		var color = linearComibationHEX(colores['blanco'], colores['tab:red'], 0.875-0.25*i);
+	    		td.style.backgroundColor = color;
+	    		td.style.color = constrastColor(color, 10);
+	    		td.style.opacity = 0.9;
+	    		td.innerHTML = pctLegend2[i];
+	    		td.width = '45px';
+	    		td.height = '15px';
+	    		tr.appendChild(td);
+	    	}
+	    	table2.appendChild(tr);
+	    	legend2.appendChild(table2);
+    	} else {
+			var xmlns = "http://www.w3.org/2000/svg";
+    		var svgElem = document.createElementNS(xmlns, "svg");
+		    svgElem.setAttributeNS(null, "viewBox", "-40 -55 230 90");
+			svgElem.setAttributeNS(null, "width", "230px");
+		    svgElem.setAttributeNS(null, "height", "90px");
+		    svgElem.setAttributeNS(null, "version", "1.2");
+
+
+	    	var circle = document.createElementNS(xmlns,"circle");
+	    	circle.setAttributeNS(null, "cx", -25);
+	    	circle.setAttributeNS(null, "cy", -5);
+	    	circle.setAttributeNS(null, "r", 0.1*(10**0.55)+'px');
+	    	circle.setAttributeNS(null, "fill", colores['gris']);
+	    	circle.setAttributeNS(null, "opacity", 0.4);
+	    	svgElem.appendChild(circle);
+	    	var text = document.createElementNS(xmlns,"text");
+	    	text.innerHTML = '10';
+		    text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
+		    text.setAttributeNS(null, "text-anchor", "middle");
+		    text.setAttributeNS(null, "x", -25);
+			text.setAttributeNS(null, "y", 10);
+	    	text.setAttributeNS(null, "font-size", "12px");
+		    svgElem.appendChild(text);
+
+	    	var circle = document.createElementNS(xmlns,"circle");
+	    	circle.setAttributeNS(null, "cx", 0);
+	    	circle.setAttributeNS(null, "cy", -5);
+	    	circle.setAttributeNS(null, "r", 0.1*(100**0.55)+'px');
+	    	circle.setAttributeNS(null, "fill", colores['gris']);
+	    	circle.setAttributeNS(null, "opacity", 0.4);
+	    	svgElem.appendChild(circle);
+	    	var text = document.createElementNS(xmlns,"text");
+	    	text.innerHTML = '100';
+		    text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
+		    text.setAttributeNS(null, "text-anchor", "middle");
+		    text.setAttributeNS(null, "x", 0);
+			text.setAttributeNS(null, "y", 10);
+	    	text.setAttributeNS(null, "font-size", "12px");
+		    svgElem.appendChild(text);
+
+	    	var circle = document.createElementNS(xmlns,"circle");
+	    	circle.setAttributeNS(null, "cx", 35);
+	    	circle.setAttributeNS(null, "cy", -5);
+	    	circle.setAttributeNS(null, "r", 0.1*(1000**0.55)+'px');
+	    	circle.setAttributeNS(null, "fill", colores['gris']);
+	    	circle.setAttributeNS(null, "opacity", 0.4);
+	    	svgElem.appendChild(circle);
+	    	var text = document.createElementNS(xmlns,"text");
+	    	text.innerHTML = '1.000';
+		    text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
+		    text.setAttributeNS(null, "text-anchor", "middle");
+		    text.setAttributeNS(null, "x", 35);
+			text.setAttributeNS(null, "y", 10);
+	    	text.setAttributeNS(null, "font-size", "12px");
+		    svgElem.appendChild(text);
+
+	    	var circle = document.createElementNS(xmlns,"circle");
+	    	circle.setAttributeNS(null, "cx", 75);
+	    	circle.setAttributeNS(null, "cy", -5);
+	    	circle.setAttributeNS(null, "r", 0.1*(10000**0.55)+'px');
+	    	circle.setAttributeNS(null, "fill", colores['gris']);
+	    	circle.setAttributeNS(null, "opacity", 0.4);
+	    	svgElem.appendChild(circle);
+	    	var text = document.createElementNS(xmlns,"text");
+	    	text.innerHTML = '10.000';
+		    text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
+		    text.setAttributeNS(null, "text-anchor", "middle");
+		    text.setAttributeNS(null, "x", 75);
+			text.setAttributeNS(null, "y", 10);
+	    	text.setAttributeNS(null, "font-size", "12px");
+		    svgElem.appendChild(text);
+
+	    	var circle = document.createElementNS(xmlns,"circle");
+	    	circle.setAttributeNS(null, "cx", 135);
+	    	circle.setAttributeNS(null, "cy", -5);
+	    	circle.setAttributeNS(null, "r", 0.1*(50000**0.55)+'px');
+	    	circle.setAttributeNS(null, "fill", colores['gris']);
+	    	circle.setAttributeNS(null, "opacity", 0.4);
+	    	svgElem.appendChild(circle);
+	    	var text = document.createElementNS(xmlns,"text");
+	    	text.innerHTML = '50.000';
+		    text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
+		    text.setAttributeNS(null, "text-anchor", "middle");
+		    text.setAttributeNS(null, "x", 135);
+			text.setAttributeNS(null, "y", 10);
+	    	text.setAttributeNS(null, "font-size", "12px");
+		    svgElem.appendChild(text);
+
+		    legend2.appendChild(svgElem);
+    	}
+    	
     	legend2.style.display = 'block';
     } 
 }
 
 
 function mostrarAprueboDignidad(tipo="comunas") {
+	mostrar = "apruebo-dignidad";
 	if (tipo=="comunas") mostrarAprueboDignidadComunas();
 	else if (tipo=="distritos") mostrarAprueboDignidadDistritos();
 	else mostrarAprueboDignidadRegiones();
@@ -1241,12 +1524,13 @@ function mostrarAprueboDignidadDistritos() {
 	if (proporcion) {
 		map.setLayoutProperty('apruebo-dignidad-distritos', 'visibility', 'visible');
 	    map.setLayoutProperty('apruebo-dignidad-exterior', 'visibility', 'visible'); 
+    	map.setLayoutProperty('distritos-outline', 'visibility', 'visible'); 
 	} else {
 		map.setLayoutProperty('apruebo-dignidad-distritos-center', 'visibility', 'visible');
 	    map.setLayoutProperty('apruebo-dignidad-exterior-center', 'visibility', 'visible'); 
+    	map.setLayoutProperty('distritos-gris', 'visibility', 'visible'); 
 	}
     map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
-    map.setLayoutProperty('distritos-gris', 'visibility', 'visible'); 
 	document.getElementById('a-apruebo-dignidad').style.color = 'black';
 
 	var els = document.getElementsByClassName('apruebo-dignidad');
@@ -1441,8 +1725,14 @@ function mostrarAprueboDignidadDistritos() {
 function mostrarAprueboDignidadRegiones() {
 	clean();
 	tipo = "regiones";
-	map.setLayoutProperty('apruebo-dignidad-regiones', 'visibility', 'visible');
-    map.setLayoutProperty('apruebo-dignidad-exterior', 'visibility', 'visible'); 
+	if (proporcion) {
+		map.setLayoutProperty('apruebo-dignidad-regiones', 'visibility', 'visible');
+		map.setLayoutProperty('apruebo-dignidad-exterior', 'visibility', 'visible');
+	} else {
+		map.setLayoutProperty('apruebo-dignidad-regiones-center', 'visibility', 'visible');
+		map.setLayoutProperty('apruebo-dignidad-exterior-center', 'visibility', 'visible');	
+    	map.setLayoutProperty('regiones-gris', 'visibility', 'visible'); 
+	}
     map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
 	document.getElementById('a-apruebo-dignidad').style.color = 'black';
 
@@ -1468,55 +1758,176 @@ function mostrarAprueboDignidadRegiones() {
 
     legend.style.display = 'block';
     if (screen.width>=992) {
-    	var pctLegend2 = ['50%', '60%', '70%', '80%'];
-    	var table2 = document.createElement('table');
-    	table2.style.borderCollapse = 'collapse';	
-    	var tr = document.createElement('tr');
-    	var td = document.createElement('td');
-    	td.innerHTML = 'Gabriel Boric';
-    	td.style.textAlign = 'right';
-    	td.style.paddingRight = '10px';
-    	tr.appendChild(td);
-    	for (var i = 0; i < pctLegend2.length; i++) {
-    		var td = document.createElement('td');
-    		td.style.fontSize = '0.8em';
-    		td.style.textAlign = 'left';
-    		var color = linearComibationHEX(colores['blanco'], colores['verde-agua'], 0.875-0.25*i);
-    		td.style.backgroundColor = color;
-    		td.style.color = constrastColor(color, 5);
-    		td.style.opacity = 0.9;
-    		td.innerHTML = pctLegend2[i];
-    		td.width = '45px';
-    		td.height = '15px';
-    		tr.appendChild(td);
+    	var div = document.createElement('div');
+    	var span = document.createElement('a');
+    	span.innerHTML = 'Proporción de votos';
+    	span.onclick = function() {
+    		proporcion = true;
+    		mostrarAprueboDignidadRegiones();
     	}
-    	table2.appendChild(tr);
-    	var tr = document.createElement('tr');
-    	var td = document.createElement('td');
-    	td.innerHTML = 'Daniel Jadue';
-    	td.style.paddingRight = '10px';
-    	td.style.textAlign = 'right';
-    	tr.appendChild(td);
-    	for (var i = 0; i < pctLegend2.length; i++) {
-    		var td = document.createElement('td');
-    		td.style.fontSize = '0.8em';
-    		td.style.textAlign = 'left';
-    		td.style.opacity = 0.9;
-    		var color = linearComibationHEX(colores['blanco'], colores['rojo-oscuro'], 0.875-0.25*i);
-    		td.style.backgroundColor = color;
-    		td.style.color = constrastColor(color, 5);
-    		td.innerHTML = pctLegend2[i];
-    		td.width = '45px';
-    		td.height = '15px';
-    		tr.appendChild(td);
+    	span.style.margin = '3px';
+    	span.style.border = '1px solid black';
+    	span.style.borderRadius = '5px 5px 5px';
+    	span.style.padding = '3px';
+    	if (proporcion) span.style.backgroundColor = linearComibationHEX(colores['gris'],colores['blanco'],0.4);
+    	div.appendChild(span);
+    	var span = document.createElement('a');
+    	span.innerHTML = 'Tamaño de la ventaja';
+    	span.onclick = function() {
+    		proporcion = false;
+    		mostrarAprueboDignidadRegiones();
     	}
-    	table2.appendChild(tr);
-    	legend2.appendChild(table2);
-    	legend2.style.display = 'block';
+    	span.style.margin = '3px';
+    	span.style.border = '1px solid black';
+    	span.style.borderRadius = '5px 5px 5px';
+    	span.style.padding = '3px';
+    	if (!proporcion) span.style.backgroundColor = linearComibationHEX(colores['gris'],colores['blanco'],0.4);
+    	div.appendChild(span);
+    	legend2.appendChild(div);
+
+    	if (proporcion) {
+	    	var pctLegend2 = ['50%', '60%', '70%', '80%'];
+	    	var table2 = document.createElement('table');
+		    table2.style.marginTop = '10px';
+	    	table2.style.borderCollapse = 'collapse';	
+	    	var tr = document.createElement('tr');
+	    	var td = document.createElement('td');
+	    	td.innerHTML = 'Gabriel Boric';
+	    	td.style.textAlign = 'right';
+	    	td.style.paddingRight = '10px';
+	    	tr.appendChild(td);
+	    	for (var i = 0; i < pctLegend2.length; i++) {
+	    		var td = document.createElement('td');
+	    		td.style.fontSize = '0.8em';
+	    		td.style.textAlign = 'left';
+	    		var color = linearComibationHEX(colores['blanco'], colores['verde-agua'], 0.875-0.25*i);
+	    		td.style.backgroundColor = color;
+	    		td.style.color = constrastColor(color, 5);
+	    		td.style.opacity = 0.9;
+	    		td.innerHTML = pctLegend2[i];
+	    		td.width = '45px';
+	    		td.height = '15px';
+	    		tr.appendChild(td);
+	    	}
+	    	table2.appendChild(tr);
+	    	var tr = document.createElement('tr');
+	    	var td = document.createElement('td');
+	    	td.innerHTML = 'Daniel Jadue';
+	    	td.style.paddingRight = '10px';
+	    	td.style.textAlign = 'right';
+	    	tr.appendChild(td);
+	    	for (var i = 0; i < pctLegend2.length; i++) {
+	    		var td = document.createElement('td');
+	    		td.style.fontSize = '0.8em';
+	    		td.style.textAlign = 'left';
+	    		td.style.opacity = 0.9;
+	    		var color = linearComibationHEX(colores['blanco'], colores['rojo-oscuro'], 0.875-0.25*i);
+	    		td.style.backgroundColor = color;
+	    		td.style.color = constrastColor(color, 5);
+	    		td.innerHTML = pctLegend2[i];
+	    		td.width = '45px';
+	    		td.height = '15px';
+	    		tr.appendChild(td);
+	    	}
+	    	table2.appendChild(tr);
+	    	legend2.appendChild(table2);
+	    } else {
+			var xmlns = "http://www.w3.org/2000/svg";
+    		var svgElem = document.createElementNS(xmlns, "svg");
+		    svgElem.setAttributeNS(null, "viewBox", "-40 -55 230 90");
+			svgElem.setAttributeNS(null, "width", "230px");
+		    svgElem.setAttributeNS(null, "height", "90px");
+		    svgElem.setAttributeNS(null, "version", "1.2");
+
+	    	var circle = document.createElementNS(xmlns,"circle");
+	    	circle.setAttributeNS(null, "cx", -25);
+	    	circle.setAttributeNS(null, "cy", -5);
+	    	circle.setAttributeNS(null, "r", 0.1*(10**0.55)+'px');
+	    	circle.setAttributeNS(null, "fill", colores['gris']);
+	    	circle.setAttributeNS(null, "opacity", 0.4);
+	    	svgElem.appendChild(circle);
+	    	var text = document.createElementNS(xmlns,"text");
+	    	text.innerHTML = '10';
+		    text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
+		    text.setAttributeNS(null, "text-anchor", "middle");
+		    text.setAttributeNS(null, "x", -25);
+			text.setAttributeNS(null, "y", 10);
+	    	text.setAttributeNS(null, "font-size", "12px");
+		    svgElem.appendChild(text);
+
+	    	var circle = document.createElementNS(xmlns,"circle");
+	    	circle.setAttributeNS(null, "cx", 0);
+	    	circle.setAttributeNS(null, "cy", -5);
+	    	circle.setAttributeNS(null, "r", 0.1*(100**0.55)+'px');
+	    	circle.setAttributeNS(null, "fill", colores['gris']);
+	    	circle.setAttributeNS(null, "opacity", 0.4);
+	    	svgElem.appendChild(circle);
+	    	var text = document.createElementNS(xmlns,"text");
+	    	text.innerHTML = '100';
+		    text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
+		    text.setAttributeNS(null, "text-anchor", "middle");
+		    text.setAttributeNS(null, "x", 0);
+			text.setAttributeNS(null, "y", 10);
+	    	text.setAttributeNS(null, "font-size", "12px");
+		    svgElem.appendChild(text);
+
+	    	var circle = document.createElementNS(xmlns,"circle");
+	    	circle.setAttributeNS(null, "cx", 35);
+	    	circle.setAttributeNS(null, "cy", -5);
+	    	circle.setAttributeNS(null, "r", 0.1*(1000**0.55)+'px');
+	    	circle.setAttributeNS(null, "fill", colores['gris']);
+	    	circle.setAttributeNS(null, "opacity", 0.4);
+	    	svgElem.appendChild(circle);
+	    	var text = document.createElementNS(xmlns,"text");
+	    	text.innerHTML = '1.000';
+		    text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
+		    text.setAttributeNS(null, "text-anchor", "middle");
+		    text.setAttributeNS(null, "x", 35);
+			text.setAttributeNS(null, "y", 10);
+	    	text.setAttributeNS(null, "font-size", "12px");
+		    svgElem.appendChild(text);
+
+	    	var circle = document.createElementNS(xmlns,"circle");
+	    	circle.setAttributeNS(null, "cx", 75);
+	    	circle.setAttributeNS(null, "cy", -5);
+	    	circle.setAttributeNS(null, "r", 0.1*(10000**0.55)+'px');
+	    	circle.setAttributeNS(null, "fill", colores['gris']);
+	    	circle.setAttributeNS(null, "opacity", 0.4);
+	    	svgElem.appendChild(circle);
+	    	var text = document.createElementNS(xmlns,"text");
+	    	text.innerHTML = '10.000';
+		    text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
+		    text.setAttributeNS(null, "text-anchor", "middle");
+		    text.setAttributeNS(null, "x", 75);
+			text.setAttributeNS(null, "y", 10);
+	    	text.setAttributeNS(null, "font-size", "12px");
+		    svgElem.appendChild(text);
+
+	    	var circle = document.createElementNS(xmlns,"circle");
+	    	circle.setAttributeNS(null, "cx", 135);
+	    	circle.setAttributeNS(null, "cy", -5);
+	    	circle.setAttributeNS(null, "r", 0.1*(50000**0.55)+'px');
+	    	circle.setAttributeNS(null, "fill", colores['gris']);
+	    	circle.setAttributeNS(null, "opacity", 0.4);
+	    	svgElem.appendChild(circle);
+	    	var text = document.createElementNS(xmlns,"text");
+	    	text.innerHTML = '50.000';
+		    text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
+		    text.setAttributeNS(null, "text-anchor", "middle");
+		    text.setAttributeNS(null, "x", 135);
+			text.setAttributeNS(null, "y", 10);
+	    	text.setAttributeNS(null, "font-size", "12px");
+		    svgElem.appendChild(text);
+
+		    legend2.appendChild(svgElem);
+    	}
+
+	    legend2.style.display = 'block';
     } 
 }
 
 function mostrarChileVamos(tipo="comunas") {
+	mostrar = "chile-vamos";
 	if (tipo=="comunas") mostrarChileVamosComunas();
 	else if (tipo=="distritos") mostrarChileVamosDistritos();
 	else mostrarChileVamosRegiones();
@@ -1752,12 +2163,13 @@ function mostrarChileVamosDistritos() {
 	if (proporcion) {
 		map.setLayoutProperty('chile-vamos-distritos', 'visibility', 'visible');
 	    map.setLayoutProperty('chile-vamos-exterior', 'visibility', 'visible'); 
+    	map.setLayoutProperty('distritos-outline', 'visibility', 'visible'); 
 	} else {
 		map.setLayoutProperty('chile-vamos-distritos-center', 'visibility', 'visible');
 	    map.setLayoutProperty('chile-vamos-exterior-center', 'visibility', 'visible'); 
+    	map.setLayoutProperty('distritos-gris', 'visibility', 'visible'); 
 	}
     map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
-    map.setLayoutProperty('distritos-gris', 'visibility', 'visible'); 
 	document.getElementById('a-chile-vamos').style.color = 'black';
 
 	var els = document.getElementsByClassName('chile-vamos');
@@ -1990,8 +2402,14 @@ function mostrarChileVamosDistritos() {
 function mostrarChileVamosRegiones() {
 	clean();
 	tipo = "regiones";
-	map.setLayoutProperty('chile-vamos-regiones', 'visibility', 'visible');
-    map.setLayoutProperty('chile-vamos-exterior', 'visibility', 'visible'); 
+	if (proporcion) {
+		map.setLayoutProperty('chile-vamos-regiones', 'visibility', 'visible');
+		map.setLayoutProperty('chile-vamos-exterior', 'visibility', 'visible');
+	} else {
+		map.setLayoutProperty('chile-vamos-regiones-center', 'visibility', 'visible');
+		map.setLayoutProperty('chile-vamos-exterior-center', 'visibility', 'visible');	
+    	map.setLayoutProperty('regiones-gris', 'visibility', 'visible'); 
+	}
     map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
 	document.getElementById('a-chile-vamos').style.color = 'black';
 
@@ -2019,86 +2437,206 @@ function mostrarChileVamosRegiones() {
 
     legend.style.display = 'block';
 	if (screen.width>=992) {
-    	var pctLegend2 = ['20%', '30%', '40%', '50%'];
-    	var table2 = document.createElement('table');
-    	table2.style.borderCollapse = 'collapse';	
-    	var tr = document.createElement('tr');
-    	var td = document.createElement('td');
-    	td.innerHTML = 'Sebastián Sichel';
-    	td.style.textAlign = 'right';
-    	td.style.paddingRight = '10px';
-    	tr.appendChild(td);
-    	for (var i = 0; i < pctLegend2.length; i++) {
-    		var td = document.createElement('td');
-    		td.style.fontSize = '0.8em';
-    		td.style.textAlign = 'left';
-    		var color = linearComibationHEX(linearComibationHEX(colores['blanco'],colores['amarillo'],0.95),colores['amarillo'], (1-1/8)-1/4*i);
-    		td.style.backgroundColor = color
-    		td.style.color = constrastColor(color, 5);
-    		td.innerHTML = pctLegend2[i];
-    		td.width = '45px';
-    		td.height = '15px';
-    		tr.appendChild(td);
+    	var div = document.createElement('div');
+    	var span = document.createElement('a');
+    	span.innerHTML = 'Proporción de votos';
+    	span.onclick = function() {
+    		proporcion = true;
+    		mostrarChileVamosRegiones();
     	}
-    	table2.appendChild(tr);	
-    	var tr = document.createElement('tr');
-    	var td = document.createElement('td');
-    	td.innerHTML = 'Joaquín Lavín';
-    	td.style.textAlign = 'right';
-    	td.style.paddingRight = '10px';
-    	tr.appendChild(td);
-    	for (var i = 0; i < pctLegend2.length; i++) {
-    		var td = document.createElement('td');
-    		td.style.fontSize = '0.8em';
-    		td.style.textAlign = 'left';
-    		var color = linearComibationHEX(linearComibationHEX(colores['blanco'],colores['azul-marino'],0.95),colores['azul-marino'], (1-1/8)-1/4*i);
-    		td.style.backgroundColor = color;
-    		td.style.color = constrastColor(color, 5);
-    		td.innerHTML = pctLegend2[i];
-    		td.width = '45px';
-    		td.height = '15px';
-    		tr.appendChild(td);
+    	span.style.margin = '3px';
+    	span.style.border = '1px solid black';
+    	span.style.borderRadius = '5px 5px 5px';
+    	span.style.padding = '3px';
+    	if (proporcion) span.style.backgroundColor = linearComibationHEX(colores['gris'],colores['blanco'],0.4);
+    	div.appendChild(span);
+    	var span = document.createElement('a');
+    	span.innerHTML = 'Tamaño de la ventaja';
+    	span.onclick = function() {
+    		proporcion = false;
+    		mostrarChileVamosRegiones();
     	}
-    	table2.appendChild(tr);
-    	var tr = document.createElement('tr');
-    	var td = document.createElement('td');
-    	td.innerHTML = 'Ignacio Briones';
-    	td.style.textAlign = 'right';
-    	td.style.paddingRight = '10px';
-    	tr.appendChild(td);
-    	for (var i = 0; i < pctLegend2.length; i++) {
-    		var td = document.createElement('td');
-    		td.style.fontSize = '0.8em';
-    		td.style.textAlign = 'left';
-    		var color = linearComibationHEX(linearComibationHEX(colores['blanco'],'#86BC25',0.95),'#86BC25', (1-1/8)-1/4*i);
-    		td.style.backgroundColor = color;
-    		td.style.color = constrastColor(color, 5);
-    		td.innerHTML = pctLegend2[i];
-    		td.width = '45px';
-    		td.height = '15px';
-    		tr.appendChild(td);
+    	span.style.margin = '3px';
+    	span.style.border = '1px solid black';
+    	span.style.borderRadius = '5px 5px 5px';
+    	span.style.padding = '3px';
+    	if (!proporcion) span.style.backgroundColor = linearComibationHEX(colores['gris'],colores['blanco'],0.4);
+    	div.appendChild(span);
+    	legend2.appendChild(div);
+
+    	if (proporcion) {
+	    	var pctLegend2 = ['20%', '30%', '40%', '50%'];
+	    	var table2 = document.createElement('table');
+		    table2.style.marginTop = '10px';
+	    	table2.style.borderCollapse = 'collapse';	
+	    	var tr = document.createElement('tr');
+	    	var td = document.createElement('td');
+	    	td.innerHTML = 'Sebastián Sichel';
+	    	td.style.textAlign = 'right';
+	    	td.style.paddingRight = '10px';
+	    	tr.appendChild(td);
+	    	for (var i = 0; i < pctLegend2.length; i++) {
+	    		var td = document.createElement('td');
+	    		td.style.fontSize = '0.8em';
+	    		td.style.textAlign = 'left';
+	    		var color = linearComibationHEX(linearComibationHEX(colores['blanco'],colores['amarillo'],0.95),colores['amarillo'], (1-1/8)-1/4*i);
+	    		td.style.backgroundColor = color
+	    		td.style.color = constrastColor(color, 5);
+	    		td.innerHTML = pctLegend2[i];
+	    		td.width = '45px';
+	    		td.height = '15px';
+	    		tr.appendChild(td);
+	    	}
+	    	table2.appendChild(tr);	
+	    	var tr = document.createElement('tr');
+	    	var td = document.createElement('td');
+	    	td.innerHTML = 'Joaquín Lavín';
+	    	td.style.textAlign = 'right';
+	    	td.style.paddingRight = '10px';
+	    	tr.appendChild(td);
+	    	for (var i = 0; i < pctLegend2.length; i++) {
+	    		var td = document.createElement('td');
+	    		td.style.fontSize = '0.8em';
+	    		td.style.textAlign = 'left';
+	    		var color = linearComibationHEX(linearComibationHEX(colores['blanco'],colores['azul-marino'],0.95),colores['azul-marino'], (1-1/8)-1/4*i);
+	    		td.style.backgroundColor = color;
+	    		td.style.color = constrastColor(color, 5);
+	    		td.innerHTML = pctLegend2[i];
+	    		td.width = '45px';
+	    		td.height = '15px';
+	    		tr.appendChild(td);
+	    	}
+	    	table2.appendChild(tr);
+	    	var tr = document.createElement('tr');
+	    	var td = document.createElement('td');
+	    	td.innerHTML = 'Ignacio Briones';
+	    	td.style.textAlign = 'right';
+	    	td.style.paddingRight = '10px';
+	    	tr.appendChild(td);
+	    	for (var i = 0; i < pctLegend2.length; i++) {
+	    		var td = document.createElement('td');
+	    		td.style.fontSize = '0.8em';
+	    		td.style.textAlign = 'left';
+	    		var color = linearComibationHEX(linearComibationHEX(colores['blanco'],'#86BC25',0.95),'#86BC25', (1-1/8)-1/4*i);
+	    		td.style.backgroundColor = color;
+	    		td.style.color = constrastColor(color, 5);
+	    		td.innerHTML = pctLegend2[i];
+	    		td.width = '45px';
+	    		td.height = '15px';
+	    		tr.appendChild(td);
+	    	}
+	    	table2.appendChild(tr);
+	    	var tr = document.createElement('tr');
+	    	var td = document.createElement('td');
+	    	td.innerHTML = 'Mario Desbordes';
+	    	td.style.textAlign = 'right';
+	    	td.style.paddingRight = '10px';
+	    	tr.appendChild(td);
+	    	for (var i = 0; i < pctLegend2.length; i++) {
+	    		var td = document.createElement('td');
+	    		td.style.fontSize = '0.8em';
+	    		td.style.textAlign = 'left';
+	    		var color = linearComibationHEX(linearComibationHEX(colores['blanco'],colores['celeste'],0.95),colores['celeste'], (1-1/8)-1/4*i);
+	    		td.style.backgroundColor = color;
+	    		td.style.color = constrastColor(color, 5);
+	    		td.innerHTML = pctLegend2[i];
+	    		td.width = '45px';
+	    		td.height = '15px';
+	    		tr.appendChild(td);
+	    	}
+	    	table2.appendChild(tr);
+	    	legend2.appendChild(table2);
+	    } else {
+			var xmlns = "http://www.w3.org/2000/svg";
+    		var svgElem = document.createElementNS(xmlns, "svg");
+		    svgElem.setAttributeNS(null, "viewBox", "-40 -55 230 90");
+			svgElem.setAttributeNS(null, "width", "230px");
+		    svgElem.setAttributeNS(null, "height", "90px");
+		    svgElem.setAttributeNS(null, "version", "1.2");
+
+	    	var circle = document.createElementNS(xmlns,"circle");
+	    	circle.setAttributeNS(null, "cx", -25);
+	    	circle.setAttributeNS(null, "cy", -5);
+	    	circle.setAttributeNS(null, "r", 0.2*(10**0.55)+'px');
+	    	circle.setAttributeNS(null, "fill", colores['gris']);
+	    	circle.setAttributeNS(null, "opacity", 0.4);
+	    	svgElem.appendChild(circle);
+	    	var text = document.createElementNS(xmlns,"text");
+	    	text.innerHTML = '10';
+		    text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
+		    text.setAttributeNS(null, "text-anchor", "middle");
+		    text.setAttributeNS(null, "x", -25);
+			text.setAttributeNS(null, "y", 10);
+	    	text.setAttributeNS(null, "font-size", "12px");
+		    svgElem.appendChild(text);
+
+	    	var circle = document.createElementNS(xmlns,"circle");
+	    	circle.setAttributeNS(null, "cx", 0);
+	    	circle.setAttributeNS(null, "cy", -5);
+	    	circle.setAttributeNS(null, "r", 0.2*(100**0.55)+'px');
+	    	circle.setAttributeNS(null, "fill", colores['gris']);
+	    	circle.setAttributeNS(null, "opacity", 0.4);
+	    	svgElem.appendChild(circle);
+	    	var text = document.createElementNS(xmlns,"text");
+	    	text.innerHTML = '100';
+		    text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
+		    text.setAttributeNS(null, "text-anchor", "middle");
+		    text.setAttributeNS(null, "x", 0);
+			text.setAttributeNS(null, "y", 10);
+	    	text.setAttributeNS(null, "font-size", "12px");
+		    svgElem.appendChild(text);
+
+	    	var circle = document.createElementNS(xmlns,"circle");
+	    	circle.setAttributeNS(null, "cx", 35);
+	    	circle.setAttributeNS(null, "cy", -5);
+	    	circle.setAttributeNS(null, "r", 0.2*(1000**0.55)+'px');
+	    	circle.setAttributeNS(null, "fill", colores['gris']);
+	    	circle.setAttributeNS(null, "opacity", 0.4);
+	    	svgElem.appendChild(circle);
+	    	var text = document.createElementNS(xmlns,"text");
+	    	text.innerHTML = '1.000';
+		    text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
+		    text.setAttributeNS(null, "text-anchor", "middle");
+		    text.setAttributeNS(null, "x", 35);
+			text.setAttributeNS(null, "y", 10);
+	    	text.setAttributeNS(null, "font-size", "12px");
+		    svgElem.appendChild(text);
+
+	    	var circle = document.createElementNS(xmlns,"circle");
+	    	circle.setAttributeNS(null, "cx", 75);
+	    	circle.setAttributeNS(null, "cy", -5);
+	    	circle.setAttributeNS(null, "r", 0.1*(10000**0.55)+'px');
+	    	circle.setAttributeNS(null, "fill", colores['gris']);
+	    	circle.setAttributeNS(null, "opacity", 0.4);
+	    	svgElem.appendChild(circle);
+	    	var text = document.createElementNS(xmlns,"text");
+	    	text.innerHTML = '10.000';
+		    text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
+		    text.setAttributeNS(null, "text-anchor", "middle");
+		    text.setAttributeNS(null, "x", 75);
+			text.setAttributeNS(null, "y", 10);
+	    	text.setAttributeNS(null, "font-size", "12px");
+		    svgElem.appendChild(text);
+
+	    	var circle = document.createElementNS(xmlns,"circle");
+	    	circle.setAttributeNS(null, "cx", 135);
+	    	circle.setAttributeNS(null, "cy", -5);
+	    	circle.setAttributeNS(null, "r", 0.1*(50000**0.55)+'px');
+	    	circle.setAttributeNS(null, "fill", colores['gris']);
+	    	circle.setAttributeNS(null, "opacity", 0.4);
+	    	svgElem.appendChild(circle);
+	    	var text = document.createElementNS(xmlns,"text");
+	    	text.innerHTML = '50.000';
+		    text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
+		    text.setAttributeNS(null, "text-anchor", "middle");
+		    text.setAttributeNS(null, "x", 135);
+			text.setAttributeNS(null, "y", 10);
+	    	text.setAttributeNS(null, "font-size", "12px");
+		    svgElem.appendChild(text);
+
+		    legend2.appendChild(svgElem);
     	}
-    	table2.appendChild(tr);
-    	var tr = document.createElement('tr');
-    	var td = document.createElement('td');
-    	td.innerHTML = 'Mario Desbordes';
-    	td.style.textAlign = 'right';
-    	td.style.paddingRight = '10px';
-    	tr.appendChild(td);
-    	for (var i = 0; i < pctLegend2.length; i++) {
-    		var td = document.createElement('td');
-    		td.style.fontSize = '0.8em';
-    		td.style.textAlign = 'left';
-    		var color = linearComibationHEX(linearComibationHEX(colores['blanco'],colores['celeste'],0.95),colores['celeste'], (1-1/8)-1/4*i);
-    		td.style.backgroundColor = color;
-    		td.style.color = constrastColor(color, 5);
-    		td.innerHTML = pctLegend2[i];
-    		td.width = '45px';
-    		td.height = '15px';
-    		tr.appendChild(td);
-    	}
-    	table2.appendChild(tr);
-    	legend2.appendChild(table2);
+
     	legend2.style.display = 'block';
     } 
 }

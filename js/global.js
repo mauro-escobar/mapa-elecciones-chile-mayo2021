@@ -161,6 +161,20 @@ function addLayerRegionesOutline(map) {
     }, 'zona-indeterminada');
     map.setLayoutProperty('regiones-outline', 'visibility', 'none');
 };
+function addLayerRegionesFillGray(map) {
+    map.addLayer({
+        'id': 'regiones-gris',
+        'type': 'fill',
+        'source': 'regiones-data',
+        'source-layer': 'chiles-regiones-bfu10d',
+        'filter': ['!', ['==', ['get', 'REGION'], 'Zona sin demarcar']],
+        'paint': {
+            'fill-color': colores['gris'],
+            'fill-opacity': 0.2
+        },
+    }, 'zona-indeterminada');
+    map.setLayoutProperty('regiones-gris', 'visibility', 'none'); 
+}
 
 function addLayerComunasOutline(map) {
     map.addLayer({
