@@ -621,20 +621,20 @@ function mostrarConvencionales() {
     		'seats': 28,
     		'color': colores['verde-agua']
     	},
-    	'La Lista del Pueblo': {
-    		'seats': 26,
-    		'color': colores['rosado']
-    	},
     	'Lista del Apruebo': {
     		'seats': 25,
     		'color': colores['violeta']
 		},
+    	'La Lista del Pueblo': {
+    		'seats': 24,
+    		'color': colores['rosado']
+    	},
     	'Independientes No Neutrales': {
     		'seats': 11,
     		'color': colores['azul-marino']
     	},
     	'Candidaturas Independientes': {
-    		'seats': 11,
+    		'seats': 13,
     		'color': colores['gris']
     	},
     	'Pueblos Originarios': {
