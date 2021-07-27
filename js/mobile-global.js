@@ -89,7 +89,7 @@ function touchParliamentSeat(svgobj, paintParty=false) {
         }
         var els = document.getElementsByClassName("grupo");
         for (var i = 0; i < els.length; i++) els[i].style.opacity = 0.2;
-        for (var i=0; i < svgobj.classList.length; i++) {
+        for (var i = 0; i < svgobj.classList.length; i++) {
             var cl = svgobj.classList[i];
             if (true) {
                 var span = document.getElementById('span-'+cl);
@@ -144,7 +144,8 @@ function clickParliamentSeat(evt) {
     var color = colores['negro'];
     if (svgobj.dataset.hasOwnProperty("color")) color = svgobj.dataset.color;
 
-    if (!seatClicked || party!=groupClicked || (indep.includes(party) && nameClicked!=svgobj.dataset.name)) { 
+    //if (!seatClicked || party!=groupClicked || (indep.includes(party) && nameClicked!=svgobj.dataset.name)) { 
+    if (!seatClicked || nameClicked!=svgobj.dataset.name) { 
         seatClicked = true;
         selectedGroup = false;
         groupSelected = "";
@@ -152,35 +153,30 @@ function clickParliamentSeat(evt) {
         nameClicked = svgobj.dataset.name;
         var span = document.getElementById('lista-seat');
         if (span) span.innerHTML = '<br>';
+    
+        var els = document.getElementsByClassName("parliament-seat");
+        for (var i =0; i < els.length; i++) els[i].style.opacity = 0.2;
+        var els = document.getElementsByClassName(svgobj.dataset.name.replace(/ /g,"-"));
+        for (var i =0; i < els.length; i++) els[i].style.opacity = 1;
         
-        var indep = ['Fuera-de-Pacto','Candidaturas-Independientes'];
-        if (svgobj.dataset.hasOwnProperty("party") && !indep.includes(svgobj.dataset.party)) {
-            var party = svgobj.dataset.party;   
-            var els = document.getElementsByClassName(party);
-            var count = els.length;
-            for (var i = 0; i < els.length; i++) {
-                if (els[i].dataset.hasOwnProperty("dotted")) count--;
-            }
-            if (count==1) var escanos = count + " escaño";
-            else var escanos = count + " escaños";
-            var span = document.getElementById('lista-seat');
-            if (span) span.innerHTML = '<span style="font-weight:bold;color:'+color+'">'+party.replace(/-/g," ")+":</span> "+escanos+'<br>';
-
-            var els = document.getElementsByClassName("parliament-seat");
-            for (var i = 0; i < els.length; i++) {
-                if (!els[i].classList.contains(party)) els[i].style.opacity=0.2;
-            }
-        } else {
-            var els = document.getElementsByClassName("parliament-seat");
-            for (var i =0; i < els.length; i++) els[i].style.opacity = 0.2;
-            svgobj.style.opacity = 1;   
-        }
         var span = document.getElementById('nombre-seat');
         if (span) {
             var name = svgobj.dataset.name;
             if (svgobj.dataset.hasOwnProperty("role")) name += ' - '+svgobj.dataset.role;
             span.innerHTML = '<span>'+name+'</span>';  
-        } 
+        }
+        var els = document.getElementsByClassName("grupo");
+        for (var i = 0; i < els.length; i++) els[i].style.opacity = 0.2;
+        for (var i = 0; i < svgobj.classList.length; i++) {
+            var cl = svgobj.classList[i];
+            if (true) {
+                var span = document.getElementById('span-'+cl);
+                if (span) {
+                    span.style.color = svgobj.dataset.color;
+                    span.style.opacity = 1;
+                }
+            }
+        }
     } else {
         seatClicked = false;
         groupClicked = "";
@@ -188,7 +184,7 @@ function clickParliamentSeat(evt) {
         var span = document.getElementById('lista-seat');
         if (span) span.innerHTML = '<br>';
         var span = document.getElementById('nombre-seat');
-        if (span) span.innerHTML = 'Muévete sobre los puntos...';
+        if (span) span.innerHTML = 'Toca los puntos...';
         var els = document.getElementsByClassName("grupo");
         for (var i = 0; i < els.length; i++) {
            els[i].style.color = colores['negro'];
@@ -220,7 +216,7 @@ function paintGroup(cl) {
         selectedGroup = false;
         groupSelected = "";
         var span = document.getElementById('nombre-seat');
-        if (span) span.innerHTML = 'Muévete sobre los puntos...';
+        if (span) span.innerHTML = 'Toca los puntos...';
     }
     if (selectedGroup) {
         var els = document.getElementsByClassName("grupo");

@@ -5,6 +5,8 @@ div_plot.id = 'div-plot';
 var div_menu = document.createElement('div');
 div_menu.id = 'div-menu';
 
+div_plot.style.textAlign = 'center';
+
 if (screen.width<screen.height*3/2) {
 	div_plot.style.margin = '3px';
 	div_menu.style.margin = '3px';
@@ -70,6 +72,8 @@ div_plot.appendChild(span);
 var span = document.createElement('span');
 span.id = 'nombre-seat';
 span.innerHTML = 'Toca los puntos...';
+span.style.width = '100%';
+span.style.textAlign = 'center';
 span.style.fontSize = '0.8em';
 span.style.fontFamily = 'Arial, Helvetica, sans-serif';
 div_plot.appendChild(span);
@@ -86,9 +90,9 @@ span.innerHTML = 'O haz click sobre uno de los grupos<br>';
 div.appendChild(span);
 for (grupo in conv_grupos) {
 	var span = document.createElement('span');
-	if (grupo=="Presupuesto") span.innerHTML = '<br>Comisiones · ';
-	else if (grupo=="D1") span.innerHTML = '<br>Distritos · ';
-	else if (grupo=="Mujeres") span.innerHTML = '<br>Otros · ';
+	if (grupo=="Presupuesto") span.innerHTML = '<br><br>Comisiones · ';
+	else if (grupo=="D1") span.innerHTML = '<br><br>Distritos · ';
+	else if (grupo=="Mujeres") span.innerHTML = '<br><br>Otros · ';
 	else span.innerHTML = ' · ';
 	div.appendChild(span);
 	var a = document.createElement('a');
