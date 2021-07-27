@@ -347,7 +347,7 @@ function touchParliamentSeatEvt(evt) {
 }
 function touchParliamentSeat(svgobj, paintParty=false) {
     if (!selectedGroup && !seatClicked && !searching) {
-        var indep = ['Fuera-de-Pacto','Candidaturas-Independientes'];
+        var indep = ['Fuera-de-Pacto','Candidaturas-Independientes','Candidaturas-Independientes-2'];
         if (paintParty && svgobj.dataset.hasOwnProperty("party") && !indep.includes(svgobj.dataset.party)) {
             var color = colores['negro'];
             if (svgobj.dataset.hasOwnProperty("color")) color = svgobj.dataset.color;
@@ -427,7 +427,7 @@ function clickParliamentSeat(evt) {
 
     searching = false;
     var svgobj=evt.target;
-    var indep = ['Fuera-de-Pacto','Candidaturas-Independientes', ''];
+    var indep = ['Fuera-de-Pacto','Candidaturas-Independientes','Candidaturas-Independientes-2'];
     var party = "";
     if (svgobj.dataset.hasOwnProperty("party")) party = svgobj.dataset.party;
     var color = colores['negro'];
@@ -442,7 +442,7 @@ function clickParliamentSeat(evt) {
         var span = document.getElementById('lista-seat');
         if (span) span.innerHTML = '<br>';
         
-        var indep = ['Fuera-de-Pacto','Candidaturas-Independientes'];
+        //var indep = ['Fuera-de-Pacto','Candidaturas-Independientes'];
         if (svgobj.dataset.hasOwnProperty("party") && !indep.includes(svgobj.dataset.party)) {
             var party = svgobj.dataset.party;   
             var els = document.getElementsByClassName(party);

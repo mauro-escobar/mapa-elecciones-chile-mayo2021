@@ -830,7 +830,7 @@ var conv_parliament = {
 		]
 	},
 	'Candidaturas Independientes': {
-		'seats': 13,
+		'seats': 11,
 		'color': colores['gris'],
 		'names': [
 			["ALEJANDRA ALICIA FLORES CARLOS (IND)", false],
@@ -843,7 +843,13 @@ var conv_parliament = {
 			["GLORIA DEL TRANSITO ALVARADO JORQUERA (IND)", false],
 			["MARIA ELISA QUINTEROS CACERES (IND)", false],
 			["BASTIAN ESTEBAN LABBE SALAZAR (IND)", false],
-			["MAURICIO DAZA CARRASCO (IND)", false],
+			["MAURICIO DAZA CARRASCO (IND)", false]
+		]
+	},
+	'Candidaturas Independientes 2': {
+		'seats': 2,
+		'color': colores['gris'],
+		'names': [
 			["ROSSANA LORETO VIDAL HERNANDEZ (IND)", false],
 			["ELISA AMANDA GIUSTINIANOVICH CAMPOS (IND)", false]
 		]
@@ -938,7 +944,8 @@ var conv_parliament_order = {
 	'Pueblos Originarios (Yagán)': false, 
 	'Pueblos Originarios (Chango)': false, 
 	'Candidaturas Independientes': false,
-	'La Lista del Pueblo': true, 
+	'La Lista del Pueblo': true,  
+	'Candidaturas Independientes 2': true,
 	'Apruebo Dignidad (PCCH)': true, 
 	'Apruebo Dignidad (FREVS)': true, 
 	'Apruebo Dignidad (RD)': true, 

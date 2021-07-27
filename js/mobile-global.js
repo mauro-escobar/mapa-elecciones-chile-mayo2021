@@ -58,7 +58,7 @@ function touchParliamentSeatEvt(evt) {
 }
 function touchParliamentSeat(svgobj, paintParty=false) {
     if (!selectedGroup && !seatClicked && !searching) {
-        var indep = ['Fuera-de-Pacto','Candidaturas-Independientes'];
+        var indep = ['Fuera-de-Pacto','Candidaturas-Independientes','Candidaturas-Independientes-2'];
         if (paintParty && svgobj.dataset.hasOwnProperty("party") && !indep.includes(svgobj.dataset.party)) {
             var color = colores['negro'];
             if (svgobj.dataset.hasOwnProperty("color")) color = svgobj.dataset.color;
