@@ -973,7 +973,11 @@ var conv_coordinadores = {
 	"GLORIA DEL TRANSITO ALVARADO JORQUERA (IND)": ["Presupuesto", colores['rojo-oscuro']],
 	"CESAR VALENZUELA MAASS (PS)": ["Presupuesto", colores['rojo-oscuro']],
 	"DANIEL ALEJANDRO BRAVO SILVA (IND)": ["Reglamento", colores['negro']],
-	"AMAYA PAULINA ALVEZ MARIN (RD)": ["Reglamento", colores['rojo-oscuro']]
+	"AMAYA PAULINA ALVEZ MARIN (RD)": ["Reglamento", colores['rojo-oscuro']],
+	"MANUELA ROYO LETELIER (IND-IGUAL)": ["DDHH", colores['rojo-oscuro']],
+	"ROBERTO ANTONIO CELEDON FERNANDEZ (IND-FREVS)": ["DDHH", colores['rojo-oscuro']],
+	"WILFREDO MANUEL BACIAN DELGADO (Quechua)": ["Participación-Indígena", colores['negro']], 
+	"MARGARITA VARGAS LOPEZ (Kawashkar)": ["Participación-Indígena", colores['negro']]
 };
 var conv_grupos = {
 	"Pueblos Originarios": [
@@ -1324,7 +1328,9 @@ var conv_grupos = {
 		"MANUEL JOSE OSSANDON LIRA (IND-RN)",
 		"RODRIGO ERNESTO ROJAS VADE (IND)", 
 		"CARLOS CALVO MUÑOZ (IND-PS)",
-		"ALEJANDRA PIA PEREZ ESPINA (IND)"
+		"ALEJANDRA PIA PEREZ ESPINA (IND)",
+		"WILFREDO MANUEL BACIAN DELGADO (Quechua)", 
+		"MARGARITA VARGAS LOPEZ (Kawashkar)"
 	],
 	"Participación Popular": [
 		"CAROLINA ANDREA SEPULVEDA SEPULVEDA (IND)",
