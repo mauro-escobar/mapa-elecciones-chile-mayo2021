@@ -977,7 +977,9 @@ var conv_coordinadores = {
 	"MANUELA ROYO LETELIER (IND-IGUAL)": ["DDHH", colores['rojo-oscuro']],
 	"ROBERTO ANTONIO CELEDON FERNANDEZ (IND-FREVS)": ["DDHH", colores['rojo-oscuro']],
 	"WILFREDO MANUEL BACIAN DELGADO (Quechua)": ["Participación-Indígena", colores['negro']], 
-	"MARGARITA VARGAS LOPEZ (Kawashkar)": ["Participación-Indígena", colores['negro']]
+	"MARGARITA VARGAS LOPEZ (Kawashkar)": ["Participación-Indígena", colores['negro']],
+	"JAVIER FUCHSLOCHER BAEZA (IND)": ["Participación-Popular", colores['rojo-oscuro']],
+	"LISETTE LORENA VERGARA RIQUELME (IND)": ["Participación-Popular", colores['negro']]		
 };
 var conv_grupos = {
 	"Pueblos Originarios": [
