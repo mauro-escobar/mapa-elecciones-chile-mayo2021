@@ -966,6 +966,10 @@ var conv_parliament_order = {
 var conv_directiva = [
 	['Presidenta', "ELISA LONCON ANTILEO (Mapuche)", 0, 0],
 	['Vicepresidente', "JAIME ANDRES BASSA MERCADO (IND-CS)", 0, 1]
+	/*['Presidenta', "ELISA LONCON ANTILEO (Mapuche)", 1, 0],
+	['Vicepresidente', "JAIME ANDRES BASSA MERCADO (IND-CS)", 1, 1],
+	['Vicepresidenta',"ISABEL SELENA GODOY MONARDEZ (Colla)", 0, 0],
+	['Vicepresidenta',"TIARE MAEVA CAROLINA AGUILERA HEY (Rapanui)", 0, 1]*/
 ];
 var conv_coordinadores = {
 	"MARIA ELISA QUINTEROS CACERES (IND)": ["Ética", colores['rojo-oscuro']],
@@ -979,7 +983,10 @@ var conv_coordinadores = {
 	"WILFREDO MANUEL BACIAN DELGADO (Quechua)": ["Participación-Indígena", colores['negro']], 
 	"MARGARITA VARGAS LOPEZ (Kawashkar)": ["Participación-Indígena", colores['negro']],
 	"JAVIER FUCHSLOCHER BAEZA (IND)": ["Participación-Popular", colores['rojo-oscuro']],
-	"LISETTE LORENA VERGARA RIQUELME (IND)": ["Participación-Popular", colores['negro']]		
+	"LISETTE LORENA VERGARA RIQUELME (IND)": ["Participación-Popular", colores['negro']],
+	"ADRIANA CAMILA AMPUERO BARRIENTOS (IND)": ["Descentralización", colores['negro']],
+	"CRISTINA INES DORADOR ORTIZ (IND)": ["Descentralización", colores['rojo-oscuro']]
+		
 };
 var conv_grupos = {
 	"Pueblos Originarios": [
