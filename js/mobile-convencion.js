@@ -14,7 +14,7 @@ if (screen.width<screen.height*3/2) {
 	div_menu.style.padding = '1%';
 	div_plot.style.width = '98%';
 	div_menu.style.width = '98%';
-	div_plot.style.height = '42%';
+	div_plot.style.height = '45%';
 	div_menu.style.height = '35%';
 } else {
 	map.style.top = '30px';
