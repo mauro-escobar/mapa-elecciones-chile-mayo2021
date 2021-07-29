@@ -933,6 +933,7 @@ var conv_parliament = {
 	}
 }	
 var conv_parliament_order = {
+	'Candidaturas Independientes': false,
 	'Pueblos Originarios (Mapuche)': false, 
 	'Pueblos Originarios (Rapanui)': false, 
 	'Pueblos Originarios (Atacameño)': false, 
@@ -943,7 +944,6 @@ var conv_parliament_order = {
 	'Pueblos Originarios (Kawashkar)': false, 
 	'Pueblos Originarios (Yagán)': false, 
 	'Pueblos Originarios (Chango)': false, 
-	'Candidaturas Independientes': false,
 	'La Lista del Pueblo': true,  
 	'Candidaturas Independientes 2': true,
 	'Apruebo Dignidad (PCCH)': true, 
