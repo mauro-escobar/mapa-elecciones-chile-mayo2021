@@ -813,11 +813,10 @@ var conv_parliament = {
 		]
 	},
 	'Independientes No Neutrales': {
-		'seats': 11,
+		'seats': 10,
 		'color': colores['azul-marino'],
 		'names': [
 			["GUILLERMO NICOLAS NAMOR KONG (IND)", false],
-			["MIGUEL ANGEL BOTTO SALINAS (IND)", false],
 			["PATRICIA POLITZER KEREKES (IND)", false],
 			["BENITO JOSE BARANDA FERRAN (IND)", false],
 			["JUAN JOSE MARTIN BRAVO (IND)", false],
@@ -852,6 +851,13 @@ var conv_parliament = {
 		'names': [
 			["ROSSANA LORETO VIDAL HERNANDEZ (IND)", false],
 			["ELISA AMANDA GIUSTINIANOVICH CAMPOS (IND)", false]
+		]
+	},
+	'Candidaturas Independientes 3': {
+		'seats': 1,
+		'color': colores['gris'],
+		'names': [
+			["MIGUEL ANGEL BOTTO SALINAS (IND)", false],
 		]
 	},
 	'Pueblos Originarios (Mapuche)': {
@@ -959,6 +965,7 @@ var conv_parliament_order = {
 	'Lista del Apruebo (PPD)': true, 
 	'Lista del Apruebo (PDC)': true, 
 	'Independientes No Neutrales': true,
+	'Candidaturas Independientes 3': true,
 	'Vamos por Chile (EVO)': true,
 	'Vamos por Chile (RN)': true,
 	'Vamos por Chile (UDI)': true
@@ -1189,7 +1196,7 @@ var conv_grupos = {
 	],
 	"Independientes No Neutrales": [
 		"GUILLERMO NICOLAS NAMOR KONG (IND)",
-		"MIGUEL ANGEL BOTTO SALINAS (IND)",
+		//"MIGUEL ANGEL BOTTO SALINAS (IND)",
 		"PATRICIA POLITZER KEREKES (IND)",
 		"BENITO JOSE BARANDA FERRAN (IND)",
 		"JUAN JOSE MARTIN BRAVO (IND)",
@@ -2209,11 +2216,11 @@ function mostrarConvencionales() {
     		'color': colores['rosado']
     	},
     	'Independientes No Neutrales': {
-    		'seats': 11,
+    		'seats': 10,
     		'color': colores['azul-marino']
     	},
-    	'Candidaturas Independientes': {
-    		'seats': 13,
+    	'Independientes': {
+    		'seats': 14,
     		'color': colores['gris']
     	},
     	'Pueblos Originarios': {
