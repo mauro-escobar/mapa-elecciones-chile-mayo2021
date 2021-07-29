@@ -195,7 +195,7 @@ function clickParliamentSeat(evt) {
 
 function clickGroup(evt) {
     var obj = evt.target;
-    var cl = obj.innerHTML.replace(/ /g,"-");
+    var cl = obj.innerHTML.replace(/&nbsp;/g,"-");
     paintGroup(cl);
     if (selectedGroup) {
         obj.style.opacity = 1;
