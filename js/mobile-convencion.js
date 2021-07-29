@@ -91,16 +91,17 @@ span.innerHTML = 'O haz click sobre uno de los grupos<br>';
 div.appendChild(span);
 for (grupo in conv_grupos) {
 	var span = document.createElement('span');
-	if (grupo=="Presupuesto") span.innerHTML = '<br><br>Comisiones · ';
-	else if (grupo=="D1") span.innerHTML = '<br><br>Distritos · ';
-	else if (grupo=="Mujeres") span.innerHTML = '<br><br>Otros · ';
+	if (grupo=="Reglamento") span.innerHTML = '<br style="margin-bottom:7px">Comisiones · ';
+	else if (grupo=="D1") span.innerHTML = '<br style="margin-bottom:7px">Distritos · ';
+	else if (grupo=="Mujeres") span.innerHTML = '<br style="margin-bottom:7px">Otros · ';
+	else if (grupo=="UDI") span.innerHTML = '<br style="margin-bottom:7px">Partidos · ';
 	else span.innerHTML = ' · ';
 	div.appendChild(span);
 	var a = document.createElement('a');
 	a.onclick = clickGroup;
 	var span = document.createElement('span');
 	span.id = 'span-'+grupo.replace(/ /g,"-");
-	span.innerHTML = grupo;
+	span.innerHTML = grupo.replace(/ /g,"&nbsp;");
 	span.style.fontWeight = 'bold';
 	span.className = "grupo"
 	a.appendChild(span);
