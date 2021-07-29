@@ -453,7 +453,11 @@ function clickParliamentSeat(evt) {
             if (count==1) var escanos = count + " escaño";
             else var escanos = count + " escaños";
             var span = document.getElementById('lista-seat');
-            if (span) span.innerHTML = '<span style="font-weight:bold;color:'+color+'">'+party.replace(/-/g," ")+":</span> "+escanos+'<br>';
+            if (span) {
+                span.innerHTML = '<span style="font-weight:bold;color:'+color+'">';
+                span.innerHTML += party.replace(/-/g," ");
+                span.innerHTML += ":</span> "+escanos+'<br>';
+            }
 
             var els = document.getElementsByClassName("parliament-seat");
             for (var i = 0; i < els.length; i++) {
@@ -534,7 +538,17 @@ function paintGroup(cl) {
             }   
         }
         var span = document.getElementById('lista-seat');
-        if (span) span.innerHTML = '<span style="font-weight:bold">'+cl.replace(/-/g," ")+":</span> "+count+' escaños<br>';
+        if (span) {
+            span.innerHTML = '<span style="font-weight:bold">'+cl.replace(/-/g," ").replace("RD","Revolución Democrática")
+                .replace("IGUAL","Partido Igualdad").replace("CS","Convergencia Social").replace("COM","Comunes")
+                .replace("PC","Partido Comunista").replace("PS","Partido Socialista").replace("PPD","Partido por la Democracia")
+                .replace("PDC","Partido Demócrata Cristiano").replace("PRO","Partido Progresista")
+                .replace("PL","Partido Liberal").replace("PR","Partido Radical Social Demócrata")
+                .replace("FREVS","Federación Regionalista Verde Social").replace("EVO","Evópoli")
+                .replace("RN","Renovación Nacional").replace("UDI","Unión Demócrata Independiente")
+                .replace("DDHH","Derechos Humanos").replace("RM","Región Metropolitana")+":</span> ";
+            span.innerHTML += count+' escaños<br>';
+        }
     } else {
         var span = document.getElementById('lista-seat');
         if (span) span.innerHTML = '<br>';
