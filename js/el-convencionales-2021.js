@@ -1213,6 +1213,16 @@ var conv_grupos = {
 		"WILFREDO MANUEL BACIAN DELGADO (Quechua)",
 		"FERNANDO DEL CARMEN TIRADO SOTO (Chango)"
 	],
+	"Movimientos Sociales Constituyentes": [
+		"DANIEL ALEJANDRO BRAVO SILVA (IND)",
+		"CRISTINA INES DORADOR ORTIZ (IND)",
+		"ADRIANA CAMILA AMPUERO BARRIENTOS (IND)",
+		"BASTIAN ESTEBAN LABBE SALAZAR (IND)",
+		"JANIS JAN DEL CARMEN MENESES PALMA (IND)",
+		"ALONDRA CARRILLO VIDAL (IND)",
+		"ELISA AMANDA GIUSTINIANOVICH CAMPOS (IND)",
+		"MARIA ELISA QUINTEROS CACERES (IND)"
+	],
 	"Vocería de los Pueblos": [
 		"FRANCISCA LINCONAO HUIRCAPAN (Mapuche)",
 		"ELISA LONCON ANTILEO (Mapuche)", 
@@ -1257,16 +1267,6 @@ var conv_grupos = {
 		"ELISA AMANDA GIUSTINIANOVICH CAMPOS (IND)",
 		"GLORIA DEL TRANSITO ALVARADO JORQUERA (IND)",
 		"AURORA GENOVEVA DELGADO VERGARA (IND-RD)"
-	],
-	"Movimientos Sociales Constituyentes": [
-		"DANIEL ALEJANDRO BRAVO SILVA (IND)",
-		"CRISTINA INES DORADOR ORTIZ (IND)",
-		"ADRIANA CAMILA AMPUERO BARRIENTOS (IND)",
-		"BASTIAN ESTEBAN LABBE SALAZAR (IND)",
-		"JANIS JAN DEL CARMEN MENESES PALMA (IND)",
-		"ALONDRA CARRILLO VIDAL (IND)",
-		"ELISA AMANDA GIUSTINIANOVICH CAMPOS (IND)",
-		"MARIA ELISA QUINTEROS CACERES (IND)"
 	],
 	"UDI": [
 		"POLLYANA RIVERA BIGAS (IND-UDI)", 
@@ -2256,7 +2256,7 @@ function mostrarConvencionales() {
 	div_buscador.style.marginBottom = "5px";
 	div.appendChild(div_buscador);
 	var div_parl = document.createElement('div');
-	div_parl.style.width = '380px';
+	div_parl.style.width = '390px';
 	div_parl.appendChild(generateSVG(conv_parliament, conv_parliament_order, true, "Convencional", conv_directiva, conv_grupos, conv_coordinadores));
 	div.appendChild(div_parl);
 	var span = document.createElement('span');
@@ -2287,7 +2287,7 @@ function mostrarConvencionales() {
 		else if (grupo=="D1") span.innerHTML = '<br style="margin-bottom:7px">Distritos · ';
 		else if (grupo=="Mujeres") span.innerHTML = '<br style="margin-bottom:7px">Otros · ';
 		else if (grupo=="UDI") span.innerHTML = '<br style="margin-bottom:7px">Partidos · ';
-		else span.innerHTML = ' · ';
+		else span.innerHTML = ' ·&nbsp;';
 		div.appendChild(span);
 		var a = document.createElement('a');
 		a.onclick = clickGroup;

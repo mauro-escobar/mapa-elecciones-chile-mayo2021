@@ -489,7 +489,7 @@ function clickParliamentSeat(evt) {
 
 function clickGroup(evt) {
     var obj = evt.target;
-    var cl = obj.innerHTML.replace(/ /g,"-");
+    var cl = obj.innerHTML.replace(/&nbsp;/g,"-");
     paintGroup(cl);
     if (selectedGroup) {
         obj.style.opacity = 1;
@@ -548,7 +548,7 @@ function paintGroup(cl) {
                 .replace("RN","Renovación Nacional").replace("UDI","Unión Demócrata Independiente")
                 .replace("DDHH","Derechos Humanos").replace("RM","Región Metropolitana")+":</span> ";
             span.innerHTML += count+' escaños<br>';
-        }
+        }    
     } else {
         var span = document.getElementById('lista-seat');
         if (span) span.innerHTML = '<br>';
