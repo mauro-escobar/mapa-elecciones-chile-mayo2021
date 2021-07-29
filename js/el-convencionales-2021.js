@@ -964,12 +964,15 @@ var conv_parliament_order = {
 	'Vamos por Chile (UDI)': true
 };
 var conv_directiva = [
-	['Presidenta', "ELISA LONCON ANTILEO (Mapuche)", 0, 0],
-	['Vicepresidente', "JAIME ANDRES BASSA MERCADO (IND-CS)", 0, 1]
-	/*['Presidenta', "ELISA LONCON ANTILEO (Mapuche)", 1, 0],
+	['Presidenta', "ELISA LONCON ANTILEO (Mapuche)", 1, 0],
 	['Vicepresidente', "JAIME ANDRES BASSA MERCADO (IND-CS)", 1, 1],
-	['Vicepresidenta',"ISABEL SELENA GODOY MONARDEZ (Colla)", 0, 0],
-	['Vicepresidenta',"TIARE MAEVA CAROLINA AGUILERA HEY (Rapanui)", 0, 1]*/
+	['Vicepresidenta',"ISABEL SELENA GODOY MONARDEZ (Colla)", 1, 2],
+	['Vicepdta.',"TIARE MAEVA CAROLINA AGUILERA HEY (Rapanui)", 1, 3],
+	['Vicepresidente', "RODRIGO ERNESTO ROJAS VADE (IND)", 0, 0],
+	['Vicepdta.', "ELISA AMANDA GIUSTINIANOVICH CAMPOS (IND)", 0, 1],
+	['Vicepresidente', "PEDRO MUÑOZ LEIVA (PS)", 0, 2],
+	['Vicepdta.', "LORENA DEL PILAR CESPEDES FERNANDEZ (IND)", 0, 3],
+	['Vicepresidente', "RODRIGO ALVAREZ ZENTENO (UDI)", 0, 4]
 ];
 var conv_coordinadores = {
 	"MARIA ELISA QUINTEROS CACERES (IND)": ["Ética", colores['rojo-oscuro']],
