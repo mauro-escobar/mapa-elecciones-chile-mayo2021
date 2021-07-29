@@ -5,16 +5,17 @@ div_plot.id = 'div-plot';
 var div_menu = document.createElement('div');
 div_menu.id = 'div-menu';
 
+map.style.textAlign = 'center';
 div_plot.style.textAlign = 'center';
 
 if (screen.width<screen.height*3/2) {
-	div_plot.style.margin = '3px';
-	div_menu.style.margin = '3px';
-	div_menu.style.marginTop = '30px';
-	div_plot.style.width = screen.width-6+'px';
-	div_menu.style.width = screen.width-6+'px';
-	div_plot.style.height = (screen.height-40)/2-6+'px';
-	div_menu.style.height = (screen.height-40)/2-60+'px';
+	map.style.top = '35px';
+	div_plot.style.padding = '1%';
+	div_menu.style.padding = '1%';
+	div_plot.style.width = '98%';
+	div_menu.style.width = '98%';
+	div_plot.style.height = '42%';
+	div_menu.style.height = '35%';
 } else {
 	map.style.top = '30px';
 	div_plot.style.padding = '3px';
@@ -60,7 +61,8 @@ div_plot.appendChild(div);
 
 var div_parl = document.createElement('div');
 div_parl.style.width = '100%';
-div_parl.style.height = '80%';
+if (screen.width<screen.height*3/2) div_parl.style.height = '70%';
+else div_parl.style.height = '80%';
 div_parl.appendChild(generateSVG(conv_parliament, conv_parliament_order, true, "Convencional", conv_directiva, conv_grupos, conv_coordinadores));
 div_plot.appendChild(div_parl);
 var span = document.createElement('span');

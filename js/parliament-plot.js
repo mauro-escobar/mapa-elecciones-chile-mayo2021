@@ -263,18 +263,20 @@ function generateSVG(_parliament, order, seatCount, type, directive=[], groups={
 	var a = points[0].r / 0.4;
 	
 	var maxRow = {};
+	var rowHeight = 0;
 	var row;
 	for (var i = 0; i < directive.length; i++) {
 		row = directive[i][2];
 		if(!Object.keys(maxRow).includes(""+row)) maxRow[row] = 1;
 		maxRow[row] += 1;
+		rowHeight = Math.max(rowHeight, row+1);
 	}
 
 	var xmlns = "http://www.w3.org/2000/svg";
 	var x = -radius - a / 2;
 	var y = -radius - a / 2;
     var boxWidth = 2 * radius + a;
-    if (blackDots.length > 0) var boxHeight = radius + 2.5*a;
+    if (blackDots.length > 0) var boxHeight = radius + 3*a;
     else var boxHeight = radius + a;
 
     var svgElem = document.createElementNS(xmlns, "svg");
@@ -358,7 +360,8 @@ function generateSVG(_parliament, order, seatCount, type, directive=[], groups={
 	    text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
 	    text.setAttributeNS(null, "text-anchor", "middle");
 	    text.setAttributeNS(null, "x", "0");
-		text.setAttributeNS(null, "y", -a*4/5*Object.keys(maxRow).length);
+		//text.setAttributeNS(null, "y", -a*4/5*Object.keys(maxRow).length);
+		text.setAttributeNS(null, "y", -a*4/5*rowHeight);
     	text.setAttributeNS(null, "font-size", ((0.25-0.05*Object.keys(maxRow).length)*radius)+"px");
     	text.setAttributeNS(null, "class", "parliament-seat");
 	    svgElem.appendChild(text);
@@ -407,21 +410,21 @@ function generateSVG(_parliament, order, seatCount, type, directive=[], groups={
     	} else if (type=='Convencional') {
     		var circle = document.createElementNS(xmlns,"circle");
 	    	circle.setAttributeNS(null, "cx", -4*a);
-	    	circle.setAttributeNS(null, "cy", 1.5*a);
+	    	circle.setAttributeNS(null, "cy", 1.8*a);
 	    	circle.setAttributeNS(null, "r", points[0].r);
 	    	circle.setAttributeNS(null, "fill", colores['suave']);
 	    	circle.setAttributeNS(null, "class", "parliament-legend parliament-seat");
 	    	svgElem.appendChild(circle);
 	    	var circle = document.createElementNS(xmlns,"circle");
 	    	circle.setAttributeNS(null, "cx", 2*a);
-	    	circle.setAttributeNS(null, "cy", 1.5*a);
+	    	circle.setAttributeNS(null, "cy", 1.8*a);
 	    	circle.setAttributeNS(null, "r", points[0].r);
 	    	circle.setAttributeNS(null, "fill", colores['suave']);
 	    	circle.setAttributeNS(null, "class", "parliament-legend parliament-seat");
 	    	svgElem.appendChild(circle);
 	    	var circle = document.createElementNS(xmlns,"circle");
 	    	circle.setAttributeNS(null, "cx", 2*a);
-	    	circle.setAttributeNS(null, "cy", 1.5*a);
+	    	circle.setAttributeNS(null, "cy", 1.8*a);
 	    	circle.setAttributeNS(null, "r", points[0].r/2.8);
 	    	circle.setAttributeNS(null, "fill", constrastColor(colores['suave']));
 	    	circle.setAttributeNS(null, "class", "parliament-legend parliament-seat");
@@ -429,7 +432,7 @@ function generateSVG(_parliament, order, seatCount, type, directive=[], groups={
     		var text = document.createElementNS(xmlns,"text");
 	    	text.innerHTML = 'INDEPENDIENTE';
 	    	text.setAttributeNS(null, "x", -3.5*a);
-	    	text.setAttributeNS(null, "y", 1.7*a);
+	    	text.setAttributeNS(null, "y", 2*a);
 	    	text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
 	    	text.setAttributeNS(null, "font-size", a/1.8+"px");
 	    	text.setAttributeNS(null, "text-anchor", "start");
@@ -438,7 +441,7 @@ function generateSVG(_parliament, order, seatCount, type, directive=[], groups={
 	    	var text = document.createElementNS(xmlns,"text");
 	    	text.innerHTML = 'AFILIADO A PARTIDO';
 	    	text.setAttributeNS(null, "x", 2.5*a);
-	    	text.setAttributeNS(null, "y", 1.7*a);
+	    	text.setAttributeNS(null, "y", 2*a);
 	    	text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
 	    	text.setAttributeNS(null, "font-size", a/1.8+"px");
 	    	text.setAttributeNS(null, "text-anchor", "start");
@@ -446,7 +449,7 @@ function generateSVG(_parliament, order, seatCount, type, directive=[], groups={
 	    	svgElem.appendChild(text);
     		var circle = document.createElementNS(xmlns,"circle");
 	    	circle.setAttributeNS(null, "cx", -2*a);
-	    	circle.setAttributeNS(null, "cy", 1.3*a);
+	    	circle.setAttributeNS(null, "cy", 1.8*a);
 	    	circle.setAttributeNS(null, "r", points[0].r);
 	    	circle.setAttributeNS(null, "fill", colores['suave']);
 	    	circle.setAttributeNS(null, "style", "opacity:0");
@@ -454,7 +457,7 @@ function generateSVG(_parliament, order, seatCount, type, directive=[], groups={
 	    	svgElem.appendChild(circle);
 	    	var circle = document.createElementNS(xmlns,"circle");
 	    	circle.setAttributeNS(null, "cx", -2*a);
-	    	circle.setAttributeNS(null, "cy", 1.3*a);
+	    	circle.setAttributeNS(null, "cy", 1.8*a);
 	    	circle.setAttributeNS(null, "r", points[0].r/2.5*3);
 	    	circle.setAttributeNS(null, "fill", 'none');
 	    	circle.setAttributeNS(null, "stroke", colores['rojo-oscuro']);
@@ -464,7 +467,7 @@ function generateSVG(_parliament, order, seatCount, type, directive=[], groups={
     		var text = document.createElementNS(xmlns,"text");
 	    	text.innerHTML = 'COORDINADORES';
 	    	text.setAttributeNS(null, "x", -1.4*a);
-	    	text.setAttributeNS(null, "y", 1.5*a);
+	    	text.setAttributeNS(null, "y", 2*a);
 	    	text.setAttributeNS(null, "font-family", "Arial, Helvetica, sans-serif");
 	    	text.setAttributeNS(null, "font-size", a/1.8+"px");
 	    	text.setAttributeNS(null, "text-anchor", "start");
