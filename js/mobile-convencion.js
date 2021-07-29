@@ -61,8 +61,7 @@ div_plot.appendChild(div);
 
 var div_parl = document.createElement('div');
 div_parl.style.width = '100%';
-if (screen.width<screen.height*3/2) div_parl.style.height = '70%';
-else div_parl.style.height = '80%';
+div_parl.style.height = '80%';
 div_parl.appendChild(generateSVG(conv_parliament, conv_parliament_order, true, "Convencional", conv_directiva, conv_grupos, conv_coordinadores));
 div_plot.appendChild(div_parl);
 var span = document.createElement('span');
