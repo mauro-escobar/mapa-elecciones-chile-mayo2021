@@ -2335,7 +2335,7 @@ function mostrarConvencionales() {
 	img.width = '170';
 	img.height = '195';
 	img.id = 'face';
-	img.src = 'images/faces/_blank.jpeg';
+	img.src = 'images/faces/blank.jpeg';
 	div2.appendChild(img);
 	var span = document.createElement('span');
 	span.id = 'face-span';
