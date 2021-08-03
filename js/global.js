@@ -423,7 +423,7 @@ function unTouchParliamentSeat() {
         if (!selectedGroup) span.innerHTML = 'Muévete sobre los puntos...';
         else span.innerHTML = '<br>';
         var img = document.getElementById('face');
-        if (img) img.src = 'images/faces/_blank.jpeg';
+        if (img) img.src = 'images/faces/blank.jpeg';
         var span2 = document.getElementById('face-span');
         if (span2) span2.innerHTML = '<br>';
     }
