@@ -393,7 +393,11 @@ function touchParliamentSeat(svgobj, paintParty=false) {
     if (span) {
         var name = svgobj.dataset.name;
         if (svgobj.dataset.hasOwnProperty("role")) name += ' - '+svgobj.dataset.role;
-        span.innerHTML = '<span>'+name+'</span>';  
+        span.innerHTML = '<span>'+name+'</span>'; 
+        var img = document.getElementById('face');
+        if (img) img.src = 'images/faces/'+svgobj.dataset.name.replace(/ /g,"-")+'.jpeg';
+        var span2 = document.getElementById('face-span');
+        if (span2) span2.innerHTML = 'Ilustración de <i class="fab fa-twitter" style="color:#00acee"></i> <i class="fab fa-instagram" style="color:#8134af"></i> gheragor';
     } 
 }
 
@@ -418,6 +422,10 @@ function unTouchParliamentSeat() {
     if (span) {
         if (!selectedGroup) span.innerHTML = 'Muévete sobre los puntos...';
         else span.innerHTML = '<br>';
+        var img = document.getElementById('face');
+        if (img) img.src = 'images/faces/_blank.jpeg';
+        var span2 = document.getElementById('face-span');
+        if (span2) span2.innerHTML = '<br>';
     }
 }
 
@@ -578,7 +586,7 @@ function showSearch(name) {
         searching = true;
         var els = document.getElementsByClassName("parliament-seat");
         for (var i = 0; i < els.length; i++) {
-            if (els[i].dataset.hasOwnProperty("name") && els[i].dataset.name.includes(name)) els[i].style.opacity = 1;
+            if (els[i].dataset.hasOwnProperty("name") && els[i].dataset.name.replace(/  /g," ").includes(name)) els[i].style.opacity = 1;
             else els[i].style.opacity = 0.2;
         }
     }

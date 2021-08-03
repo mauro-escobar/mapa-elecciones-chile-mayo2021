@@ -2248,6 +2248,38 @@ function mostrarConvencionales() {
 
 	var div = document.createElement('div');
 	div.style.float = 'left';
+	div.style.width = "380px";
+	div.style.marginTop = "5px";
+	div.style.marginRight = '5px';
+	div.style.paddingRight = '5px';
+	div.style.borderRight = 'solid';
+	div.style.borderWidth = '1px';
+	div.style.textAlign = 'center';
+	var span = document.createElement('span');
+	span.innerHTML = 'Haz click sobre uno de los grupos<br>';
+	div.appendChild(span);
+	for (grupo in conv_grupos) {
+		var span = document.createElement('span');
+		if (grupo=="Reglamento") span.innerHTML = '<br style="margin-bottom:7px">Comisiones · ';
+		else if (grupo=="D1") span.innerHTML = '<br style="margin-bottom:7px">Distritos · ';
+		else if (grupo=="Mujeres") span.innerHTML = '<br style="margin-bottom:7px">Otros · ';
+		else if (grupo=="UDI") span.innerHTML = '<br style="margin-bottom:7px">Partidos · ';
+		else span.innerHTML = ' ·&nbsp;';
+		div.appendChild(span);
+		var a = document.createElement('a');
+		a.onclick = clickGroup;
+		var span = document.createElement('span');
+		span.id = 'span-'+grupo.replace(/ /g,"-");
+		span.innerHTML = grupo.replace(/ /g,"&nbsp;");
+		span.style.fontWeight = 'bold';
+		span.className = "grupo"
+		a.appendChild(span);
+		div.appendChild(a);
+	}
+	legend2.appendChild(div);
+
+	var div = document.createElement('div');
+	div.style.float = 'left';
 	var div_buscador = document.createElement('div');
 	var span = document.createElement('span');
 	span.innerHTML = "Busca un convencional: "
@@ -2292,37 +2324,32 @@ function mostrarConvencionales() {
 
 	var div = document.createElement('div');
 	div.style.float = 'right';
-	div.style.width = "380px";
-	div.style.marginTop = "5px";
-	div.style.marginLeft = '5px';
-	div.style.paddingLeft = '5px';
-	div.style.borderLeft = 'solid';
-	div.style.borderWidth = '1px';
-	div.style.textAlign = 'center';
+	div.style.width = "170px";
+	var div2 = document.createElement('div');
+	div2.style.position = 'absolute';
+	div2.style.top = '50%';
+	div2.style.transform = 'translateY(-50%)';
+	div2.style.msTransform = 'translateY(-50%)';
+	div2.style.textAlign = 'center';
+	var img = document.createElement('img');
+	img.width = '170';
+	img.height = '195';
+	img.id = 'face';
+	img.src = 'images/faces/_blank.jpeg';
+	div2.appendChild(img);
 	var span = document.createElement('span');
-	span.innerHTML = 'O haz click sobre uno de los grupos<br>';
-	div.appendChild(span);
-	for (grupo in conv_grupos) {
-		var span = document.createElement('span');
-		if (grupo=="Reglamento") span.innerHTML = '<br style="margin-bottom:7px">Comisiones · ';
-		else if (grupo=="D1") span.innerHTML = '<br style="margin-bottom:7px">Distritos · ';
-		else if (grupo=="Mujeres") span.innerHTML = '<br style="margin-bottom:7px">Otros · ';
-		else if (grupo=="UDI") span.innerHTML = '<br style="margin-bottom:7px">Partidos · ';
-		else span.innerHTML = ' ·&nbsp;';
-		div.appendChild(span);
-		var a = document.createElement('a');
-		a.onclick = clickGroup;
-		var span = document.createElement('span');
-		span.id = 'span-'+grupo.replace(/ /g,"-");
-		span.innerHTML = grupo.replace(/ /g,"&nbsp;");
-		span.style.fontWeight = 'bold';
-		span.className = "grupo"
-		a.appendChild(span);
-		div.appendChild(a);
-	}
+	span.id = 'face-span';
+	span.innerHTML = '<br>';
+	span.style.fontSize = '0.8em';
+	div2.appendChild(span);
+	div.appendChild(div2);
 	legend2.appendChild(div);
+
+
     if (screen.width>=992) {
     	legend2.style.display = 'block';
+    	legend2.style.backgroundColor = '#FFFEF9';
+    	legend2.style.opacity = '0.8';
     } else {
     	legend2.style.display = 'none';
     }
