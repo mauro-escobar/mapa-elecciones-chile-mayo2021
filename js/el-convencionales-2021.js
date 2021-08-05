@@ -5,7 +5,7 @@ var coloresConvencionales = {
 	'ASAMBLEA POPULAR POR LA DIGNIDAD (D17)': colores['gris'],
 	'CANDIDATURA INDEPENDIENTE': colores['gris'],
 	'COORDINADORA SOCIAL DE MAGALLANES (D28)': colores['rosado'],
-	'CORRIENTES INDEPENDIENTES (D16)': colores['gris'],
+	'CORRIENTES INDEPENDIENTES (D16)': colores['rosado'],
 	'ELIGE LA LISTA DEL PUEBLO (D23)': colores['rosado'],
 	'FUERZA SOCIAL DE ÑUBLE, LA LISTA DEL PUEBLO (D19)': colores['rosado'],
 	'INDEPENDIENTES DE TARAPACA (D2)': colores['gris'],
@@ -104,6 +104,7 @@ function addLayerConvencionalesMarkers(map) {
 				'LA LISTA DEL PUEBLO (D13)', colores['rosado'],
 				'LA LISTA DEL PUEBLO DISTRITO 14 (D14)', colores['rosado'],
 				'LA LISTA DEL PUEBLO 100% INDEPENDIENTES (D15)', colores['rosado'],
+				'CORRIENTES INDEPENDIENTES (D16)', colores['rosado'],
 				'LA LISTA DEL PUEBLO (D17)', colores['rosado'],
 				'LA LISTA DEL PUEBLO MAULE SUR (D18)', colores['rosado'],
 				'FUERZA SOCIAL DE ÑUBLE, LA LISTA DEL PUEBLO (D19)', colores['rosado'],
@@ -172,6 +173,7 @@ function addLayerConvencionales(map) {
 				'LA LISTA DEL PUEBLO (D13)', colores['rosado'],
 				'LA LISTA DEL PUEBLO 100% INDEPENDIENTES (D15)', colores['rosado'],
 				'LA LISTA DEL PUEBLO DISTRITO 9 (D9)', colores['rosado'],
+				'CORRIENTES INDEPENDIENTES (D16)', colores['rosado'],
 				'LA LISTA DEL PUEBLO MAULE SUR (D18)', colores['rosado'],
 				'LISTA DEL APRUEBO', colores['violeta'],
 				'LISTA DEL PUEBLO - MOVIMIENTO TERRITORIAL CONSTITUYENTE (D5)', colores['rosado'],
@@ -207,7 +209,7 @@ function addLayerConvencionales(map) {
 				'ASAMBLEA POPULAR POR LA DIGNIDAD (D17)', colores['gris'],
 				'CANDIDATURA INDEPENDIENTE', colores['gris'],
 				'COORDINADORA SOCIAL DE MAGALLANES (D28)', colores['rosado'],
-				'CORRIENTES INDEPENDIENTES (D16)', colores['gris'],
+				'CORRIENTES INDEPENDIENTES (D16)', colores['rosado'],
 				'ELIGE LA LISTA DEL PUEBLO (D23)', colores['rosado'],
 				'FUERZA SOCIAL DE ÑUBLE, LA LISTA DEL PUEBLO (D19)', colores['rosado'],
 				'INDEPENDIENTES DE TARAPACA (D2)', colores['gris'],
@@ -722,7 +724,7 @@ var conv_parliament = {
 		]
 	},
 	'La Lista del Pueblo': {
-		'seats': 24,
+		'seats': 25,
 		'color': colores['rosado'],
 		'names': [
 			["DAYYANA GONZALEZ ARAYA (IND)", false],
@@ -743,6 +745,7 @@ var conv_parliament = {
 			["RODRIGO ERNESTO ROJAS VADE (IND)", false],
 			["FRANCISCO JAVIER CAAMAÑO ROJAS (IND)", false],
 			["LORETO CRISTINA VALLEJOS DAVILA (IND)", false],
+			["GLORIA DEL TRANSITO ALVARADO JORQUERA (IND)", false],
 			["ELSA CAROLINA LABRAÑA PINO (IND)", false],
 			["FRANCISCA MARYCARMEN ARAUNA URRUTIA (IND)", false],
 			["FERNANDO SALINAS MANFREDINI (IND)", false],
@@ -829,7 +832,7 @@ var conv_parliament = {
 		]
 	},
 	'Candidaturas Independientes': {
-		'seats': 11,
+		'seats': 10,
 		'color': colores['gris'],
 		'names': [
 			["ALEJANDRA ALICIA FLORES CARLOS (IND)", false],
@@ -839,7 +842,6 @@ var conv_parliament = {
 			["RODRIGO LOGAN SOTO (IND)", false],
 			["ALONDRA CARRILLO VIDAL (IND)", false],
 			["ALVIN ANTONIO SALDAÑA MUÑOZ (IND)", false],
-			["GLORIA DEL TRANSITO ALVARADO JORQUERA (IND)", false],
 			["MARIA ELISA QUINTEROS CACERES (IND)", false],
 			["BASTIAN ESTEBAN LABBE SALAZAR (IND)", false],
 			["MAURICIO DAZA CARRASCO (IND)", false]
@@ -939,7 +941,6 @@ var conv_parliament = {
 	}
 }	
 var conv_parliament_order = {
-	'Candidaturas Independientes': false,
 	'Pueblos Originarios (Mapuche)': false, 
 	'Pueblos Originarios (Rapanui)': false, 
 	'Pueblos Originarios (Atacameño)': false, 
@@ -950,6 +951,7 @@ var conv_parliament_order = {
 	'Pueblos Originarios (Kawashkar)': false, 
 	'Pueblos Originarios (Yagán)': false, 
 	'Pueblos Originarios (Chango)': false, 
+	'Candidaturas Independientes': false,
 	'La Lista del Pueblo': true,  
 	'Candidaturas Independientes 2': true,
 	'Apruebo Dignidad (PCCH)': true, 
@@ -984,7 +986,7 @@ var conv_directiva = [
 var conv_coordinadores = {
 	"MARIA ELISA QUINTEROS CACERES (IND)": ["Ética", colores['rojo-oscuro']],
 	"MARCOS PATRICIO BARRAZA GOMEZ (PCCH)": ["Ética", colores['rojo-oscuro']],
-	"GLORIA DEL TRANSITO ALVARADO JORQUERA (IND)": ["Presupuesto", colores['rojo-oscuro']],
+	"GLORIA DEL TRANSITO ALVARADO JORQUERA (IND)": ["Presupuesto", colores['negro']],
 	"CESAR VALENZUELA MAASS (PS)": ["Presupuesto", colores['rojo-oscuro']],
 	"DANIEL ALEJANDRO BRAVO SILVA (IND)": ["Reglamento", colores['negro']],
 	"AMAYA PAULINA ALVEZ MARIN (RD)": ["Reglamento", colores['rojo-oscuro']],
@@ -1137,6 +1139,7 @@ var conv_grupos = {
 		"RODRIGO ERNESTO ROJAS VADE (IND)",
 		"FRANCISCO JAVIER CAAMAÑO ROJAS (IND)",
 		"LORETO CRISTINA VALLEJOS DAVILA (IND)",
+		"GLORIA DEL TRANSITO ALVARADO JORQUERA (IND)",
 		"ELSA CAROLINA LABRAÑA PINO (IND)",
 		"FRANCISCA MARYCARMEN ARAUNA URRUTIA (IND)",
 		"FERNANDO SALINAS MANFREDINI (IND)",
@@ -2221,20 +2224,20 @@ function mostrarConvencionales() {
     		'seats': 28,
     		'color': colores['verde-agua']
     	},
+    	'La Lista del Pueblo': {
+    		'seats': 25,
+    		'color': colores['rosado']
+    	},
     	'Lista del Apruebo': {
     		'seats': 25,
     		'color': colores['violeta']
 		},
-    	'La Lista del Pueblo': {
-    		'seats': 24,
-    		'color': colores['rosado']
-    	},
     	'Independientes No Neutrales': {
     		'seats': 10,
     		'color': colores['azul-marino']
     	},
     	'Independientes': {
-    		'seats': 14,
+    		'seats': 13,
     		'color': colores['gris']
     	},
     	'Pueblos Originarios': {
