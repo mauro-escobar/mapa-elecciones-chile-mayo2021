@@ -724,34 +724,42 @@ var conv_parliament = {
 		]
 	},
 	'La Lista del Pueblo': {
-		'seats': 25,
+		'seats': 18,
 		'color': colores['rosado'],
 		'names': [
 			["DAYYANA GONZALEZ ARAYA (IND)", false],
 			["CONSTANZA ANDREA SAN JUAN STANDEN (IND)", false],
 			["IVANNA DANIELA OLIVARES MIRANDA (IND)", false],
 			["DANIEL ALEJANDRO BRAVO SILVA (IND)", false],
-			["LISETTE LORENA VERGARA RIQUELME (IND)", false],
+			["LISETTE LORENA VERGARA RIQUELME (IND)", false], //
 			["CRISTOBAL PATRICIO ANDRADE LEON (IND)", false],
-			["CAMILA IGNACIA ZARATE ZARATE (IND)", false],
 			["TANIA ISABEL MADRIAGA FLORES (IND)", false],
 			["MARCO ANTONIO ARELLANO ORTEGA (IND)", false],
-			["MARIA MAGDALENA RIVERA IRIBARREN (IND)", false],
 			["ALEJANDRA PIA PEREZ ESPINA (IND)", false],
-			["NATALIA ESTHER HENRIQUEZ CARREÑO (IND)", false],
 			["MANUEL MAURICIO WOLDARSKY GONZALEZ (IND)", false],
-			["GIOVANNA JAZMIN GRANDON CARO (IND)", false],
-			["INGRID FERNANDA VILLENA NARBONA (IND)", false],
 			["RODRIGO ERNESTO ROJAS VADE (IND)", false],
-			["FRANCISCO JAVIER CAAMAÑO ROJAS (IND)", false],
-			["LORETO CRISTINA VALLEJOS DAVILA (IND)", false],
+			["LORETO CRISTINA VALLEJOS DAVILA (IND)", false], //
 			["GLORIA DEL TRANSITO ALVARADO JORQUERA (IND)", false],
 			["ELSA CAROLINA LABRAÑA PINO (IND)", false],
-			["FRANCISCA MARYCARMEN ARAUNA URRUTIA (IND)", false],
-			["FERNANDO SALINAS MANFREDINI (IND)", false],
+			["FRANCISCA MARYCARMEN ARAUNA URRUTIA (IND)", false], //
+			["FERNANDO SALINAS MANFREDINI (IND)", false], //
 			["CESAR  URIBE ARAYA (IND)", false],
-			["HELMUTH JACOBO MARTINEZ LLANCAPAN (IND)", false],
 			["ADRIANA CAMILA AMPUERO BARRIENTOS (IND)", false]
+		]
+	},
+	'Candidaturas Independientes 2': {
+		'seats': 9,
+		'color': colores['gris'],
+		'names': [
+			["NATALIA ESTHER HENRIQUEZ CARREÑO (IND)", false],
+			["CAMILA IGNACIA ZARATE ZARATE (IND)", false],
+			["FRANCISCO JAVIER CAAMAÑO ROJAS (IND)", false],
+			["GIOVANNA JAZMIN GRANDON CARO (IND)", false],
+			["INGRID FERNANDA VILLENA NARBONA (IND)", false],
+			["MARIA MAGDALENA RIVERA IRIBARREN (IND)", false],
+			["HELMUTH JACOBO MARTINEZ LLANCAPAN (IND)", false],
+			["ROSSANA LORETO VIDAL HERNANDEZ (IND)", false],
+			["ELISA AMANDA GIUSTINIANOVICH CAMPOS (IND)", false]
 		]
 	},
 	'Lista del Apruebo (PL)': {
@@ -845,14 +853,6 @@ var conv_parliament = {
 			["MARIA ELISA QUINTEROS CACERES (IND)", false],
 			["BASTIAN ESTEBAN LABBE SALAZAR (IND)", false],
 			["MAURICIO DAZA CARRASCO (IND)", false]
-		]
-	},
-	'Candidaturas Independientes 2': {
-		'seats': 2,
-		'color': colores['gris'],
-		'names': [
-			["ROSSANA LORETO VIDAL HERNANDEZ (IND)", false],
-			["ELISA AMANDA GIUSTINIANOVICH CAMPOS (IND)", false]
 		]
 	},
 	'Candidaturas Independientes 3': {
@@ -962,12 +962,12 @@ var conv_parliament_order = {
 	'Apruebo Dignidad (IGUAL)': true, 
 	'Lista del Apruebo (PR)': true, 
 	'Lista del Apruebo (PL)': true, 
-	'Lista del Apruebo (PRO)': true, 
 	'Lista del Apruebo (PS)': true, 
 	'Lista del Apruebo (PPD)': true, 
+	'Lista del Apruebo (PRO)': true, 
 	'Lista del Apruebo (PDC)': true, 
-	'Independientes No Neutrales': true,
 	'Candidaturas Independientes 3': true,
+	'Independientes No Neutrales': true,
 	'Vamos por Chile (EVO)': true,
 	'Vamos por Chile (RN)': true,
 	'Vamos por Chile (UDI)': true
@@ -1127,24 +1127,17 @@ var conv_grupos = {
 		"DANIEL ALEJANDRO BRAVO SILVA (IND)",
 		"LISETTE LORENA VERGARA RIQUELME (IND)",
 		"CRISTOBAL PATRICIO ANDRADE LEON (IND)",
-		"CAMILA IGNACIA ZARATE ZARATE (IND)",
 		"TANIA ISABEL MADRIAGA FLORES (IND)",
 		"MARCO ANTONIO ARELLANO ORTEGA (IND)",
-		"MARIA MAGDALENA RIVERA IRIBARREN (IND)",
 		"ALEJANDRA PIA PEREZ ESPINA (IND)",
-		"NATALIA ESTHER HENRIQUEZ CARREÑO (IND)",
 		"MANUEL MAURICIO WOLDARSKY GONZALEZ (IND)",
-		"GIOVANNA JAZMIN GRANDON CARO (IND)",
-		"INGRID FERNANDA VILLENA NARBONA (IND)",
 		"RODRIGO ERNESTO ROJAS VADE (IND)",
-		"FRANCISCO JAVIER CAAMAÑO ROJAS (IND)",
 		"LORETO CRISTINA VALLEJOS DAVILA (IND)",
 		"GLORIA DEL TRANSITO ALVARADO JORQUERA (IND)",
 		"ELSA CAROLINA LABRAÑA PINO (IND)",
 		"FRANCISCA MARYCARMEN ARAUNA URRUTIA (IND)",
 		"FERNANDO SALINAS MANFREDINI (IND)",
 		"CESAR  URIBE ARAYA (IND)",
-		"HELMUTH JACOBO MARTINEZ LLANCAPAN (IND)",
 		"ADRIANA CAMILA AMPUERO BARRIENTOS (IND)"
 	],
 	"Lista del Apruebo": [
@@ -1191,6 +1184,15 @@ var conv_grupos = {
 		"JULIO ALVAREZ PINTO (PS)",
 		"TOMAS LAIBE SAEZ (PS)",
 		"MARIA TRINIDAD CASTILLO BOILET (IND)"
+	],
+        "Colectivo del Apruebo": [
+                "FUAD  CHAHIN VALENZUELA (PDC)", 
+		"FELIPE HARBOE BASCUÑAN (PPD)", 
+		"LUIS RAMON BARCELO AMADO (IND-PPD)", 
+		"EDUARDO GUILLERMO CASTILLO VIGOUROUX (PPD)",
+		"BESSY MIREYA GALLARDO PRADO (IND-PRO)", 
+		"MIGUEL ANGEL BOTTO SALINAS (IND)",
+		"RODRIGO LOGAN SOTO (IND)"
 	],
 	"Nuevo Trato": [
 		"JORGE BRUNO ABARCA RIVEROS (IND-PL)", 
@@ -1546,6 +1548,7 @@ var conv_grupos = {
 		"TATIANA KARINA URRUTIA HERRERA (RD)", 
 		"MARIELA ANDREA SEREY JIMENEZ (IND-CS)",		
 		"CONSTANZA GABRIELA SCHONHAUT SOTO (CS)",
+                "RENATO FABRIZIO GARIN GONZALEZ (IND-PR)",
 		"ERIC JOHANNY CHINGA FERREIRA (Diaguita)"
 	],
 	"Comunicaciones": [
@@ -2224,20 +2227,20 @@ function mostrarConvencionales() {
     		'seats': 28,
     		'color': colores['verde-agua']
     	},
-    	'La Lista del Pueblo': {
-    		'seats': 25,
-    		'color': colores['rosado']
-    	},
     	'Lista del Apruebo': {
     		'seats': 25,
     		'color': colores['violeta']
 		},
+    	'La Lista del Pueblo': {
+    		'seats': 18,
+    		'color': colores['rosado']
+    	},
     	'Independientes No Neutrales': {
     		'seats': 10,
     		'color': colores['azul-marino']
     	},
     	'Independientes': {
-    		'seats': 13,
+    		'seats': 20,
     		'color': colores['gris']
     	},
     	'Pueblos Originarios': {
