@@ -743,21 +743,21 @@ function mostrarSenadores() {
 			]
 		},
 		'Progresistas': {
-			'seats': 2,
+			'seats': 1,
 			'color': colores['rosado'],
-			'parties': [['PRO', 2]],
-			'dotted': 2,
+			'parties': [['PRO', 1]],
+			'dotted': 1,
 			'names': [
-				["GUILLIER ALVAREZ ALEJANDRO (PRO)", true],
 				["NAVARRO BRAIN ALEJANDRO (PRO)", true]
 			]
 		},
 		'Candidatura Independiente': {
-			'seats': 1,
+			'seats': 2,
 			'color': colores['gris'],
-			'parties': [['IND', 1]],
-			'dotted': 1,
+			'parties': [['IND', 2]],
+			'dotted': 2,
 			'names': [
+				["GUILLIER ALVAREZ ALEJANDRO (IND)", true],
 				["BIANCHI CHELECH CARLOS (IND)", true]
 			]
 		}
