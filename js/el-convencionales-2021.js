@@ -723,39 +723,39 @@ var conv_parliament = {
 			["MANUELA ROYO LETELIER (IND-IGUAL)", false]
 		]
 	},
-	'La Lista del Pueblo': {
-		'seats': 18,
+	'Pueblo Constituyente': {
+		'seats': 17,
 		'color': colores['rosado'],
 		'names': [
-			["DAYYANA GONZALEZ ARAYA (IND)", false],
-			["CONSTANZA ANDREA SAN JUAN STANDEN (IND)", false],
-			["IVANNA DANIELA OLIVARES MIRANDA (IND)", false],
-			["DANIEL ALEJANDRO BRAVO SILVA (IND)", false],
-			["LISETTE LORENA VERGARA RIQUELME (IND)", false], //
-			["CRISTOBAL PATRICIO ANDRADE LEON (IND)", false],
-			["TANIA ISABEL MADRIAGA FLORES (IND)", false],
 			["MARCO ANTONIO ARELLANO ORTEGA (IND)", false],
-			["ALEJANDRA PIA PEREZ ESPINA (IND)", false],
-			["MANUEL MAURICIO WOLDARSKY GONZALEZ (IND)", false],
-			["RODRIGO ERNESTO ROJAS VADE (IND)", false],
-			["LORETO CRISTINA VALLEJOS DAVILA (IND)", false], //
-			["GLORIA DEL TRANSITO ALVARADO JORQUERA (IND)", false],
-			["ELSA CAROLINA LABRAÑA PINO (IND)", false],
 			["FRANCISCA MARYCARMEN ARAUNA URRUTIA (IND)", false], //
-			["FERNANDO SALINAS MANFREDINI (IND)", false], //
+			["FRANCISCO JAVIER CAAMAÑO ROJAS (IND)", false],
+			["IVANNA DANIELA OLIVARES MIRANDA (IND)", false],
+			["LISETTE LORENA VERGARA RIQUELME (IND)", false], //
+			["INGRID FERNANDA VILLENA NARBONA (IND)", false],
+			["DAYYANA GONZALEZ ARAYA (IND)", false],
+			["CAMILA IGNACIA ZARATE ZARATE (IND)", false],
+			["NATALIA ESTHER HENRIQUEZ CARREÑO (IND)", false],
 			["CESAR  URIBE ARAYA (IND)", false],
-			["ADRIANA CAMILA AMPUERO BARRIENTOS (IND)", false]
+			["ELSA CAROLINA LABRAÑA PINO (IND)", false],
+			["MANUEL MAURICIO WOLDARSKY GONZALEZ (IND)", false],
+			["DANIEL ALEJANDRO BRAVO SILVA (IND)", false],
+			["LORETO CRISTINA VALLEJOS DAVILA (IND)", false], //
+			["FERNANDO SALINAS MANFREDINI (IND)", false], //
+			["TANIA ISABEL MADRIAGA FLORES (IND)", false],
+			["RODRIGO ERNESTO ROJAS VADE (IND)", false],
 		]
 	},
 	'Candidaturas Independientes 2': {
-		'seats': 9,
+		'seats': 10,
 		'color': colores['gris'],
 		'names': [
-			["NATALIA ESTHER HENRIQUEZ CARREÑO (IND)", false],
-			["CAMILA IGNACIA ZARATE ZARATE (IND)", false],
-			["FRANCISCO JAVIER CAAMAÑO ROJAS (IND)", false],
+			["CONSTANZA ANDREA SAN JUAN STANDEN (IND)", false],
+			["CRISTOBAL PATRICIO ANDRADE LEON (IND)", false],
+			["ALEJANDRA PIA PEREZ ESPINA (IND)", false],
+			["GLORIA DEL TRANSITO ALVARADO JORQUERA (IND)", false],
+			["ADRIANA CAMILA AMPUERO BARRIENTOS (IND)", false],
 			["GIOVANNA JAZMIN GRANDON CARO (IND)", false],
-			["INGRID FERNANDA VILLENA NARBONA (IND)", false],
 			["MARIA MAGDALENA RIVERA IRIBARREN (IND)", false],
 			["HELMUTH JACOBO MARTINEZ LLANCAPAN (IND)", false],
 			["ROSSANA LORETO VIDAL HERNANDEZ (IND)", false],
@@ -952,7 +952,7 @@ var conv_parliament_order = {
 	'Pueblos Originarios (Yagán)': false, 
 	'Pueblos Originarios (Chango)': false, 
 	'Candidaturas Independientes': false,
-	'La Lista del Pueblo': true,  
+	'Pueblo Constituyente': true,  
 	'Candidaturas Independientes 2': true,
 	'Apruebo Dignidad (PCCH)': true, 
 	'Apruebo Dignidad (FREVS)': true, 
@@ -1120,25 +1120,24 @@ var conv_grupos = {
 		"ROBERTO ANTONIO CELEDON FERNANDEZ (IND-FREVS)",
 		"PAOLA ALEJANDRA GRANDON GONZALEZ (FREVS)"
 	],
-	"La Lista del Pueblo": [
-		"DAYYANA GONZALEZ ARAYA (IND)",
-		"CONSTANZA ANDREA SAN JUAN STANDEN (IND)",
-		"IVANNA DANIELA OLIVARES MIRANDA (IND)",
-		"DANIEL ALEJANDRO BRAVO SILVA (IND)",
-		"LISETTE LORENA VERGARA RIQUELME (IND)",
-		"CRISTOBAL PATRICIO ANDRADE LEON (IND)",
-		"TANIA ISABEL MADRIAGA FLORES (IND)",
+	"Pueblo Constituyente": [
 		"MARCO ANTONIO ARELLANO ORTEGA (IND)",
-		"ALEJANDRA PIA PEREZ ESPINA (IND)",
-		"MANUEL MAURICIO WOLDARSKY GONZALEZ (IND)",
-		"RODRIGO ERNESTO ROJAS VADE (IND)",
-		"LORETO CRISTINA VALLEJOS DAVILA (IND)",
-		"GLORIA DEL TRANSITO ALVARADO JORQUERA (IND)",
-		"ELSA CAROLINA LABRAÑA PINO (IND)",
 		"FRANCISCA MARYCARMEN ARAUNA URRUTIA (IND)",
-		"FERNANDO SALINAS MANFREDINI (IND)",
+		"FRANCISCO JAVIER CAAMAÑO ROJAS (IND)",
+		"IVANNA DANIELA OLIVARES MIRANDA (IND)",
+		"LISETTE LORENA VERGARA RIQUELME (IND)",
+		"INGRID FERNANDA VILLENA NARBONA (IND)",
+		"DAYYANA GONZALEZ ARAYA (IND)",
+		"CAMILA IGNACIA ZARATE ZARATE (IND)",
+		"NATALIA ESTHER HENRIQUEZ CARREÑO (IND)",
 		"CESAR  URIBE ARAYA (IND)",
-		"ADRIANA CAMILA AMPUERO BARRIENTOS (IND)"
+		"ELSA CAROLINA LABRAÑA PINO (IND)",
+		"MANUEL MAURICIO WOLDARSKY GONZALEZ (IND)",
+		"DANIEL ALEJANDRO BRAVO SILVA (IND)",
+		"LORETO CRISTINA VALLEJOS DAVILA (IND)",
+		"FERNANDO SALINAS MANFREDINI (IND)",
+		"TANIA ISABEL MADRIAGA FLORES (IND)",
+		"RODRIGO ERNESTO ROJAS VADE (IND)",
 	],
 	"Lista del Apruebo": [
 		"MAXIMILIANO HURTADO ROCO (PS)", 
@@ -2231,8 +2230,8 @@ function mostrarConvencionales() {
     		'seats': 25,
     		'color': colores['violeta']
 		},
-    	'La Lista del Pueblo': {
-    		'seats': 18,
+    	'Pueblo Constituyente': {
+    		'seats': 17,
     		'color': colores['rosado']
     	},
     	'Independientes No Neutrales': {
@@ -2240,7 +2239,7 @@ function mostrarConvencionales() {
     		'color': colores['azul-marino']
     	},
     	'Independientes': {
-    		'seats': 20,
+    		'seats': 21,
     		'color': colores['gris']
     	},
     	'Pueblos Originarios': {
