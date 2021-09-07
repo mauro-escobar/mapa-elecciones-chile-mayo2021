@@ -975,13 +975,13 @@ var conv_parliament_order = {
 var conv_directiva = [
 	['Presidenta', "ELISA LONCON ANTILEO (Mapuche)", 0.5, 0],
 	['Vicepresidente', "JAIME ANDRES BASSA MERCADO (IND-CS)", 0.5, 1],
-	['Vicepresidenta',"ISABEL SELENA GODOY MONARDEZ (Colla)", 0.5, 2],
-	['Vicepdta.',"TIARE MAEVA CAROLINA AGUILERA HEY (Rapanui)", 0.5, 3],
+	['Vicepresidenta',"ISABEL SELENA GODOY MONARDEZ (Colla)", -0.5, 0],
+	['Vicepdta.',"TIARE MAEVA CAROLINA AGUILERA HEY (Rapanui)", -0.5, 1],
 	// ['Vicepresidente', "RODRIGO ERNESTO ROJAS VADE (IND)", -0.5, 0],
-	['Vicepdta.', "ELISA AMANDA GIUSTINIANOVICH CAMPOS (IND)", -0.5, 0],
-	['Vicepresidente', "PEDRO MUÑOZ LEIVA (PS)", -0.5, 1],
-	['Vicepdta.', "LORENA DEL PILAR CESPEDES FERNANDEZ (IND)", -0.5, 2],
-	['Vicepresidente', "RODRIGO ALVAREZ ZENTENO (UDI)", -0.5, 3]
+	['Vicepdta.', "ELISA AMANDA GIUSTINIANOVICH CAMPOS (IND)", -0.5, 2],
+	['Vicepresidente', "PEDRO MUÑOZ LEIVA (PS)", -0.5, 3],
+	['Vicepdta.', "LORENA DEL PILAR CESPEDES FERNANDEZ (IND)", -0.5, 4],
+	['Vicepresidente', "RODRIGO ALVAREZ ZENTENO (UDI)", -0.5, 5]
 ];
 var conv_coordinadores = {
 	"MARIA ELISA QUINTEROS CACERES (IND)": ["Ética", colores['rojo-oscuro']],
