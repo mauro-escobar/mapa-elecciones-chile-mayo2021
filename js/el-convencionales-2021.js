@@ -743,19 +743,19 @@ var conv_parliament = {
 			["LORETO CRISTINA VALLEJOS DAVILA (IND)", false], //
 			["FERNANDO SALINAS MANFREDINI (IND)", false], //
 			["TANIA ISABEL MADRIAGA FLORES (IND)", false],
-			["RODRIGO ERNESTO ROJAS VADE (IND)", false],
+			["GIOVANNA JAZMIN GRANDON CARO (IND)", false],
 		]
 	},
 	'Candidaturas Independientes 2': {
 		'seats': 10,
 		'color': colores['gris'],
 		'names': [
+			["RODRIGO ERNESTO ROJAS VADE (IND)", false],
 			["CONSTANZA ANDREA SAN JUAN STANDEN (IND)", false],
 			["CRISTOBAL PATRICIO ANDRADE LEON (IND)", false],
 			["ALEJANDRA PIA PEREZ ESPINA (IND)", false],
 			["GLORIA DEL TRANSITO ALVARADO JORQUERA (IND)", false],
 			["ADRIANA CAMILA AMPUERO BARRIENTOS (IND)", false],
-			["GIOVANNA JAZMIN GRANDON CARO (IND)", false],
 			["MARIA MAGDALENA RIVERA IRIBARREN (IND)", false],
 			["HELMUTH JACOBO MARTINEZ LLANCAPAN (IND)", false],
 			["ROSSANA LORETO VIDAL HERNANDEZ (IND)", false],
@@ -1137,7 +1137,7 @@ var conv_grupos = {
 		"LORETO CRISTINA VALLEJOS DAVILA (IND)",
 		"FERNANDO SALINAS MANFREDINI (IND)",
 		"TANIA ISABEL MADRIAGA FLORES (IND)",
-		"RODRIGO ERNESTO ROJAS VADE (IND)",
+                "GIOVANNA JAZMIN GRANDON CARO (IND)",
 	],
 	"Lista del Apruebo": [
 		"MAXIMILIANO HURTADO ROCO (PS)", 
@@ -1182,7 +1182,8 @@ var conv_grupos = {
 		"MARIO VARGAS VIDAL (PS)",
 		"JULIO ALVAREZ PINTO (PS)",
 		"TOMAS LAIBE SAEZ (PS)",
-		"MARIA TRINIDAD CASTILLO BOILET (IND)"
+		"MARIA TRINIDAD CASTILLO BOILET (IND)",
+                "PATRICIO  FERNANDEZ CHADWICK (IND-PL)"
 	],
         "Colectivo del Apruebo": [
                 "FUAD  CHAHIN VALENZUELA (PDC)", 
