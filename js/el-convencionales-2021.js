@@ -763,10 +763,9 @@ var conv_parliament = {
 		]
 	},
 	'Lista del Apruebo (PL)': {
-		'seats': 3,
+		'seats': 2,
 		'color': '#a764a6',//colores['violeta'],
 		'names': [
-			["JORGE BRUNO ABARCA RIVEROS (IND-PL)", false],
 			["AGUSTIN SQUELLA NARDUCCI (IND-PL)", false],
 			["PATRICIO  FERNANDEZ CHADWICK (IND-PL)", false]
 		]
@@ -824,7 +823,7 @@ var conv_parliament = {
 		]
 	},
 	'Independientes No Neutrales': {
-		'seats': 10,
+		'seats': 12,
 		'color': colores['azul-marino'],
 		'names': [
 			["GUILLERMO NICOLAS NAMOR KONG (IND)", false],
@@ -836,11 +835,13 @@ var conv_parliament = {
 			["TAMMY SOLANGE PUSTILNICK ARDITI (IND)", false],
 			["JAVIER FUCHSLOCHER BAEZA (IND)", false],
 			["LORENA DEL PILAR CESPEDES FERNANDEZ (IND)", false],
-			["GASPAR ROBERTO DOMINGUEZ DONOSO (IND)", false]
+		        ["GASPAR ROBERTO DOMINGUEZ DONOSO (IND)", false],
+			["JORGE BRUNO ABARCA RIVEROS (IND-PL)", false],
+			["MAURICIO DAZA CARRASCO (IND)", false]
 		]
 	},
 	'Candidaturas Independientes': {
-		'seats': 10,
+		'seats': 9,
 		'color': colores['gris'],
 		'names': [
 			["ALEJANDRA ALICIA FLORES CARLOS (IND)", false],
@@ -852,7 +853,6 @@ var conv_parliament = {
 			["ALVIN ANTONIO SALDAÑA MUÑOZ (IND)", false],
 			["MARIA ELISA QUINTEROS CACERES (IND)", false],
 			["BASTIAN ESTEBAN LABBE SALAZAR (IND)", false],
-			["MAURICIO DAZA CARRASCO (IND)", false]
 		]
 	},
 	'Candidaturas Independientes 3': {
@@ -1089,23 +1089,23 @@ var conv_grupos = {
 		"ROBERTO ANTONIO CELEDON FERNANDEZ (IND-FREVS)",
 		"PAOLA ALEJANDRA GRANDON GONZALEZ (FREVS)"
 	],
-	"Frente Amplio": [
+	"Frente Amplio +": [
+		"JENIFFER VALERIA MELLA ESCOBAR (IND-CS)", 
+		"BEATRIZ DE JESUS SANCHEZ MUÑOZ (IND-RD)", 
+		"JAIME ANDRES BASSA MERCADO (IND-CS)", 
 		"MARIA JOSE OYARZUN SOLIS (RD)", 
 		"DANIEL RODRIGO STINGO CAMUS (IND-RD)", 
 		"TATIANA KARINA URRUTIA HERRERA (RD)", 
 		"FERNANDO ATRIA LEMAITRE (IND-RD)", 
 		"GIOVANNA ANGELA ROA CADIN (RD)", 
-		"BEATRIZ DE JESUS SANCHEZ MUÑOZ (IND-RD)", 
+		"CONSTANZA GABRIELA SCHONHAUT SOTO (CS)", 
+		"MARIELA ANDREA SEREY JIMENEZ (IND-CS)", 
+		"IGNACIO JAIME ACHURRA DIAZ (CS)", 
+		"DAMARIS ABARCA GONZALEZ (IND-CS)", 
 		"AMAYA PAULINA ALVEZ MARIN (RD)", 
 		"AURORA GENOVEVA DELGADO VERGARA (IND-RD)", 
 		"YARELA NICOHL GOMEZ SANCHEZ (IND-RD)", 
-		"JENIFFER VALERIA MELLA ESCOBAR (IND-CS)", 
-		"MARIELA ANDREA SEREY JIMENEZ (IND-CS)", 
-		"JAIME ANDRES BASSA MERCADO (IND-CS)", 
-		"CONSTANZA GABRIELA SCHONHAUT SOTO (CS)", 
-		"IGNACIO JAIME ACHURRA DIAZ (CS)", 
-		"DAMARIS ABARCA GONZALEZ (IND-CS)", 
-		"CAROLINA CYNTIA VILCHES FUENZALIDA (IND-COM)"
+		"CHRISTIAN VIERA ALVAREZ (IND-PDC)", 
 	],
 	"Chile Digno": [
 		"CAROLINA ELIANA VIDELA OSORIO (PCCH)",
@@ -1114,7 +1114,7 @@ var conv_grupos = {
 		"VALENTINA ANDREA MIRANDA ARCE (PCCH)",
 		"BARBARA SEPULVEDA HALES (PCCH)",
 		"MARCOS PATRICIO BARRAZA GOMEZ (PCCH)",
-		"VANESSA CAMILA HOPPE ESPOZ (IND-PCCH)",
+		//"VANESSA CAMILA HOPPE ESPOZ (IND-PCCH)",
 		"HERNAN JESUS VELASQUEZ NUÑEZ (FREVS)",
 		"NICOLAS FERNANDO NUÑEZ GANGAS (FREVS)",
 		"ROBERTO ANTONIO CELEDON FERNANDEZ (IND-FREVS)",
@@ -1162,7 +1162,6 @@ var conv_grupos = {
 		"FELIPE HARBOE BASCUÑAN (PPD)", 
 		"LUIS RAMON BARCELO AMADO (IND-PPD)", 
 		"EDUARDO GUILLERMO CASTILLO VIGOUROUX (PPD)",
-		"JORGE BRUNO ABARCA RIVEROS (IND-PL)", 
 		"AGUSTIN SQUELLA NARDUCCI (IND-PL)", 
 		"PATRICIO  FERNANDEZ CHADWICK (IND-PL)"
 	],
@@ -1195,11 +1194,10 @@ var conv_grupos = {
 		"RODRIGO LOGAN SOTO (IND)"
 	],
 	"Nuevo Trato": [
-		"JORGE BRUNO ABARCA RIVEROS (IND-PL)", 
 		"AGUSTIN SQUELLA NARDUCCI (IND-PL)", 
 		"PATRICIO  FERNANDEZ CHADWICK (IND-PL)"
 	],
-	"Independientes No Neutrales": [
+	"Independientes por una Nueva Constitución": [
 		"GUILLERMO NICOLAS NAMOR KONG (IND)",
 		//"MIGUEL ANGEL BOTTO SALINAS (IND)",
 		"PATRICIA POLITZER KEREKES (IND)",
@@ -1210,7 +1208,9 @@ var conv_grupos = {
 		"TAMMY SOLANGE PUSTILNICK ARDITI (IND)",
 		"JAVIER FUCHSLOCHER BAEZA (IND)",
 		"LORENA DEL PILAR CESPEDES FERNANDEZ (IND)",
-		"GASPAR ROBERTO DOMINGUEZ DONOSO (IND)"
+	        "GASPAR ROBERTO DOMINGUEZ DONOSO (IND)",
+	        "MAURICIO DAZA CARRASCO (IND)", 
+		"JORGE BRUNO ABARCA RIVEROS (IND-PL)",
 	],
 	"Norte Constituyente": [
 		"JORGE BRUNO ABARCA RIVEROS (IND-PL)",
@@ -1226,14 +1226,18 @@ var conv_grupos = {
 		"FERNANDO DEL CARMEN TIRADO SOTO (Chango)"
 	],
 	"Movimientos Sociales Constituyentes": [
-		"DANIEL ALEJANDRO BRAVO SILVA (IND)",
-		"CRISTINA INES DORADOR ORTIZ (IND)",
-		"ADRIANA CAMILA AMPUERO BARRIENTOS (IND)",
-		"BASTIAN ESTEBAN LABBE SALAZAR (IND)",
+	        "ELISA AMANDA GIUSTINIANOVICH CAMPOS (IND)",
 		"JANIS JAN DEL CARMEN MENESES PALMA (IND)",
+		"CAROLINA CYNTIA VILCHES FUENZALIDA (IND-COM)",
+	        "MARIA ELISA QUINTEROS CACERES (IND)",
+		"BASTIAN ESTEBAN LABBE SALAZAR (IND)",
 		"ALONDRA CARRILLO VIDAL (IND)",
-		"ELISA AMANDA GIUSTINIANOVICH CAMPOS (IND)",
-		"MARIA ELISA QUINTEROS CACERES (IND)"
+		"CRISTINA INES DORADOR ORTIZ (IND)",
+		"MANUELA ROYO LETELIER (IND-IGUAL)",
+		"VANESSA CAMILA HOPPE ESPOZ (IND-PCCH)",
+		"ALVIN ANTONIO SALDAÑA MUÑOZ (IND)",
+		"ALEJANDRA ALICIA FLORES CARLOS (IND)",
+		"GLORIA DEL TRANSITO ALVARADO JORQUERA (IND)",
 	],
 	"Vocería de los Pueblos": [
 		"FRANCISCA LINCONAO HUIRCAPAN (Mapuche)",
@@ -1370,7 +1374,6 @@ var conv_grupos = {
 		"TOMAS LAIBE SAEZ (PS)",
 	],
 	"PL": [
-		"JORGE BRUNO ABARCA RIVEROS (IND-PL)",
 		"AGUSTIN SQUELLA NARDUCCI (IND-PL)",
 		"PATRICIO  FERNANDEZ CHADWICK (IND-PL)",
 	],
@@ -2228,7 +2231,7 @@ function mostrarConvencionales() {
     		'color': colores['verde-agua']
     	},
     	'Lista del Apruebo': {
-    		'seats': 25,
+    		'seats': 24,
     		'color': colores['violeta']
 		},
     	'Pueblo Constituyente': {
@@ -2236,11 +2239,11 @@ function mostrarConvencionales() {
     		'color': colores['rosado']
     	},
     	'Independientes No Neutrales': {
-    		'seats': 10,
+    		'seats': 12,
     		'color': colores['azul-marino']
     	},
     	'Independientes': {
-    		'seats': 21,
+    		'seats': 20,
     		'color': colores['gris']
     	},
     	'Pueblos Originarios': {
