@@ -43,7 +43,7 @@ var coloresConvencionales = {
 	'CANDIDATURA INDEPENDIENTE (ex LISTA DEL PUEBLO)': colores['gris'],
 	'COORDINADORA SOCIAL DE MAGALLANES (ex LISTA DEL PUEBLO)': colores['gris'],
 	'VAMOS POR CHILE': colores['azul'],
-	'VOCES CONSTITUYENTES (D12)': colores['gris'],
+	'VOCES CONSTITUYENTES (D12)': colores['gris'], 
 };
 
 function addSourceConvencionales(map) {
