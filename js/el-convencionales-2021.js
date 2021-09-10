@@ -826,6 +826,7 @@ var conv_parliament = {
 		'seats': 12,
 		'color': colores['azul-marino'],
 		'names': [
+			["JORGE BRUNO ABARCA RIVEROS (IND-PL)", false],
 			["GUILLERMO NICOLAS NAMOR KONG (IND)", false],
 			["PATRICIA POLITZER KEREKES (IND)", false],
 			["BENITO JOSE BARANDA FERRAN (IND)", false],
@@ -836,7 +837,6 @@ var conv_parliament = {
 			["JAVIER FUCHSLOCHER BAEZA (IND)", false],
 			["LORENA DEL PILAR CESPEDES FERNANDEZ (IND)", false],
 		        ["GASPAR ROBERTO DOMINGUEZ DONOSO (IND)", false],
-			["JORGE BRUNO ABARCA RIVEROS (IND-PL)", false],
 			["MAURICIO DAZA CARRASCO (IND)", false]
 		]
 	},
