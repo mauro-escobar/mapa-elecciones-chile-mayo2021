@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 a:hover {
@@ -33,7 +34,7 @@ a:hover {
   margin: 8px;
 }
 
-a {
+a, h1, h2, h3 {
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -298,4 +299,10 @@ ul, ol {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1em;
   padding-top: 5px;
+}
+
+.col-candidatos {
+  padding: 1%;
+  width: 31%;
+  float: left;
 }
