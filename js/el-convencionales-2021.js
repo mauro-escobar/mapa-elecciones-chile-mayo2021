@@ -1137,7 +1137,7 @@ var conv_grupos = {
 		"LORETO CRISTINA VALLEJOS DAVILA (IND)",
 		"FERNANDO SALINAS MANFREDINI (IND)",
 		"TANIA ISABEL MADRIAGA FLORES (IND)",
-                "GIOVANNA JAZMIN GRANDON CARO (IND)",
+         "GIOVANNA JAZMIN GRANDON CARO (IND)",
 	],
 	"Lista del Apruebo": [
 		"MAXIMILIANO HURTADO ROCO (PS)", 
@@ -1417,6 +1417,34 @@ var conv_grupos = {
 		"MARCOS PATRICIO BARRAZA GOMEZ (PCCH)",
 		"VANESSA CAMILA HOPPE ESPOZ (IND-PCCH)",
 	],
+	"Sistema Político": [
+        "ALEJANDRA ALICIA FLORES CARLOS (IND)",
+        "ALEJANDRA PIA PEREZ ESPINA (IND)",
+        "ALONDRA CARRILLO VIDAL (IND)",
+        "BARBARA SEPULVEDA HALES (PCCH)",
+		"CONSTANZA  HUBE PORTUS (UDI)",
+		"CONSTANZA GABRIELA SCHONHAUT SOTO (CS)",
+		"FRANCISCA MARYCARMEN ARAUNA URRUTIA (IND)",
+		"MARCELA CUBILLOS SIGALL (IND-UDI)",
+		"PATRICIA POLITZER KEREKES (IND)",
+		"ROSA ELIZABETH CATRILEO ARIAS (Mapuche)",
+		"TANIA ISABEL MADRIAGA FLORES (IND)",
+		"ARTURO ZUÑIGA JORY (UDI)",
+		"CRISTIAN MONCKEBERG BRUNER (RN)",
+		"FERNANDO ATRIA LEMAITRE (IND-RD)",
+		"FUAD  CHAHIN VALENZUELA (PDC)",
+		"GUILLERMO NICOLAS NAMOR KONG (IND)",
+		"HERNAN LARRAIN MATTE (EVO)",
+		"JAIME ANDRES BASSA MERCADO (IND-CS)",
+		"MARCO ANTONIO ARELLANO ORTEGA (IND)",
+		"MARCOS PATRICIO BARRAZA GOMEZ (PCCH)",
+		"MAXIMILIANO HURTADO ROCO (PS)",
+		"PEDRO MUÑOZ LEIVA (PS)",
+        "RAUL CELIS MONTT (RN)",
+        "RENATO FABRIZIO GARIN GONZALEZ (IND-PR)",
+		"RICARDO MONTERO ALLENDE (PS)",
+	],
+	/*
 	"Reglamento": [
 		"DANIEL ALEJANDRO BRAVO SILVA (IND)",
 		"BARBARA SEPULVEDA HALES (PCCH)",
@@ -1588,6 +1616,7 @@ var conv_grupos = {
 		"JENIFFER VALERIA MELLA ESCOBAR (IND-CS)",
 		"TIARE MAEVA CAROLINA AGUILERA HEY (Rapanui)"
 	],
+	*/
 	"D1": [
 		"JORGE BRUNO ABARCA RIVEROS (IND-PL)",
 		"CAROLINA ELIANA VIDELA OSORIO (PCCH)",
@@ -1897,7 +1926,7 @@ var conv_grupos = {
 		"JUAN JOSE MARTIN BRAVO (IND)",
 		"MANUEL JOSE OSSANDON LIRA (IND-RN)",
 		"RODRIGO ERNESTO ROJAS VADE (IND)", 
-		"MARCOS PATRICIO BARRAZA GOMEZ (PCCH)",,
+		"MARCOS PATRICIO BARRAZA GOMEZ (PCCH)",
 		"IGNACIO JAIME ACHURRA DIAZ (CS)",
 		"FRANCISCO JAVIER CAAMAÑO ROJAS (IND)",
 		"RENATO FABRIZIO GARIN GONZALEZ (IND-PR)",
@@ -2269,7 +2298,7 @@ function mostrarConvencionales() {
 	div.appendChild(span);
 	for (grupo in conv_grupos) {
 		var span = document.createElement('span');
-		if (grupo=="Reglamento") span.innerHTML = '<br style="margin-bottom:7px">Comisiones · ';
+		if (grupo=="Sistema Político") span.innerHTML = '<br style="margin-bottom:7px">Comisiones · ';
 		else if (grupo=="D1") span.innerHTML = '<br style="margin-bottom:7px">Distritos · ';
 		else if (grupo=="Mujeres") span.innerHTML = '<br style="margin-bottom:7px">Otros · ';
 		else if (grupo=="UDI") span.innerHTML = '<br style="margin-bottom:7px">Partidos · ';
