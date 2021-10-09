@@ -558,7 +558,8 @@ function paintGroup(cl) {
                 .replace("Sistema Político", "Sistema Político, Gobierno, Poder Legislativo y Sistema<br>Electoral")
                 .replace("Ppios. Constitucionales","Principios Constitucionales, Democracia, Nacionalidad y<br>Ciudadanía")
                 .replace("Forma de Estado","Forma de Estado, Ordenamiento, Autonomía,<br>Descentralización, Equidad, Justicia Territorial,<br>Gobiernos Locales y Organización Fiscal")
-                .replace("Medio Ambiente","Medio Ambiente, Derechos de la Naturaleza,<br>Bienes Natulares Comunes y Modelo Económico")+":</span> ";
+                .replace("Medio Ambiente","Medio Ambiente, Derechos de la Naturaleza,<br>Bienes Natulares Comunes y Modelo Económico")
+                .replace("Sistemas de Justicia","Sistemas de Justicia, Órganos Autónomos de Control y<br>Reforma Constitucional")+":</span> ";
             span.innerHTML += count+' escaños<br>';
         }
     } else {
