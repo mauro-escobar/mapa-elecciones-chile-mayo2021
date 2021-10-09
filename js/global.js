@@ -557,9 +557,10 @@ function paintGroup(cl) {
                 .replace("DDHH","Derechos Humanos").replace("RM","Región Metropolitana")
                 .replace("Sistema Político", "Sistema Político, Gobierno, Poder Legislativo y Sistema<br>Electoral")
                 .replace("Ppios. Constitucionales","Principios Constitucionales, Democracia, Nacionalidad y<br>Ciudadanía")
-                .replace("Forma de Estado","Forma de Estado, Ordenamiento, Autonomía,<br>Descentralización, Equidad, Justicia Territorial,<br>Gobiernos Locales y Organización Fiscal")+":</span> ";
+                .replace("Forma de Estado","Forma de Estado, Ordenamiento, Autonomía,<br>Descentralización, Equidad, Justicia Territorial,<br>Gobiernos Locales y Organización Fiscal")
+                .replace("Medio Ambiente","Medio Ambiente, Derechos de la Naturaleza,<br>Bienes Natulares Comunes y Modelo Económico")+":</span> ";
             span.innerHTML += count+' escaños<br>';
-        }    
+        }
     } else {
         var span = document.getElementById('lista-seat');
         if (span) span.innerHTML = '<br>';
