@@ -2434,7 +2434,7 @@ function mostrarConvencionales() {
 	div.appendChild(div_buscador);
 	var div_parl = document.createElement('div');
 	div_parl.style.width = '390px';
-	div_parl.appendChild(generateSVG(conv_parliament, conv_parliament_order, true, "Convencional", conv_directiva, conv_grupos, conv_coordinadores));
+	div_parl.appendChild(generateSVG(conv_parliament, conv_parliament_order, true, "Convencional", conv_directiva, conv_grupos, {}));
 	div.appendChild(div_parl);
 	var span = document.createElement('span');
 	span.id = 'lista-seat';
