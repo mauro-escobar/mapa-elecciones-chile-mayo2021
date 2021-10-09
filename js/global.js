@@ -559,7 +559,8 @@ function paintGroup(cl) {
                 .replace("Ppios. Constitucionales","Principios Constitucionales, Democracia, Nacionalidad y<br>Ciudadanía")
                 .replace("Forma de Estado","Forma de Estado, Ordenamiento, Autonomía,<br>Descentralización, Equidad, Justicia Territorial,<br>Gobiernos Locales y Organización Fiscal")
                 .replace("Medio Ambiente","Medio Ambiente, Derechos de la Naturaleza,<br>Bienes Natulares Comunes y Modelo Económico")
-                .replace("Sistemas de Justicia","Sistemas de Justicia, Órganos Autónomos de Control y<br>Reforma Constitucional")+":</span> ";
+                .replace("Sistemas de Justicia","Sistemas de Justicia, Órganos Autónomos de Control y<br>Reforma Constitucional")
+                .replace("Culturas y Ciencia","Sistema de Conocimientos, Culturas, Ciencia, Tecnología,<br>Artes y Patrimonios")+":</span> ";
             span.innerHTML += count+' escaños<br>';
         }
     } else {
