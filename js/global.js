@@ -554,7 +554,9 @@ function paintGroup(cl) {
                 .replace("PL","Partido Liberal").replace("PR","Partido Radical Social Demócrata")
                 .replace("FREVS","Federación Regionalista Verde Social").replace("EVO","Evópoli")
                 .replace("RN","Renovación Nacional").replace("UDI","Unión Demócrata Independiente")
-                .replace("DDHH","Derechos Humanos").replace("RM","Región Metropolitana")+":</span> ";
+                .replace("DDHH","Derechos Humanos").replace("RM","Región Metropolitana")
+                .replace("Sistema Político", "Sistema Político, Gobierno, Poder Legislativo y Sistema Electoral")
+                .replace("Ppios. Constitucionales","Principios Constitucionales, Democracia, Nacionalidad y Ciudadanía")+":</span> ";
             span.innerHTML += count+' escaños<br>';
         }    
     } else {
