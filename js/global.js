@@ -555,8 +555,9 @@ function paintGroup(cl) {
                 .replace("FREVS","Federación Regionalista Verde Social").replace("EVO","Evópoli")
                 .replace("RN","Renovación Nacional").replace("UDI","Unión Demócrata Independiente")
                 .replace("DDHH","Derechos Humanos").replace("RM","Región Metropolitana")
-                .replace("Sistema Político", "Sistema Político, Gobierno, Poder Legislativo y<br>Sistema Electoral")
-                .replace("Ppios. Constitucionales","Principios Constitucionales, Democracia,<br>Nacionalidad y Ciudadanía")+":</span> ";
+                .replace("Sistema Político", "Sistema Político, Gobierno, Poder Legislativo y Sistema<br>Electoral")
+                .replace("Ppios. Constitucionales","Principios Constitucionales, Democracia, Nacionalidad y<br>Ciudadanía")
+                .replace("Forma de Estado","Forma de Estado, Ordenamiento, Autonomía,<br>Descentralización, Equidad, Justicia Territorial,<br>Gobiernos Locales y Organización Fiscal")+":</span> ";
             span.innerHTML += count+' escaños<br>';
         }    
     } else {
