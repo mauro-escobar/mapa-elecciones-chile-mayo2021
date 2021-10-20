@@ -983,6 +983,10 @@ var conv_directiva = [
 	['Vicepdta.', "LORENA DEL PILAR CESPEDES FERNANDEZ (IND)", -0.5, 4],
 	['Vicepresidente', "RODRIGO ALVAREZ ZENTENO (UDI)", -0.5, 5]
 ];
+conv_coordinadores = {
+    "JENIFFER VALERIA MELLA ESCOBAR (IND-CS)": ["Forma de Estado", colores['rojo-oscuro']],
+    "ADOLFO MILLABUR ÑANCUIL (Mapuche)": ["Forma de Estado", colores['rojo-oscuro']],
+}
 /*var conv_coordinadores = {
 	"MARIA ELISA QUINTEROS CACERES (IND)": ["Ética", colores['rojo-oscuro']],
 	"MARCOS PATRICIO BARRAZA GOMEZ (PCCH)": ["Ética", colores['rojo-oscuro']],
@@ -2434,7 +2438,7 @@ function mostrarConvencionales() {
 	div.appendChild(div_buscador);
 	var div_parl = document.createElement('div');
 	div_parl.style.width = '390px';
-	div_parl.appendChild(generateSVG(conv_parliament, conv_parliament_order, true, "Convencional", conv_directiva, conv_grupos, {}));
+	div_parl.appendChild(generateSVG(conv_parliament, conv_parliament_order, true, "Convencional", conv_directiva, conv_grupos, conv_coordinadores));
 	div.appendChild(div_parl);
 	var span = document.createElement('span');
 	span.id = 'lista-seat';
