@@ -984,8 +984,8 @@ var conv_directiva = [
 	['Vicepresidente', "RODRIGO ALVAREZ ZENTENO (UDI)", -0.5, 5]
 ];
 conv_coordinadores = {
-    "JENIFFER VALERIA MELLA ESCOBAR (IND-CS)": ["Forma de Estado", colores['rojo-oscuro']],
-    "ADOLFO MILLABUR ÑANCUIL (Mapuche)": ["Forma de Estado", colores['rojo-oscuro']],
+    "JENIFFER VALERIA MELLA ESCOBAR (IND-CS)": ["Forma-de-Estado", colores['rojo-oscuro']],
+    "ADOLFO MILLABUR ÑANCUIL (Mapuche)": ["Forma-de-Estado", colores['rojo-oscuro']],
 }
 /*var conv_coordinadores = {
 	"MARIA ELISA QUINTEROS CACERES (IND)": ["Ética", colores['rojo-oscuro']],
