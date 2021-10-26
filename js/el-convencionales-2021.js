@@ -985,7 +985,19 @@ var conv_directiva = [
 ];
 conv_coordinadores = {
     "JENIFFER VALERIA MELLA ESCOBAR (IND-CS)": ["Forma-de-Estado", colores['rojo-oscuro']],
-    "ADOLFO MILLABUR ÑANCUIL (Mapuche)": ["Forma-de-Estado", colores['rojo-oscuro']],
+    "ADOLFO MILLABUR ÑANCUIL (Mapuche)": ["Forma-de-Estado", colores['negro']],
+    "RICARDO MONTERO ALLENDE (PS)": ["Sistema-Político", colores['rojo-oscuro']],
+    "ROSA ELIZABETH CATRILEO ARIAS (Mapuche)": ["Sistema-Político", colores['negro']],
+    "DAMARIS ABARCA GONZALEZ (IND-CS)": ["Derechos-Fundamentales", colores['rojo-oscuro']],
+	"MATIAS ORELLANA CUELLAR (PS)": ["Derechos-Fundamentales", colores['rojo-oscuro']],		
+	"IGNACIO JAIME ACHURRA DIAZ (CS)": ["Culturas-y-Ciencia", colores['rojo-oscuro']],
+	"CRISTINA INES DORADOR ORTIZ (IND)": ["Culturas-y-Ciencia", colores['rojo-oscuro']],
+	"VANESSA CAMILA HOPPE ESPOZ (IND-PCCH)": ["Sistemas-de-Justicia", colores['rojo-oscuro']],
+	"CHRISTIAN VIERA ALVAREZ (IND-PDC)": ["Sistemas-de-Justicia", colores['rojo-oscuro']],
+	"BEATRIZ DE JESUS SANCHEZ MUÑOZ (IND-RD)": ["Ppios.-Constitucionales", colores['rojo-oscuro']],
+	"ERICKA  PORTILLA BARRIOS (PCCH)": ["Ppios.-Constitucionales", colores['rojo-oscuro']],
+	"CAMILA IGNACIA ZARATE ZARATE (IND)": ["Medio-Ambiente", colores['rojo-oscuro']],
+	"JUAN JOSE MARTIN BRAVO (IND)": ["Medio-Ambiente", colores['rojo-oscuro']]
 }
 /*var conv_coordinadores = {
 	"MARIA ELISA QUINTEROS CACERES (IND)": ["Ética", colores['rojo-oscuro']],
