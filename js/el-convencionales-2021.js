@@ -996,7 +996,7 @@ conv_coordinadores = {
 	"CHRISTIAN VIERA ALVAREZ (IND-PDC)": ["Sistemas-de-Justicia", colores['rojo-oscuro']],
 	"BEATRIZ DE JESUS SANCHEZ MUÑOZ (IND-RD)": ["Ppios.-Constitucionales", colores['rojo-oscuro']],
 	"ERICKA  PORTILLA BARRIOS (PCCH)": ["Ppios.-Constitucionales", colores['rojo-oscuro']],
-	"CAMILA IGNACIA ZARATE ZARATE (IND)": ["Medio-Ambiente", colores['rojo-oscuro']],
+	"CAMILA IGNACIA ZARATE ZARATE (IND)": ["Medio-Ambiente", colores['negro']],
 	"JUAN JOSE MARTIN BRAVO (IND)": ["Medio-Ambiente", colores['rojo-oscuro']]
 }
 /*var conv_coordinadores = {
