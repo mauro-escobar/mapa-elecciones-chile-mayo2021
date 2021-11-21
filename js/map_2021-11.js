@@ -57,6 +57,7 @@ function clean() {
 	map.setLayoutProperty('presidenciales-comunas', 'visibility', 'none');
 	map.setLayoutProperty('presidenciales-distritos', 'visibility', 'none');
 	map.setLayoutProperty('presidenciales-regiones', 'visibility', 'none');
+    map.setLayoutProperty('comunas-outline', 'visibility', 'none');
     map.setLayoutProperty('distritos-outline', 'visibility', 'none');
     map.setLayoutProperty('regiones-outline', 'visibility', 'none');
 	map.setLayoutProperty('regiones-gris', 'visibility', 'none');
@@ -112,6 +113,7 @@ function mostrarPresidencialesComunas() {
 	tipo = "comunas";
 	map.setLayoutProperty('presidenciales-comunas', 'visibility', 'visible');
     map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
+    map.setLayoutProperty('comunas-outline', 'visibility', 'visible');
 	document.getElementById('a-presidenciales').style.color = 'black';
 
 	var els = document.getElementsByClassName('presidenciales');
@@ -136,6 +138,7 @@ function mostrarPresidencialesDistritos() {
 	tipo = "comunas";
 	map.setLayoutProperty('presidenciales-distritos', 'visibility', 'visible');
     map.setLayoutProperty('regiones-outline', 'visibility', 'visible');
+    map.setLayoutProperty('distritos-outline', 'visibility', 'visible');
 	document.getElementById('a-presidenciales').style.color = 'black';
 
 	var els = document.getElementsByClassName('presidenciales');
