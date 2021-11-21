@@ -24,7 +24,6 @@ map.on('load', function(){
     addLayerRegionesFillGray(map);
 	addLayerComunasOutline(map);
     addLayerComunasOutlineZoom(map);
-    addLayerComunasFill(map);
     addLayerDistritosOutline(map);
     addLayerDistritosFillGray(map);
 
