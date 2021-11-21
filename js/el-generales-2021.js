@@ -44,7 +44,7 @@ function addLayerPresidenciales(map) {
                 ['linear'],
                 ['max', ['get', 'vot_1'], ['get', 'vot_2'], ['get', 'vot_3'], ['get', 'vot_4'], ['get', 'vot_5'], ['get', 'vot_6'], ['get', 'vot_7']],
                 0, 0.05,
-                40, 1,
+                60, 1,
             ]
         }
     }, 'regiones-outline');
@@ -73,7 +73,7 @@ function addLayerPresidenciales(map) {
                 ['linear'],
                 ['max', ['get', 'vot_1'], ['get', 'vot_2'], ['get', 'vot_3'], ['get', 'vot_4'], ['get', 'vot_5'], ['get', 'vot_6'], ['get', 'vot_7']],
                 0, 0.05,
-                40, 1,
+                60, 1,
             ]
         }
     }, 'regiones-outline');
@@ -102,7 +102,7 @@ function addLayerPresidenciales(map) {
                 ['linear'],
                 ['max', ['get', 'vot_1'], ['get', 'vot_2'], ['get', 'vot_3'], ['get', 'vot_4'], ['get', 'vot_5'], ['get', 'vot_6'], ['get', 'vot_7']],
                 0, 0.05,
-                40, 1,
+                60, 1,
             ]
         }
     }, 'regiones-outline');
