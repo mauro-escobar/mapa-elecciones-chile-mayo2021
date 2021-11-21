@@ -86,20 +86,20 @@ function mostrarMapa(mostrar, tipo) {
 	if (mostrar=='presidenciales') mostrarPresidenciales(tipo);
 }
 
-legendPresidencialHTML =  'Porcentaje escrutado: 49,62%<table style="border-collapse:collapse">'+
+legendPresidencialHTML =  'Porcentaje escrutado: 65,52%<table style="border-collapse:collapse">'+
 '<tr><td style="font-weight:bold">Candidato/a</td><td style="text-align:right;font-weight:bold">Votos</td><td style="text-align:right;font-weight:bold">%</td></tr>'+
-'<tr><td><span class="legend-key" style="background-color:' + colores['verde-agua'] + '"></span>GABRIEL BORIC FONT</td><td style="text-align:right;padding-left:20px">795.689</td><td style="text-align:right;padding-left:20px">24,44%</td></tr>'+
-'<tr><td><span class="legend-key" style="background-color:' + colores['azul-marino'] + '"></span>JOSE ANTONIO KAST RIST</td><td style="text-align:right;padding-left:20px">932.252</td><td style="text-align:right;padding-left:20px">28,64%</td></tr>'+
-'<tr><td><span class="legend-key" style="background-color:' + colores['violeta'] + '"></span>YASNA PROVOSTE CAMPILLAY</td><td style="text-align:right;padding-left:20px">402.338</td><td style="text-align:right;padding-left:20px">12,36%</td></tr>'+
-'<tr><td><span class="legend-key" style="background-color:' + colores['amarillo'] + '"></span>SEBASTIAN SICHEL RAMIREZ</td><td style="text-align:right;padding-left:20px">389.468</td><td style="text-align:right;padding-left:20px">11,96%</td></tr>'+
-'<tr><td><span class="legend-key" style="background-color:' + colores['rojo'] + '"></span>EDUARDO ARTES BRICHETTI</td><td style="text-align:right;padding-left:20px">46.230</td><td style="text-align:right;padding-left:20px">1,42%</td></tr>'+
-'<tr><td><span class="legend-key" style="background-color:' + colores['azul'] + '"></span>MARCO ENRIQUEZ-OMINAMI GUMUCIO</td><td style="text-align:right;padding-left:20px">246.493</td><td style="text-align:right;padding-left:20px">7,57%</td></tr>'+
-'<tr><td><span class="legend-key" style="background-color:' + colores['celeste'] + '"></span>FRANCO PARISI FERNANDEZ</td><td style="text-align:right;padding-left:20px">442.654</td><td style="text-align:right;padding-left:20px">13,60%</td></tr>'+
+'<tr><td><span class="legend-key" style="background-color:' + colores['verde-agua'] + '"></span>GABRIEL BORIC FONT</td><td style="text-align:right;padding-left:20px">1.101.196</td><td style="text-align:right;padding-left:20px">24,90%</td></tr>'+
+'<tr><td><span class="legend-key" style="background-color:' + colores['azul-marino'] + '"></span>JOSE ANTONIO KAST RIST</td><td style="text-align:right;padding-left:20px">1.256.726</td><td style="text-align:right;padding-left:20px">28,42%</td></tr>'+
+'<tr><td><span class="legend-key" style="background-color:' + colores['violeta'] + '"></span>YASNA PROVOSTE CAMPILLAY</td><td style="text-align:right;padding-left:20px">533.915</td><td style="text-align:right;padding-left:20px">12,07%</td></tr>'+
+'<tr><td><span class="legend-key" style="background-color:' + colores['amarillo'] + '"></span>SEBASTIAN SICHEL RAMIREZ</td><td style="text-align:right;padding-left:20px">539.196</td><td style="text-align:right;padding-left:20px">12,19%</td></tr>'+
+'<tr><td><span class="legend-key" style="background-color:' + colores['rojo'] + '"></span>EDUARDO ARTES BRICHETTI</td><td style="text-align:right;padding-left:20px">63.596</td><td style="text-align:right;padding-left:20px">1,44%</td></tr>'+
+'<tr><td><span class="legend-key" style="background-color:' + colores['azul'] + '"></span>MARCO ENRIQUEZ-OMINAMI GUMUCIO</td><td style="text-align:right;padding-left:20px">335.975</td><td style="text-align:right;padding-left:20px">7,60%</td></tr>'+
+'<tr><td><span class="legend-key" style="background-color:' + colores['celeste'] + '"></span>FRANCO PARISI FERNANDEZ</td><td style="text-align:right;padding-left:20px">591.619</td><td style="text-align:right;padding-left:20px">13,38%</td></tr>'+
 '</table><hr><table style="margin:20px;border-collapse:collapse">'+
-'<tr><td></span>Válidamente Emitidos</td><td style="text-align:right;padding-left:20px">3.255.124</td><td style="text-align:right;padding-left:20px">98,67%</td></tr>'+
-'<tr><td></span>Votos Nulos</td><td style="text-align:right;padding-left:20px">27.603</td><td style="text-align:right;padding-left:20px">0,84%</td></tr>'+
-'<tr><td></span>Votos Blancos</td><td style="text-align:right;padding-left:20px">16.435</td><td style="text-align:right;padding-left:20px">0,50%</td></tr>'+
-'<tr><td></span>Total Votación</td><td style="text-align:right;padding-left:20px">3.299.162</td><td style="text-align:right;padding-left:20px">100,00%</td></tr>'+
+'<tr><td></span>Válidamente Emitidos</td><td style="text-align:right;padding-left:20px">4.422.223</td><td style="text-align:right;padding-left:20px">98,70%</td></tr>'+
+'<tr><td></span>Votos Nulos</td><td style="text-align:right;padding-left:20px">36.997</td><td style="text-align:right;padding-left:20px">0,83%</td></tr>'+
+'<tr><td></span>Votos Blancos</td><td style="text-align:right;padding-left:20px">21.459</td><td style="text-align:right;padding-left:20px">0,48%</td></tr>'+
+'<tr><td></span>Total Votación</td><td style="text-align:right;padding-left:20px">4.480.679</td><td style="text-align:right;padding-left:20px">100,00%</td></tr>'+
 '</table>';
 function mostrarPresidenciales(tipo="comunas") {
 
