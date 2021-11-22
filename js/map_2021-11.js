@@ -88,8 +88,8 @@ function mostrarMapa(mostrar, tipo) {
 
 legendPresidencialHTML =  'Porcentaje escrutado: 90,19%<table style="border-collapse:collapse">'+
 '<tr><td style="font-weight:bold">Candidato/a</td><td style="text-align:right;font-weight:bold">Votos</td><td style="text-align:right;font-weight:bold">%</td></tr>'+
-'<tr><td><span class="legend-key" style="background-color:' + colores['verde-agua'] + '"></span>GABRIEL BORIC FONT</td><td style="text-align:right;padding-left:20px">1.608.008</td><td style="text-align:right;padding-left:20px">25,60%</td></tr>'+
-'<tr><td><span class="legend-key" style="background-color:' + colores['azul-marino'] + '"></span>JOSE ANTONIO KAST RIST</td><td style="text-align:right;padding-left:20px">1.759.646</td><td style="text-align:right;padding-left:20px">28,02%</td></tr>'+
+'<tr style="font-weight:bold"><td><span class="legend-key" style="background-color:' + colores['verde-agua'] + '"></span>GABRIEL BORIC FONT</td><td style="text-align:right;padding-left:20px">1.608.008</td><td style="text-align:right;padding-left:20px">25,60%</td></tr>'+
+'<tr style="font-weight:bold"><td><span class="legend-key" style="background-color:' + colores['azul-marino'] + '"></span>JOSE ANTONIO KAST RIST</td><td style="text-align:right;padding-left:20px">1.759.646</td><td style="text-align:right;padding-left:20px">28,02%</td></tr>'+
 '<tr><td><span class="legend-key" style="background-color:' + colores['violeta'] + '"></span>YASNA PROVOSTE CAMPILLAY</td><td style="text-align:right;padding-left:20px">737.487</td><td style="text-align:right;padding-left:20px">11,74%</td></tr>'+
 '<tr><td><span class="legend-key" style="background-color:' + colores['amarillo'] + '"></span>SEBASTIAN SICHEL RAMIREZ</td><td style="text-align:right;padding-left:20px">790.254</td><td style="text-align:right;padding-left:20px">12,58%</td></tr>'+
 '<tr><td><span class="legend-key" style="background-color:' + colores['rojo'] + '"></span>EDUARDO ARTES BRICHETTI</td><td style="text-align:right;padding-left:20px">91.619</td><td style="text-align:right;padding-left:20px">1,46%</td></tr>'+
